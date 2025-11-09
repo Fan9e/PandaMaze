@@ -3,28 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\scripts\\items\\weapon\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\tests\\onehandswordtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|solutionrelative:assets\\tests\\onehandswordtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\tests\\tests.asmdef||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|solutionrelative:assets\\tests\\tests.asmdef||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Test\\WeaponTests\\OneHandSwordTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Test\\WeaponTests\\OneHandSwordTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\items\\weapon\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\items\\weapon\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\scripts\\items\\weapon\\onehandsword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\items\\weapon\\onehandsword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\items\\weapon\\onehandsword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\scripts\\items\\weapon\\iweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\items\\weapon\\iweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\items\\weapon\\iweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{05F3830E-AD8E-68D8-703F-A51B10206934}|TestsWeapon.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\test\\weapontests\\onehandswordtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{05F3830E-AD8E-68D8-703F-A51B10206934}|TestsWeapon.csproj|solutionrelative:assets\\test\\weapontests\\onehandswordtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{05F3830E-AD8E-68D8-703F-A51B10206934}|TestsWeapon.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\test\\weapontests\\weapontests.asmdef||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{05F3830E-AD8E-68D8-703F-A51B10206934}|TestsWeapon.csproj|solutionrelative:assets\\test\\weapontests\\weapontests.asmdef||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Library\\PackageCache\\com.unity.render-pipelines.universal@0b68ece7aa54\\Shaders\\Lit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.render-pipelines.universal@0b68ece7aa54\\Shaders\\Lit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Test\\WeaponTests\\WeaponTests.asmdef||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Test\\WeaponTests\\WeaponTests.asmdef||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,11 +42,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Weapon.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\Weapon.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Items\\Weapon\\Weapon.cs",
@@ -47,21 +55,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-09T15:51:30.349Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IWeapon.cs",
-              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\IWeapon.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Items\\Weapon\\IWeapon.cs",
-              "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\IWeapon.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Items\\Weapon\\IWeapon.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T15:51:38.527Z",
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -73,7 +67,45 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OneHandSwordTest.cs",
+              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\OneHandSwordTest.cs",
+              "RelativeDocumentMoniker": "Assets\\Tests\\OneHandSwordTest.cs",
+              "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\OneHandSwordTest.cs",
+              "RelativeToolTip": "Assets\\Tests\\OneHandSwordTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-09T16:36:45.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Tests.asmdef",
+              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\Tests.asmdef",
+              "RelativeDocumentMoniker": "Assets\\Tests\\Tests.asmdef",
+              "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\Tests.asmdef",
+              "RelativeToolTip": "Assets\\Tests\\Tests.asmdef",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001874|",
+              "WhenOpened": "2025-11-09T16:36:22.998Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IWeapon.cs",
+              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\IWeapon.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Items\\Weapon\\IWeapon.cs",
+              "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\IWeapon.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Items\\Weapon\\IWeapon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-09T15:51:38.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "OneHandSword.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\OneHandSword.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Items\\Weapon\\OneHandSword.cs",
@@ -81,25 +113,22 @@
               "RelativeToolTip": "Assets\\Scripts\\Items\\Weapon\\OneHandSword.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAxwA0AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T15:51:01.947Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-09T15:51:01.947Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "OneHandSwordTest.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Test\\WeaponTests\\OneHandSwordTest.cs",
               "RelativeDocumentMoniker": "Assets\\Test\\WeaponTests\\OneHandSwordTest.cs",
               "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Test\\WeaponTests\\OneHandSwordTest.cs",
               "RelativeToolTip": "Assets\\Test\\WeaponTests\\OneHandSwordTest.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAIBQwBUAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T21:23:11.459Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-08T21:23:11.459Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "WeaponTests.asmdef",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Test\\WeaponTests\\WeaponTests.asmdef",
               "RelativeDocumentMoniker": "Assets\\Test\\WeaponTests\\WeaponTests.asmdef",
@@ -111,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Lit.shader",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Library\\PackageCache\\com.unity.render-pipelines.universal@0b68ece7aa54\\Shaders\\Lit.shader",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@0b68ece7aa54\\Shaders\\Lit.shader",

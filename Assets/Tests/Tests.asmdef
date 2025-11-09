@@ -1,5 +1,5 @@
 {
-    "name": "TestsWeapon",
+    "name": "Tests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
