@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IWeapon
 {
- int Attack();
+ int CalculateDamage();
     
 }
