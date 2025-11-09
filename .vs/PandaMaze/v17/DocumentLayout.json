@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\tests\\onehandswordtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|solutionrelative:assets\\tests\\onehandswordtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\tests\\tests.asmdef||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|solutionrelative:assets\\tests\\tests.asmdef||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Test\\WeaponTests\\OneHandSwordTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Test\\WeaponTests\\OneHandSwordTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\scripts\\moster\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\moster\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\items\\weapon\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,6 +17,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\items\\weapon\\iweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\items\\weapon\\iweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\tests\\weapontest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|solutionrelative:assets\\tests\\weapontest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Test\\WeaponTests\\OneHandSwordTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Test\\WeaponTests\\OneHandSwordTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Library\\PackageCache\\com.unity.render-pipelines.universal@0b68ece7aa54\\Shaders\\Lit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -46,16 +46,17 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Weapon.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\Weapon.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Items\\Weapon\\Weapon.cs",
               "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\Weapon.cs",
               "RelativeToolTip": "Assets\\Scripts\\Items\\Weapon\\Weapon.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-09T15:51:30.349Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -68,32 +69,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "OneHandSwordTest.cs",
-              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\OneHandSwordTest.cs",
-              "RelativeDocumentMoniker": "Assets\\Tests\\OneHandSwordTest.cs",
-              "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\OneHandSwordTest.cs",
-              "RelativeToolTip": "Assets\\Tests\\OneHandSwordTest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Title": "Monster.cs",
+              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Moster\\Monster.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Moster\\Monster.cs",
+              "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Moster\\Monster.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Moster\\Monster.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T16:36:45.575Z",
+              "WhenOpened": "2025-11-09T20:15:51.623Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Tests.asmdef",
-              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\Tests.asmdef",
-              "RelativeDocumentMoniker": "Assets\\Tests\\Tests.asmdef",
-              "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\Tests.asmdef",
-              "RelativeToolTip": "Assets\\Tests\\Tests.asmdef",
+              "DocumentIndex": 4,
+              "Title": "WeaponTest.cs",
+              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\WeaponTest.cs",
+              "RelativeDocumentMoniker": "Assets\\Tests\\WeaponTest.cs",
+              "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\WeaponTest.cs",
+              "RelativeToolTip": "Assets\\Tests\\WeaponTest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001874|",
-              "WhenOpened": "2025-11-09T16:36:22.998Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-09T20:43:17.733Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "IWeapon.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\IWeapon.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Items\\Weapon\\IWeapon.cs",
@@ -101,23 +102,25 @@
               "RelativeToolTip": "Assets\\Scripts\\Items\\Weapon\\IWeapon.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T15:51:38.527Z"
+              "WhenOpened": "2025-11-09T15:51:38.527Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "OneHandSword.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\OneHandSword.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Items\\Weapon\\OneHandSword.cs",
               "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\OneHandSword.cs",
               "RelativeToolTip": "Assets\\Scripts\\Items\\Weapon\\OneHandSword.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAxwA0AAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T15:51:01.947Z"
+              "WhenOpened": "2025-11-09T15:51:01.947Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "OneHandSwordTest.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Test\\WeaponTests\\OneHandSwordTest.cs",
               "RelativeDocumentMoniker": "Assets\\Test\\WeaponTests\\OneHandSwordTest.cs",
@@ -134,7 +137,6 @@
               "RelativeDocumentMoniker": "Assets\\Test\\WeaponTests\\WeaponTests.asmdef",
               "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Test\\WeaponTests\\WeaponTests.asmdef",
               "RelativeToolTip": "Assets\\Test\\WeaponTests\\WeaponTests.asmdef",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001874|",
               "WhenOpened": "2025-11-08T21:21:43.931Z"
             },
