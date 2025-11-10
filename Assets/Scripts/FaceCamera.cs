@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class FaceCamera : MonoBehaviour
 {
     Camera cam;
 
