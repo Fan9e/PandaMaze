@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    public Player player;
     public int MaxHealth { get; protected set; } = 0;
     public int CurrentHealth;
     public int AttackPower { get; protected set; } = 0;
@@ -39,8 +40,7 @@ public class Monster : MonoBehaviour
     }
     protected virtual void GiveDamage()
     {
-        Debug.Log("Monster gav skade.");
-        Player player = GetComponent<Player>();
+        Debug.Log("Monster giver skade.");
 
         if (player == null) return;
         
@@ -50,10 +50,10 @@ public class Monster : MonoBehaviour
     }
     protected virtual void NullPlayer()
     {
-        Debug.Log("Monster nulstillede spillerens position.");
-        Player player = GetComponent<Player>();
+        
         if (player == null) return;
         player.transform.position = Vector3.zero;
+        Debug.Log("Monster nulstillede spillerens position.");
     }
     protected virtual void Die()
     {
