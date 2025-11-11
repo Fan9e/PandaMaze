@@ -8,8 +8,8 @@ public class Dragon : Monster
     void Start()
     {   
         MaxHealth = 30;
-        AttackPower = 10;
-        CurrentHealth = MaxHealth;
+        AttackPower = 5;
+        base.Start();
     }
 
     // Update is called once per frame

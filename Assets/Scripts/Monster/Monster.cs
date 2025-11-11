@@ -10,10 +10,16 @@ public abstract class Monster : MonoBehaviour
     /// <summary>
     /// Sætter CurrentHealth til MaxHealth, når objektet starter.
     /// </summary>
-    void Start()
+    protected virtual void Start()
     {
         CurrentHealth = MaxHealth;
     }
+
+    /// <summary>
+    /// Starter en kampsekvens mellem dette monster og spilleren.
+    /// Monsteret modtager skade, tjekker om det dør og forsøger derefter at give skade til spilleren. 
+    /// </summary>
+    /// <param name="damageAmount">Mængden af skade, som dette monster modtager i starten af kampen.</param>
     public void Fight(int damageAmount)
     {
         if (!EnsureHasPlayer()) return;
@@ -22,6 +28,7 @@ public abstract class Monster : MonoBehaviour
         GiveDamage();
 
     }
+
     /// <summary>
     /// Påfører dette monster skade og opdaterer dets nuværende liv.
     /// Livet begrænses til området mellem 0 og MaxHealth.
@@ -37,6 +44,9 @@ public abstract class Monster : MonoBehaviour
 
         Debug.Log(" HP: " + CurrentHealth);
     }
+    /// <summary>
+    /// Giver skade til spilleren baseret på dette monsters angrebsstyrke.
+    /// </summary>
     protected virtual void GiveDamage()
     {
         Debug.Log("Monster giver skade");
@@ -44,6 +54,12 @@ public abstract class Monster : MonoBehaviour
         Debug.Log("Player HP: " + player.CurrentHealth);
        
     }
+
+    /// <summary>
+    /// Sikrer, at der er tilknyttet en spiller til monsteret.
+    /// Logger en advarsel, hvis der ikke er nogen spiller.
+    /// </summary>
+    /// <returns>True, hvis der er en spiller tilknyttet; ellers false.</returns>
     protected virtual bool EnsureHasPlayer()
     {
         if (player != null) return true;
@@ -52,13 +68,15 @@ public abstract class Monster : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Håndterer monsterets død, når det ikke har mere liv.
+    /// Destruerer objektet, hvis dets liv er 0 eller derunder
+    /// </summary>
     protected virtual void Die()
     {
         if (CurrentHealth > 0) return;
         Debug.Log("Monster døde");
         Destroy(gameObject);
     }
-
-
 
 }
