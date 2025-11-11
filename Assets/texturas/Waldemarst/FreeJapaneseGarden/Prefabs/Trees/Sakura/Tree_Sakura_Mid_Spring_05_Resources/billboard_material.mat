@@ -27,7 +27,7 @@ Material:
   m_ValidKeywords:
   - BACKFACE_NORMAL_MODE_MIRROR
   - EFFECT_BILLBOARD
-  - _WINDQUALITY_FASTEST
+  - _WINDQUALITY_BEST
   m_InvalidKeywords:
   - EFFECT_BUMP
   - EFFECT_EXTRA_TEX
@@ -89,7 +89,7 @@ Material:
     - _SubsurfaceKwToggle: 1
     - _TwoSided: 2
     - _WINDQUALITY: 1
-    - _WindQuality: 1
+    - _WindQuality: 4
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0.7}
     - _HueVariationColor: {r: 1, g: 1, b: 1, a: 1}
