@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public abstract class Monster : MonoBehaviour
 {
     public Player player;
     public int MaxHealth { get; protected set; } = 0;
@@ -16,11 +16,10 @@ public class Monster : MonoBehaviour
     }
     public void Fight(int damageAmount)
     {
-        NullPlayer();
+        if (!EnsureHasPlayer()) return;
         ReceiveDamage(damageAmount);
         Die();
         GiveDamage();
-
 
     }
     /// <summary>
@@ -40,25 +39,23 @@ public class Monster : MonoBehaviour
     }
     protected virtual void GiveDamage()
     {
-        Debug.Log("Monster giver skade.");
-
-        if (player == null) return;
-        
-            player.CurrentHealth -= AttackPower;
-            Debug.Log("Player HP: " + player.CurrentHealth);
+        Debug.Log("Monster giver skade");
+        player.CurrentHealth -= AttackPower;
+        Debug.Log("Player HP: " + player.CurrentHealth);
        
     }
-    protected virtual void NullPlayer()
+    protected virtual bool EnsureHasPlayer()
     {
-        
-        if (player == null) return;
-        player.transform.position = Vector3.zero;
-        Debug.Log("Monster nulstillede spillerens position.");
+        if (player != null) return true;
+
+        Debug.LogWarning("Der er ingen player at kæmpe imod");
+        return false;
     }
+
     protected virtual void Die()
     {
         if (CurrentHealth > 0) return;
-        Debug.Log("Monster døde.");
+        Debug.Log("Monster døde");
         Destroy(gameObject);
     }
 

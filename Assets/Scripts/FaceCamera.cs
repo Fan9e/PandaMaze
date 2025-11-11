@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class FaceCamera : MonoBehaviour
 {
-    Camera cam;
+    Camera camera;
 
     void Start()
     {
-        cam = Camera.main;   
+        camera = Camera.main;   
     }
 
     void LateUpdate()
     {
-        if (cam == null) return;
+        if (camera == null) return;
 
-        transform.forward = cam.transform.forward;
+        transform.forward = camera.transform.forward;
     }
 }
