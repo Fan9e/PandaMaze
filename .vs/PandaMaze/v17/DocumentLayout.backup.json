@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\fanni\\Desktop\\PandaMaze\\PandaMaze\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{57748A2F-CD21-44B4-C219-C347F56CED30}|Assembly-CSharp.csproj|c:\\users\\fanni\\desktop\\pandamaze\\pandamaze\\assets\\scripts\\broccoterraincontroller_fjg_1_10_3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{57748A2F-CD21-44B4-C219-C347F56CED30}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\broccoterraincontroller_fjg_1_10_3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BroccoTerrainController_FJG_1_10_3.cs",
+              "DocumentMoniker": "C:\\Users\\fanni\\Desktop\\PandaMaze\\PandaMaze\\Assets\\Scripts\\BroccoTerrainController_FJG_1_10_3.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\BroccoTerrainController_FJG_1_10_3.cs",
+              "ToolTip": "C:\\Users\\fanni\\Desktop\\PandaMaze\\PandaMaze\\Assets\\Scripts\\BroccoTerrainController_FJG_1_10_3.cs",
+              "RelativeToolTip": "Assets\\Scripts\\BroccoTerrainController_FJG_1_10_3.cs",
+              "ViewState": "AgIAACEBAAAAAAAAAADwv40BAABlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T12:06:19.334Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
