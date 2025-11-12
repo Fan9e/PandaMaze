@@ -18,7 +18,7 @@ public abstract class Weapon : Item, IWeapon
         if (monster == null) return;
         if (monster.CurrentHealth == 0) return;
 
-        monster.ReceiveDamage(CalculateDamage());
+        monster.Fight(CalculateDamage());
         Debug.Log(name + " rammer " + monster.name + " for " + CalculateDamage() + " skade");
     }
 }    

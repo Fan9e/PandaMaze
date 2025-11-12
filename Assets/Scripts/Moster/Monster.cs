@@ -28,6 +28,17 @@ public class Monster : MonoBehaviour
         Debug.Log(" HP: " + CurrentHealth);
     }
 
+    //TODO: I en anden branch bliver implementeringen af Fight lavet færdig.
+    /// <summary>
+    /// Monsteret modtager skade
+    /// </summary>
+    /// <param name="damageAmount">Mængden af skade, som dette monster modtager i starten af kampen.</param>
+    public void Fight(int damageAmount)
+    {
+        ReceiveDamage(damageAmount);
+      
+
+    }
 
 
     // Update is called once per frame
