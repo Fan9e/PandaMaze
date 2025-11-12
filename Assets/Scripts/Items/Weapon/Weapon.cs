@@ -1,7 +1,9 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public abstract class Weapon : Item, IWeapon
 {
+    Monster monster;
     public abstract int CalculateDamage();
     public bool isAttacking = false;
 
@@ -14,11 +16,18 @@ public abstract class Weapon : Item, IWeapon
     private void OnTriggerStay(Collider other)
     {
         if (!isAttacking) return;
-        Monster monster = other.GetComponent<Monster>();
         if (monster == null) return;
-        if (monster.CurrentHealth == 0) return;
+        DealDamageToMonster(monster);
+    }
 
-        monster.Fight(CalculateDamage());
-        Debug.Log(name + " rammer " + monster.name + " for " + CalculateDamage() + " skade");
+    /// <summary>
+    /// Udfører et slag mod det angivne monster ved at beregne skaden
+    /// og anvende den.
+    /// </summary>
+    /// <param name="monster">Det monster, der skal modtage skaden</param>
+    private void DealDamageToMonster(Monster monster)
+    {
+        int dmg = CalculateDamage();
+        monster.Fight(dmg);
     }
 }    
