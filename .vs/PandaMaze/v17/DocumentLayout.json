@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\items\\weapon\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\scripts\\items\\weapon\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\items\\weapon\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -23,7 +23,7 @@
       "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\items\\weapon\\iweapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\scripts\\moster\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\moster\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\moster\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -56,7 +56,7 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Items\\Weapon\\Weapon.cs",
               "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\Weapon.cs",
               "RelativeToolTip": "Assets\\Scripts\\Items\\Weapon\\Weapon.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA1wBYAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-09T15:51:30.349Z",
               "IsPinned": true,
@@ -80,8 +80,7 @@
               "RelativeToolTip": "Assets\\Tests\\OneHandSwordTest.cs",
               "ViewState": "AgIAADoAAAAAAAAAAIAwwFcAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T18:56:55.529Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T18:56:55.529Z"
             },
             {
               "$type": "Document",
@@ -93,8 +92,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Moster\\Monster.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAzwB4AAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T20:15:51.623Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-09T20:15:51.623Z"
             },
             {
               "$type": "Document",
@@ -117,8 +115,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Items\\Weapon\\IWeapon.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T15:51:38.527Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-09T15:51:38.527Z"
             },
             {
               "$type": "Document",
@@ -130,8 +127,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Items\\Weapon\\OneHandSword.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAAQwBsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T15:51:01.947Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-09T15:51:01.947Z"
             },
             {
               "$type": "Document",

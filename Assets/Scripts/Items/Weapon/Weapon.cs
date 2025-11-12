@@ -17,7 +17,7 @@ public abstract class Weapon : Item, IWeapon
     {
         if (!isAttacking) return;
         if (monster == null) return;
-        DealDamageToMonster(monster);
+        DealDamage(monster);
     }
 
     /// <summary>
@@ -25,7 +25,7 @@ public abstract class Weapon : Item, IWeapon
     /// og anvende den.
     /// </summary>
     /// <param name="monster">Det monster, der skal modtage skaden</param>
-    private void DealDamageToMonster(Monster monster)
+    private void DealDamage(Monster monster)
     {
         int dmg = CalculateDamage();
         monster.Fight(dmg);
