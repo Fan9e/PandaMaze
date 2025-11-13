@@ -1,42 +1,92 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMovement3D : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+
+public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f;
-    public float inputDeadzone = 0.05f;   // små udsving = stå stille
+    [SerializeField]
+    private float movementSpeed = 5f;
 
-    Rigidbody rb;
-    Animator anim;
-    Vector3 input;
+    [SerializeField]
+    private float inputDeadzone = 0.05f;
 
-    void Awake()
+    private Rigidbody rigidbodyComponent;
+    private Animator animator;
+    private Vector3 movementInput;
+
+    /// <summary>
+    /// Henter referencer til de komponenter, som spilleren kræver for at fungere.
+    /// </summary>
+    private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();   // <- henter Animator på Panda
+        rigidbodyComponent = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
-    void Update()
+    /// <summary>
+    /// Læser input fra spilleren og opdaterer bevægelse og animationstilstand.
+    /// </summary>
+    private void Update()
     {
-        var camF = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
-        var camR = Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up).normalized;
-
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-
-        input = camR * h + camF * v;
-        if (input.magnitude < inputDeadzone) input = Vector3.zero; // stå stille
-        else input = input.normalized;
-
-        if (anim)
-            anim.SetBool("IsWalking", input.sqrMagnitude > 0.0001f); // true når der er input
+        UpdateMovementInput();
+        UpdateAnimationState();
     }
 
-    void FixedUpdate()
+    /// <summary>
+    /// Kaldes i faste intervaller og anvender bevægelsen på rigidbody'en.
+    /// </summary>
+    private void FixedUpdate()
     {
-        Vector3 v = input * speed;
-        v.y = rb.linearVelocity.y;     // behold evt. gravitation
-        rb.linearVelocity = v;
+        ApplyMovement();
+    }
+
+    /// <summary>
+    /// Beregner kamera-relativt bevægelsesinput ud fra tastaturaksene.
+    /// </summary>
+    private void UpdateMovementInput()
+    {
+        Vector3 cameraForward =
+            Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
+        Vector3 cameraRight =
+            Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up).normalized;
+
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+
+        Vector3 rawInput = cameraRight * horizontalInput + cameraForward * verticalInput;
+
+        if (rawInput.magnitude < inputDeadzone)
+        {
+            movementInput = Vector3.zero;
+        }
+        else
+        {
+            movementInput = rawInput.normalized;
+        }
+    }
+
+    /// <summary>
+    /// Opdaterer animatorens parametre på baggrund af nuværende bevægelse.
+    /// </summary>
+    private void UpdateAnimationState()
+    {
+        if (animator == null)
+        {
+            return;
+        }
+
+        bool isWalking = movementInput.sqrMagnitude > 0.0001f;
+        animator.SetBool("IsWalking", isWalking);
+    }
+
+    /// <summary>
+    /// Anvender den beregnede bevægelse på rigidbody'en og bevarer den vertikale hastighed.
+    /// </summary>
+    private void ApplyMovement()
+    {
+        Vector3 velocity = movementInput * movementSpeed;
+        velocity.y = rigidbodyComponent.linearVelocity.y;
+        rigidbodyComponent.linearVelocity = velocity;
     }
 }
-
