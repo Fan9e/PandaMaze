@@ -24,7 +24,7 @@ public abstract class Weapon : Item, IWeapon
     /// <param name="monster">Det monster, der skal modtage skaden</param>
     private void DealDamage(Monster monster)
     {
-        int dmg = CalculateDamage();
-        monster.Fight(dmg);
+        int damage = CalculateDamage();
+        monster.Fight(damage);
     }
 }    

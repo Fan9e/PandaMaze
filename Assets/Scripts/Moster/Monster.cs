@@ -36,14 +36,6 @@ public class Monster : MonoBehaviour
     public void Fight(int damageAmount)
     {
         ReceiveDamage(damageAmount);
-      
-
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
