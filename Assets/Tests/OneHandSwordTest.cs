@@ -21,6 +21,9 @@ public class OneHandSwordTest
         Assert.AreEqual(10, damage);
     }
 
+    /// <summary>
+    /// Sikrer at OnTriggerStay skader et monster, når våbnet angriber og monsteret er i live.
+    /// </summary>
     [Test]
     public void OnTriggerStay_DamagesMonster_WhenAttackingAndMonsterAlive()
     {
@@ -49,6 +52,9 @@ public class OneHandSwordTest
         Assert.AreEqual(StartHealth - 10, Monster.CurrentHealth);
     }
 
+    /// <summary>
+    /// Sikrer at OnTriggerStay ikke skader et monster, når våbnet ikke angriber.
+    /// </summary>
     [Test]
     public void OnTriggerStay_DoesNotDamage_WhenNotAttacking()
     { 
@@ -74,6 +80,9 @@ public class OneHandSwordTest
         Assert.AreEqual(StartHealth, Monster.CurrentHealth);
     }
 
+    /// <summary>
+    /// Sikrer at OnTriggerStay ikke skader et monster, der allerede er dødt (0 HP).
+    /// </summary>
     [Test]
     public void OnTriggerStay_DoesNotDamage_DeadMonster()
     {
