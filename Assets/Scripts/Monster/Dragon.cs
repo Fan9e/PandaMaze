@@ -3,18 +3,14 @@ using UnityEngine;
 public class Dragon : Monster
 {
     /// <summary>
-    /// Sætter CurrentHealth til MaxHealth, når objektet starter.
+    /// Initialiserer dragen ved at sætte dens maksimale liv og angrebskraft
+    /// og kalder Monster-basislogikken via base.Start().
     /// </summary>
-    void Start()
+    private void Start()
     {   
         MaxHealth = 30;
         AttackPower = 5;
         base.Start();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
