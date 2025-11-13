@@ -3,19 +3,16 @@ using static UnityEngine.GraphicsBuffer;
 
 public abstract class Weapon : Item, IWeapon
 {
-    Monster monster;
     public abstract int CalculateDamage();
     public bool isAttacking = false;
 
     /// <summary>
-    /// Håndterer, når våbnets trigger er i kontakt med et andet objekt.
-    /// Hvis våbnet er i gang med at angribe og objektet er et monster,
-    /// påføres monstret skade.
+    /// Kaldes når spilleren har sagt ordet rigtigt
+    /// og vi vil slå et bestemt monster.
     /// </summary>
-    /// <param name="other">Den collider, der befinder sig inde i våbnets trigger.</param>
-    private void OnTriggerStay(Collider other)
+    /// <param name="monster">Det monster, der skal modtage skaden</param>
+    public void Attack(Monster monster)
     {
-        if (!isAttacking) return;
         if (monster == null) return;
         DealDamage(monster);
     }

@@ -10,7 +10,6 @@ public class OneHandSword : Weapon
     ///<returns>Den samlede mængde skade.</returns>
     public override int CalculateDamage()
     {
-      
         int totalDamage = Mathf.Max(0, baseDamage);
 
         return totalDamage;
