@@ -7,8 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private float movementSpeed = 5f;
-
-    [SerializeField]
+    private float walkThreshold = 0.0001f;
     private float inputDeadzone = 0.05f;
 
     private Rigidbody rigidbodyComponent;
@@ -76,9 +75,10 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        bool isWalking = movementInput.sqrMagnitude > 0.0001f;
+        bool isWalking = movementInput.sqrMagnitude > walkThreshold;
         animator.SetBool("IsWalking", isWalking);
     }
+
 
     /// <summary>
     /// Anvender den beregnede bevægelse på rigidbody'en og bevarer den vertikale hastighed.
