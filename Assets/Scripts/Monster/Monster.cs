@@ -2,10 +2,16 @@ using UnityEngine;
 
 public abstract class Monster : MonoBehaviour
 {
-    public Player player;
-    public int MaxHealth { get; protected set; } = 0;
-    public int CurrentHealth;
-    public int AttackPower { get; protected set; } = 0;
+    [SerializeField] private Player player;   
+    public Player Player                     
+    {
+        get => player;
+        set => player = value;
+    }
+
+    [SerializeField] public int MaxHealth { get; set; } = 0;
+    [SerializeField] public int CurrentHealth;
+    [SerializeField] public int AttackPower { get; set; } = 0;
 
     /// <summary>
     /// Sætter CurrentHealth til MaxHealth, når objektet starter.
@@ -22,10 +28,11 @@ public abstract class Monster : MonoBehaviour
     /// <param name="damageAmount">Mængden af skade, som dette monster modtager i starten af kampen.</param>
     public void Fight(int damageAmount)
     {
-        if (!EnsureHasPlayer()) return;
+        
+        if (!EnsureHasPlayer(player)) return;
         ReceiveDamage(damageAmount);
         Die();
-        GiveDamage();
+        GiveDamage(player);
 
     }
 
@@ -47,12 +54,10 @@ public abstract class Monster : MonoBehaviour
     /// <summary>
     /// Giver skade til spilleren baseret på dette monsters angrebsstyrke.
     /// </summary>
-    protected virtual void GiveDamage()
+    protected virtual void GiveDamage(Player player)
     {
-        Debug.Log("Monster giver skade");
-        player.CurrentHealth -= AttackPower;
-        Debug.Log("Player HP: " + player.CurrentHealth);
-       
+        if (CurrentHealth <= 0) return;
+        player.CurrentHealth -= AttackPower;  
     }
 
     /// <summary>
@@ -60,7 +65,7 @@ public abstract class Monster : MonoBehaviour
     /// Logger en advarsel, hvis der ikke er nogen spiller.
     /// </summary>
     /// <returns>True, hvis der er en spiller tilknyttet; ellers false.</returns>
-    protected virtual bool EnsureHasPlayer()
+    protected virtual bool EnsureHasPlayer(Player player)
     {
         if (player != null) return true;
 
@@ -76,7 +81,10 @@ public abstract class Monster : MonoBehaviour
     {
         if (CurrentHealth > 0) return;
         Debug.Log("Monster døde");
-        Destroy(gameObject);
+        if (Application.isPlaying)
+            Destroy(gameObject);
+        else
+            DestroyImmediate(gameObject);
     }
 
 }
