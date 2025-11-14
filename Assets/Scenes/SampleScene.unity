@@ -669,7 +669,7 @@ GameObject:
   - component: {fileID: 652481107}
   - component: {fileID: 652481106}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Microphone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -941,7 +941,7 @@ GameObject:
   - component: {fileID: 1049293094}
   - component: {fileID: 1049293093}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Sentence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

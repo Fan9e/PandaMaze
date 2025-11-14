@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -9,48 +9,54 @@ using TMPro;
 using SpeechToTextNamespace;
 #endif
 
-/// <summary>
-/// Attach to a GameObject to control its movement with voice commands.
-/// Supports Danish and English direction words (up/op, down/ned, left/venstre, right/højre).
-/// Call ToggleMicrophone() from UI to start/stop speech recognition (or press M in editor/runtime).
-/// </summary>
 [DisallowMultipleComponent]
 public class VoiceMovement : MonoBehaviour
 #if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 	, ISpeechToTextListener
 #endif
 {
-    [Header("Movement")]
-    public Transform target;               // object to move (defaults to this.transform if null)
-    public float stepDistance = 1f;        // distance moved per recognized command
-    public bool useContinuousMove = false; // if true, a command will set a direction and move each Update
+    [Header("Bevægelse")]
+    public Transform target;
+    public float stepDistance = 1f;
+    public bool useContinuousMove = false;
 
-    [Header("Microphone")]
+    [Header("Mikrofon")]
     public bool isMicrophoneOn = false;
     public bool preferOfflineRecognition = false;
     public bool useFreeFormLanguageModel = true;
 
-    [Header("UI (optional)")]
-    public Button micToggleButton;                  // optional UI Button to toggle microphone
-    public Text micToggleButtonText;                // optional legacy UI Text inside the button
-    public TextMeshProUGUI micToggleTMPText;        // optional TextMeshPro text inside the button
-    public Sprite micOnSprite;                      // optional icon when mic on
-    public Sprite micOffSprite;                     // optional icon when mic off
-    public Image micIconImage;                      // optional Image inside the button to show icon
-    [Tooltip("Optional UI element to show the last recognized phrase (legacy Text).")]
+    [Header("UI (valgfri)")]
+    public Button micToggleButton;
+    public Text micToggleButtonText;
+    public TextMeshProUGUI micToggleTMPText;
+    public Sprite micOnSprite;
+    public Sprite micOffSprite;
+    public Image micIconImage;
+    [Tooltip("Valgfrit UI-element til at vise sidst genkendte sætning (legacy Text).")]
     public Text lastRecognizedText;
-    [Tooltip("Optional TextMeshPro UI element to show the last recognized phrase.")]
+    [Tooltip("Valgfrit TextMeshPro UI-element til at vise sidst genkendte sætning.")]
     public TextMeshProUGUI lastRecognizedTMPText;
-    public string micOnText = "Mic: On";
-    public string micOffText = "Mic: Off";
+    public string micOnText = "Mikrofon: Til";
+    public string micOffText = "Mikrofon: Fra";
 
-    // internal
     private Vector3 continuousDirection = Vector3.zero;
+
     private static readonly string[] upWords = { "up", "op", "opad" };
     private static readonly string[] downWords = { "down", "ned", "nedad" };
     private static readonly string[] leftWords = { "left", "venstre" };
     private static readonly string[] rightWords = { "right", "højre", "hojre" };
-    private static readonly string[] stopWords = { "stop", "stoppe", "hold", "hold op" };
+    private static readonly string[] forwardWords = { "forward", "frem", "fremad", "fremfor" };
+    private static readonly string[] backWords = { "back", "backwards", "backward", "tilbage", "bagud" };
+
+    private static readonly (Direction dir, string[] words)[] prioritized =
+    {
+        (Direction.Up, upWords),
+        (Direction.Down, downWords),
+        (Direction.Left, leftWords),
+        (Direction.Right, rightWords),
+        (Direction.Forward, forwardWords),
+        (Direction.Back, backWords),
+    };
 
     void Reset()
     {
@@ -59,7 +65,6 @@ public class VoiceMovement : MonoBehaviour
 
     void Start()
     {
-        // subscribe UI button if assigned
         if (micToggleButton != null)
         {
             micToggleButton.onClick.RemoveListener(ToggleMicrophone);
@@ -72,24 +77,21 @@ public class VoiceMovement : MonoBehaviour
 
     void Update()
     {
-        // quick keyboard toggle for testing
         if (Input.GetKeyDown(KeyCode.M))
             ToggleMicrophone();
 
         if (useContinuousMove && continuousDirection != Vector3.zero)
         {
-            if (target == null) target = transform;
-            target.Translate(continuousDirection * stepDistance * Time.deltaTime, Space.World);
+            var t = target ?? transform;
+            t.Translate(continuousDirection * stepDistance * Time.deltaTime, Space.World);
         }
     }
 
     #region Public API
     public void ToggleMicrophone()
     {
-        if (isMicrophoneOn)
-            StopMicrophone();
-        else
-            StartMicrophone();
+        if (isMicrophoneOn) StopMicrophone();
+        else StartMicrophone();
 
         UpdateMicButtonUI();
     }
@@ -99,103 +101,77 @@ public class VoiceMovement : MonoBehaviour
         if (isMicrophoneOn || SpeechToText.IsBusy())
             return;
 
-        // Request permission then start
         SpeechToText.RequestPermissionAsync((permission) =>
         {
             if (permission == SpeechToText.Permission.Granted)
             {
                 bool started = SpeechToText.Start(this, useFreeFormLanguageModel, preferOfflineRecognition);
-                if (started)
-                {
-                    isMicrophoneOn = true;
-                    Debug.Log("VoiceMovement: Microphone started");
-                }
-                else
-                {
-                    Debug.LogWarning("VoiceMovement: Failed to start speech session");
-                }
+                if (started) isMicrophoneOn = true;
+                else Debug.LogWarning("VoiceMovement: Kunne ikke starte tale-session");
             }
             else
             {
-                Debug.LogWarning("VoiceMovement: Microphone / speech permission not granted");
+                Debug.LogWarning("VoiceMovement: Mikrofon / tale-tilladelse ikke givet");
             }
 
-            // update UI (callback from plugin should be on main thread; safe to call)
             UpdateMicButtonUI();
         });
     }
 
-    public void StopMicrophone()
+    public void StopMicrophone(bool clearDirection = true)
     {
-        if (!isMicrophoneOn)
-            return;
+        if (!isMicrophoneOn) return;
 
         SpeechToText.ForceStop();
         isMicrophoneOn = false;
-        continuousDirection = Vector3.zero;
-        Debug.Log("VoiceMovement: Microphone stopped");
+        if (clearDirection) continuousDirection = Vector3.zero;
+        Debug.Log("VoiceMovement: Mikrofon stoppet");
 
         UpdateMicButtonUI();
     }
     #endregion
 
     #region Command parsing & movement
+    private enum Direction { None, Up, Down, Left, Right, Forward, Back }
+
     private void ExecuteCommand(Direction cmd)
     {
-        if (target == null)
-            target = transform;
+        var t = target ?? transform;
 
         switch (cmd)
         {
-            case Direction.Up:
-                if (useContinuousMove) continuousDirection = Vector3.up;
-                else target.Translate(Vector3.up * stepDistance, Space.World);
-                break;
-            case Direction.Down:
-                if (useContinuousMove) continuousDirection = Vector3.down;
-                else target.Translate(Vector3.down * stepDistance, Space.World);
-                break;
-            case Direction.Left:
-                if (useContinuousMove) continuousDirection = Vector3.left;
-                else target.Translate(Vector3.left * stepDistance, Space.World);
-                break;
-            case Direction.Right:
-                if (useContinuousMove) continuousDirection = Vector3.right;
-                else target.Translate(Vector3.right * stepDistance, Space.World);
-                break;
-            case Direction.Stop:
-                continuousDirection = Vector3.zero;
-                break;
-            default:
-                break;
+            case Direction.Up: ApplyMovement(Vector3.up, t); break;
+            case Direction.Down: ApplyMovement(Vector3.down, t); break;
+            case Direction.Left: ApplyMovement(Vector3.left, t); break;
+            case Direction.Right: ApplyMovement(Vector3.right, t); break;
+            case Direction.Forward: ApplyMovement(t.forward, t); break;
+            case Direction.Back: ApplyMovement(-t.forward, t); break;
+            default: break;
         }
+    }
+
+    private void ApplyMovement(Vector3 direction, Transform t)
+    {
+        if (useContinuousMove) continuousDirection = direction;
+        else t.Translate(direction * stepDistance, Space.World);
     }
 
     private Direction GetCommandFromText(string text)
     {
-        if (string.IsNullOrWhiteSpace(text))
-            return Direction.None;
+        if (string.IsNullOrWhiteSpace(text)) return Direction.None;
 
-        // normalize to lower and remove diacritics that commonly appear in speech-to-text
         string normalized = RemoveDiacritics(text).ToLowerInvariant();
 
-        // split into words
-        var words = Regex.Split(normalized, @"\W+").Where(w => !string.IsNullOrEmpty(w)).ToArray();
-        if (words.Length == 0) return Direction.None;
+        var tokens = Regex.Split(normalized, @"\W+").Where(w => !string.IsNullOrEmpty(w)).ToArray();
+        if (tokens.Length == 0) return Direction.None;
+        var tokenSet = new HashSet<string>(tokens);
+        var joined = string.Join(" ", tokens);
 
-        // check for stop first
-        if (words.Any(w => stopWords.Contains(w))) return Direction.Stop;
-        if (words.Any(w => upWords.Contains(w))) return Direction.Up;
-        if (words.Any(w => downWords.Contains(w))) return Direction.Down;
-        if (words.Any(w => leftWords.Contains(w))) return Direction.Left;
-        if (words.Any(w => rightWords.Contains(w))) return Direction.Right;
-
-        // fallback: check if the full phrase contains keywords
-        var joined = string.Join(" ", words);
-        if (upWords.Any(k => joined.Contains(k))) return Direction.Up;
-        if (downWords.Any(k => joined.Contains(k))) return Direction.Down;
-        if (leftWords.Any(k => joined.Contains(k))) return Direction.Left;
-        if (rightWords.Any(k => joined.Contains(k))) return Direction.Right;
+        foreach (var entry in prioritized)
+        {
+            if (entry.words.Any(w => tokenSet.Contains(w))) return entry.dir;
+            if (entry.words.Any(w => joined.Contains(w))) return entry.dir;
+        }
 
         return Direction.None;
     }
@@ -203,91 +179,66 @@ public class VoiceMovement : MonoBehaviour
     private static string RemoveDiacritics(string text)
     {
         if (string.IsNullOrEmpty(text)) return text;
-        // quick replacements for Danish letters, keep it small and safe
-        text = text.Replace('æ', 'a').Replace('Æ', 'A');
-        text = text.Replace('ø', 'o').Replace('Ø', 'O');
-        text = text.Replace('å', 'a').Replace('Å', 'A');
-        // also replace common composed forms
-        text = text.Replace('é', 'e').Replace('É', 'E');
-        return text;
+        return text
+            .Replace('æ', 'a').Replace('Æ', 'A')
+            .Replace('ø', 'o').Replace('Ø', 'O')
+            .Replace('å', 'a').Replace('Å', 'A')
+            .Replace('é', 'e').Replace('É', 'E');
     }
-
-    private enum Direction { None, Up, Down, Left, Right, Stop }
     #endregion
 
     #region UI helpers
     private void UpdateMicButtonUI()
     {
-        // text
-        if (micToggleButtonText != null)
-            micToggleButtonText.text = isMicrophoneOn ? micOnText : micOffText;
+        string micText = isMicrophoneOn ? micOnText : micOffText;
+        if (micToggleButtonText != null) micToggleButtonText.text = micText;
+        if (micToggleTMPText != null) micToggleTMPText.text = micText;
 
-        if (micToggleTMPText != null)
-            micToggleTMPText.text = isMicrophoneOn ? micOnText : micOffText;
-
-        // icon sprite
         if (micIconImage != null)
         {
-            if (micOnSprite != null && micOffSprite != null)
-                micIconImage.sprite = isMicrophoneOn ? micOnSprite : micOffSprite;
-
-            // also tint fallback: green/red
+            if (micOnSprite != null && micOffSprite != null) micIconImage.sprite = isMicrophoneOn ? micOnSprite : micOffSprite;
             micIconImage.color = isMicrophoneOn ? Color.green : Color.red;
         }
     }
 
     private void UpdateLastRecognizedUI(string phrase)
     {
-        if (lastRecognizedText != null)
-            lastRecognizedText.text = phrase;
-        if (lastRecognizedTMPText != null)
-            lastRecognizedTMPText.text = phrase;
+        if (lastRecognizedText != null) lastRecognizedText.text = phrase;
+        if (lastRecognizedTMPText != null) lastRecognizedTMPText.text = phrase;
     }
     #endregion
 
-    #region ISpeechToTextListener implementation (platform-specific)
+    #region ISpeechToTextListener implementation
 #if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
-	public void OnReadyForSpeech()
-	{
-		Debug.Log("VoiceMovement: Ready for speech");
-	}
-
-	public void OnBeginningOfSpeech()
-	{
-		Debug.Log("VoiceMovement: Beginning of speech");
-	}
+	public void OnReadyForSpeech() => Debug.Log("VoiceMovement: Klar til tale");
+	public void OnBeginningOfSpeech() => Debug.Log("VoiceMovement: Tale begyndt");
 
 	public void OnPartialResultReceived(string partial)
 	{
-		// optional: show partial results
-		Debug.Log($"VoiceMovement partial: {partial}");
+		Debug.Log($"VoiceMovement delvist: {partial}");
         UpdateLastRecognizedUI(partial);
 	}
 
-	// Note: plugin's emulator calls OnResultReceived(spokenText, int? errorCode) with nullable int.
-	// Implement with nullable int to match plugin signature.
 	public void OnResultReceived(string spokenText, int? errorCode)
 	{
 		if (errorCode.HasValue && errorCode.Value != 0)
 		{
-			Debug.LogWarning($"VoiceMovement: Speech returned error code {errorCode.Value}");
-            UpdateLastRecognizedUI($"Error {errorCode.Value}");
+			Debug.LogWarning($"VoiceMovement: Tale returnerede fejlkode {errorCode.Value}");
+            UpdateLastRecognizedUI($"Fejl {errorCode.Value}");
+            StopMicrophone();
 			return;
 		}
 
-		Debug.Log($"VoiceMovement result: {spokenText}");
+		Debug.Log($"VoiceMovement resultat: {spokenText}");
         UpdateLastRecognizedUI(spokenText);
 
 		var cmd = GetCommandFromText(spokenText);
-		if (cmd != Direction.None)
-			ExecuteCommand(cmd);
+		if (cmd != Direction.None) ExecuteCommand(cmd);
+
+        StopMicrophone(clearDirection: false);
 	}
 
-	public void OnVoiceLevelChanged(float level)
-	{
-		// useful for VU meter or feedback
-		// Debug.Log($"Voice level: {level}");
-	}
+	public void OnVoiceLevelChanged(float level) { }
 #endif
     #endregion
 }
