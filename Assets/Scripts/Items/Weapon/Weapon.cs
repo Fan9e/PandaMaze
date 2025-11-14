@@ -13,6 +13,7 @@ public abstract class Weapon : Item, IWeapon
     /// <param name="monster">Det monster, der skal modtage skaden</param>
     public void Attack(Monster monster)
     {
+        if (!isAttacking) return;
         if (monster == null) return;
         DealDamage(monster);
     }

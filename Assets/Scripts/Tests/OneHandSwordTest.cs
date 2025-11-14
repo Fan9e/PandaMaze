@@ -10,7 +10,7 @@ public class OneHandSwordTest
     /// Tester at OneHandSword.CalculateDamage returnerer 10 skade.
     /// </summary>
     [Test]
-    public void OneHandSword_Attack_Returns10()
+    public void OneHandSword_CalculateDamage_Returns10()
     {
         var gameObject = new GameObject();
         var oneHandSword = gameObject.AddComponent<OneHandSword>();
@@ -20,12 +20,28 @@ public class OneHandSwordTest
        
         Assert.AreEqual(10, damage);
     }
-
     /// <summary>
-    /// Sikrer at OnTriggerStay skader et monster, når våbnet angriber og monsteret er i live.
+    /// Sikrer at OneHandSword.CalculateDamage aldrig returnerer negativ skade.
     /// </summary>
     [Test]
-    public void OnTriggerStay_DamagesMonster_WhenAttackingAndMonsterAlive()
+    public void OneHandSword_CalculateDamage_IsNeverNegative()
+    {
+        var go = new GameObject();
+        var sword = go.AddComponent<OneHandSword>();
+
+        for (int i = 0; i < 100; i++)
+        {
+            int damage = sword.CalculateDamage();
+            Assert.GreaterOrEqual(damage, 0, "Damage må ikke være negativ");
+        }
+    }
+
+
+    /// <summary>
+    /// Sikrer at Attack skader et monster, når våbnet angriber og monsteret er i live.
+    /// </summary>
+    [Test]
+    public void Attack_DamagesMonster_WhenAttackingAndMonsterAlive()
     {
     
         var OneHandSwordGameObject = new GameObject("OneHandSword");
@@ -40,23 +56,16 @@ public class OneHandSwordTest
         Monster.CurrentHealth = 100;
         int StartHealth = Monster.CurrentHealth;
 
-      
-        var onTriggerStay = typeof(Weapon).GetMethod(
-            "OnTriggerStay",
-            BindingFlags.Instance | BindingFlags.NonPublic
-        );
-        Assert.IsNotNull(onTriggerStay, "Kunne ikke finde Weapon.OnTriggerStay");
-
-        onTriggerStay.Invoke(OneHandSword, new object[] { MonsterBoxCollider });
+        OneHandSword.Attack(Monster);
 
         Assert.AreEqual(StartHealth - 10, Monster.CurrentHealth);
     }
 
     /// <summary>
-    /// Sikrer at OnTriggerStay ikke skader et monster, når våbnet ikke angriber.
+    /// Sikrer at Attack ikke skader et monster, når våbnet ikke angriber.
     /// </summary>
     [Test]
-    public void OnTriggerStay_DoesNotDamage_WhenNotAttacking()
+    public void Attack_DoesNotDamage_WhenNotAttacking()
     { 
         var OneHandSwordGameObject = new GameObject("OneHandSword");
         var OneHandSword = OneHandSwordGameObject.AddComponent<OneHandSword>();
@@ -69,22 +78,17 @@ public class OneHandSwordTest
         Monster.CurrentHealth = 100;
         int StartHealth = Monster.CurrentHealth;
 
-        var onTriggerStay = typeof(Weapon).GetMethod(
-            "OnTriggerStay",
-            BindingFlags.Instance | BindingFlags.NonPublic
-        );
+        OneHandSword.Attack(Monster);
 
-        onTriggerStay.Invoke(OneHandSword, new object[] { MonsterBoxCollider });
 
- 
         Assert.AreEqual(StartHealth, Monster.CurrentHealth);
     }
 
     /// <summary>
-    /// Sikrer at OnTriggerStay ikke skader et monster, der allerede er dødt (0 HP).
+    /// Sikrer at Attack ikke skader et monster, der allerede er dødt (0 HP).
     /// </summary>
     [Test]
-    public void OnTriggerStay_DoesNotDamage_DeadMonster()
+    public void Attack_DoesNotDamage_DeadMonster()
     {
         var OneHandSwordGameObject = new GameObject("OneHandSword");
         var OneHandSword = OneHandSwordGameObject.AddComponent<OneHandSword>();
@@ -94,14 +98,9 @@ public class OneHandSwordTest
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
         var Monster = MonsterGameObject.AddComponent<Monster>();
 
-        Monster.CurrentHealth = 0;  
+        Monster.CurrentHealth = 0;
 
-        var onTriggerStay = typeof(Weapon).GetMethod(
-            "OnTriggerStay",
-            BindingFlags.Instance | BindingFlags.NonPublic
-        );
-
-        onTriggerStay.Invoke(OneHandSword, new object[] { MonsterBoxCollider });
+        OneHandSword.Attack(Monster);
 
         Assert.AreEqual(0, Monster.CurrentHealth);
     }
