@@ -1,7 +1,9 @@
 using System;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -15,47 +17,45 @@ public class VoiceMovement : MonoBehaviour
 	, ISpeechToTextListener
 #endif
 {
-    [Header("Bevægelse")]
+    [Header("Movement")]
     public Transform target;
     public float stepDistance = 1f;
     public bool useContinuousMove = false;
 
-    [Header("Mikrofon")]
+    [Header("Microphone")]
     public bool isMicrophoneOn = false;
     public bool preferOfflineRecognition = false;
     public bool useFreeFormLanguageModel = true;
 
-    [Header("UI (valgfri)")]
+    [Header("UI")]
     public Button micToggleButton;
-    public Text micToggleButtonText;
     public TextMeshProUGUI micToggleTMPText;
-    public Sprite micOnSprite;
-    public Sprite micOffSprite;
-    public Image micIconImage;
-    [Tooltip("Valgfrit UI-element til at vise sidst genkendte sætning (legacy Text).")]
-    public Text lastRecognizedText;
-    [Tooltip("Valgfrit TextMeshPro UI-element til at vise sidst genkendte sætning.")]
     public TextMeshProUGUI lastRecognizedTMPText;
     public string micOnText = "Mikrofon: Til";
     public string micOffText = "Mikrofon: Fra";
 
     private Vector3 continuousDirection = Vector3.zero;
 
-    private static readonly string[] upWords = { "up", "op", "opad" };
-    private static readonly string[] downWords = { "down", "ned", "nedad" };
-    private static readonly string[] leftWords = { "left", "venstre" };
-    private static readonly string[] rightWords = { "right", "højre", "hojre" };
-    private static readonly string[] forwardWords = { "forward", "frem", "fremad", "fremfor" };
-    private static readonly string[] backWords = { "back", "backwards", "backward", "tilbage", "bagud" };
+    public enum Direction { None, Up, Down, Left, Right, Forward, Back }
 
-    private static readonly (Direction dir, string[] words)[] prioritized =
+    [Serializable]
+    public struct DirectionKeywords
     {
-        (Direction.Up, upWords),
-        (Direction.Down, downWords),
-        (Direction.Left, leftWords),
-        (Direction.Right, rightWords),
-        (Direction.Forward, forwardWords),
-        (Direction.Back, backWords),
+        public Direction direction;
+        [Tooltip("Comma/space-separated phrases that map to this direction")]
+        public string[] words;
+    }
+
+    [Header("Keywords (order = parse priority)")]
+    [Tooltip("Editable list of direction -> keywords. Order defines priority when parsing.")]
+    public List<DirectionKeywords> keywordsByDirection = new List<DirectionKeywords>
+    {
+        new DirectionKeywords { direction = Direction.Up, words = new[] { "up", "op", "opad" } },
+        new DirectionKeywords { direction = Direction.Down, words = new[] { "down", "ned", "nedad" } },
+        new DirectionKeywords { direction = Direction.Left, words = new[] { "left", "venstre" } },
+        new DirectionKeywords { direction = Direction.Right, words = new[] { "right", "højre", "hojre" } },
+        new DirectionKeywords { direction = Direction.Forward, words = new[] { "forward", "frem", "fremad", "fremfor" } },
+        new DirectionKeywords { direction = Direction.Back, words = new[] { "back", "backwards", "backward", "tilbage", "bagud" } },
     };
 
     void Reset()
@@ -101,7 +101,7 @@ public class VoiceMovement : MonoBehaviour
         if (isMicrophoneOn || SpeechToText.IsBusy())
             return;
 
-        SpeechToText.RequestPermissionAsync((permission) =>
+        SpeechToText.RequestPermissionAsync(permission =>
         {
             if (permission == SpeechToText.Permission.Granted)
             {
@@ -132,28 +132,28 @@ public class VoiceMovement : MonoBehaviour
     #endregion
 
     #region Command parsing & movement
-    private enum Direction { None, Up, Down, Left, Right, Forward, Back }
-
     private void ExecuteCommand(Direction cmd)
     {
         var t = target ?? transform;
+        var dirVec = GetDirectionVector(cmd, t);
+        if (dirVec == Vector3.zero) return;
 
-        switch (cmd)
-        {
-            case Direction.Up: ApplyMovement(Vector3.up, t); break;
-            case Direction.Down: ApplyMovement(Vector3.down, t); break;
-            case Direction.Left: ApplyMovement(Vector3.left, t); break;
-            case Direction.Right: ApplyMovement(Vector3.right, t); break;
-            case Direction.Forward: ApplyMovement(t.forward, t); break;
-            case Direction.Back: ApplyMovement(-t.forward, t); break;
-            default: break;
-        }
+        if (useContinuousMove) continuousDirection = dirVec;
+        else t.Translate(dirVec * stepDistance, Space.World);
     }
 
-    private void ApplyMovement(Vector3 direction, Transform t)
+    private Vector3 GetDirectionVector(Direction dir, Transform t)
     {
-        if (useContinuousMove) continuousDirection = direction;
-        else t.Translate(direction * stepDistance, Space.World);
+        switch (dir)
+        {
+            case Direction.Up: return Vector3.up;
+            case Direction.Down: return Vector3.down;
+            case Direction.Left: return Vector3.left;
+            case Direction.Right: return Vector3.right;
+            case Direction.Forward: return t.forward;
+            case Direction.Back: return -t.forward;
+            default: return Vector3.zero;
+        }
     }
 
     private Direction GetCommandFromText(string text)
@@ -167,10 +167,13 @@ public class VoiceMovement : MonoBehaviour
         var tokenSet = new HashSet<string>(tokens);
         var joined = string.Join(" ", tokens);
 
-        foreach (var entry in prioritized)
+        foreach (var entry in keywordsByDirection)
         {
-            if (entry.words.Any(w => tokenSet.Contains(w))) return entry.dir;
-            if (entry.words.Any(w => joined.Contains(w))) return entry.dir;
+            if (entry.words == null || entry.words.Length == 0) continue;
+
+            if (entry.words.Any(k => tokenSet.Contains(k))) return entry.direction;
+
+            if (entry.words.Any(k => joined.Contains(k))) return entry.direction;
         }
 
         return Direction.None;
@@ -179,34 +182,39 @@ public class VoiceMovement : MonoBehaviour
     private static string RemoveDiacritics(string text)
     {
         if (string.IsNullOrEmpty(text)) return text;
-        return text
-            .Replace('æ', 'a').Replace('Æ', 'A')
-            .Replace('ø', 'o').Replace('Ø', 'O')
-            .Replace('å', 'a').Replace('Å', 'A')
-            .Replace('é', 'e').Replace('É', 'E');
+
+        var sb = new StringBuilder(text);
+        sb.Replace('æ', 'a').Replace('Æ', 'A');
+        sb.Replace('ø', 'o').Replace('Ø', 'O');
+        sb.Replace('å', 'a').Replace('Å', 'A');
+        sb.Replace('é', 'e').Replace('É', 'E');
+
+        string normalized = sb.ToString().Normalize(NormalizationForm.FormD);
+        var clean = new StringBuilder();
+
+        foreach (var ch in normalized)
+        {
+            var uc = CharUnicodeInfo.GetUnicodeCategory(ch);
+            if (uc != System.Globalization.UnicodeCategory.NonSpacingMark)
+                clean.Append(ch);
+        }
+
+        return clean.ToString().Normalize(NormalizationForm.FormC);
     }
     #endregion
-
-    #region UI helpers
-    private void UpdateMicButtonUI()
-    {
-        string micText = isMicrophoneOn ? micOnText : micOffText;
-        if (micToggleButtonText != null) micToggleButtonText.text = micText;
-        if (micToggleTMPText != null) micToggleTMPText.text = micText;
-
-        if (micIconImage != null)
-        {
-            if (micOnSprite != null && micOffSprite != null) micIconImage.sprite = isMicrophoneOn ? micOnSprite : micOffSprite;
-            micIconImage.color = isMicrophoneOn ? Color.green : Color.red;
-        }
-    }
 
     private void UpdateLastRecognizedUI(string phrase)
     {
-        if (lastRecognizedText != null) lastRecognizedText.text = phrase;
         if (lastRecognizedTMPText != null) lastRecognizedTMPText.text = phrase;
     }
-    #endregion
+
+    private void UpdateMicButtonUI()
+    {
+        if (micToggleTMPText != null)
+        {
+            micToggleTMPText.text = isMicrophoneOn ? micOnText : micOffText;
+        }
+    }
 
     #region ISpeechToTextListener implementation
 #if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
