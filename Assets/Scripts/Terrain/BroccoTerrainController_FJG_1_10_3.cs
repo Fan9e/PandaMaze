@@ -177,9 +177,9 @@ namespace Broccoli.Controller
 		}
         #endregion
         #region Wind
-        /// <summary>
+        /// <resume>
         /// udatere vindparametrene for systemet, inklusive vindstyrke, turbulens og retning.
-        /// </summary>
+        /// </resume>
 		/// denne metode opdaterer de interne vindparametre og anvender ændringerne på alle tilknyttede materialer.
 		/// <remarks>Dette er nyttigt i scenarier, hvor vinden skal ændres i realtid,
 		/// det skulle kaldes, når vindforholdene skal justeres dynamisk.</remarks>
