@@ -602,7 +602,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 490560621}
-  - component: {fileID: 490560620}
   m_Layer: 0
   m_Name: SnowMan
   m_TagString: Untagged
@@ -610,26 +609,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &490560620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 490560619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77ffbc70332cb5043a4b66b8d5d81b69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMicrophoneOn: 0
-  preferOfflineRecognition: 0
-  useFreeFormLanguageModel: 1
-  micToggleButton: {fileID: 652481106}
-  micToggleTMPText: {fileID: 1237524727}
-  lastRecognizedTMPText: {fileID: 1049293093}
-  micOnText: 'Mic: On'
-  micOffText: 'Mic: Off'
 --- !u!4 &490560621
 Transform:
   m_ObjectHideFlags: 0
@@ -830,6 +809,7 @@ GameObject:
   - component: {fileID: 886284701}
   - component: {fileID: 886284700}
   - component: {fileID: 886284699}
+  - component: {fileID: 886284703}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -921,6 +901,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &886284703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886284698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ffbc70332cb5043a4b66b8d5d81b69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMicrophoneOn: 0
+  preferOfflineRecognition: 0
+  useFreeFormLanguageModel: 1
+  micToggleButton: {fileID: 652481106}
+  micToggleTMPText: {fileID: 1237524727}
+  lastRecognizedTMPText: {fileID: 1049293093}
+  micOnText: 'Mikrofon: Til'
+  micOffText: 'Mikrofon: Fra'
 --- !u!1 &1049293091
 GameObject:
   m_ObjectHideFlags: 0

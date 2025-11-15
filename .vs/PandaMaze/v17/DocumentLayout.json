@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\VoiceMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\VoiceMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Tests\\VoiceMovementTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Tests\\VoiceMovementTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\IVoiceObserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\IVoiceObserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Voice\\VoiceMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Voice\\VoiceMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Voice\\IVoiceObserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Voice\\IVoiceObserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Plugins\\SpeechToText\\SpeechToText.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,37 +26,49 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "IVoiceObserver.cs",
-              "DocumentMoniker": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\IVoiceObserver.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\IVoiceObserver.cs",
-              "ToolTip": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\IVoiceObserver.cs",
-              "RelativeToolTip": "Assets\\Scripts\\IVoiceObserver.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Voice\\IVoiceObserver.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Voice\\IVoiceObserver.cs",
+              "ToolTip": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Voice\\IVoiceObserver.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Voice\\IVoiceObserver.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T00:21:06.094Z",
+              "WhenOpened": "2025-11-15T10:02:39.962Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VoiceMovement.cs",
+              "DocumentMoniker": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Voice\\VoiceMovement.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Voice\\VoiceMovement.cs",
+              "ToolTip": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Voice\\VoiceMovement.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Voice\\VoiceMovement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-15T10:02:10.411Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "VoiceMovement.cs",
-              "DocumentMoniker": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\VoiceMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\VoiceMovement.cs",
-              "ToolTip": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\VoiceMovement.cs",
-              "RelativeToolTip": "Assets\\Scripts\\VoiceMovement.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Title": "VoiceMovementTest.cs",
+              "DocumentMoniker": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Tests\\VoiceMovementTest.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Tests\\VoiceMovementTest.cs",
+              "ToolTip": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Tests\\VoiceMovementTest.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Tests\\VoiceMovementTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T09:47:48.32Z",
+              "WhenOpened": "2025-11-15T09:32:00.352Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "SpeechToText.cs",
               "DocumentMoniker": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Plugins\\SpeechToText\\SpeechToText.cs",
               "RelativeDocumentMoniker": "Assets\\Plugins\\SpeechToText\\SpeechToText.cs",
@@ -60,8 +76,7 @@
               "RelativeToolTip": "Assets\\Plugins\\SpeechToText\\SpeechToText.cs",
               "ViewState": "AgIAACoBAAAAAAAAAAAkwG0BAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T09:21:16.86Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-12T09:21:16.86Z"
             }
           ]
         }

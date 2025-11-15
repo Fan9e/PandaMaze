@@ -177,11 +177,11 @@ public class VoiceMovement : MonoBehaviour
                     isMicrophoneOn = true;
                     NotifyMicState(true);
                 }
-                else Debug.LogWarning("VoiceMovement: Kunne ikke starte tale-session");
+                else Debug.LogWarning("VoiceMovement: Could not start speech session");
             }
             else
             {
-                Debug.LogWarning("VoiceMovement: Mikrofon / tale-tilladelse ikke givet");
+                Debug.LogWarning("VoiceMovement: Microphone/speech permission not granted");
             }
 
             UpdateMicButtonUI();
@@ -197,7 +197,7 @@ public class VoiceMovement : MonoBehaviour
 
         SpeechToText.ForceStop();
         isMicrophoneOn = false;
-        Debug.Log("VoiceMovement: Mikrofon stoppet");
+        Debug.Log("VoiceMovement: Microphone stopped");
 
         UpdateMicButtonUI();
         NotifyMicState(false);
@@ -224,12 +224,15 @@ public class VoiceMovement : MonoBehaviour
         }
     }
 
+    // Disse metoder implementerer `ISpeechToTextListener` og bruger den platformspecifikke `SpeechToText`-API.
+    // `#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS` sørger for, at koden kun kompileres på Editor, Android og iOS,
+    // så bygninger for andre platforme (fx Standalone eller WebGL) undgår compile-fejl pga. manglende API/namespace.
     #region ISpeechToTextListener implementation
 #if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 	/// <summary>Kaldes når talegenkendelsen er klar til at modtage tale.</summary>
-	public void OnReadyForSpeech() => Debug.Log("VoiceMovement: Klar til tale");
+	public void OnReadyForSpeech() => Debug.Log("VoiceMovement: Ready for speech");
 	/// <summary>Kaldes når bruger begynder at tale.</summary>
-	public void OnBeginningOfSpeech() => Debug.Log("VoiceMovement: Tale begyndt");
+	public void OnBeginningOfSpeech() => Debug.Log("VoiceMovement: Speech started");
 
 	/// <summary>
 	/// Modtager delvise mellemliggende genkendelsesresultater.
@@ -237,7 +240,7 @@ public class VoiceMovement : MonoBehaviour
 	/// <param name="partial">Den delvise genkendte tekst.</param>
 	public void OnPartialResultReceived(string partial)
 	{
-		Debug.Log($"VoiceMovement delvist: {partial}");
+		Debug.Log($"VoiceMovement partial: {partial}");
         UpdateLastRecognizedUI(partial);
         NotifyPartial(partial);
 	}
@@ -251,15 +254,15 @@ public class VoiceMovement : MonoBehaviour
 	{
 		if (errorCode.HasValue && errorCode.Value != 0)
 		{
-			Debug.LogWarning($"VoiceMovement: Tale returnerede fejlkode {errorCode.Value}");
-            var errorText = $"Fejl {errorCode.Value}";
+			Debug.LogWarning($"VoiceMovement: Speech returned error code {errorCode.Value}");
+            var errorText = $"Error {errorCode.Value}";
             UpdateLastRecognizedUI(errorText);
             NotifyResult(errorText);
             StopMicrophone();
 			return;
 		}
 
-		Debug.Log($"VoiceMovement resultat: {spokenText}");
+		Debug.Log($"VoiceMovement result: {spokenText}");
         UpdateLastRecognizedUI(spokenText);
         NotifyResult(spokenText);
 
