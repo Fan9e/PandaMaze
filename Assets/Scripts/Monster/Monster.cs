@@ -2,16 +2,35 @@ using UnityEngine;
 
 public abstract class Monster : MonoBehaviour
 {
-    [SerializeField] private Player player;   
-    public Player Player                     
+    [SerializeField] private Player player;
+    [SerializeField] private int maxHealth = 0;
+    [SerializeField] private int currentHealth = 0;
+    [SerializeField] private int attackPower = 0;
+
+    public Player Player
     {
         get => player;
         set => player = value;
     }
 
-    [SerializeField] public int MaxHealth { get; set; } = 0;
-    [SerializeField] public int CurrentHealth;
-    [SerializeField] public int AttackPower { get; set; } = 0;
+    public int MaxHealth
+    {
+        get => maxHealth;
+        set => maxHealth = value;
+    }
+
+    public int CurrentHealth
+    {
+        get => currentHealth;
+        set => currentHealth = value;
+    }
+
+    public int AttackPower
+    {
+        get => attackPower;
+        set => attackPower = value;
+    }
+
 
     /// <summary>
     /// Sætter CurrentHealth til MaxHealth, når objektet starter.
@@ -29,10 +48,10 @@ public abstract class Monster : MonoBehaviour
     public void Fight(int damageAmount)
     {
         
-        if (!EnsureHasPlayer(player)) return;
+        if (!EnsureHasPlayer(Player)) return;
         ReceiveDamage(damageAmount);
         Die();
-        GiveDamage(player);
+        GiveDamage(Player);
 
     }
 

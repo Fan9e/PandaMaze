@@ -2,17 +2,23 @@ using UnityEngine;
 
 public class FaceCamera : MonoBehaviour
 {
-    Camera camera;
+    private Camera _camera; 
 
-    void Start()
+    /// <summary>
+    /// Initialiserer kamera-referencen ved at hente scenens hovedkamera.
+    /// </summary>
+    private void Start()
     {
-        camera = Camera.main;   
+        _camera = Camera.main;   
     }
 
-    void LateUpdate()
+    /// <summary>
+    /// Retter objektets orientering ind, så det peger i samme retning som kameraet hver frame.
+    /// </summary>
+    private void LateUpdate()
     {
-        if (camera == null) return;
+        if (_camera == null) return;
 
-        transform.forward = camera.transform.forward;
+        transform.forward = _camera.transform.forward;
     }
 }

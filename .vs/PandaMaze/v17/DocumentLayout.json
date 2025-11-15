@@ -3,31 +3,19 @@
   "WorkspaceRootPath": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\scripts\\tests\\monstertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|solutionrelative:assets\\scripts\\tests\\monstertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\monster\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\monster\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\Monster\\MonsterTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Tests\\Monster\\MonsterTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\MonsterTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Tests\\MonsterTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\monster\\dragon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\monster\\dragon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\Tests.asmdef||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Tests\\Tests.asmdef||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\facecamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\scripts\\facecamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\facecamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -51,52 +39,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MonsterTest.cs",
-              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Tests\\MonsterTest.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Tests\\MonsterTest.cs",
-              "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Tests\\MonsterTest.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Tests\\MonsterTest.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAC8AAAAaAAAAAAAAAA==",
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Player.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player.cs",
+              "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Player.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAxwA4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T10:49:09.689Z",
+              "WhenOpened": "2025-11-15T19:53:19.488Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MonsterTest.cs",
-              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\MonsterTest.cs",
-              "RelativeDocumentMoniker": "Assets\\Tests\\MonsterTest.cs",
-              "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\MonsterTest.cs",
-              "RelativeToolTip": "Assets\\Tests\\MonsterTest.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T21:10:39.717Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Tests.asmdef",
-              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\Tests.asmdef",
-              "RelativeDocumentMoniker": "Assets\\Tests\\Tests.asmdef",
-              "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\Tests.asmdef",
-              "RelativeToolTip": "Assets\\Tests\\Tests.asmdef",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001874|",
-              "WhenOpened": "2025-11-13T20:32:04.157Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MonsterTest.cs",
-              "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\Monster\\MonsterTest.cs",
-              "RelativeDocumentMoniker": "Assets\\Tests\\Monster\\MonsterTest.cs",
-              "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Tests\\Monster\\MonsterTest.cs",
-              "RelativeToolTip": "Assets\\Tests\\Monster\\MonsterTest.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T19:22:34.215Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "Dragon.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Monster\\Dragon.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Monster\\Dragon.cs",
@@ -115,22 +70,23 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Monster\\Monster.cs",
               "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Monster\\Monster.cs",
               "RelativeToolTip": "Assets\\Scripts\\Monster\\Monster.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAswEQAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-10T20:18:03.957Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "FaceCamera.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\FaceCamera.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\FaceCamera.cs",
               "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\FaceCamera.cs",
               "RelativeToolTip": "Assets\\Scripts\\FaceCamera.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T20:14:29.814Z"
+              "WhenOpened": "2025-11-10T20:14:29.814Z",
+              "EditorCaption": ""
             }
           ]
         }

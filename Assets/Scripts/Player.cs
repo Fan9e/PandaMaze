@@ -2,19 +2,27 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int MaxHealth = 100;
-    public int CurrentHealth;
+    [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private int _currentHealth;
+
+    public int MaxHealth
+    {
+        get => _maxHealth;
+        set => _maxHealth = value;
+    }
+
+    public int CurrentHealth
+    {
+        get => _currentHealth;
+        set => _currentHealth = value;
+    }
+
     /// <summary>
     /// Sætter CurrentHealth til MaxHealth, når objektet starter.
     /// </summary>
-    void Start()
+    private void Start()
     {
         CurrentHealth = MaxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
