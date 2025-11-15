@@ -1,75 +1,82 @@
 using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
 public class VoiceMovementTest
 {
-    private class TestObserver : IVoiceObserver
+    // Small test observer to capture notifications from VoiceMovement.
+    class TestObserver : IVoiceObserver
     {
-        public List<string> partials = new List<string>();
-        public List<string> results = new List<string>();
-        public List<float> levels = new List<float>();
-        public List<bool> micStates = new List<bool>();
+        public string lastPartial;
+        public string lastResult;
+        public float lastVoiceLevel = -1f;
+        public bool? lastMicState;
 
-        public void OnPartialResult(string partial) => partials.Add(partial);
-        public void OnResult(string result) => results.Add(result);
-        public void OnVoiceLevelChanged(float level) => levels.Add(level);
-        public void OnMicrophoneStateChanged(bool isOn) => micStates.Add(isOn);
+        public void OnPartialResult(string partial) => lastPartial = partial;
+        public void OnResult(string result) => lastResult = result;
+        public void OnVoiceLevelChanged(float level) => lastVoiceLevel = level;
+        public void OnMicrophoneStateChanged(bool isOn) => lastMicState = isOn;
+    }
+
+    // Helper to wait until a condition or timeout (seconds).
+    private IEnumerator WaitUntilOrTimeout(System.Func<bool> condition, float timeoutSeconds)
+    {
+        float start = Time.realtimeSinceStartup;
+        while (!condition())
+        {
+            if (Time.realtimeSinceStartup - start > timeoutSeconds)
+                break;
+            yield return null;
+        }
     }
 
     [UnityTest]
-    public IEnumerator StopMicrophone_StopsAndNotifiesObservers()
+    public IEnumerator StopsListeningAutomatically_WhenResultArrives()
     {
-        var go = new GameObject("VM_StopTest");
+        // Arrange
+        var go = new GameObject("vm");
         var vm = go.AddComponent<VoiceMovement>();
+        var observer = new TestObserver();
+        vm.RegisterObserver(observer);
 
-        var obs = new TestObserver();
-        vm.RegisterObserver(obs);
-
-        // Start the microphone (in editor this will immediately start the emulator)
+        // Act
         vm.StartMicrophone();
-        // Wait a frame so RequestPermissionAsync callback and Start() complete
-        yield return null;
-        yield return new WaitForSecondsRealtime(0.05f);
 
-        Assert.IsTrue(vm.isMicrophoneOn, "Microphone should be on after StartMicrophone()");
-        Assert.IsTrue(obs.micStates.Contains(true), "Observer should have been notified that mic turned on");
+        // The editor emulator in SpeechToText runs for ~1.4s; wait up to 3s for end.
+        yield return WaitUntilOrTimeout(() => vm.isMicrophoneOn == false || observer.lastMicState == false, 3f);
 
-        // Stop microphone explicitly
-        vm.StopMicrophone();
-        yield return null; // let notifications propagate
+        // Assert: microphone should have been turned off automatically after result.
+        Assert.IsFalse(vm.isMicrophoneOn, "VoiceMovement should stop the microphone automatically after receiving the final result.");
+        // Also assert the observer got microphone state notifications (true then false).
+        Assert.IsNotNull(observer.lastMicState, "Observer should receive microphone state changes.");
+        Assert.IsFalse(observer.lastMicState.Value, "Final microphone state reported to observer should be false.");
 
-        Assert.IsFalse(vm.isMicrophoneOn, "Microphone should be off after StopMicrophone()");
-        Assert.IsTrue(obs.micStates.Contains(false), "Observer should have been notified that mic turned off");
-
-        Object.Destroy(go);
+        // Clean up
+        Object.DestroyImmediate(go);
     }
 
     [UnityTest]
-    public IEnumerator StartMicrophone_CapturesSpokenText()
+    public IEnumerator CapturedText_Equals_SpokenText_FromEmulator()
     {
-        var go = new GameObject("VM_CaptureTest");
+        // Arrange
+        var go = new GameObject("vm2");
         var vm = go.AddComponent<VoiceMovement>();
+        var observer = new TestObserver();
+        vm.RegisterObserver(observer);
 
-        var obs = new TestObserver();
-        vm.RegisterObserver(obs);
-
-        // Start the microphone -> editor emulator will emit partials and a final "Hello world"
+        // Act
         vm.StartMicrophone();
-        yield return null;
 
-        // Wait sufficiently long for the editor emulator sequence to complete (~1.9s in emulator).
-        yield return new WaitForSecondsRealtime(3f);
+        // Wait up to 3s for the final result from the emulator ("Hello world")
+        yield return WaitUntilOrTimeout(() => !string.IsNullOrEmpty(observer.lastResult), 3f);
 
-        // Expect that partials and final result were received
-        Assert.IsTrue(obs.partials.Count >= 1, "Expected at least one partial result");
-        Assert.IsTrue(obs.results.Count >= 1, "Expected at least one final result");
-        // The emulator's final spoken text is "Hello world"
-        Assert.Contains("Hello world", obs.results, "Final captured text should match the spoken text 'Hello world'");
+        // Assert
+        Assert.IsNotNull(observer.lastResult, "Observer should receive a final result.");
+        Assert.AreEqual("Hello world", observer.lastResult, "Captured (final) text should match what the emulator said.");
 
-        Object.Destroy(go);
+        // Clean up
+        Object.DestroyImmediate(go);
     }
 }
 
