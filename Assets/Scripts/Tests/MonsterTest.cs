@@ -52,10 +52,13 @@ public class MonsterTest
     {
        
         var monsterGameObject = new GameObject();
-        var monster = monsterGameObject.AddComponent<Dragon>(); 
+        var monster = monsterGameObject.AddComponent<Dragon>();
+        var playerGameObject = new GameObject();
+        var player = playerGameObject.AddComponent<Player>();
         monster.MaxHealth = 20;
         monster.CurrentHealth = 20;
         monster.AttackPower = 5;
+        monster.Player = player;
         monster.Fight(-5); 
         
         Assert.AreEqual(20, monster.CurrentHealth);
