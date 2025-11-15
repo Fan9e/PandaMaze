@@ -43,7 +43,7 @@ public class VoiceMovement : MonoBehaviour
     /// <summary>
     /// Initialiserer UI og knap-lister.
     /// </summary>
-    void Start()
+    private void Start()
     {
         if (micToggleButton != null)
         {
@@ -58,7 +58,7 @@ public class VoiceMovement : MonoBehaviour
     /// <summary>
     /// Lytter efter genvejstast (M) for at skifte mikrofonen.
     /// </summary>
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
             ToggleMicrophone();
@@ -101,7 +101,14 @@ public class VoiceMovement : MonoBehaviour
         lock (observersLock)
         {
             foreach (var o in observers)
-                try { o.OnPartialResult(partial); } catch (Exception ex) { Debug.LogWarning($"VoiceMovement: observer threw in OnPartialResult: {ex}"); }
+                try 
+                { 
+                    o.OnPartialResult(partial); 
+                } 
+                catch (Exception ex) 
+                { 
+                    Debug.LogWarning($"VoiceMovement: observer threw in OnPartialResult: {ex}"); 
+                }
         }
     }
 
@@ -114,7 +121,14 @@ public class VoiceMovement : MonoBehaviour
         lock (observersLock)
         {
             foreach (var o in observers)
-                try { o.OnResult(result); } catch (Exception ex) { Debug.LogWarning($"VoiceMovement: observer threw in OnResult: {ex}"); }
+                try 
+                { 
+                    o.OnResult(result); 
+                } 
+                catch (Exception ex) 
+                { 
+                    Debug.LogWarning($"VoiceMovement: observer threw in OnResult: {ex}"); 
+                }
         }
     }
 
@@ -127,7 +141,14 @@ public class VoiceMovement : MonoBehaviour
         lock (observersLock)
         {
             foreach (var o in observers)
-                try { o.OnVoiceLevelChanged(level); } catch (Exception ex) { Debug.LogWarning($"VoiceMovement: observer threw in OnVoiceLevelChanged: {ex}"); }
+                try 
+                { 
+                    o.OnVoiceLevelChanged(level); 
+                } 
+                catch (Exception ex) 
+                { 
+                    Debug.LogWarning($"VoiceMovement: observer threw in OnVoiceLevelChanged: {ex}"); 
+                }
         }
     }
 
@@ -140,7 +161,14 @@ public class VoiceMovement : MonoBehaviour
         lock (observersLock)
         {
             foreach (var o in observers)
-                try { o.OnMicrophoneStateChanged(isOn); } catch (Exception ex) { Debug.LogWarning($"VoiceMovement: observer threw in OnMicrophoneStateChanged: {ex}"); }
+                try 
+                { 
+                    o.OnMicrophoneStateChanged(isOn); 
+                } 
+                catch (Exception ex) 
+                { 
+                    Debug.LogWarning($"VoiceMovement: observer threw in OnMicrophoneStateChanged: {ex}"); 
+                }
         }
     }
     #endregion
@@ -224,12 +252,18 @@ public class VoiceMovement : MonoBehaviour
         }
     }
 
-    // Disse metoder implementerer `ISpeechToTextListener` og bruger den platformspecifikke `SpeechToText`-API.
-    // `#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS` sørger for, at koden kun kompileres på Editor, Android og iOS,
-    // så bygninger for andre platforme (fx Standalone eller WebGL) undgår compile-fejl pga. manglende API/namespace.
+    // Disse metoder implementerer `ISpeechToTextListener`
+    // og bruger den platformspecifikke `SpeechToText`-API.
+    // `#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS` sørger for,
+    // at koden kun kompileres på Editor, Android og iOS,
+    // så bygninger for andre platforme (fx Standalone eller WebGL)
+    // undgår compile-fejl pga. manglende API/namespace.
+    // Hvis koden kompileres på en platform uden de definerede muligheder,
+    // ville denne kode block ekskluderes,
+    // da Visual studio ikke er en af mulighederne forkommer koden derfor grå.
     #region ISpeechToTextListener implementation
 #if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
-	/// <summary>Kaldes når talegenkendelsen er klar til at modtage tale.</summary>
+    /// <summary>Kaldes når talegenkendelsen er klar til at modtage tale.</summary>
 	public void OnReadyForSpeech() => Debug.Log("VoiceMovement: Ready for speech");
 	/// <summary>Kaldes når bruger begynder at tale.</summary>
 	public void OnBeginningOfSpeech() => Debug.Log("VoiceMovement: Speech started");
