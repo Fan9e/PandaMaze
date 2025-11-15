@@ -622,19 +622,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ffbc70332cb5043a4b66b8d5d81b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 490560621}
-  stepDistance: 1
-  useContinuousMove: 0
   isMicrophoneOn: 0
   preferOfflineRecognition: 0
   useFreeFormLanguageModel: 1
   micToggleButton: {fileID: 652481106}
-  micToggleButtonText: {fileID: 0}
   micToggleTMPText: {fileID: 1237524727}
-  micOnSprite: {fileID: 0}
-  micOffSprite: {fileID: 0}
-  micIconImage: {fileID: 0}
-  lastRecognizedText: {fileID: 0}
   lastRecognizedTMPText: {fileID: 1049293093}
   micOnText: 'Mic: On'
   micOffText: 'Mic: Off'
