@@ -108,6 +108,17 @@ namespace Broccoli.Controller
 		static int propSTWindFrondRipple = 0;
         #endregion
 
+        #region Shader Keyword Constants
+        private const string NONE = "_WINDQUALITY_NONE";
+        private const string FASTEST = "_WINDQUALITY_FASTEST";
+        private const string FAST = "_WINDQUALITY_FAST";
+        private const string BETTER = "_WINDQUALITY_BETTER";
+        private const string BEST = "_WINDQUALITY_BEST";
+        private const string PALM = "_WINDQUALITY_PALM";
+
+        private const string ENABLEWIND = "ENABLE_WIND";
+        #endregion
+
         #region Static Constructor
         /// <resume>
         /// Statisk kontroller til denne klasse
@@ -278,33 +289,33 @@ namespace Broccoli.Controller
 
 					if (treeController.localShaderType == BroccoTreeController_FJG_1_10_3.ShaderType.SpeedTree8OrCompatible)
 					{
-						material.DisableKeyword("_WINDQUALITY_NONE");
-						material.DisableKeyword("_WINDQUALITY_FASTEST");
-						material.DisableKeyword("_WINDQUALITY_FAST");
-						material.DisableKeyword("_WINDQUALITY_BETTER");
-						material.DisableKeyword("_WINDQUALITY_BEST");
-						material.DisableKeyword("_WINDQUALITY_PALM");
+						material.DisableKeyword(NONE);
+						material.DisableKeyword(FASTEST);
+						material.DisableKeyword(FAST);
+						material.DisableKeyword(BETTER);
+						material.DisableKeyword(BEST);
+						material.DisableKeyword(PALM);
 						if (isWindEnabled)
 						{
 							switch (windQuality)
 							{
 								case BroccoTreeController_FJG_1_10_3.WindQuality.None:
-									material.EnableKeyword("_WINDQUALITY_NONE");
+									material.EnableKeyword(NONE);
 									break;
 								case BroccoTreeController_FJG_1_10_3.WindQuality.Fastest:
-									material.EnableKeyword("_WINDQUALITY_FASTEST");
+									material.EnableKeyword(FASTEST);
 									break;
 								case BroccoTreeController_FJG_1_10_3.WindQuality.Fast:
-									material.EnableKeyword("_WINDQUALITY_FAST");
+									material.EnableKeyword(FAST);
 									break;
 								case BroccoTreeController_FJG_1_10_3.WindQuality.Better:
-									material.EnableKeyword("_WINDQUALITY_BETTER");
+									material.EnableKeyword(BETTER);
 									break;
 								case BroccoTreeController_FJG_1_10_3.WindQuality.Best:
-									material.EnableKeyword("_WINDQUALITY_BEST");
+									material.EnableKeyword(BEST);
 									break;
 								case BroccoTreeController_FJG_1_10_3.WindQuality.Palm:
-									material.EnableKeyword("_WINDQUALITY_PALM");
+									material.EnableKeyword(PALM);
 									break;
 							}
 						}
@@ -313,11 +324,11 @@ namespace Broccoli.Controller
 					{
 						if (windQuality != BroccoTreeController_FJG_1_10_3.WindQuality.None)
 						{
-							material.EnableKeyword("ENABLE_WIND");
+							material.EnableKeyword(ENABLEWIND);
 						}
 						else
 						{
-							material.DisableKeyword("ENABLE_WIND");
+							material.DisableKeyword(ENABLEWIND);
 						}
 					}
                     // setter vindaktiveringsflaget og vindkvaliteten
