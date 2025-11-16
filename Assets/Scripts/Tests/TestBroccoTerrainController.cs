@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using Broccoli.Controller;
 
-/// <resume>
+/// <summary>
 /// Indeholder PlayMode tests til BroccoTerrainController_FJG_1_10_3.
 /// Testene sikrer at vindværdier, materialer og WindZone fungerer som forventet.
-/// </resume>
+/// </summary>
 public class BroccoTerrainControllerPlayModeTests
 {
     GameObject go;
@@ -17,10 +17,10 @@ public class BroccoTerrainControllerPlayModeTests
     List<Object> createdObjects;
     BindingFlags allInstance = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
 
-    /// <resume>
+    /// <summary>
     /// Initialiserer et nyt GameObject og controller før hver test.
     /// Sørger også for at interne arrays er sat, så Update() ikke fejler.
-    /// </resume>
+    /// </summary>
     [SetUp]
     public void SetUp()
     {
@@ -35,9 +35,9 @@ public class BroccoTerrainControllerPlayModeTests
         SetPrivateField(controller, "broccoMaterialParams", new Vector3[0]);
     }
 
-    /// <resume>
+    /// <summary>
     /// Rydder alle objekter op efter hver test, så scenen holdes ren.
-    /// </resume>
+    /// </summary>
     [TearDown]
     public void TearDown()
     {
@@ -52,9 +52,9 @@ public class BroccoTerrainControllerPlayModeTests
     // Reflection helpers
     // ---------------------------------------------
 
-    /// <resume>
+    /// <summary>
     /// Kalder en privat metode på controlleren via reflection.
-    /// </resume>
+    /// </summary>
     object InvokePrivate(object instance, string name, params object[] args)
     {
         var mi = instance.GetType().GetMethod(name, allInstance);
@@ -62,9 +62,9 @@ public class BroccoTerrainControllerPlayModeTests
         return mi.Invoke(instance, args);
     }
 
-    /// <resume>
+    /// <summary>
     /// Henter værdien af et privat felt via reflection.
-    /// </resume>
+    /// </summary>
     T GetPrivateField<T>(object instance, string name)
     {
         var fi = instance.GetType().GetField(name, allInstance);
@@ -72,9 +72,9 @@ public class BroccoTerrainControllerPlayModeTests
         return (T)fi.GetValue(instance);
     }
 
-    /// <resume>
+    /// <summary>
     /// Sætter værdien af et privat felt via reflection.
-    /// </resume>
+    /// </summary>
     void SetPrivateField(object instance, string name, object value)
     {
         var fi = instance.GetType().GetField(name, allInstance);
@@ -86,10 +86,10 @@ public class BroccoTerrainControllerPlayModeTests
     // TESTS
     // ---------------------------------------------
 
-    /// <resume>
+    /// <summary>
     /// Tester at UpdateWind korrekt opdaterer controllerens interne felter
     /// og at materialets vindvektor (_ST_WindGlobal) bliver sat som forventet.
-    /// </resume>
+    /// </summary>
     [UnityTest]
     public IEnumerator UpdateWind_AppliesValuesToControllerAndMaterialProperties()
     {
@@ -120,10 +120,10 @@ public class BroccoTerrainControllerPlayModeTests
         yield return null;
     }
 
-    /// <resume>
+    /// <summary>
     /// Tester at GetWindZoneValues finder en Directional WindZone
     /// og at controllerens værdier opdateres korrekt ud fra dens data.
-    /// </resume>
+    /// </summary>
     [UnityTest]
     public IEnumerator GetWindZoneValues_PicksDirectionalWindZone()
     {
@@ -153,10 +153,10 @@ public class BroccoTerrainControllerPlayModeTests
         yield return null;
     }
 
-    /// <resume>
+    /// <summary>
     /// Tester at SetupBrocco2TreeController registrerer materialer og parametre
     /// fra et Brocco-træ korrekt, samt at trunkBending gemmes i parametrene.
-    /// </resume>
+    /// </summary>
     [UnityTest]
     public IEnumerator SetupBrocco2TreeController_RegistersMaterialForUpdates()
     {

@@ -130,7 +130,7 @@ namespace Broccoli.Controller
         /// Tilstande for hvordan vinden beregnes og sendes til shaders.
         /// Local: vinden beregnes pr. GameObject-instance pr. frame (mere performance-krævende,
         ///        men giver individuel kontrol).
-        /// Global: vinden beregnes én gang pr. frame og deles mellem alle Alfalfa-instancer i scenen
+        /// Global: vinden beregnes en gang pr. frame og deles mellem alle Alfalfa-instancer i scenen
         ///        (anbefalet og mere effektiv).
         /// </summary>
         public enum WindInstance
@@ -383,6 +383,38 @@ namespace Broccoli.Controller
         static int propSTWindLeaf2Tumble = 0;
         static int propSTWindLeaf2Twitch = 0;
         static int propSTWindFrondRipple = 0;
+        #endregion
+
+        #region Shader Keyword Constants
+
+        private const string KW_WINDQUALITY_NONE = "_WINDQUALITY_NONE";
+        private const string KW_WINDQUALITY_FASTEST = "_WINDQUALITY_FASTEST";
+        private const string KW_WINDQUALITY_FAST = "_WINDQUALITY_FAST";
+        private const string KW_WINDQUALITY_BETTER = "_WINDQUALITY_BETTER";
+        private const string KW_WINDQUALITY_BEST = "_WINDQUALITY_BEST";
+        private const string KW_WINDQUALITY_PALM = "_WINDQUALITY_PALM";
+
+        private static readonly string[] AllWindQualityKeywords =
+        {
+            KW_WINDQUALITY_NONE,
+            KW_WINDQUALITY_FASTEST,
+            KW_WINDQUALITY_FAST,
+            KW_WINDQUALITY_BETTER,
+            KW_WINDQUALITY_BEST,
+            KW_WINDQUALITY_PALM
+        };
+
+        private static readonly Dictionary<WindQuality, string> WindQualityKeywords =
+            new Dictionary<WindQuality, string>
+            {
+                { WindQuality.None,    KW_WINDQUALITY_NONE },
+                { WindQuality.Fastest, KW_WINDQUALITY_FASTEST },
+                { WindQuality.Fast,    KW_WINDQUALITY_FAST },
+                { WindQuality.Better,  KW_WINDQUALITY_BETTER },
+                { WindQuality.Best,    KW_WINDQUALITY_BEST },
+                { WindQuality.Palm,    KW_WINDQUALITY_PALM }
+            };
+
         #endregion
 
         #region Static Constructor
@@ -643,13 +675,6 @@ namespace Broccoli.Controller
             windParams.valueSTWindFrondRipple = new Vector4(Time.time * 1f, 0.01f, 2f, 10f);
             _propBlock.SetVector(propSTWindFrondRipple, windParams.valueSTWindFrondRipple);
 
-            // CALM BREEZE 	Main: 0.5f, Turbulence: 0.5f, Vector3.right);
-            // BREEZE 		Main: 1.2f, Turbulence: 0.75f
-            // WINDY 		Main: 2f, Turbulence: 1.4f
-            // STRONG WIND	Main: 3f, Turbulence 2f
-            // STORMY		Main: 4f, Turbulence: 3f
-            //windParams.sproutWindMainFactor = Mathf.Lerp (1f, 4f, windParams.windMain / 4f);
-
             windParams.sproutWindMainFactor = EaseInCubic(1f, 5f, windParams.windMain / 4f);
             windParams.branchWindMainFactor = EaseInCubic(0.5f, 1.25f, windParams.windMain / 4f);
             if (hasSprout1)
@@ -710,7 +735,6 @@ namespace Broccoli.Controller
 
             windParams.valueTimeWindMain = windParams.valueTime * 0.66f;
 
-            //_localRenderer.GetPropertyBlock (_propBlock);
             // STWindGlobal
             windParams.valueSTWindGlobal.x = windParams.valueTime * 0.5f;
 
@@ -739,11 +763,6 @@ namespace Broccoli.Controller
         }
         public void ApplyWind(ref WindParams windParams)
         {
-            /*
-			if (windAppliesToRenderer && _localRenderer != null)
-				_localRenderer.GetPropertyBlock (_propBlock);
-				*/
-
             // STWindGlobal
             _propBlock.SetVector(propSTWindGlobal, windParams.valueSTWindGlobal);
             // STWindBranch
@@ -751,21 +770,15 @@ namespace Broccoli.Controller
 
             if (hasSprout1)
             {
-                // STWindLeaf1Tumble (TIME, FLIP, TWIST, ADHERENCE)
                 _propBlock.SetVector(propSTWindLeaf1Tumble, windParams.valueSTWindLeaf1Tumble);
-                // STWindLeaf1Twitch (AMOUNT, SHARPNESS, TIME, 0.0)
                 _propBlock.SetVector(propSTWindLeaf1Twitch, windParams.valueSTWindLeaf1Twitch);
-                // STWindLeaf1Ripple (TIME, AMOUNT, 0, 0)
                 _propBlock.SetVector(propSTWindLeaf1Ripple, windParams.valueSTWindLeaf1Ripple);
             }
 
             if (hasSprout2)
             {
-                // STWindLeaf2Tumble (TIME, FLIP, TWIST, ADHERENCE)
                 _propBlock.SetVector(propSTWindLeaf2Tumble, windParams.valueSTWindLeaf2Tumble);
-                // STWindLeaf2Twitch (AMOUNT, SHARPNESS, TIME, 0.0)
                 _propBlock.SetVector(propSTWindLeaf2Twitch, windParams.valueSTWindLeaf2Twitch);
-                // STWindLeaf2Ripple (TIME, AMOUNT, 0, 0)
                 _propBlock.SetVector(propSTWindLeaf2Ripple, windParams.valueSTWindLeaf1Ripple);
             }
 
@@ -783,7 +796,11 @@ namespace Broccoli.Controller
                     if (windZones[i].gameObject.activeSelf && windZones[i].mode == WindZoneMode.Directional)
                     {
                         windParams.windMain = windZones[i].windMain;
-                        windParams.windDirection = new Vector4(windZones[i].transform.forward.x, windZones[i].transform.forward.y, windZones[i].transform.forward.z, 1f);
+                        windParams.windDirection = new Vector4(
+                            windZones[i].transform.forward.x,
+                            windZones[i].transform.forward.y,
+                            windZones[i].transform.forward.z,
+                            1f);
                         windParams.windTurbulence = windZones[i].windTurbulence;
                         break;
                     }
@@ -820,6 +837,10 @@ namespace Broccoli.Controller
             if (windAppliesToRenderer && _localRenderer != null)
                 ApplyToRenderer();
         }
+
+        /// <summary>
+        /// Slår alle _WINDQUALITY_* keywords fra og aktiverer derefter den der matcher den valgte WindQuality.
+        /// </summary>
         void SetWindQualityPerRenderer(ref WindParams windParams, Renderer renderer, bool enable = true)
         {
             if (renderer != null)
@@ -828,35 +849,15 @@ namespace Broccoli.Controller
                 {
                     if (material != null)
                     {
-                        material.DisableKeyword("_WINDQUALITY_NONE");
-                        material.DisableKeyword("_WINDQUALITY_FASTEST");
-                        material.DisableKeyword("_WINDQUALITY_FAST");
-                        material.DisableKeyword("_WINDQUALITY_BETTER");
-                        material.DisableKeyword("_WINDQUALITY_BEST");
-                        material.DisableKeyword("_WINDQUALITY_PALM");
-                        if (enable)
+                        // Slå alle kvalitets-keywords fra.
+                        foreach (string keyword in AllWindQualityKeywords)
                         {
-                            switch (windParams.windQuality)
-                            {
-                                case WindQuality.None:
-                                    material.EnableKeyword("_WINDQUALITY_NONE");
-                                    break;
-                                case WindQuality.Fastest:
-                                    material.EnableKeyword("_WINDQUALITY_FASTEST");
-                                    break;
-                                case WindQuality.Fast:
-                                    material.EnableKeyword("_WINDQUALITY_FAST");
-                                    break;
-                                case WindQuality.Better:
-                                    material.EnableKeyword("_WINDQUALITY_BETTER");
-                                    break;
-                                case WindQuality.Best:
-                                    material.EnableKeyword("_WINDQUALITY_BEST");
-                                    break;
-                                case WindQuality.Palm:
-                                    material.EnableKeyword("_WINDQUALITY_PALM");
-                                    break;
-                            }
+                            material.DisableKeyword(keyword);
+                        }
+
+                        if (enable && WindQualityKeywords.TryGetValue(windParams.windQuality, out string keywordToEnable))
+                        {
+                            material.EnableKeyword(keywordToEnable);
                         }
                     }
                 }
@@ -872,7 +873,6 @@ namespace Broccoli.Controller
             // GLOBAL 
             else
             {
-                //_localRenderer.SetPropertyBlock (_propBlock);
                 var rendEnum = _globalRenderers.GetEnumerator();
                 Renderer renderer;
                 WindSettings windSettings;
@@ -890,7 +890,7 @@ namespace Broccoli.Controller
             }
         }
         /// <summary>
-        /// Initialiserer shader-property ID-felterne én gang.
+        /// Initialiserer shader-property ID-felterne en gang.
         /// </summary>
         private static void InitializeShaderPropIds()
         {
