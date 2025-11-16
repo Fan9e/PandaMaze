@@ -8,17 +8,17 @@ using UnityEditor;
 
 namespace Broccoli.Controller
 {
-    /// <resume>
+    /// <summary>
     /// Styrer en Broccoli træ-instance.
-    /// </resume>
+    /// </summary>
     [ExecuteInEditMode]
     public class BroccoTreeController_FJG_1_10_3 : MonoBehaviour
     {
         #region WindParams Class
         [System.Serializable]
-        /// <resume>
+        /// <summary>
         /// Indeholder vind-beregningerne for en Broccoli træ-instance.
-        /// </resume>
+        /// </summary>
         public struct WindParams
         {
             public WindQuality windQuality;
@@ -84,18 +84,18 @@ namespace Broccoli.Controller
         #endregion
 
         #region Vars
-        /// <resume>
+        /// <summary>
         /// Version af Broccoli Tree Creator som har oprettet denne controller.
-        /// </resume>
+        /// </summary>
         public string version = "";
-        /// <resume>
+        /// <summary>
         /// Flag der angiver om rendereren er synlig (styrer om vinden opdateres).
         /// Startværdien er true for at få fat i rendereren i Start().
-        /// </resume>
+        /// </summary>
         bool isVisible = true;
-        /// <resume>
+        /// <summary>
         /// Typer af shaders der er tilgængelige.
-        /// </resume>
+        /// </summary>
         public enum ShaderType
         {
             Standard,
@@ -104,56 +104,56 @@ namespace Broccoli.Controller
             SpeedTree8OrCompatible,
             Billboard
         }
-        /// <resume>
+        /// <summary>
         /// Shader-type der bruges til at behandle denne instance.
-        /// </resume>
+        /// </summary>
         public ShaderType localShaderType = ShaderType.SpeedTree8OrCompatible;
-        /// <resume>
+        /// <summary>
         /// True hvis denne instance har vinddata baseret på SpeedTree.
-        /// </resume>
+        /// </summary>
         private bool hasLocalSpeedTreeWind
         {
             get { return localShaderType == ShaderType.SpeedTree8OrCompatible; }
         }
-        /// <resume>
+        /// <summary>
         /// Global shader-type der bruges til at behandle instancer.
-        /// </resume>
+        /// </summary>
         public ShaderType globalShaderType = ShaderType.SpeedTree8OrCompatible;
-        /// <resume>
+        /// <summary>
         /// True hvis globale vinddata er baseret på SpeedTree.
-        /// </resume>
+        /// </summary>
         private bool hasGlobalSpeedTreeWind
         {
             get { return globalShaderType == ShaderType.SpeedTree8OrCompatible; }
         }
-        /// <resume>
+        /// <summary>
         /// Tilstande for hvordan vinden beregnes og sendes til shaders.
         /// Local: vinden beregnes pr. GameObject-instance pr. frame (mere performance-krævende,
         ///        men giver individuel kontrol).
         /// Global: vinden beregnes én gang pr. frame og deles mellem alle Alfalfa-instancer i scenen
         ///        (anbefalet og mere effektiv).
-        /// </resume>
+        /// </summary>
         public enum WindInstance
         {
             Local,
             Global,
         }
-        /// <resume>
+        /// <summary>
         /// Kilde til de værdier der bruges til at beregne vind.
-        /// </resume>
+        /// </summary>
         public enum WindSource
         {
             Self,
             WindZone
         }
-        /// <resume>
+        /// <summary>
         /// Vind-instancing tilstand for dette GameObject.
-        /// </resume>
+        /// </summary>
         [SerializeField, HideInInspector]
         private WindInstance _windInstance = WindInstance.Local;
-        /// <resume>
+        /// <summary>
         /// Vind-instancing tilstand for dette GameObject.
-        /// </resume>
+        /// </summary>
         public WindInstance windInstance
         {
             get { return _windInstance; }
@@ -189,13 +189,13 @@ namespace Broccoli.Controller
             Best,
             Palm
         }
-        /// <resume>
+        /// <summary>
         /// Hvis true bliver vind for sprout type 1 beregnet.
-        /// </resume>
+        /// </summary>
         public bool hasSprout1 = true;
-        /// <resume>
+        /// <summary>
         /// Hvis true bliver vind for sprout type 2 beregnet.
-        /// </resume>
+        /// </summary>
         public bool hasSprout2 = true;
         public float trunkBending = 1f;
         private float baseWindAmplitude = 0.2752f;
@@ -257,14 +257,14 @@ namespace Broccoli.Controller
             }
         }
         public bool customPreviewMode = false;
-        /// <resume>
+        /// <summary>
         /// Hvis true bliver de beregnede vind-properties skrevet direkte til GameObjectets renderer.
         /// Hvis false sættes værdierne kun på MaterialPropertyBlock.
-        /// </resume>
+        /// </summary>
         public bool windAppliesToRenderer = true;
-        /// <resume>
+        /// <summary>
         /// True når vind skal forhåndsvises i editoren.
-        /// </resume>
+        /// </summary>
         [SerializeField]
         private bool _editorWindEnabled = false;
         public bool editorWindEnabled
@@ -283,13 +283,13 @@ namespace Broccoli.Controller
 #endif
             }
         }
-        /// <resume>
+        /// <summary>
         /// Renderer-komponenten for denne instance.
-        /// </resume>
+        /// </summary>
         private Renderer _localRenderer = null;
-        /// <resume>
+        /// <summary>
         /// MaterialPropertyBlock der bruges til at sætte shader-værdier.
-        /// </resume>
+        /// </summary>
         private MaterialPropertyBlock _propBlock = null;
         private static bool _isPropsInit = false;
         private int _localFrameCount = -1;
@@ -398,18 +398,18 @@ namespace Broccoli.Controller
             InitializeShaderPropIds();
             _localRenderer = GetComponent<Renderer>();
         }
-        /// <resume>
+        /// <summary>
         /// Startkaldes når instancen bliver aktiveret første gang.
-        /// </resume>
+        /// </summary>
         public void Start()
         {
             _restartWind = true;
             _localFrameCount = -1;
             _globalFrameCount = -1;
         }
-        /// <resume>
+        /// <summary>
         /// Kører når komponenten bliver slået til (OnEnable).
-        /// </resume>
+        /// </summary>
         void OnEnable()
         {
 #if UNITY_EDITOR
@@ -434,9 +434,9 @@ namespace Broccoli.Controller
                 InitGlobalWind();
             }
         }
-        /// <resume>
+        /// <summary>
         /// Kører når komponenten bliver slået fra (OnDisable).
-        /// </resume>
+        /// </summary>
         void OnDisable()
         {
 #if UNITY_EDITOR
@@ -453,9 +453,9 @@ namespace Broccoli.Controller
         {
             isVisible = false;
         }
-        /// <resume>
+        /// <summary>
         /// Opdaterer vind-beregningerne hver frame.
-        /// </resume>
+        /// </summary>
         void Update()
         {
             if (isVisible && hasLocalSpeedTreeWind)
@@ -889,9 +889,9 @@ namespace Broccoli.Controller
                 }
             }
         }
-        /// <resume>
+        /// <summary>
         /// Initialiserer shader-property ID-felterne én gang.
-        /// </resume>
+        /// </summary>
         private static void InitializeShaderPropIds()
         {
             if (!_isPropsInit)
@@ -919,9 +919,9 @@ namespace Broccoli.Controller
                 _isPropsInit = true;
             }
         }
-        /// <resume>
+        /// <summary>
         /// EaseInCubic-funktion.
-        /// </resume>
+        /// </summary>
         /// <returns>Det beregnede eased resultat.</returns>
         /// <param name="start">Startværdi.</param>
         /// <param name="end">Slutværdi.</param>

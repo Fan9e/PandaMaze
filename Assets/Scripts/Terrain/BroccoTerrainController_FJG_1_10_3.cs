@@ -7,11 +7,11 @@ using UnityEditor;
 
 namespace Broccoli.Controller
 {
-    /// <resume>
-    /// Der er mange Vector4-felter for vindværdier.
+    /// <summary>
+	/// Der er mange Vector4-felter for vindværdier.
     /// der sætter jeg dem i en struct, såsom WindShaderValues.
     /// for at gøre koden lettere at administrere og reducere rod.
-    /// </resume>
+	/// </summary>
     public struct WindShaderValues
 	{
 		public Vector4 STWindVector;
@@ -31,10 +31,11 @@ namespace Broccoli.Controller
 		public Vector4 STWindFrondRipple;
 
 	}
-	/// <resume>
-	/// Kontrollerer et træbroccoli-forekomster i terræner.
-	/// </resume>
-	public class BroccoTerrainController_FJG_1_10_3 : MonoBehaviour {
+
+    ///<summary>
+	///	Kontrollerer et træbroccoli-forekomster i terræner.
+	///</summary>
+    public class BroccoTerrainController_FJG_1_10_3 : MonoBehaviour {
         #region Vars
         /// <resume>
         /// Terrænkomponent.
@@ -74,16 +75,21 @@ namespace Broccoli.Controller
 		private float valueLeafSwayFactor = 1f;
 		private float valueLeafTurbulenceFactor = 1f;
 		private int _frameCount = -1;
-		#endregion
+        #endregion
 
-		#region Shader values
-		float valueTime = 0f;
+        #region Shader values
+        float valueTime = 0f;
 		float valueTimeWindMain = 0f;
 		float windTimeScale = 1f;
-		#endregion
+        #endregion
 
-		#region Shader Property Ids
-		static int propWindEnabled = 0;
+        ///<summary>
+        ///Her laver jeg et nyt objekt af WindShaderValues som kan indeholde alle Vector4 værdierne for SpeedTree8 vindshaderen.
+        ///</summary>
+        WindShaderValues value2STWind = new WindShaderValues();
+
+        #region Shader Property Ids
+        static int propWindEnabled = 0;
 		static int propWindQuality = 0;
 		static int propSTWindVector = 0;
 		static int propSTWindGlobal = 0;
@@ -126,16 +132,12 @@ namespace Broccoli.Controller
 			propSTWindFrondRipple = Shader.PropertyToID("_ST_WindFrondRipple");
 		}
         #endregion
-        /// <resume>
-        /// Her laver jeg et nyt objekt af WindShaderValues som kan indeholde alle Vector4 værdierne for SpeedTree8 vindshaderen.
-        /// </resume>
-        WindShaderValues value2STWind = new WindShaderValues();
+        #region Events
 
-		#region Events
-		/// <resume>
-		/// Starter denne instans.
-		/// </resume>
-		public void Start()
+        ///<summer>
+        ///Starter denne instans.
+        ///</summer>
+        public void Start()
 		{
 			// henter terrainet.
 			terrain = GetComponent<Terrain>();
@@ -145,10 +147,11 @@ namespace Broccoli.Controller
 				SetupWind();
 			}
 		}
-		/// <resume>
-		/// Opdater denne instans.
-		/// </resume>
-		void Update()
+
+        ///<summary>
+		///Opdater denne instans.
+		///</summary>
+        private void Update()
 		{
 		#if UNITY_EDITOR
 			if (EditorApplication.isPlaying && _frameCount != Time.frameCount)
@@ -197,10 +200,10 @@ namespace Broccoli.Controller
 				UpdateBroccoTreeWind(broccoMaterials[i], broccoMaterialParams[i]);
 			}
 		}
-        /// <resume>
+		///<summary>
         /// Opsæt vinden på træprototypematerialer fundet på dette terræn 
         /// og tilføj deres materialer til et array for at opdatere vinden på hver ramme.
-        /// </resume>
+		///</summary>
         //private void SetupWind(BroccoTreeController treeController)
         private void SetupWind()
 		{
@@ -244,9 +247,10 @@ namespace Broccoli.Controller
 			_matParams.Clear();
 		}
 
-        /// <resume>
-        /// Opsæt materialer i instanser med BroccoTreeController
-        /// </resume>
+
+		/// <summary>
+		/// Opsæt materialer i instanser med BroccoTreeController
+		///	</summary>
         /// <param name="treeController"></param>
         private void SetupBrocco2TreeController(BroccoTreeController_FJG_1_10_3 treeController,BroccoTreeController_FJG_1_10_3.WindQuality windQuality = BroccoTreeController_FJG_1_10_3.WindQuality.Best)
 		{
@@ -344,15 +348,19 @@ namespace Broccoli.Controller
 				}
 			}
 		}
-
-		private void SetWindShaderProperty(Material mat, int propertyId, Vector4 value)
+        /// <summary>
+        /// Sætter en enkelt vind-relateret shader-egenskab (Vector4) på et materiale.
+        /// </summary>
+        /// <param name="mat"></param>
+        /// <param name="propertyId"></param>
+        /// <param name="value"></param>
+        private void SetWindShaderProperty(Material mat, int propertyId, Vector4 value)
 		{
 			mat.SetVector(propertyId, value);
 		}
-
-        /// <resume>
-        /// Sætter en vindshader-egenskab på et materiale.
-        /// </resume>
+		/// <summary>
+		/// Sætter en vindshader-egenskab på et materiale.
+		/// </summary>
         /// <param name="mat"></param>
         /// <param name="propertyId"></param>
         /// <param name="value"></param>
@@ -374,8 +382,13 @@ namespace Broccoli.Controller
 			SetWindShaderProperty(mat, propSTWindFrondRipple, windValues.STWindFrondRipple);
 			SetWindShaderProperty(mat, propSTWindVector, windValues.STWindVector);
 		}
-
-		private void ApplyBroccoTreeWind(Material mat, Vector3 matParams)
+        /// <summary>
+        /// Beregner og opdaterer alle SpeedTree8-vindværdier for et materiale
+        /// ud fra vindstyrke, turbulens, vindretning og træets trunkBending.
+        /// </summary>
+        /// <param name="mat"></param>
+        /// <param name="matParams"></param>
+        private void ApplyBroccoTreeWind(Material mat, Vector3 matParams)
 		{
 			const float TrunkBendingScale = 0.1f;
 			const float TrunkBendingOffset = 0.001f;
@@ -438,14 +451,12 @@ namespace Broccoli.Controller
 			// sætter alle egenskaber ved hjælp af hjælperen
             SetAllWindShaderProperties(mat, value2STWind);
 		}
-
-
-		/// <resume>
-		/// Opdaterer værdierne for materialer.
-		/// </resume>
-		/// <param name="material">Material</param>
-		/// <param name="windParams">Wind parameters, x: sproutTurbulance, y: sproutSway, z: localWindAmplitude.</param>
-		private void UpdateBroccoTreeWind(Material material, Vector3 windParams)
+        /// <summary>
+        /// Opdaterer værdierne for materialer.
+        /// </summary>
+        /// <param name="material">Material</param>
+        /// <param name="windParams">Wind parameters, x: sproutTurbulance, y: sproutSway, z: localWindAmplitude.</param>
+        private void UpdateBroccoTreeWind(Material material, Vector3 windParams)
 		{
 			const float WindGlobalTimeScale = 0.5f;
 			const float localWindAmplitudeScale = 0.1f;
@@ -470,13 +481,11 @@ namespace Broccoli.Controller
             // sætter alle egenskaber ved hjælp af hjælperen
             SetAllWindShaderProperties(material, value2STWind);
 		}
-
-
-		/// <resume>
+        /// <summary>
 		/// Opdater parametre relateret til den første detekterede retningsbestemte vindzone.
-		/// </resume>
-		/// <param name="treeController">Tree controller.</param>
-		public void GetWindZoneValues()
+        /// </summary>
+        /// <param name="treeController">Tree controller.</param>
+        public void GetWindZoneValues()
 		{
 			Vector4 DefaultWindDirection = new Vector4(1f, 0f, 0f, 0f);// direction: ny Vector4(1f, 0f, 0f, 0f) betyder, at vinden blæser langs X-aksen som standard.//0f: sætter Y, Z og W komponenterne til 0.
             const float SpeedTree8WindScale = 0.4f;
