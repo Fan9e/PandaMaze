@@ -100,10 +100,10 @@ public class VoiceMovement : MonoBehaviour
     {
         lock (observersLock)
         {
-            foreach (var o in observers)
+            foreach (var observer in observers)
                 try 
-                { 
-                    o.OnPartialResult(partial); 
+                {
+                    observer.OnPartialResult(partial); 
                 } 
                 catch (Exception ex) 
                 { 
@@ -120,10 +120,10 @@ public class VoiceMovement : MonoBehaviour
     {
         lock (observersLock)
         {
-            foreach (var o in observers)
+            foreach (var observer in observers)
                 try 
-                { 
-                    o.OnResult(result); 
+                {
+                    observer.OnResult(result); 
                 } 
                 catch (Exception ex) 
                 { 
@@ -140,10 +140,10 @@ public class VoiceMovement : MonoBehaviour
     {
         lock (observersLock)
         {
-            foreach (var o in observers)
+            foreach (var observer in observers)
                 try 
-                { 
-                    o.OnVoiceLevelChanged(level); 
+                {
+                    observer.OnVoiceLevelChanged(level); 
                 } 
                 catch (Exception ex) 
                 { 
@@ -160,10 +160,10 @@ public class VoiceMovement : MonoBehaviour
     {
         lock (observersLock)
         {
-            foreach (var o in observers)
+            foreach (var observer in observers)
                 try 
-                { 
-                    o.OnMicrophoneStateChanged(isOn); 
+                {
+                    observer.OnMicrophoneStateChanged(isOn); 
                 } 
                 catch (Exception ex) 
                 { 
