@@ -50,10 +50,23 @@ public abstract class Monster : MonoBehaviour
         
         if (!EnsureHasPlayer(Player)) return;
         ReceiveDamage(damageAmount);
-        Die();
-        GiveDamage(Player);
+
+        if (ShouldDie())
+            OnDeath();   
+        else
+            GiveDamage(Player);
 
     }
+
+    /// <summary>
+    /// Afgør om fjenden skal dø ud fra sin nuværende livsmængde.
+    /// </summary>
+    /// <returns>True hvis <see cref="CurrentHealth"/> er mindre end eller lig 0; ellers false.</returns>
+    protected virtual bool ShouldDie()
+    {
+        return CurrentHealth <= 0;
+    }
+
 
     /// <summary>
     /// Påfører dette monster skade og opdaterer dets nuværende liv.
@@ -96,7 +109,7 @@ public abstract class Monster : MonoBehaviour
     /// Håndterer monsterets død, når det ikke har mere liv.
     /// Destruerer objektet, hvis dets liv er 0 eller derunder
     /// </summary>
-    protected virtual void Die()
+    protected virtual void OnDeath()
     {
         if (CurrentHealth > 0) return;
         Debug.Log("Monster døde");
