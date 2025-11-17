@@ -6,3 +6,5 @@
 [Ll]ogs/
 UserSettings/
 MemoryCaptures/
+.vs/
+*.vsidx
