@@ -21,6 +21,7 @@ Material:
   - EFFECT_HUE_VARIATION
   - EFFECT_SUBSURFACE
   - GEOM_TYPE_LEAF
+  - _EMISSION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
@@ -80,6 +81,7 @@ Material:
     - _TwoSided: 0
     - _WINDQUALITY: 4
     - _WindQuality: 4
+    - _XRMotionVectorsPass: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0.925}
     - _HueVariationColor: {r: 0.4716981, g: 0.105064824, b: 0.0022249965, a: 0.11764706}
@@ -98,4 +100,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 9
+  version: 10
