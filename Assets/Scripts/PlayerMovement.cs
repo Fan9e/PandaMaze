@@ -15,12 +15,41 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movementInput;
 
     /// <summary>
+    /// kan sætte rigidbody direkte
+    /// </summary>
+    public Rigidbody RigidbodyComponent
+    {
+        get => rigidbodyComponent;
+        set => rigidbodyComponent = value;
+    }
+
+    /// <summary>
+    /// Hjælpe-property så den kan styre farten
+    /// </summary>
+    public float MovementSpeed
+    {
+        get => movementSpeed;
+        set => movementSpeed = value;
+    }
+
+    /// <summary>
     /// Henter referencer til de komponenter, som spilleren kræver for at fungere.
     /// </summary>
     private void Awake()
     {
-        rigidbodyComponent = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        if (rigidbodyComponent == null)
+            rigidbodyComponent = GetComponent<Rigidbody>();
+
+        if (animator == null)
+            animator = GetComponent<Animator>();
+    }
+
+    /// <summary>
+    /// Hjælpemetode til, så vi kan sætte movementInput direkte
+    /// </summary>
+    public void SetMovementInput(Vector3 input)
+    {
+        movementInput = input;
     }
 
     /// <summary>
@@ -83,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Anvender den beregnede bevægelse på rigidbody'en og bevarer den vertikale hastighed.
     /// </summary>
-    private void ApplyMovement()
+    public void ApplyMovement()
     {
         Vector3 velocity = movementInput * movementSpeed;
         velocity.y = rigidbodyComponent.linearVelocity.y;
