@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\monster\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\scripts\\monster\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\monster\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|c:\\users\\maria\\onedrive\\skrivebord\\pandamaze\\assets\\scripts\\tests\\monstertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|solutionrelative:assets\\scripts\\tests\\monstertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\facecamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\facecamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\monster\\dragon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\monster\\dragon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\facecamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\facecamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\tests\\monstertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81719727-1697-2933-15E2-6DCC128725FC}|Tests.csproj|solutionrelative:assets\\scripts\\tests\\monstertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED7C9453-C1FD-5CF4-1EC9-E6BF5AB71A28}|Scripts.csproj|solutionrelative:assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +42,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "MonsterTest.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Tests\\MonsterTest.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Tests\\MonsterTest.cs",
@@ -50,12 +50,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Tests\\MonsterTest.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAiwDwAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T20:24:15.169Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-15T20:24:15.169Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player.cs",
@@ -67,13 +66,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Dragon.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Monster\\Dragon.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Monster\\Dragon.cs",
               "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Monster\\Dragon.cs",
               "RelativeToolTip": "Assets\\Scripts\\Monster\\Dragon.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-10T20:21:43.031Z"
             },
@@ -85,20 +84,20 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Monster\\Monster.cs",
               "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\Monster\\Monster.cs",
               "RelativeToolTip": "Assets\\Scripts\\Monster\\Monster.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAAwDQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-10T20:18:03.957Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "FaceCamera.cs",
               "DocumentMoniker": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\FaceCamera.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\FaceCamera.cs",
               "ToolTip": "C:\\Users\\maria\\OneDrive\\Skrivebord\\PandaMaze\\Assets\\Scripts\\FaceCamera.cs",
               "RelativeToolTip": "Assets\\Scripts\\FaceCamera.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-10T20:14:29.814Z"
             }

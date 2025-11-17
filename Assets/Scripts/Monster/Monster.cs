@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(FaceCamera))]
 public abstract class Monster : MonoBehaviour
 {
     [SerializeField] private Player player;
@@ -88,7 +89,6 @@ public abstract class Monster : MonoBehaviour
     /// </summary>
     protected virtual void GiveDamage(Player player)
     {
-        if (CurrentHealth <= 0) return;
         player.CurrentHealth -= AttackPower;  
     }
 
@@ -111,7 +111,6 @@ public abstract class Monster : MonoBehaviour
     /// </summary>
     protected virtual void OnDeath()
     {
-        if (CurrentHealth > 0) return;
         Debug.Log("Monster døde");
         if (Application.isPlaying)
             Destroy(gameObject);
