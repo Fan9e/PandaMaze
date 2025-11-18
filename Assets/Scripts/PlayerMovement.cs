@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float movementSpeed = 5f;
     private float walkThreshold = 0.0001f;
     private float inputDeadzone = 0.05f;
+    private float rotationSpeed = 20f;
 
     private Rigidbody rigidbodyComponent;
     private Animator animator;
@@ -74,48 +75,49 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void UpdateMovementInput()
     {
-        Vector3 cameraForward =
-            Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
-        Vector3 cameraRight =
-            Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up).normalized;
+        float horizontalInput = Input.GetAxisRaw("Horizontal"); // venstre/højre pil
+        float verticalInput = Input.GetAxisRaw("Vertical");   // op/ned pil
 
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
+        movementInput = new Vector3(horizontalInput, 0f, verticalInput);
 
-        Vector3 rawInput = cameraRight * horizontalInput + cameraForward * verticalInput;
-
-        if (rawInput.magnitude < inputDeadzone)
+        if (Mathf.Abs(movementInput.z) < inputDeadzone)
         {
-            movementInput = Vector3.zero;
-        }
-        else
-        {
-            movementInput = rawInput.normalized;
+            movementInput.z = 0f;
         }
     }
 
     /// <summary>
-    /// Opdaterer animatorens parametre på baggrund af nuværende bevægelse.
+    /// Opdaterer animatoren: går kun når vi bevæger os frem/bagud.
     /// </summary>
     private void UpdateAnimationState()
     {
         if (animator == null)
-        {
             return;
-        }
 
-        bool isWalking = movementInput.sqrMagnitude > walkThreshold;
+        // Kig på både rotation (x) og frem/bagud (z)
+        Vector2 planarInput = new Vector2(movementInput.x, movementInput.z);
+        bool isWalking = planarInput.sqrMagnitude > walkThreshold;
+
         animator.SetBool("IsWalking", isWalking);
     }
 
 
     /// <summary>
-    /// Anvender den beregnede bevægelse på rigidbody'en og bevarer den vertikale hastighed.
+    /// Roterer pandaen med Horizontal og bevæger den frem/bagud med Vertical.
     /// </summary>
     public void ApplyMovement()
     {
-        Vector3 velocity = movementInput * movementSpeed;
-        velocity.y = rigidbodyComponent.linearVelocity.y;
+        // 1) Drej pandaen rundt om Y-aksen ud fra Horizontal input
+        if (Mathf.Abs(movementInput.x) > 0.01f)
+        {
+            float turn = movementInput.x * rotationSpeed * Time.fixedDeltaTime;
+            Quaternion deltaRot = Quaternion.Euler(0f, turn, 0f);
+            rigidbodyComponent.MoveRotation(rigidbodyComponent.rotation * deltaRot);
+        }
+
+        // 2) Gå frem/bagud i den retning pandaen peger (transform.forward)
+        Vector3 velocity = transform.forward * (movementInput.z * movementSpeed);
+        velocity.y = rigidbodyComponent.linearVelocity.y; // behold hop/tyngdekraft
         rigidbodyComponent.linearVelocity = velocity;
     }
 }
