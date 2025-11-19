@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\FaceCamera.cs" />
     <Compile Include="Assets\Scripts\Voice\IVoiceObserver.cs" />
     <Compile Include="Assets\Scripts\Items\Weapon\OneHandSword.cs" />
+    <Compile Include="Assets\Scripts\Monster\Cat.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Scripts.asmdef" />

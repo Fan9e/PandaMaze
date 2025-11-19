@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Dragon : Monster
+public class Cat : Monster
 {
     /// <summary>
     /// Initialiserer dragen ved at sætte dens maksimale liv og angrebskraft
@@ -8,8 +8,8 @@ public class Dragon : Monster
     /// </summary>
     private void Start()
     {
-        MaxHealth = 30;
-        AttackPower = 5;
+        MaxHealth = 60;
+        AttackPower = 20;
         base.Start();
     }
 
