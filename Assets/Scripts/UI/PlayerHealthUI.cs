@@ -88,7 +88,7 @@ public class PlayerHealthUI : MonoBehaviour
 
         if (healthText != null)
         {
-            healthText.text = $"Health: {safeCurrent} / {safeMax}";
+            healthText.text = $"{safeCurrent} / {safeMax}";
         }
 
         if (healthBar != null)
