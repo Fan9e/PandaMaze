@@ -53,11 +53,11 @@ public class PlayerHealthUITest
         try
         {
             ui.UpdateHealthUI(-5, 0);
-            Assert.AreEqual("Health: 0 / 1", tmp.text);
+            Assert.AreEqual("0 / 1", tmp.text);
             Assert.AreEqual(0f, bar.fillAmount, 1e-6f);
 
             ui.UpdateHealthUI(50, 100);
-            Assert.AreEqual("Health: 50 / 100", tmp.text);
+            Assert.AreEqual("50 / 100", tmp.text);
             Assert.AreEqual(0.5f, bar.fillAmount, 1e-6f);
         }
         finally
@@ -96,7 +96,7 @@ public class PlayerHealthUITest
         {
             ui.SetPlayer(player);
 
-            Assert.AreEqual("Health: 25 / 80", tmp.text);
+            Assert.AreEqual("25 / 80", tmp.text);
             Assert.AreEqual(25f / 80f, bar.fillAmount, 1e-6f);
         }
         finally
@@ -137,7 +137,7 @@ public class PlayerHealthUITest
         {
             GetPrivateMethod("Start").Invoke(ui, null);
 
-            Assert.AreEqual("Health: 10 / 40", tmp.text);
+            Assert.AreEqual("10 / 40", tmp.text);
             Assert.AreEqual(10f / 40f, bar.fillAmount, 1e-6f);
         }
         finally
@@ -176,13 +176,13 @@ public class PlayerHealthUITest
         try
         {
             ui.SetPlayer(player);
-            Assert.AreEqual("Health: 20 / 20", tmp.text);
+            Assert.AreEqual("20 / 20", tmp.text);
             Assert.AreEqual(1f, bar.fillAmount, 1e-6f);
 
             player.CurrentHealth = 5;
             GetPrivateMethod("Update").Invoke(ui, null);
 
-            Assert.AreEqual("Health: 5 / 20", tmp.text);
+            Assert.AreEqual("5 / 20", tmp.text);
             Assert.AreEqual(5f / 20f, bar.fillAmount, 1e-6f);
         }
         finally

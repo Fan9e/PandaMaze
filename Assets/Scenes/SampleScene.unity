@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.037046976, g: 0.9685534, b: 0.003045561, a: 0.6666667}
+  m_Color: {r: 0.31725094, g: 0.57254905, b: 0.098039225, a: 0.6666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -876,6 +876,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 462941847945767296, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1439659095}
+    - targetCorrespondingSourceObject: {fileID: 462941847945767296, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1439659101}
   m_SourcePrefab: {fileID: 100100000, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
 --- !u!1 &531393895 stripped
 GameObject:
@@ -1018,17 +1021,6 @@ RectTransform:
   m_AnchoredPosition: {x: -484, y: 234}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &611268685 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1039954966337600853, guid: 920c8476d627b764283b67da86970efd, type: 3}
-  m_PrefabInstance: {fileID: 335031231}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 174e383cc98149648b000db107ac37d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &702208859
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,7 +1209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.69182384, g: 0.05873965, b: 0.05873965, a: 0.6392157}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6392157}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1694,6 +1686,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::Player
   _maxHealth: 100
   _currentHealth: 0
+--- !u!114 &1439659101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531393895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcc8662d173b6aa4e9412e00bce3e049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::PlayerMonsterDetector
+  player: {fileID: 1439659095}
+  monsterHealthUI: {fileID: 2011718069}
+  showDistance: 5
+  updateInterval: 0.1
 --- !u!1 &1494182305
 GameObject:
   m_ObjectHideFlags: 0
@@ -2035,7 +2043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c5a20da6f11bce4aa76943cfba361a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Scripts::MonsterHealthUI
-  monster: {fileID: 611268685}
+  monster: {fileID: 0}
   healthText: {fileID: 1326527187}
   healthBar: {fileID: 1390236557}
   healthBarBG: {fileID: 83862551}
