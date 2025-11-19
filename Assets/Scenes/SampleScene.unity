@@ -176,11 +176,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 9b4155a84e6060c4ab0d06893e884ef9, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -226,9 +226,9 @@ RectTransform:
   - {fileID: 600584678}
   m_Father: {fileID: 2124826914}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 44, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 592, y: -308}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &287764756
@@ -722,6 +722,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panda
       objectReference: {fileID: 0}
+    - target: {fileID: 462941847945767296, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 550978070842465823, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
       propertyPath: m_Size.x
       value: 1
@@ -793,8 +797,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 462941847945767296, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1439659095}
   m_SourcePrefab: {fileID: 100100000, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
+--- !u!1 &531393895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 462941847945767296, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
+  m_PrefabInstance: {fileID: 459756116}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &600584675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,15 +1131,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5283019, g: 0.0049838973, b: 0.0049838973, a: 0.6392157}
+  m_Color: {r: 0.69182384, g: 0.05873965, b: 0.05873965, a: 0.6392157}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 9b4155a84e6060c4ab0d06893e884ef9, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1371,6 +1383,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 772691122164810125, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
   m_PrefabInstance: {fileID: 459756116}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1439659095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531393895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff669b593453c548812014acd12e1ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::Player
+  _maxHealth: 100
+  _currentHealth: 0
 --- !u!1 &1527831265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,6 +1485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1783047582}
+  - component: {fileID: 1783047583}
   m_Layer: 5
   m_Name: PlayerHealthUI
   m_TagString: Untagged
@@ -1482,11 +1509,27 @@ RectTransform:
   - {fileID: 1312202424}
   m_Father: {fileID: 2124826914}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 322}
+  m_SizeDelta: {x: 100, y: -72}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1783047583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783047581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0268739db17ecc742b060fce5eca4a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::PlayerHealthUI
+  player: {fileID: 1439659095}
+  healthText: {fileID: 1338343840}
+  healthBar: {fileID: 28611171}
+  healthBarBG: {fileID: 825377618}
 --- !u!1 &1950407507
 GameObject:
   m_ObjectHideFlags: 0

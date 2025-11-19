@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\FaceCamera.cs" />
     <Compile Include="Assets\Scripts\Voice\IVoiceObserver.cs" />
     <Compile Include="Assets\Scripts\Items\Weapon\OneHandSword.cs" />
+    <Compile Include="Assets\Scripts\UI\PlayerHealthUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Scripts.asmdef" />
