@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Tests\\UITest\\PlayerHealthUITest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Tests\\UITest\\PlayerHealthUITest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\UI\\PlayerHealthUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\UI\\PlayerHealthUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Tests\\UITest\\PlayerHealthUITest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Tests\\UITest\\PlayerHealthUITest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Tests\\OneHandSwordTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Tests\\OneHandSwordTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\Weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Items\\Weapon\\Weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,21 +42,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Weapon.cs",
-              "DocumentMoniker": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\Weapon.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Items\\Weapon\\Weapon.cs",
-              "ToolTip": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Items\\Weapon\\Weapon.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Items\\Weapon\\Weapon.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBUAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T15:51:30.349Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Document",
@@ -72,8 +62,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Tests\\VoiceTest\\VoiceMovementTest.cs",
               "ViewState": "AgIAAGwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-19T09:46:42.052Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-19T09:46:42.052Z"
             },
             {
               "$type": "Document",
@@ -85,20 +74,32 @@
               "RelativeToolTip": "Assets\\Scripts\\Monster\\Monster.cs",
               "ViewState": "AgIAAEsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-19T08:19:16.48Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-19T08:19:16.48Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PlayerHealthUITest.cs",
               "DocumentMoniker": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Tests\\UITest\\PlayerHealthUITest.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Tests\\UITest\\PlayerHealthUITest.cs",
               "ToolTip": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\Tests\\UITest\\PlayerHealthUITest.cs",
               "RelativeToolTip": "Assets\\Scripts\\Tests\\UITest\\PlayerHealthUITest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAQAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-19T09:46:35.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlayerHealthUI.cs",
+              "DocumentMoniker": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\UI\\PlayerHealthUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\PlayerHealthUI.cs",
+              "ToolTip": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\UI\\PlayerHealthUI.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\PlayerHealthUI.cs",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAiwKgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T07:47:04.599Z",
               "EditorCaption": ""
             },
             {
@@ -111,29 +112,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Player.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAQwBAAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-19T07:56:49.542Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PlayerHealthUI.cs",
-              "DocumentMoniker": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\UI\\PlayerHealthUI.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\PlayerHealthUI.cs",
-              "ToolTip": "C:\\Users\\Bblau\\OneDrive\\Desktop\\Zealand\\5. Semester\\Hovedopage\\PandaMaze\\Assets\\Scripts\\UI\\PlayerHealthUI.cs",
-              "RelativeToolTip": "Assets\\Scripts\\UI\\PlayerHealthUI.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-19T07:47:04.599Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-19T07:56:49.542Z"
             },
             {
               "$type": "Document",
@@ -145,8 +124,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Tests\\OneHandSwordTest.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAAwB8AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T09:49:03.501Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-14T09:49:03.501Z"
             },
             {
               "$type": "Document",
@@ -158,8 +136,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Items\\Weapon\\IWeapon.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T15:51:38.527Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-09T15:51:38.527Z"
             },
             {
               "$type": "Document",
@@ -171,8 +148,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Items\\Weapon\\OneHandSword.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T15:51:01.947Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-09T15:51:01.947Z"
             }
           ]
         }

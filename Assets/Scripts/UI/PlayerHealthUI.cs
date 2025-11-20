@@ -51,14 +51,28 @@ public class PlayerHealthUI : MonoBehaviour
             player = GetComponent<Player>() ?? FindObjectOfType<Player>();
         }
 
-        if (player != null)
+        if (EnsureHasPlayer(player))
         {
             UpdateHealthUI(player.CurrentHealth, player.MaxHealth);
+            return;
         }
-        else
+
+
+        if (healthText != null)
         {
-            UpdateHealthUI(0, 1);
+            healthText.text = "Ingen spiller kunne findes";
         }
+
+        if (healthBar != null)
+        {
+            healthBar.enabled = false;
+            healthBar.fillAmount = 0f;
+        }
+
+        if (healthBarBG != null)
+        {
+            healthBarBG.enabled = false;
+        }            
     }
 
     /// <summary>
@@ -66,7 +80,7 @@ public class PlayerHealthUI : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (player == null)
+        if (!EnsureHasPlayer(player))
             return;
 
         if (player.CurrentHealth != _lastHealth || player.MaxHealth != _lastMax)
@@ -106,8 +120,10 @@ public class PlayerHealthUI : MonoBehaviour
     /// </summary>
     public void UpdateHealthUI()
     {
-        if (player != null)
-            UpdateHealthUI(player.CurrentHealth, player.MaxHealth);
+        if (!EnsureHasPlayer(player))
+            return;
+
+        UpdateHealthUI(player.CurrentHealth, player.MaxHealth);
     }
 
     /// <summary>
@@ -117,6 +133,43 @@ public class PlayerHealthUI : MonoBehaviour
     public void SetPlayer(Player player)
     {
         this.player = player;
+
+        if (!EnsureHasPlayer(this.player))
+        {
+            if (healthText != null)
+            {
+                healthText.text = "Ingen spiller kunne findes";
+            }
+
+            if (healthBar != null)
+            {
+                healthBar.enabled = false;
+                healthBar.fillAmount = 0f;
+            }
+
+            if (healthBarBG != null)
+            {
+                healthBarBG.enabled = false;
+            }
+
+            return;
+        }
+
         UpdateHealthUI();
+    }
+
+    /// <summary>
+    /// Sikrer at der er en gyldig <see cref="Player"/>-referencen til rådighed.
+    /// </summary>
+    /// <param name="player">Den <see cref="Player"/>-instans der skal kontrolleres. Kan være null.</param>
+    /// <returns>
+    /// true hvis der er en gyldig <see cref="Player"/>; ellers false.
+    /// </returns>
+    protected virtual bool EnsureHasPlayer(Player player)
+    {
+        if (player != null) return true;
+
+        Debug.LogWarning("Der er ingen player at kæmpe imod");
+        return false;
     }
 }
