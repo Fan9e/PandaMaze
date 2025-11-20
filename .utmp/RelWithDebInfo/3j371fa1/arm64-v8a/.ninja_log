@@ -1,0 +1,12 @@
+# ninja log v5
+99	1161	7853585972198975	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	b440525ce37a3d40
+1164	1653	7853585976465151	C:/Users/fanni/Desktop/PandaMaze/PandaMaze/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3j371fa1/obj/arm64-v8a/libswappywrapper.so	45582a4b3d665b75
+58	3863	7853585998968290	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	33d8b69c8030afec
+46	3940	7853585999934800	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	9e6ba0006db6a159
+84	4004	7853586000387263	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	bd92494697583465
+13	4009	7853586000642374	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	7a543392149e0597
+23	4145	7853586002016904	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	ea7b33778780dd46
+35	4621	7853586006758535	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	b82ff9ac4900157b
+71	4633	7853586006923606	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	446faa575638e9b
+1	4839	7853586008966412	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	2c7151d243af7749
+4840	5005	7853586010683610	C:/Users/fanni/Desktop/PandaMaze/PandaMaze/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3j371fa1/obj/arm64-v8a/libgame.so	8846f7e4a7275d1d

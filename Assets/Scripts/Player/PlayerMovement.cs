@@ -1,8 +1,9 @@
 using UnityEngine;
 
+
+
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Animator))]
-
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
@@ -10,32 +11,28 @@ public class PlayerMovement : MonoBehaviour
     private float walkThreshold = 0.0001f;
     private float inputDeadzone = 0.05f;
     private float rotationSpeed = 20f;
+    // øverst i PlayerMovement
+    private float joystickSpeedMultiplier = 0.5f;
 
     private Rigidbody rigidbodyComponent;
     private Animator animator;
     private Vector3 movementInput;
 
-    /// <summary>
-    /// kan sætte rigidbody direkte
-    /// </summary>
+    // Bruges af joysticket på mobil
+    private Vector2 joystickInput = Vector2.zero;
+
     public Rigidbody RigidbodyComponent
     {
         get => rigidbodyComponent;
         set => rigidbodyComponent = value;
     }
 
-    /// <summary>
-    /// Hjælpe-property så den kan styre farten
-    /// </summary>
     public float MovementSpeed
     {
         get => movementSpeed;
         set => movementSpeed = value;
     }
 
-    /// <summary>
-    /// Henter referencer til de komponenter, som spilleren kræver for at fungere.
-    /// </summary>
     private void Awake()
     {
         if (rigidbodyComponent == null)
@@ -46,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Hjælpemetode til, så vi kan sætte movementInput direkte
+    /// Bruges af UNIT TESTEN – sæt movementInput direkte.
     /// </summary>
     public void SetMovementInput(Vector3 input)
     {
@@ -54,29 +51,38 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Læser input fra spilleren og opdaterer bevægelse og animationstilstand.
+    /// Bruges af joysticket – sæt joystick-input.
     /// </summary>
+    public void SetJoystickInput(Vector2 input)
+    {
+        joystickInput = input;
+    }
+
     private void Update()
     {
         UpdateMovementInput();
         UpdateAnimationState();
     }
 
-    /// <summary>
-    /// Kaldes i faste intervaller og anvender bevægelsen på rigidbody'en.
-    /// </summary>
     private void FixedUpdate()
     {
         ApplyMovement();
     }
 
     /// <summary>
-    /// Beregner kamera-relativt bevægelsesinput ud fra tastaturaksene.
+    /// Kombinerer joystick + tastatur til ét movementInput.
     /// </summary>
     private void UpdateMovementInput()
     {
-        float horizontalInput = Input.GetAxisRaw("Horizontal"); // venstre/højre pil
-        float verticalInput = Input.GetAxisRaw("Vertical");   // op/ned pil
+        float horizontalInput = joystickInput.x;
+        float verticalInput = joystickInput.y;
+
+        // TEMP: ingen tastatur-fallback
+        //if (Mathf.Abs(horizontalInput) < 0.01f && Mathf.Abs(verticalInput) < 0.01f)
+        //{
+        //    horizontalInput = Input.GetAxisRaw("Horizontal");
+        //    verticalInput = Input.GetAxisRaw("Vertical");
+        //}
 
         movementInput = new Vector3(horizontalInput, 0f, verticalInput);
 
@@ -86,28 +92,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Opdaterer animatoren: går kun når vi bevæger os frem/bagud.
-    /// </summary>
     private void UpdateAnimationState()
     {
         if (animator == null)
             return;
 
-        // Kig på både rotation (x) og frem/bagud (z)
         Vector2 planarInput = new Vector2(movementInput.x, movementInput.z);
         bool isWalking = planarInput.sqrMagnitude > walkThreshold;
 
         animator.SetBool("IsWalking", isWalking);
     }
 
-
-    /// <summary>
-    /// Roterer pandaen med Horizontal og bevæger den frem/bagud med Vertical.
-    /// </summary>
     public void ApplyMovement()
     {
-        // 1) Drej pandaen rundt om Y-aksen ud fra Horizontal input
         if (Mathf.Abs(movementInput.x) > 0.01f)
         {
             float turn = movementInput.x * rotationSpeed * Time.fixedDeltaTime;
@@ -115,9 +112,12 @@ public class PlayerMovement : MonoBehaviour
             rigidbodyComponent.MoveRotation(rigidbodyComponent.rotation * deltaRot);
         }
 
-        // 2) Gå frem/bagud i den retning pandaen peger (transform.forward)
         Vector3 velocity = transform.forward * (movementInput.z * movementSpeed);
-        velocity.y = rigidbodyComponent.linearVelocity.y; // behold hop/tyngdekraft
+
+        Debug.Log("ApplyMovement → movementInput = " + movementInput);
+
+        // Use Unity's standard Rigidbody API (velocity) instead of a nonstandard property.
+        velocity.y = rigidbodyComponent.linearVelocity.y;
         rigidbodyComponent.linearVelocity = velocity;
     }
 }
