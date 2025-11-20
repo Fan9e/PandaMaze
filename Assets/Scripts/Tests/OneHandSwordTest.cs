@@ -47,7 +47,6 @@ public class OneHandSwordTest
         var OneHandSwordGameObject = new GameObject("OneHandSword");
         var OneHandSword = OneHandSwordGameObject.AddComponent<OneHandSword>();
 
-        OneHandSword.isAttacking = true;
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
@@ -62,29 +61,6 @@ public class OneHandSwordTest
     }
 
     /// <summary>
-    /// Sikrer at Attack ikke skader et monster, når våbnet ikke angriber.
-    /// </summary>
-    [Test]
-    public void Attack_DoesNotDamage_WhenNotAttacking()
-    { 
-        var OneHandSwordGameObject = new GameObject("OneHandSword");
-        var OneHandSword = OneHandSwordGameObject.AddComponent<OneHandSword>();
-        OneHandSword.isAttacking = false;   
-
-        var MonsterGameObject = new GameObject("Monster");
-        var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
-        var Monster = MonsterGameObject.AddComponent<Monster>();
-
-        Monster.CurrentHealth = 100;
-        int StartHealth = Monster.CurrentHealth;
-
-        OneHandSword.Attack(Monster);
-
-
-        Assert.AreEqual(StartHealth, Monster.CurrentHealth);
-    }
-
-    /// <summary>
     /// Sikrer at Attack ikke skader et monster, der allerede er dødt (0 HP).
     /// </summary>
     [Test]
@@ -92,7 +68,7 @@ public class OneHandSwordTest
     {
         var OneHandSwordGameObject = new GameObject("OneHandSword");
         var OneHandSword = OneHandSwordGameObject.AddComponent<OneHandSword>();
-        OneHandSword.isAttacking = true;
+        
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();

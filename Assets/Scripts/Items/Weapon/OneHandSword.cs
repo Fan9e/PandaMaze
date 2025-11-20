@@ -15,12 +15,5 @@ public class OneHandSword : Weapon
         return totalDamage;
     }
 
-    /// <summary>
-    /// Kaldes én gang per frame af Unity og markerer,
-    /// at våbnet er i gang med at angribe.
-    /// </summary>
-    private void Update()
-    {
-        isAttacking = true;
-    }
+ 
 }

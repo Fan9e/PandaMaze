@@ -1,19 +1,16 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public abstract class Weapon : Item, IWeapon
 {
     public abstract int CalculateDamage();
-    public bool isAttacking = false;
 
     /// <summary>
     /// Kaldes når spilleren har sagt ordet rigtigt
     /// og vi vil slå et bestemt monster.
     /// </summary>
     /// <param name="monster">Det monster, der skal modtage skaden</param>
-    public void Attack(Monster monster)
+    public virtual void Attack(Monster monster)
     {
-        if (!isAttacking) return;
         if (monster == null) return;
         DealDamage(monster);
     }
