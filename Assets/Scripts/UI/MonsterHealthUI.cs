@@ -117,7 +117,7 @@ public class MonsterHealthUI : MonoBehaviour
     /// <summary>
     /// Opdaterer UI ved at bruge den tilknyttede <see cref="monster"/> reference, hvis den eksisterer.
     /// </summary>
-    public void UpdateHealthUI()
+    public void UpdateHealthFromMonster()
     {
         if (monster != null)
             UpdateHealthUI(monster.CurrentHealth, monster.MaxHealth);
@@ -130,7 +130,7 @@ public class MonsterHealthUI : MonoBehaviour
     public void SetMonster(Monster monster)
     {
         this.monster = monster;
-        UpdateHealthUI();
+        UpdateHealthFromMonster();
     }
 
     /// <summary>
@@ -152,7 +152,7 @@ public class MonsterHealthUI : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
-        UpdateHealthUI();
+        UpdateHealthFromMonster();
     }
 
     /// <summary>

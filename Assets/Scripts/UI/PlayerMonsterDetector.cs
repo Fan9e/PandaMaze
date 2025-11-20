@@ -39,18 +39,29 @@ public class PlayerMonsterDetector : MonoBehaviour
     /// </summary>
     private float _timer;
 
+
+    /// <summary>
+    /// Returnerer sandt hvis spillerreferencen er sat (dvs. at <see cref="player"/> ikke er null).
+    /// </summary>
+    private bool HasPlayer() => player != null;
+
+    /// <summary>
+    /// Returnerer sandt hvis monsterHealthUI-referencen er sat (dvs. at <see cref="monsterHealthUI"/> ikke er null).
+    /// </summary>
+    private bool HasMonsterHealthUI() => monsterHealthUI != null;
+
     /// <summary>
     /// Initialisering: find manglende referencer og skjul <see cref="monsterHealthUI"/> hvis den er fundet.
     /// </summary>
     private void Start()
     {
-        if (player == null)
+        if (!HasPlayer())
             player = FindObjectOfType<Player>();
 
-        if (monsterHealthUI == null)
+        if (!HasMonsterHealthUI())
             monsterHealthUI = FindObjectOfType<MonsterHealthUI>();
 
-        if (monsterHealthUI != null)
+        if (HasMonsterHealthUI())
             monsterHealthUI.Hide();
     }
 
@@ -61,7 +72,7 @@ public class PlayerMonsterDetector : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (player == null || monsterHealthUI == null) return;
+        if (!HasPlayer() || !HasMonsterHealthUI()) return;
 
         _timer -= Time.deltaTime;
         if (_timer > 0f) return;
