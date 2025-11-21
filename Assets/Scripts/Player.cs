@@ -93,12 +93,10 @@ public class Player : MonoBehaviour
     /// Finder automatisk animator til våbnet (fx på SwordPivot), hvis ikke sat i Inspector.
     /// </summary>
     private void AutoAssignWeaponAnimator()
-    {
-        // Hvis du allerede har sat den i Inspector, så lad den være
+{
         if (_weaponAnimator != null)
             return;
 
-        // 1) Prøv først at finde præcis det child-navn du har skrevet
         if (!string.IsNullOrEmpty(_weaponAnimatorChildName))
         {
             Transform child = transform.Find(_weaponAnimatorChildName);
@@ -108,13 +106,12 @@ public class Player : MonoBehaviour
             }
         }
 
-        // 2) Hvis det ikke lykkedes, så prøv via weapon (parent-kæde)
         if (_weaponAnimator == null && _weapon != null)
         {
             _weaponAnimator = _weapon.GetComponentInParent<Animator>();
         }
 
-        // 3) Sidste fallback: tag den første Animator i children
+
         if (_weaponAnimator == null)
         {
             _weaponAnimator = GetComponentInChildren<Animator>();
@@ -135,7 +132,6 @@ public class Player : MonoBehaviour
             return;
         }
 
-        // Vi forventer at IWeapon sidder på et MonoBehaviour (fx Weapon : MonoBehaviour, IWeapon)
         var newWeaponMb = newWeapon as MonoBehaviour;
         if (newWeaponMb == null)
         {
@@ -143,15 +139,14 @@ public class Player : MonoBehaviour
             return;
         }
 
-        // 1) Fjern det gamle våben-GameObject, hvis der er et
+
         if (_weapon != null)
         {
             Destroy(_weapon.gameObject);
             _weapon = null;
         }
 
-        // 2) Sæt det nye våben som child af samme sted som det gamle (fx SwordPivot)
-        // Her antager vi, at Player allerede har et Weapon-socket (SwordPivot) i hierarkiet
+
         Transform socket = transform.Find(_weaponAnimatorChildName);
         if (socket != null)
         {
@@ -160,11 +155,10 @@ public class Player : MonoBehaviour
             newWeaponMb.transform.localRotation = Quaternion.identity;
         }
 
-        // 3) Opdater Player’s felter
-        _weapon = newWeaponMb.GetComponent<Weapon>(); // kun for at have direkte adgang til komponenten
-        EquippedWeapon = newWeapon;                   // <-- afhænger kun af IWeapon
+        _weapon = newWeaponMb.GetComponent<Weapon>(); 
+        EquippedWeapon = newWeapon;                  
 
-        // 4) (valgfrit) opdater animator hvis nødvendigt
+   
         AutoAssignWeaponAnimator();
     }
 
@@ -188,7 +182,6 @@ public class Player : MonoBehaviour
         {
             _weaponAnimator.Play("SwordAttack", 0, 0f);
 
-            // vent ét frame så animator når at skifte state
             yield return null;
 
             AnimatorStateInfo info = _weaponAnimator.GetCurrentAnimatorStateInfo(0);
@@ -207,8 +200,6 @@ public class Player : MonoBehaviour
 
         _isAttacking = false;
     }
-
-    // ---------- MONSTER & GIZMOS ----------
 
     private Monster GetClosestMonsterInRange()
     {
