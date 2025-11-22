@@ -622,7 +622,7 @@ GameObject:
   - component: {fileID: 456367856}
   - component: {fileID: 456367857}
   m_Layer: 0
-  m_Name: SwordPivot
+  m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1225,16 +1225,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff669b593453c548812014acd12e1ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Scripts::Player
-  _maxHealth: 100
-  _currentHealth: 0
-  _weapon: {fileID: 0}
-  _weaponAnimator: {fileID: 0}
+  maximumHealth: 100
+  currentHealth: 0
+  weaponSocketChildName: SwordPivot
+  monsterLayerName: Monster
+  equippedWeaponComponent: {fileID: 0}
+  weaponSocketTransform: {fileID: 0}
+  weaponAnimator: {fileID: 0}
   attackRadius: 2
-  attackDistance: 1
-  monsterLayer:
+  attackDistanceForwardFromPlayer: 1
+  monsterLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  _weaponAnimatorChildName: SwordPivot
 --- !u!4 &1491414926 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5906427983753372136, guid: 920c8476d627b764283b67da86970efd, type: 3}

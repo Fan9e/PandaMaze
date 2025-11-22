@@ -18,7 +18,7 @@ public class MonsterTest
         monster.MaxHealth = 20;
         monster.CurrentHealth = 20;
         monster.AttackPower = 5;
-        player.MaxHealth = 30;
+        player.MaximumHealth = 30;
         player.CurrentHealth = 30;
         monster.Player = player;
         monster.Fight(7);
@@ -39,7 +39,7 @@ public class MonsterTest
         monster.MaxHealth = 15;
         monster.CurrentHealth = 15;
         monster.AttackPower = 5;
-        player.MaxHealth = 30;
+        player.MaximumHealth = 30;
         player.CurrentHealth = 30;
         monster.Player = player;
         monster.Fight(20); 
@@ -89,7 +89,7 @@ public class MonsterTest
         monster.MaxHealth = 10;
         monster.CurrentHealth = 0; 
         monster.AttackPower = 5;
-        player.MaxHealth = 30;
+        player.MaximumHealth = 30;
         player.CurrentHealth = 30;
         monster.Player = player;
         monster.Fight(5); 
@@ -109,7 +109,7 @@ public class MonsterTest
         monster.MaxHealth = 10;
         monster.CurrentHealth = 10; 
         monster.AttackPower = 5;
-        player.MaxHealth = 30;
+        player.MaximumHealth = 30;
         player.CurrentHealth = 30;
         monster.Player = player;
         monster.Fight(15); 

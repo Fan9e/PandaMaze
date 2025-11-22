@@ -2,6 +2,11 @@ using UnityEngine;
 
 public abstract class Weapon : Item, IWeapon
 {
+    [SerializeField] private string _attackAnimOverride;
+    public string AttackAnimationName =>
+       string.IsNullOrEmpty(_attackAnimOverride)
+           ? GetType().Name + "Attack"
+           : _attackAnimOverride;
     public abstract int CalculateDamage();
 
     /// <summary>
@@ -25,4 +30,12 @@ public abstract class Weapon : Item, IWeapon
         int damage = CalculateDamage();
         monster.Fight(damage);
     }
-}    
+
+#if UNITY_EDITOR
+    protected virtual void OnValidate()
+    {
+        if (string.IsNullOrEmpty(_attackAnimOverride))
+            _attackAnimOverride = GetType().Name;  
+    }
+#endif
+}

@@ -48,18 +48,19 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.10f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Player\PlayerWeapon.cs" />
     <Compile Include="Assets\Scripts\Items\Item.cs" />
     <Compile Include="Assets\Scripts\Terrain\BroccoTreeController_FJG_1_10_3.cs" />
     <Compile Include="Assets\Scripts\Monster\Dragon.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Voice\VoiceMovement.cs" />
     <Compile Include="Assets\Scripts\Terrain\BroccoTerrainController_FJG_1_10_3.cs" />
     <Compile Include="Assets\Scripts\Items\Weapon\Weapon.cs" />
     <Compile Include="Assets\Scripts\Items\Weapon\IWeapon.cs" />
     <Compile Include="Assets\Scripts\Monster\Monster.cs" />
-    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\FaceCamera.cs" />
     <Compile Include="Assets\Scripts\Voice\IVoiceObserver.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Items\Weapon\OneHandSword.cs" />
   </ItemGroup>
   <ItemGroup>

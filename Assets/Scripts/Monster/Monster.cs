@@ -49,7 +49,7 @@ public abstract class Monster : MonoBehaviour
     public void Fight(int damageAmount)
     {
         
-        if (!EnsureHasPlayer(Player)) return;
+        if (!EnsureHasPlayer()) return;
         ReceiveDamage(damageAmount);
 
         if (ShouldDie())
@@ -97,14 +97,21 @@ public abstract class Monster : MonoBehaviour
     /// Logger en advarsel, hvis der ikke er nogen spiller.
     /// </summary>
     /// <returns>True, hvis der er en spiller tilknyttet; ellers false.</returns>
-    protected virtual bool EnsureHasPlayer(Player player)
+    protected virtual bool EnsureHasPlayer()
     {
-        if (player != null) return true;
+        if (player != null)
+            return true;
 
-        Debug.LogWarning("Der er ingen player at kæmpe imod");
-        return false;
+        player = FindObjectOfType<Player>();
+
+        if (player == null)
+        {
+            Debug.LogWarning("Monster kunne ikke finde nogen Player at kæmpe imod.", this);
+            return false;
+        }
+
+        return true;
     }
-
     /// <summary>
     /// Håndterer monsterets død, når det ikke har mere liv.
     /// Destruerer objektet, hvis dets liv er 0 eller derunder
