@@ -15,12 +15,4 @@ public class Axe : Weapon
         return totalDamage;
     }
 
-    /// <summary>
-    /// Kaldes én gang per frame af Unity og markerer,
-    /// at øksen er i gang med at angribe.
-    /// </summary>
-    private void Update()
-    {
-        isAttacking = true;
-    }
 }
