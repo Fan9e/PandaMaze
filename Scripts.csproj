@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Voice\VoiceMovement.cs" />
     <Compile Include="Assets\Scripts\Terrain\BroccoTerrainController_FJG_1_10_3.cs" />
+    <Compile Include="Assets\Scripts\Items\Weapon\TwoHandSword.cs" />
     <Compile Include="Assets\Scripts\Items\Weapon\Weapon.cs" />
     <Compile Include="Assets\Scripts\Items\Weapon\IWeapon.cs" />
     <Compile Include="Assets\Scripts\Monster\Monster.cs" />
