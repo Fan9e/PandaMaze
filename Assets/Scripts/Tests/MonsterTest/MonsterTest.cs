@@ -74,7 +74,8 @@ public class MonsterTest
         monster.AttackPower = 5;
         monster.Player = null; 
         monster.Fight(5); 
-        
+        monster.Player = null;
+
         Assert.AreEqual(20, monster.CurrentHealth);
     }
     [Test]

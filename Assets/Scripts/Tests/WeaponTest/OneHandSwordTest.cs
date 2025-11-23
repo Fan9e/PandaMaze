@@ -46,12 +46,14 @@ public class OneHandSwordTest
     
         var OneHandSwordGameObject = new GameObject("OneHandSword");
         var OneHandSword = OneHandSwordGameObject.AddComponent<OneHandSword>();
-
+        var playerGameObject = new GameObject();
+        var player = playerGameObject.AddComponent<Player>();
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
-        var Monster = MonsterGameObject.AddComponent<Monster>();
-
+        var Monster = MonsterGameObject.AddComponent<Dragon>();
+        Monster.Player = player;  
+        Monster.MaxHealth = 100;
         Monster.CurrentHealth = 100;
         int StartHealth = Monster.CurrentHealth;
 
@@ -72,7 +74,7 @@ public class OneHandSwordTest
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
-        var Monster = MonsterGameObject.AddComponent<Monster>();
+        var Monster = MonsterGameObject.AddComponent<Dragon>();
 
         Monster.CurrentHealth = 0;
 
