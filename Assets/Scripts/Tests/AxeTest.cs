@@ -47,7 +47,7 @@ public class AxeTest
         var AxeGameObject = new GameObject("Axe");
         var Axe = AxeGameObject.AddComponent<Axe>();
 
-        Axe.isAttacking = true;
+        
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
@@ -69,8 +69,7 @@ public class AxeTest
     {
         var AxeGameObject = new GameObject("Axe");
         var Axe = AxeGameObject.AddComponent<Axe>();
-        Axe.isAttacking = false;
-
+       
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
         var Monster = MonsterGameObject.AddComponent<Monster>();
@@ -92,8 +91,7 @@ public class AxeTest
     {
         var AxeGameObject = new GameObject("Axe");
         var Axe = AxeGameObject.AddComponent<Axe>();
-        Axe.isAttacking = true;
-
+      
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
         var Monster = MonsterGameObject.AddComponent<Monster>();

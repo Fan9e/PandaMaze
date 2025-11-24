@@ -92,7 +92,7 @@ public class OneHandSwordTest
     {
         var OneHandSwordGameObject = new GameObject("OneHandSword");
         var OneHandSword = OneHandSwordGameObject.AddComponent<OneHandSword>();
-        OneHandSword.isAttacking = true;
+        
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
