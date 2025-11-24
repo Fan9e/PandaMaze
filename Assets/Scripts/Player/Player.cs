@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int currentHealth;
 
-    public int MaximumHealth
+    public int MaxHealth
     {
         get => maximumHealth;
         set => maximumHealth = Mathf.Max(0, value);
@@ -21,12 +21,12 @@ public class Player : MonoBehaviour
     public int CurrentHealth
     {
         get => currentHealth;
-        set => currentHealth = Mathf.Clamp(value, 0, MaximumHealth);
+        set => currentHealth = Mathf.Clamp(value, 0, MaxHealth);
     }
 
     private void Awake()
     {
-        CurrentHealth = MaximumHealth;
+        CurrentHealth = MaxHealth;
     }
 
 

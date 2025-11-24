@@ -47,7 +47,6 @@ public class TwoHandSwordTest
         var TwoHandSwordGameObject = new GameObject("TwoHandSword");
         var TwoHandSword = TwoHandSwordGameObject.AddComponent<TwoHandSword>();
 
-        TwoHandSword.isAttacking = true;
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
@@ -69,7 +68,7 @@ public class TwoHandSwordTest
     {
         var TwoHandSwordGameObject = new GameObject("TwoHandSword");
         var TwoHandSword = TwoHandSwordGameObject.AddComponent<TwoHandSword>();
-        TwoHandSword.isAttacking = false;
+     
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
@@ -92,7 +91,7 @@ public class TwoHandSwordTest
     {
         var TwoHandSwordGameObject = new GameObject("TwoHandSword");
         var TwoHandSword = TwoHandSwordGameObject.AddComponent<TwoHandSword>();
-        TwoHandSword.isAttacking = true;
+
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
