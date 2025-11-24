@@ -42,37 +42,22 @@ public class PlayerHealthUI : MonoBehaviour
     private int _lastMax = int.MinValue;
 
     /// <summary>
+    /// Returnerer sandt hvis spillerreferencen er sat (dvs. at <see cref="player"/> ikke er null).
+    /// </summary>
+    private bool HasPlayer() => player != null;
+
+    /// <summary>
     /// Initialiserer referencer og opdaterer UI med nuværende eller fallback-værdier.
     /// </summary>
     private void Start()
     {
-        if (player == null)
+        if (!EnsureHasPlayer())
         {
-            player = GetComponent<Player>() ?? FindObjectOfType<Player>();
-        }
-
-        if (EnsureHasPlayer(player))
-        {
-            UpdateHealthUI(player.CurrentHealth, player.MaxHealth);
+            ShowNoPlayerUI();
             return;
         }
 
-
-        if (healthText != null)
-        {
-            healthText.text = "Ingen spiller kunne findes";
-        }
-
-        if (healthBar != null)
-        {
-            healthBar.enabled = false;
-            healthBar.fillAmount = 0f;
-        }
-
-        if (healthBarBG != null)
-        {
-            healthBarBG.enabled = false;
-        }            
+        UpdateHealthUI(player.CurrentHealth, player.MaxHealth);
     }
 
     /// <summary>
@@ -80,7 +65,7 @@ public class PlayerHealthUI : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (!EnsureHasPlayer(player))
+        if (!EnsureHasPlayer())
             return;
 
         if (player.CurrentHealth != _lastHealth || player.MaxHealth != _lastMax)
@@ -118,9 +103,9 @@ public class PlayerHealthUI : MonoBehaviour
     /// Opdaterer UI ud fra den tilknyttede <see cref="Player"/>-komponent.
     /// Gør intet hvis ingen <see cref="player"/> er tildelt.
     /// </summary>
-    public void UpdateHealthUI()
+    public void UpdateHealthUIFromPlayer()
     {
-        if (!EnsureHasPlayer(player))
+        if (!EnsureHasPlayer())
             return;
 
         UpdateHealthUI(player.CurrentHealth, player.MaxHealth);
@@ -134,42 +119,65 @@ public class PlayerHealthUI : MonoBehaviour
     {
         this.player = player;
 
-        if (!EnsureHasPlayer(this.player))
+        if (!EnsureHasPlayer())
         {
-            if (healthText != null)
-            {
-                healthText.text = "Ingen spiller kunne findes";
-            }
-
-            if (healthBar != null)
-            {
-                healthBar.enabled = false;
-                healthBar.fillAmount = 0f;
-            }
-
-            if (healthBarBG != null)
-            {
-                healthBarBG.enabled = false;
-            }
-
+            ShowNoPlayerUI();
             return;
         }
 
-        UpdateHealthUI();
+        UpdateHealthUIFromPlayer();
     }
 
     /// <summary>
     /// Sikrer at der er en gyldig <see cref="Player"/>-referencen til rådighed.
+    /// Forsøger at finde en <see cref="Player"/> hvis feltet er null og gemmer referencen på feltet.
     /// </summary>
-    /// <param name="player">Den <see cref="Player"/>-instans der skal kontrolleres. Kan være null.</param>
     /// <returns>
     /// true hvis der er en gyldig <see cref="Player"/>; ellers false.
     /// </returns>
-    protected virtual bool EnsureHasPlayer(Player player)
+    protected bool EnsureHasPlayer()
     {
-        if (player != null) return true;
+        if (HasPlayer())
+            return true;
 
-        Debug.LogWarning("Der er ingen player at kæmpe imod");
-        return false;
+        this.player = GetComponent<Player>() ?? FindObjectOfType<Player>();
+
+        if (!HasPlayer())
+        {
+            Debug.LogError("Kunne ikke finde en Player.", this);
+            enabled = false;
+            return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Viser fallback-UI når ingen Player kan findes.
+    /// </summary>
+    /// <remarks>
+    /// Metoden opdaterer de tilknyttede UI-komponenter til en "ingen spiller" tilstand:
+    /// - Sætter <see cref="healthText"/> til en informativ besked,
+    /// - Deaktiverer <see cref="healthBar"/> og nulstiller dens fyldningsværdi,
+    /// - Deaktiverer valgfri <see cref="healthBarBG"/>.
+    /// Metoden ændrer ikke <see cref="player"/>-referencen og forudsætter, at kaldestederne håndterer fraværet af en Player.
+    /// </remarks>
+    private void ShowNoPlayerUI()
+    {
+        if (healthText != null)
+        {
+            healthText.text = "Ingen spiller kunne findes";
+        }
+
+        if (healthBar != null)
+        {
+            healthBar.enabled = false;
+            healthBar.fillAmount = 0f;
+        }
+
+        if (healthBarBG != null)
+        {
+            healthBarBG.enabled = false;
+        }
     }
 }
