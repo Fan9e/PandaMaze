@@ -7,7 +7,7 @@ public class Dragon : Monster
     /// og kalder Monster-basislogikken via base.Start().
     /// </summary>
     private void Start()
-    {   
+    {
         MaxHealth = 30;
         AttackPower = 5;
         base.Start();
