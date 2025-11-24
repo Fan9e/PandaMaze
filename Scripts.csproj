@@ -77,9 +77,9 @@
     <Compile Include="Assets\Scripts\Voice\IVoiceObserver.cs" />
     <Compile Include="Assets\Scripts\Items\Weapon\OneHandSword.cs" />
     <Compile Include="Assets\Scripts\Monster\Cat.cs" />
-    <Compile Include="Assets\Scripts\Items\Weapon\Axe.cs" />
     <Compile Include="Assets\Scripts\UI\PlayerHealthUI.cs" />
     <Compile Include="Assets\Scripts\UI\PlayerMonsterDetector.cs" />
+    <Compile Include="Assets\Scripts\Items\Weapon\Axe.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Scripts.asmdef" />
