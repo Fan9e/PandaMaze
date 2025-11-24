@@ -99,10 +99,19 @@ public abstract class Monster : MonoBehaviour
     /// <returns>True, hvis der er en spiller tilknyttet; ellers false.</returns>
     protected virtual bool EnsureHasPlayer(Player player)
     {
-        if (player != null) return true;
 
-        Debug.LogWarning("Der er ingen player at kæmpe imod");
-        return false;
+        if (player != null)
+            return true;
+
+        Player = FindFirstObjectByType<Player>();
+
+        if (player == null)
+        {
+            Debug.LogWarning("Monster kunne ikke finde nogen Player at kæmpe imod.", this);
+            return false;
+        }
+
+        return true;
     }
 
     /// <summary>

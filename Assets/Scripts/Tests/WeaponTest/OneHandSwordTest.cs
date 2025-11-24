@@ -43,16 +43,17 @@ public class OneHandSwordTest
     [Test]
     public void Attack_DamagesMonster_WhenAttackingAndMonsterAlive()
     {
-    
+
         var OneHandSwordGameObject = new GameObject("OneHandSword");
         var OneHandSword = OneHandSwordGameObject.AddComponent<OneHandSword>();
-
-        OneHandSword.isAttacking = true;
+        var playerGameObject = new GameObject();
+        var player = playerGameObject.AddComponent<Player>();
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
-        var Monster = MonsterGameObject.AddComponent<Monster>();
-
+        var Monster = MonsterGameObject.AddComponent<Dragon>();
+        Monster.Player = player;
+        Monster.MaxHealth = 100;
         Monster.CurrentHealth = 100;
         int StartHealth = Monster.CurrentHealth;
 
@@ -68,12 +69,11 @@ public class OneHandSwordTest
     public void Attack_DoesNotDamage_WhenNotAttacking()
     { 
         var OneHandSwordGameObject = new GameObject("OneHandSword");
-        var OneHandSword = OneHandSwordGameObject.AddComponent<OneHandSword>();
-        OneHandSword.isAttacking = false;   
+        var OneHandSword = OneHandSwordGameObject.AddComponent<OneHandSword>(); 
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
-        var Monster = MonsterGameObject.AddComponent<Monster>();
+        var Monster = MonsterGameObject.AddComponent<Dragon>();
 
         Monster.CurrentHealth = 100;
         int StartHealth = Monster.CurrentHealth;
@@ -96,7 +96,7 @@ public class OneHandSwordTest
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
-        var Monster = MonsterGameObject.AddComponent<Monster>();
+        var Monster = MonsterGameObject.AddComponent<Dragon>();
 
         Monster.CurrentHealth = 0;
 
