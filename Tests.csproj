@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Tests\AxeTest.cs" />
     <Compile Include="Assets\Scripts\Tests\TestBroccoTerrainController.cs" />
     <Compile Include="Assets\Scripts\Tests\MonsterCatTest.cs" />
+    <Compile Include="Assets\Scripts\Tests\TwoHandSwordTest.cs" />
     <Compile Include="Assets\Scripts\Tests\MonsterTest.cs" />
   </ItemGroup>
   <ItemGroup>
