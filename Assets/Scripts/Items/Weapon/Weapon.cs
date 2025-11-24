@@ -14,7 +14,6 @@ public abstract class Weapon : Item, IWeapon
            ? GetType().Name + "Attack"
            : _attackAnimOverride;
     public abstract int CalculateDamage();
-    public bool isAttacking = false;
 
     /// <summary>
     /// Kaldes når spilleren har sagt ordet rigtigt
