@@ -1263,10 +1263,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OneHandSword
       objectReference: {fileID: 0}
-    - target: {fileID: 6900044156920827532, guid: 05aa694da9fea234cb6afc584abd44e2, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8151753487549448089, guid: 05aa694da9fea234cb6afc584abd44e2, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -1879,6 +1875,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::Player
   maximumHealth: 100
   currentHealth: 0
+  weaponSocketChildName: SwordPivot
+  monsterLayerName: Monster
+  equippedWeaponComponent: {fileID: 0}
+  weaponSocketTransform: {fileID: 0}
+  weaponAnimator: {fileID: 0}
+  attackRadius: 2
+  attackDistanceForwardFromPlayer: 1
+  monsterLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &1491414926 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5906427983753372136, guid: 920c8476d627b764283b67da86970efd, type: 3}
