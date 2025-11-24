@@ -42,23 +42,22 @@ public class PlayerHealthUI : MonoBehaviour
     private int _lastMax = int.MinValue;
 
     /// <summary>
+    /// Returnerer sandt hvis spillerreferencen er sat (dvs. at <see cref="player"/> ikke er null).
+    /// </summary>
+    private bool HasPlayer() => player != null;
+
+    /// <summary>
     /// Initialiserer referencer og opdaterer UI med nuværende eller fallback-værdier.
     /// </summary>
     private void Start()
     {
-        if (player == null)
+        if (!EnsureHasPlayer())
         {
-            player = GetComponent<Player>() ?? FindObjectOfType<Player>();
+            ShowNoPlayerUI();
+            return;
         }
 
-        if (player != null)
-        {
-            UpdateHealthUI(player.CurrentHealth, player.MaxHealth);
-        }
-        else
-        {
-            UpdateHealthUI(0, 1);
-        }
+        UpdateHealthUI(player.CurrentHealth, player.MaxHealth);
     }
 
     /// <summary>
@@ -66,7 +65,7 @@ public class PlayerHealthUI : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (player == null)
+        if (!EnsureHasPlayer())
             return;
 
         if (player.CurrentHealth != _lastHealth || player.MaxHealth != _lastMax)
@@ -88,7 +87,7 @@ public class PlayerHealthUI : MonoBehaviour
 
         if (healthText != null)
         {
-            healthText.text = $"{safeCurrent} / {safeMax}";
+            healthText.text = $"Health: {safeCurrent} / {safeMax}";
         }
 
         if (healthBar != null)
@@ -104,10 +103,12 @@ public class PlayerHealthUI : MonoBehaviour
     /// Opdaterer UI ud fra den tilknyttede <see cref="Player"/>-komponent.
     /// Gør intet hvis ingen <see cref="player"/> er tildelt.
     /// </summary>
-    public void UpdateHealthUI()
+    public void UpdateHealthUIFromPlayer()
     {
-        if (player != null)
-            UpdateHealthUI(player.CurrentHealth, player.MaxHealth);
+        if (!EnsureHasPlayer())
+            return;
+
+        UpdateHealthUI(player.CurrentHealth, player.MaxHealth);
     }
 
     /// <summary>
@@ -117,6 +118,66 @@ public class PlayerHealthUI : MonoBehaviour
     public void SetPlayer(Player player)
     {
         this.player = player;
-        UpdateHealthUI();
+
+        if (!EnsureHasPlayer())
+        {
+            ShowNoPlayerUI();
+            return;
+        }
+
+        UpdateHealthUIFromPlayer();
+    }
+
+    /// <summary>
+    /// Sikrer at der er en gyldig <see cref="Player"/>-referencen til rådighed.
+    /// Forsøger at finde en <see cref="Player"/> hvis feltet er null og gemmer referencen på feltet.
+    /// </summary>
+    /// <returns>
+    /// true hvis der er en gyldig <see cref="Player"/>; ellers false.
+    /// </returns>
+    protected bool EnsureHasPlayer()
+    {
+        if (HasPlayer())
+            return true;
+
+        this.player = GetComponent<Player>() ?? FindObjectOfType<Player>();
+
+        if (!HasPlayer())
+        {
+            Debug.LogError("Kunne ikke finde en Player.", this);
+            enabled = false;
+            return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Viser fallback-UI når ingen Player kan findes.
+    /// </summary>
+    /// <remarks>
+    /// Metoden opdaterer de tilknyttede UI-komponenter til en "ingen spiller" tilstand:
+    /// - Sætter <see cref="healthText"/> til en informativ besked,
+    /// - Deaktiverer <see cref="healthBar"/> og nulstiller dens fyldningsværdi,
+    /// - Deaktiverer valgfri <see cref="healthBarBG"/>.
+    /// Metoden ændrer ikke <see cref="player"/>-referencen og forudsætter, at kaldestederne håndterer fraværet af en Player.
+    /// </remarks>
+    private void ShowNoPlayerUI()
+    {
+        if (healthText != null)
+        {
+            healthText.text = "Ingen spiller kunne findes";
+        }
+
+        if (healthBar != null)
+        {
+            healthBar.enabled = false;
+            healthBar.fillAmount = 0f;
+        }
+
+        if (healthBarBG != null)
+        {
+            healthBarBG.enabled = false;
+        }
     }
 }
