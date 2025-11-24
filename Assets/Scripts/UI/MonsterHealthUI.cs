@@ -52,12 +52,17 @@ public class MonsterHealthUI : MonoBehaviour
     private int _lastMax = int.MinValue;
 
     /// <summary>
+    /// Returnerer sandt hvis monsterreferencen er sat (dvs. at <see cref="monster"/> ikke er null).
+    /// </summary>
+    private bool HasMonster() => monster != null;
+
+    /// <summary>
     /// Unity Start-metode. Hvis en Monster-reference allerede er sat, opdateres UI'en og objektet aktiveres.
     /// Hvis ikke, forbliver gameObject inaktivt indtil en Monster sættes.
     /// </summary>
     private void Start()
     {
-        if (monster != null)
+        if (HasMonster())
         {
             UpdateHealthUI(monster.CurrentHealth, monster.MaxHealth);
             gameObject.SetActive(true);
@@ -75,7 +80,7 @@ public class MonsterHealthUI : MonoBehaviour
     private void Update()
     {
         if (!gameObject.activeInHierarchy) return;
-        if (monster == null) return;
+        if (!HasMonster()) return;
 
         if (monster.CurrentHealth != _lastHealth || monster.MaxHealth != _lastMax)
         {
@@ -119,7 +124,7 @@ public class MonsterHealthUI : MonoBehaviour
     /// </summary>
     public void UpdateHealthFromMonster()
     {
-        if (monster != null)
+        if (HasMonster())
             UpdateHealthUI(monster.CurrentHealth, monster.MaxHealth);
     }
 
@@ -140,7 +145,7 @@ public class MonsterHealthUI : MonoBehaviour
     public void ShowForMonster(Monster monster)
     {
         SetMonster(monster);
-        if (monster != null)
+        if (HasMonster())
             Show();
         else
             Hide();
