@@ -211,6 +211,7 @@ public class PlayerWeapon : MonoBehaviour
 
     #region Combat And Attacking
 
+    //TODO: ændre at man kan angribe med ordene, i stedet for med musen
     /// <summary>
     /// Håndterer spillerens input til angreb.
     /// Tjekker om venstre museknap er trykket, om der allerede er et angreb i gang,

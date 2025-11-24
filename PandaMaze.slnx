@@ -71,11 +71,11 @@
   <Project Path="SpeechToText.Editor.csproj" />
   <Project Path="Unity.Rendering.LightTransport.Editor.csproj" />
   <Project Path="Unity.InputSystem.DocCodeSamples.csproj" />
+  <Project Path="PlayerTests.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Shaders.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Runtime.Shared.csproj" />
   <Project Path="Unity.2D.Sprite.AIIntegration.Editor.csproj" />
   <Project Path="Unity.AdaptivePerformance.UI.Editor.csproj" />
-  <Project Path="PlayerTests.csproj" />
   <Project Path="Unity.VisualScripting.DocCodeExamples.csproj" />
   <Project Path="Unity.PlasticSCM.Editor.Entities.csproj" />
   <Project Path="Unity.AdaptivePerformance.Simulator.Extension.csproj" />
