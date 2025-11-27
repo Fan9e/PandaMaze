@@ -20,6 +20,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float maxPitch = 60f;
 
+    [Header("Camera follow (when using a CameraRig)")]
+    [Tooltip("If true the cameraTransform will be moved to follow the player each frame (position only).")]
+    [SerializeField]
+    private bool cameraAutoFollow = true;
+    [Tooltip("Offset applied to cameraTransform.position relative to the player.")]
+    [SerializeField]
+    private Vector3 cameraFollowOffset = new Vector3(0f, 2.2f, -6f);
+
     private Rigidbody rigidbodyComponent;
     private Animator animator;
     private Vector3 movementInput;
@@ -54,21 +62,37 @@ public class PlayerMovement : MonoBehaviour
         if (animator == null)
             animator = GetComponent<Animator>();
 
-        // Auto-assign main camera if nothing is set in inspector
+        // Prefer an explicit CameraRig (used by Cinemachine). If a GameObject named "CameraRig" exists, use it.
+        var rigGO = GameObject.Find("CameraRig");
+        if (cameraTransform == null && rigGO != null)
+        {
+            cameraTransform = rigGO.transform;
+            Debug.Log("PlayerMovement: assigned existing CameraRig as cameraTransform.", this);
+        }
+
+        // Fallback: assign Camera.main if no rig found and nothing assigned
         if (cameraTransform == null && Camera.main != null)
         {
             cameraTransform = Camera.main.transform;
             Debug.Log("PlayerMovement: cameraTransform was null — assigned Camera.main. " +
-                      "If you use Cinemachine, create a CameraRig (empty GameObject), set the vCam's Follow to it, " +
-                      "and assign that rig here so Cinemachine doesn't override runtime rotation.", this);
+                      "If you use Cinemachine, create a CameraRig and set the vCam's Follow to it, then assign the rig here.", this);
         }
 
         if (cameraTransform != null)
         {
-            // initialize yaw/pitch from current camera rotation
             currentYaw = cameraTransform.eulerAngles.y;
             currentPitch = cameraTransform.localEulerAngles.x;
-            if (currentPitch > 180f) currentPitch -= 360f; // convert to signed angle
+            if (currentPitch > 180f) currentPitch -= 360f;
+        }
+    }
+
+    // Move camera rig position after all movement — ensures camera follows player position.
+    private void LateUpdate()
+    {
+        if (cameraTransform != null && cameraAutoFollow)
+        {
+            // Move the camera rig to the player's position + offset (position only)
+            cameraTransform.position = transform.position + cameraFollowOffset;
         }
     }
 
