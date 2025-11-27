@@ -3,227 +3,175 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Animator))]
-
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float movementSpeed = 5f;
-    private float walkThreshold = 0.0001f;
-    private float inputDeadzone = 0.05f;
-    private float rotationSpeed = 180f; // unused for player yaw now, kept for tuning if needed
+    [Header("Movement")]
+    [SerializeField] private float movementSpeed = 5f;
+    [SerializeField] private float walkThreshold = 0.0001f;
+    [SerializeField] private float inputDeadzone = 0.05f;
 
-    [Header("Optional Camera (for camera-relative movement and pitch)")]
-    [SerializeField]
-    private Transform cameraTransform;
-    [SerializeField]
-    private float lookSensitivity = 90f; // degrees per second for pitch/yaw
-    [SerializeField]
-    private float maxPitch = 60f;
+    [Header("Turning")]
+    [SerializeField, Tooltip("Degrees per second when using the turn-stick")]
+    private float rotationSpeed = 120f;
+    [SerializeField, Tooltip("Time (s) to smooth yaw changes")]
+    private float rotationSmoothTime = 0.08f;
 
-    [Header("Camera follow (when using a CameraRig)")]
-    [Tooltip("If true the cameraTransform will be moved to follow the player each frame (position only).")]
-    [SerializeField]
-    private bool cameraAutoFollow = true;
-    [Tooltip("Offset applied to cameraTransform.position relative to the player.")]
-    [SerializeField]
-    private Vector3 cameraFollowOffset = new Vector3(0f, 2.2f, -6f);
+    // runtime
+    private Rigidbody _rb;
+    private Animator _anim;
 
-    private Rigidbody rigidbodyComponent;
-    private Animator animator;
-    private Vector3 movementInput;
-    private Vector2 moveInput2D;
-    private Vector2 lookInput2D;
-    private float currentPitch = 0f;
-    private float currentYaw = 0f;
+    // raw inputs
+    private Vector2 _rawMoveInput;
+    private Vector2 _rawTurnInput;
 
-    /// <summary>
-    /// kan sætte rigidbody direkte
-    /// </summary>
+    // rotation smoothing state
+    private float _pendingYawRate;
+    private float _yawSmoothVelocity;
+
+    // public helpers
     public Rigidbody RigidbodyComponent
     {
-        get => rigidbodyComponent;
-        set => rigidbodyComponent = value;
+        get => _rb;
+        set => _rb = value;
     }
 
-    /// <summary>
-    /// Hjælpe-property så den kan styre farten
-    /// </summary>
     public float MovementSpeed
     {
         get => movementSpeed;
         set => movementSpeed = value;
     }
 
-    private void Awake()
-    {
-        if (rigidbodyComponent == null)
-            rigidbodyComponent = GetComponent<Rigidbody>();
-
-        if (animator == null)
-            animator = GetComponent<Animator>();
-
-        // Prefer an explicit CameraRig (used by Cinemachine). If a GameObject named "CameraRig" exists, use it.
-        var rigGO = GameObject.Find("CameraRig");
-        if (cameraTransform == null && rigGO != null)
-        {
-            cameraTransform = rigGO.transform;
-            Debug.Log("PlayerMovement: assigned existing CameraRig as cameraTransform.", this);
-        }
-
-        // Fallback: assign Camera.main if no rig found and nothing assigned
-        if (cameraTransform == null && Camera.main != null)
-        {
-            cameraTransform = Camera.main.transform;
-            Debug.Log("PlayerMovement: cameraTransform was null — assigned Camera.main. " +
-                      "If you use Cinemachine, create a CameraRig and set the vCam's Follow to it, then assign the rig here.", this);
-        }
-
-        if (cameraTransform != null)
-        {
-            currentYaw = cameraTransform.eulerAngles.y;
-            currentPitch = cameraTransform.localEulerAngles.x;
-            if (currentPitch > 180f) currentPitch -= 360f;
-        }
-    }
-
-    // Move camera rig position after all movement — ensures camera follows player position.
-    private void LateUpdate()
-    {
-        if (cameraTransform != null && cameraAutoFollow)
-        {
-            // Move the camera rig to the player's position + offset (position only)
-            cameraTransform.position = transform.position + cameraFollowOffset;
-        }
-    }
-
+    // Backwards-compatible API used by older callers/tests
+    // Accepts Vector3 (x = strafe, z = forward) like previous versions.
     public void SetMovementInput(Vector3 input)
     {
-        movementInput = input;
+        _rawMoveInput = new Vector2(input.x, input.z);
     }
 
-    // UI / PlayerInput (Invoke Unity Events) friendly methods
-    public void OnMove(Vector2 value) => moveInput2D = value;
-    public void OnLook(Vector2 value) => lookInput2D = value;
-
-    // InputAction.CallbackContext overloads (if using Send Messages)
-    public void OnMove(InputAction.CallbackContext ctx)
+    private void Awake()
     {
-        if (ctx.phase == InputActionPhase.Performed || ctx.phase == InputActionPhase.Started)
-            moveInput2D = ctx.ReadValue<Vector2>();
-        else if (ctx.phase == InputActionPhase.Canceled)
-            moveInput2D = Vector2.zero;
-    }
+        _rb = _rb ?? GetComponent<Rigidbody>();
+        _anim = _anim ?? GetComponent<Animator>();
 
-    public void OnLook(InputAction.CallbackContext ctx)
-    {
-        if (ctx.phase == InputActionPhase.Performed || ctx.phase == InputActionPhase.Started)
-            lookInput2D = ctx.ReadValue<Vector2>();
-        else if (ctx.phase == InputActionPhase.Canceled)
-            lookInput2D = Vector2.zero;
+        // reduce jitter between FixedUpdate physics and Update rendering
+        if (_rb != null)
+            _rb.interpolation = RigidbodyInterpolation.Interpolate;
     }
 
     private void Update()
     {
-        UpdateMovementInput();
+        ReadInputsFallback();
         UpdateAnimationState();
-        UpdateLook(); // camera yaw + pitch updated here (camera-only)
+        GatherTurnInput();
     }
 
     private void FixedUpdate()
     {
+        ApplyTurn();
         ApplyMovement();
     }
 
-    private void UpdateMovementInput()
+    // -------------------------
+    // Input handlers (public) — PlayerInput Invoke Unity Events or UI can call these
+    // -------------------------
+    public void OnMove(Vector2 value) => SetMoveInput(value);
+    public void OnLook(Vector2 value) => SetTurnInput(value);
+
+    // Send Messages (PlayerInput behavior = Send Messages)
+    public void OnMove(InputValue value) => SetMoveInput(value.Get<Vector2>());
+    public void OnLook(InputValue value) => SetTurnInput(value.Get<Vector2>());
+
+    // CallbackContext (if wiring actions to be sent)
+    public void OnMove(InputAction.CallbackContext ctx) => SetMoveInput(ReadVector2FromContext(ctx));
+    public void OnLook(InputAction.CallbackContext ctx) => SetTurnInput(ReadVector2FromContext(ctx));
+
+    private static Vector2 ReadVector2FromContext(InputAction.CallbackContext ctx)
     {
-        if (moveInput2D.sqrMagnitude > (inputDeadzone * inputDeadzone))
+        if (ctx.phase == InputActionPhase.Performed || ctx.phase == InputActionPhase.Started)
+            return ctx.ReadValue<Vector2>();
+        return Vector2.zero;
+    }
+
+    private void SetMoveInput(Vector2 v) => _rawMoveInput = v;
+    private void SetTurnInput(Vector2 v) => _rawTurnInput = v;
+
+    // -------------------------
+    // Movement / turning logic
+    // -------------------------
+    private void ReadInputsFallback()
+    {
+        // If joystick provided values, use them (with deadzone). Otherwise fallback to old Input axes for editor testing.
+        if (_rawMoveInput.sqrMagnitude <= inputDeadzone * inputDeadzone)
         {
-            Vector2 raw = moveInput2D;
-            if (Mathf.Abs(raw.x) < inputDeadzone) raw.x = 0f;
-            if (Mathf.Abs(raw.y) < inputDeadzone) raw.y = 0f;
-
-            Vector3 forward;
-            Vector3 right;
-
-            if (cameraTransform != null)
-            {
-                forward = cameraTransform.forward;
-                right = cameraTransform.right;
-            }
-            else
-            {
-                forward = Vector3.forward;
-                right = Vector3.right;
-            }
-
-            forward.y = 0f;
-            right.y = 0f;
-            forward.Normalize();
-            right.Normalize();
-
-            Vector3 camRelative = (right * raw.x) + (forward * raw.y);
-            movementInput = camRelative;
+            float h = Input.GetAxisRaw("Horizontal");
+            float v = Input.GetAxisRaw("Vertical");
+            _rawMoveInput = new Vector2(h, v);
+            if (Mathf.Abs(_rawMoveInput.y) < inputDeadzone) _rawMoveInput.y = 0f;
         }
         else
         {
-            float horizontalInput = Input.GetAxisRaw("Horizontal");
-            float verticalInput = Input.GetAxisRaw("Vertical");
-
-            movementInput = new Vector3(horizontalInput, 0f, verticalInput);
-
-            if (Mathf.Abs(movementInput.z) < inputDeadzone)
-            {
-                movementInput.z = 0f;
-            }
-        }
-    }
-
-    private void UpdateAnimationState()
-    {
-        if (animator == null)
-            return;
-
-        Vector2 planarInput = new Vector2(movementInput.x, movementInput.z);
-        bool isWalking = planarInput.sqrMagnitude > walkThreshold;
-
-        animator.SetBool("IsWalking", isWalking);
-    }
-
-    private void UpdateLook()
-    {
-        if (cameraTransform == null)
-        {
-            // Clear, short message so you know why look does nothing
-            Debug.LogWarning("PlayerMovement.UpdateLook: cameraTransform is null. Assign Main Camera or a CameraRig in the inspector.", this);
-            return;
+            // apply deadzone to each axis
+            if (Mathf.Abs(_rawMoveInput.x) < inputDeadzone) _rawMoveInput.x = 0f;
+            if (Mathf.Abs(_rawMoveInput.y) < inputDeadzone) _rawMoveInput.y = 0f;
         }
 
-        // Right stick -> yaw/pitch applied to the assigned transform.
-        // If your project uses Cinemachine: don't assign the Cinemachine Virtual Camera directly here,
-        // instead assign a separate 'CameraRig' that the vCam follows. Rotating that rig will affect the vCam.
-        float lookX = lookInput2D.x;
-        float lookY = lookInput2D.y;
-
-        if (Mathf.Abs(lookX) > inputDeadzone)
-            currentYaw += lookX * lookSensitivity * Time.deltaTime;
-
-        if (Mathf.Abs(lookY) > inputDeadzone)
-            currentPitch -= lookY * lookSensitivity * Time.deltaTime;
-
-        currentPitch = Mathf.Clamp(currentPitch, -maxPitch, maxPitch);
-
-        cameraTransform.eulerAngles = new Vector3(currentPitch, currentYaw, 0f);
+        if (Mathf.Abs(_rawTurnInput.x) < inputDeadzone) _rawTurnInput.x = 0f;
+        if (Mathf.Abs(_rawTurnInput.y) < inputDeadzone) _rawTurnInput.y = 0f;
     }
 
+    private void GatherTurnInput()
+    {
+        // Horizontal of the turn-stick controls yaw rate; vertical ignored (no camera pitch here)
+        float lookX = _rawTurnInput.x;
+        _pendingYawRate = Mathf.Abs(lookX) > inputDeadzone ? lookX * rotationSpeed : 0f;
+    }
+
+    private void ApplyTurn()
+    {
+        if (_rb == null) return;
+
+        float currentYaw = _rb.rotation.eulerAngles.y;
+        float targetYaw = currentYaw + _pendingYawRate * Time.fixedDeltaTime;
+
+        // smooth transition to target yaw
+        float smoothYaw = Mathf.SmoothDampAngle(currentYaw, targetYaw, ref _yawSmoothVelocity, rotationSmoothTime, Mathf.Infinity, Time.fixedDeltaTime);
+        _rb.MoveRotation(Quaternion.Euler(0f, smoothYaw, 0f));
+    }
+
+    // Kept public to match test expectations
     public void ApplyMovement()
     {
-        // No player yaw from right stick anymore — right stick controls camera only.
+        if (_rb == null) return;
 
-        Vector3 planar = movementInput;
-        planar.y = 0f;
+        // movement relative to player forward/right
+        Vector3 forward = transform.forward;
+        Vector3 right = transform.right;
+        forward.y = 0f;
+        right.y = 0f;
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 planar = (right * _rawMoveInput.x) + (forward * _rawMoveInput.y);
 
         Vector3 velocity = planar.normalized * (planar.magnitude * movementSpeed);
-        velocity.y = rigidbodyComponent.linearVelocity.y;
-        rigidbodyComponent.linearVelocity = velocity;
+        // preserve existing vertical velocity (gravity/jump)
+        velocity.y = _rb.linearVelocity.y;
+        _rb.linearVelocity = velocity;
+    }
+
+    // -------------------------
+    // Animation
+    // -------------------------
+    private void UpdateAnimationState()
+    {
+        if (_anim == null) return;
+
+        // Brug det samme input som styrer bevægelsen (joystick eller WASD).
+        Vector2 planarInput = new Vector2(_rawMoveInput.x, _rawMoveInput.y);
+
+        // Kvadreret længde > tærskel = vi går.
+        bool isWalking = planarInput.sqrMagnitude > walkThreshold;
+
+        _anim.SetBool("IsWalking", isWalking);
     }
 }

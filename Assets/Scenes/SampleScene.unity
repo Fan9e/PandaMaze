@@ -369,7 +369,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 580164624}
+    TrackingTarget: {fileID: 1439659089}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -400,9 +400,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287764756}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.01678318, y: 0.9827701, z: -0.14423993, w: 0.11435118}
-  m_LocalPosition: {x: 61.94789, y: 9.2, z: 279.37573}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalRotation: {x: 0.01678318, y: 0.98277, z: -0.14423993, w: 0.114351176}
+  m_LocalPosition: {x: 64.243965, y: 6.2, z: 269.64285}
+  m_LocalScale: {x: 0.30000016, y: 0.29999998, z: 0.3000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -524,7 +524,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.016783176, y: 0.9827701, z: -0.14423993, w: 0.11435117}
-  m_LocalPosition: {x: 61.94789, y: 9.2, z: 279.37573}
+  m_LocalPosition: {x: 64.243965, y: 6.2, z: 269.64285}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -897,19 +897,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123744422749748962, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
       propertyPath: movementSpeed
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3123744422749748962, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
+      propertyPath: rotationSpeed
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3123744422749748962, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
       propertyPath: cameraTransform
       value: 
-      objectReference: {fileID: 580164624}
+      objectReference: {fileID: 0}
     - target: {fileID: 3123744422749748962, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
       propertyPath: lookSensitivity
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3123744422749748962, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
+      propertyPath: cameraAutoFollow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3123744422749748962, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
       propertyPath: cameraFollowOffset.x
-      value: -1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3123744422749748962, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
       propertyPath: cameraFollowOffset.y
@@ -917,7 +925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123744422749748962, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
       propertyPath: cameraFollowOffset.z
-      value: 7
+      value: -7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1110,37 +1118,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 462941847945767296, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
   m_PrefabInstance: {fileID: 459756116}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &580164623
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 580164624}
-  m_Layer: 0
-  m_Name: CameraRig
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &580164624
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580164623}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.016783303, y: 0.9827701, z: -0.14423792, w: 0.114353605}
-  m_LocalPosition: {x: 64.24397, y: 6.2, z: 269.6429}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 16.699, y: 166.726, z: 0}
 --- !u!1 &600584675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2354,7 +2331,7 @@ GameObject:
   - component: {fileID: 1942022088}
   - component: {fileID: 1942022087}
   m_Layer: 5
-  m_Name: LookJoystick
+  m_Name: TurnJoystick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2999,4 +2976,3 @@ SceneRoots:
   - {fileID: 1527831268}
   - {fileID: 459756116}
   - {fileID: 1826803511}
-  - {fileID: 580164624}
