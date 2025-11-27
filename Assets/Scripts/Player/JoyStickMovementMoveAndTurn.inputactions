@@ -1,0 +1,90 @@
+{
+    "version": 1,
+    "name": "JoyStickMovementMoveAndTurn",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "0b84ab31-4674-4fd7-869a-e81ead6a5055",
+            "actions": [
+                {
+                    "name": "MoveAndTurn",
+                    "type": "Value",
+                    "id": "be280ce1-37c8-4d74-9eee-22ef8f8cf3a4",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "aa600aae-598e-4fe3-978a-cf138a859dae",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveAndTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "7d72f9cd-9243-4f97-b2d6-f09c10f4a709",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveAndTurn",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "6c5503e1-fc31-43ae-8b27-26590263a6a4",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveAndTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "9ad2801b-ad70-468f-bf14-cc9989969fe7",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveAndTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "ba1ec2f3-5dcd-4a8d-a1d5-53ce460d5952",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveAndTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "fbc87ee8-084e-4dc2-8eb1-0779f11cb52c",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveAndTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
