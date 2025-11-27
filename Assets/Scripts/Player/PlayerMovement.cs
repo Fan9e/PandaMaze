@@ -159,18 +159,17 @@ public class PlayerMovement : MonoBehaviour
         _rb.linearVelocity = velocity;
     }
 
-    // -------------------------
-    // Animation
-    // -------------------------
     private void UpdateAnimationState()
     {
-        if (_anim == null) return;
+        if (_anim == null || _rb == null) return;
 
-        // Brug det samme input som styrer bevægelsen (joystick eller WASD).
-        Vector2 planarInput = new Vector2(_rawMoveInput.x, _rawMoveInput.y);
+        // Use the player's local horizontal velocity to decide walking state.
+        // This ensures animations reflect actual movement (works with keyboard, joystick, or physics).
+        Vector3 localVelocity = transform.InverseTransformDirection(_rb.linearVelocity);
+        Vector2 planarVel = new Vector2(localVelocity.x, localVelocity.z);
 
-        // Kvadreret længde > tærskel = vi går.
-        bool isWalking = planarInput.sqrMagnitude > walkThreshold;
+        // Compare squared magnitude (keeps behavior similar to previous implementation).
+        bool isWalking = planarVel.sqrMagnitude > walkThreshold;
 
         _anim.SetBool("IsWalking", isWalking);
     }
