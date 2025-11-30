@@ -2771,8 +2771,8 @@ MonoBehaviour:
   - {fileID: 1678952093}
   - {fileID: 1113923954}
   - {fileID: 1184395644}
-  keySprite: {fileID: 21300000, guid: a5e74d9be9f94ed4bb1f28e12d93530e, type: 3}
-  potionSprite: {fileID: 21300000, guid: 231a85bf7bcfb0847b84e0cd112250a2, type: 3}
+  keySprite: {fileID: 21300000, guid: b4630ffe2a9067f48aea0132cffce238, type: 3}
+  potionSprite: {fileID: 21300000, guid: 5f5a5e1f08e37cc4982fba7368297484, type: 3}
   weaponSprite: {fileID: 21300000, guid: 0e82056b2a6564a4ebc99042a568897b, type: 3}
 --- !u!1 &1826803510
 GameObject:
