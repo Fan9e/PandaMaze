@@ -1680,15 +1680,15 @@ RectTransform:
   m_GameObject: {fileID: 1043628405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.5, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.86666, y: 1.2999899, z: 0.86666}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1617492738}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: -26}
-  m_SizeDelta: {x: 10, y: 10}
+  m_AnchoredPosition: {x: -2.8, y: -29}
+  m_SizeDelta: {x: 20, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1043628407
 MonoBehaviour:
@@ -1710,10 +1710,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1839,16 +1839,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08627451, g: 0.101960786, b: 0.12941177, a: 0.85490197}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 5f5a5e1f08e37cc4982fba7368297484, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
   m_FillAmount: 1
@@ -1914,16 +1914,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08627451, g: 0.101960786, b: 0.12941177, a: 0.85490197}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 0e82056b2a6564a4ebc99042a568897b, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
   m_FillAmount: 1
@@ -2670,16 +2670,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08627451, g: 0.101960786, b: 0.12941177, a: 0.85490197}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: b4630ffe2a9067f48aea0132cffce238, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
   m_FillAmount: 1
@@ -2908,9 +2908,19 @@ MonoBehaviour:
   - {fileID: 1678952093}
   - {fileID: 1113923954}
   - {fileID: 1184395644}
-  keySprite: {fileID: 21300000, guid: b4630ffe2a9067f48aea0132cffce238, type: 3}
+  keySprites:
+  - {fileID: 21300000, guid: b4630ffe2a9067f48aea0132cffce238, type: 3}
+  - {fileID: 21300000, guid: e9db17338f2e0094f83b193ebce1e3cb, type: 3}
+  - {fileID: 21300000, guid: 71427af96cf840d4a812b5ceb1b1e5fa, type: 3}
   potionSprite: {fileID: 21300000, guid: 5f5a5e1f08e37cc4982fba7368297484, type: 3}
-  weaponSprite: {fileID: 21300000, guid: 0e82056b2a6564a4ebc99042a568897b, type: 3}
+  weaponSprites:
+  - {fileID: 21300000, guid: 0e82056b2a6564a4ebc99042a568897b, type: 3}
+  - {fileID: 21300000, guid: b44d60e93e401fb4187fe6f3fcfd6f06, type: 3}
+  - {fileID: 21300000, guid: 29e3741730e2f9042bfa910528adca20, type: 3}
+  keyVariant: 0
+  weaponVariant: 0
+  potionCount: 0
+  potionCountText: {fileID: 1043628407}
 --- !u!1 &1826803510
 GameObject:
   m_ObjectHideFlags: 0
