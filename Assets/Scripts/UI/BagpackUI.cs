@@ -21,11 +21,21 @@ public class BagpackUI : MonoBehaviour
     [Tooltip("Three weapon variants (indices 0..2)")]
     [SerializeField] private Sprite[] weaponSprites = new Sprite[3];
 
+    [Header("Empty Slot / Placeholder")]
+    [Tooltip("Show a placeholder sprite when the slot is empty")]
+    [SerializeField] private bool showEmptyPlaceholders = true;
+    [Tooltip("Optional sprite to display for empty slots (will be shown with reduced alpha)")]
+    [SerializeField] private Sprite emptySlotSprite;
+
     [Header("Runtime / Inspector Controls")]
     [Tooltip("Selected key variant (0..2)")]
     [SerializeField, Range(0, 2)] private int keyVariant = 0;
+    [Tooltip("Whether the player currently has a key")]
+    [SerializeField] private bool hasKey = false;
     [Tooltip("Selected weapon variant (0..2)")]
     [SerializeField, Range(0, 2)] private int weaponVariant = 0;
+    [Tooltip("Whether the player currently has a weapon")]
+    [SerializeField] private bool hasWeapon = false;
     [Tooltip("Number of potions held")]
     [SerializeField, Min(0)] private int potionCount = 0;
 
@@ -61,24 +71,39 @@ public class BagpackUI : MonoBehaviour
             inventoryPanel.SetActive(isOpen);
     }
 
-    // Populate the three slots with the configured sprites
+    // Populate the three slots with the configured sprites or placeholders when empty
     private void PopulateSlots()
     {
         // Key slot (index 0)
-        Sprite key = (keySprites != null && keySprites.Length > keyVariant) ? keySprites[keyVariant] : null;
-        SetSlot(0, key);
+        Sprite key = null;
+        if (hasKey)
+            key = (keySprites != null && keySprites.Length > keyVariant) ? keySprites[keyVariant] : null;
+        else if (showEmptyPlaceholders)
+            key = emptySlotSprite;
+        SetSlot(0, key, hasKey);
 
         // Potion slot (index 1)
-        SetSlot(1, potionSprite);
+        Sprite potion = null;
+        bool potionVisible = potionCount > 0;
+        if (potionVisible)
+            potion = potionSprite;
+        else if (showEmptyPlaceholders)
+            potion = emptySlotSprite;
+        SetSlot(1, potion, potionVisible);
 
         // Weapon slot (index 2)
-        Sprite weapon = (weaponSprites != null && weaponSprites.Length > weaponVariant) ? weaponSprites[weaponVariant] : null;
-        SetSlot(2, weapon);
+        Sprite weapon = null;
+        if (hasWeapon)
+            weapon = (weaponSprites != null && weaponSprites.Length > weaponVariant) ? weaponSprites[weaponVariant] : null;
+        else if (showEmptyPlaceholders)
+            weapon = emptySlotSprite;
+        SetSlot(2, weapon, hasWeapon);
 
         UpdatePotionText();
     }
 
-    private void SetSlot(int index, Sprite sprite)
+    // index: slot index, sprite: sprite to assign (can be placeholder), owned: true when the player actually has the item
+    private void SetSlot(int index, Sprite sprite, bool owned = true)
     {
         if (slotImages == null || index < 0 || index >= slotImages.Length)
             return;
@@ -89,7 +114,22 @@ public class BagpackUI : MonoBehaviour
 
         img.sprite = sprite;
         img.preserveAspect = true;
-        img.color = sprite != null ? Color.white : new Color(1f, 1f, 1f, 0.25f);
+
+        // Determine color: full white when owned item, reduced alpha when placeholder or empty
+        if (sprite == null)
+        {
+            img.color = new Color(1f, 1f, 1f, 0.25f);
+        }
+        else
+        {
+            // If sprite is the empty placeholder, show it with reduced opacity
+            if (showEmptyPlaceholders && emptySlotSprite != null && sprite == emptySlotSprite && !owned)
+                img.color = new Color(1f, 1f, 1f, 0.5f);
+            else if (!owned)
+                img.color = new Color(1f, 1f, 1f, 0.5f);
+            else
+                img.color = Color.white;
+        }
     }
 
     private void UpdatePotionText()
@@ -134,6 +174,18 @@ public class BagpackUI : MonoBehaviour
     public void SetPotions(int amount)
     {
         potionCount = Mathf.Max(0, amount);
+        PopulateSlots();
+    }
+
+    public void SetHasKey(bool owned)
+    {
+        hasKey = owned;
+        PopulateSlots();
+    }
+
+    public void SetHasWeapon(bool owned)
+    {
+        hasWeapon = owned;
         PopulateSlots();
     }
 

@@ -1839,14 +1839,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5f5a5e1f08e37cc4982fba7368297484, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fbcaafaeabd97344580e279ed51dbdbf, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1914,14 +1914,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0e82056b2a6564a4ebc99042a568897b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fbcaafaeabd97344580e279ed51dbdbf, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2670,14 +2670,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 26530181c8b4694469244d8efb213762, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fbcaafaeabd97344580e279ed51dbdbf, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2887,7 +2887,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 543, y: -234}
+  m_AnchoredPosition: {x: 584, y: -234}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1817582510
@@ -2917,8 +2917,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0e82056b2a6564a4ebc99042a568897b, type: 3}
   - {fileID: 21300000, guid: b44d60e93e401fb4187fe6f3fcfd6f06, type: 3}
   - {fileID: 21300000, guid: 29e3741730e2f9042bfa910528adca20, type: 3}
-  keyVariant: 1
+  showEmptyPlaceholders: 1
+  emptySlotSprite: {fileID: 21300000, guid: fbcaafaeabd97344580e279ed51dbdbf, type: 3}
+  keyVariant: 0
+  hasKey: 0
   weaponVariant: 0
+  hasWeapon: 0
   potionCount: 0
   potionCountText: {fileID: 1043628407}
 --- !u!1 &1826803510
