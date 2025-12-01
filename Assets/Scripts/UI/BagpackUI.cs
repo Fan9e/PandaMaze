@@ -5,21 +5,26 @@ using TMPro;
 
 public class BagpackUI : MonoBehaviour
 {
+    private const int SlotCount = 3;
+    private const int VariantCount = 3;
+
+    private enum SlotType { Key = 0, Potion = 1, Weapon = 2 }
+
     [Header("UI References")]
     [Tooltip("Button that opens/closes the backpack")]
     [SerializeField] private Button bagButton;
     [Tooltip("Parent GameObject that contains the three slot Images")]
     [SerializeField] private GameObject inventoryPanel;
     [Tooltip("Three slot Image components (0 = key, 1 = potion, 2 = weapon)")]
-    [SerializeField] private Image[] slotImages = new Image[3];
+    [SerializeField] private Image[] slotImages = new Image[SlotCount];
 
     [Header("Item Sprites")]
     [Tooltip("Three key variants (indices 0..2)")]
-    [SerializeField] private Sprite[] keySprites = new Sprite[3];
+    [SerializeField] private Sprite[] keySprites = new Sprite[VariantCount];
     [Tooltip("Potion sprite (single)")]
     [SerializeField] private Sprite potionSprite;
     [Tooltip("Three weapon variants (indices 0..2)")]
-    [SerializeField] private Sprite[] weaponSprites = new Sprite[3];
+    [SerializeField] private Sprite[] weaponSprites = new Sprite[VariantCount];
 
     [Header("Empty Slot / Placeholder")]
     [Tooltip("Show a placeholder sprite when the slot is empty")]
@@ -29,11 +34,11 @@ public class BagpackUI : MonoBehaviour
 
     [Header("Runtime / Inspector Controls")]
     [Tooltip("Selected key variant (0..2)")]
-    [SerializeField, Range(0, 2)] private int keyVariant = 0;
+    [SerializeField, Range(0, VariantCount - 1)] private int keyVariant = 0;
     [Tooltip("Whether the player currently has a key")]
     [SerializeField] private bool hasKey = false;
     [Tooltip("Selected weapon variant (0..2)")]
-    [SerializeField, Range(0, 2)] private int weaponVariant = 0;
+    [SerializeField, Range(0, VariantCount - 1)] private int weaponVariant = 0;
     [Tooltip("Whether the player currently has a weapon")]
     [SerializeField] private bool hasWeapon = false;
     [Tooltip("Number of potions held")]
@@ -45,9 +50,13 @@ public class BagpackUI : MonoBehaviour
 
     private bool isOpen;
 
+    // Colors/alphas used by the UI
+    private static readonly Color OwnedColor = Color.white;
+    private const float PlaceholderAlpha = 0.5f;
+    private const float EmptySlotAlpha = 0.25f;
+
     private void Awake()
     {
-        // Ensure panel starts closed
         if (inventoryPanel != null)
             inventoryPanel.SetActive(false);
 
@@ -74,32 +83,35 @@ public class BagpackUI : MonoBehaviour
     // Populate the three slots with the configured sprites or placeholders when empty
     private void PopulateSlots()
     {
-        // Key slot (index 0)
-        Sprite key = null;
-        if (hasKey)
-            key = (keySprites != null && keySprites.Length > keyVariant) ? keySprites[keyVariant] : null;
-        else if (showEmptyPlaceholders)
-            key = emptySlotSprite;
-        SetSlot(0, key, hasKey);
-
-        // Potion slot (index 1)
-        Sprite potion = null;
-        bool potionVisible = potionCount > 0;
-        if (potionVisible)
-            potion = potionSprite;
-        else if (showEmptyPlaceholders)
-            potion = emptySlotSprite;
-        SetSlot(1, potion, potionVisible);
-
-        // Weapon slot (index 2)
-        Sprite weapon = null;
-        if (hasWeapon)
-            weapon = (weaponSprites != null && weaponSprites.Length > weaponVariant) ? weaponSprites[weaponVariant] : null;
-        else if (showEmptyPlaceholders)
-            weapon = emptySlotSprite;
-        SetSlot(2, weapon, hasWeapon);
+        SetSlot((int)SlotType.Key, GetSpriteForKey(), hasKey);
+        SetSlot((int)SlotType.Potion, GetSpriteForPotion(), potionCount > 0);
+        SetSlot((int)SlotType.Weapon, GetSpriteForWeapon(), hasWeapon);
 
         UpdatePotionText();
+    }
+
+    private Sprite GetSpriteForKey()
+    {
+        if (hasKey && keySprites != null && keySprites.Length > keyVariant)
+            return keySprites[keyVariant];
+
+        return showEmptyPlaceholders ? emptySlotSprite : null;
+    }
+
+    private Sprite GetSpriteForPotion()
+    {
+        if (potionCount > 0 && potionSprite != null)
+            return potionSprite;
+
+        return showEmptyPlaceholders ? emptySlotSprite : null;
+    }
+
+    private Sprite GetSpriteForWeapon()
+    {
+        if (hasWeapon && weaponSprites != null && weaponSprites.Length > weaponVariant)
+            return weaponSprites[weaponVariant];
+
+        return showEmptyPlaceholders ? emptySlotSprite : null;
     }
 
     // index: slot index, sprite: sprite to assign (can be placeholder), owned: true when the player actually has the item
@@ -115,47 +127,43 @@ public class BagpackUI : MonoBehaviour
         img.sprite = sprite;
         img.preserveAspect = true;
 
-        // Determine color: full white when owned item, reduced alpha when placeholder or empty
+        // Null sprite -> faint/hidden
         if (sprite == null)
         {
-            img.color = new Color(1f, 1f, 1f, 0.25f);
+            img.color = new Color(1f, 1f, 1f, EmptySlotAlpha);
+            return;
         }
-        else
+
+        // If this is an explicit empty placeholder (and placeholders are enabled) or not owned -> semi-transparent
+        bool isPlaceholder = showEmptyPlaceholders && emptySlotSprite != null && sprite == emptySlotSprite;
+        if (!owned || isPlaceholder)
         {
-            // If sprite is the empty placeholder, show it with reduced opacity
-            if (showEmptyPlaceholders && emptySlotSprite != null && sprite == emptySlotSprite && !owned)
-                img.color = new Color(1f, 1f, 1f, 0.5f);
-            else if (!owned)
-                img.color = new Color(1f, 1f, 1f, 0.5f);
-            else
-                img.color = Color.white;
+            img.color = new Color(1f, 1f, 1f, PlaceholderAlpha);
+            return;
         }
+
+        img.color = OwnedColor;
     }
 
     private void UpdatePotionText()
     {
-        if (potionCountText != null)
-        {
-            if (potionCount > 1)
-                potionCountText.text = potionCount.ToString();
-            else if (potionCount == 1)
-                potionCountText.text = "1";
-            else
-                potionCountText.text = ""; // hide when zero
-        }
+        if (potionCountText == null) return;
+
+        // Show count when more than zero; empty string hides the text visually.
+        potionCountText.text = potionCount > 0 ? potionCount.ToString() : string.Empty;
     }
 
     // Public API usable from editor or runtime
 
     public void SetKeyVariant(int variant)
     {
-        keyVariant = Mathf.Clamp(variant, 0, 2);
+        keyVariant = Mathf.Clamp(variant, 0, VariantCount - 1);
         PopulateSlots();
     }
 
     public void SetWeaponVariant(int variant)
     {
-        weaponVariant = Mathf.Clamp(variant, 0, 2);
+        weaponVariant = Mathf.Clamp(variant, 0, VariantCount - 1);
         PopulateSlots();
     }
 
@@ -193,22 +201,21 @@ public class BagpackUI : MonoBehaviour
     // Keep inspector array size correct while editing
     private void OnValidate()
     {
-        if (slotImages == null || slotImages.Length != 3)
-            slotImages = new Image[3];
+        if (slotImages == null || slotImages.Length != SlotCount)
+            slotImages = new Image[SlotCount];
 
-        if (keySprites == null || keySprites.Length != 3)
-            keySprites = new Sprite[3];
+        if (keySprites == null || keySprites.Length != VariantCount)
+            keySprites = new Sprite[VariantCount];
 
-        if (weaponSprites == null || weaponSprites.Length != 3)
-            weaponSprites = new Sprite[3];
+        if (weaponSprites == null || weaponSprites.Length != VariantCount)
+            weaponSprites = new Sprite[VariantCount];
 
-        keyVariant = Mathf.Clamp(keyVariant, 0, 2);
-        weaponVariant = Mathf.Clamp(weaponVariant, 0, 2);
+        keyVariant = Mathf.Clamp(keyVariant, 0, VariantCount - 1);
+        weaponVariant = Mathf.Clamp(weaponVariant, 0, VariantCount - 1);
         potionCount = Mathf.Max(0, potionCount);
 
-        // In editor, reflect changes immediately
-        if (!Application.isPlaying)
-            PopulateSlots();
+        // Reflect changes immediately in the Inspector
+        PopulateSlots();
     }
 #endif
 }
