@@ -2677,7 +2677,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b4630ffe2a9067f48aea0132cffce238, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 26530181c8b4694469244d8efb213762, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2910,14 +2910,14 @@ MonoBehaviour:
   - {fileID: 1184395644}
   keySprites:
   - {fileID: 21300000, guid: b4630ffe2a9067f48aea0132cffce238, type: 3}
-  - {fileID: 21300000, guid: e9db17338f2e0094f83b193ebce1e3cb, type: 3}
+  - {fileID: 21300000, guid: 26530181c8b4694469244d8efb213762, type: 3}
   - {fileID: 21300000, guid: 71427af96cf840d4a812b5ceb1b1e5fa, type: 3}
   potionSprite: {fileID: 21300000, guid: 5f5a5e1f08e37cc4982fba7368297484, type: 3}
   weaponSprites:
   - {fileID: 21300000, guid: 0e82056b2a6564a4ebc99042a568897b, type: 3}
   - {fileID: 21300000, guid: b44d60e93e401fb4187fe6f3fcfd6f06, type: 3}
   - {fileID: 21300000, guid: 29e3741730e2f9042bfa910528adca20, type: 3}
-  keyVariant: 0
+  keyVariant: 1
   weaponVariant: 0
   potionCount: 0
   potionCountText: {fileID: 1043628407}
