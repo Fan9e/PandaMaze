@@ -3,11 +3,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// Håndterer visning og interaktion for spillerens rygsæk/inventory UI.
+/// Indeholder tre faste slots: nøgle, potion og våben. UI opdateres både i editor og runtime.
+/// </summary>
 public class BagpackUI : MonoBehaviour
 {
+    /// <summary>Antal slots i inventory (fast = 3).</summary>
     private const int SlotCount = 3;
+    /// <summary>Antal varianter per item-type hvor relevant (fast = 3).</summary>
     private const int VariantCount = 3;
 
+    /// <summary>Indekser for de tre faste slot-typer.</summary>
     private enum SlotType { Key = 0, Potion = 1, Weapon = 2 }
 
     [Header("UI References")]
@@ -48,13 +55,20 @@ public class BagpackUI : MonoBehaviour
     [Tooltip("Optional Text element to display potion count")]
     [SerializeField] private TMP_Text potionCountText;
 
+    /// <summary>Om inventory-panelet aktuelt er åbent.</summary>
     private bool isOpen;
 
-    // Colors/alphas used by the UI
+    /// <summary>Farve der bruges når et item ejes (fuld alpha).</summary>
     private static readonly Color OwnedColor = Color.white;
+    /// <summary>Alpha værdi der bruges til placeholder-ikoner.</summary>
     private const float PlaceholderAlpha = 0.5f;
-    private const float EmptySlotAlpha = 0.25f;
+    /// <summary>Alpha værdi der bruges for helt tomme slots.</summary>
+        private const float EmptySlotAlpha = 0.25f;
 
+    /// <summary>
+    /// Unity Awake: initialiserer UI (skjuler panel, binder knap og udfylder slots).
+    /// Kører før Start.
+    /// </summary>
     private void Awake()
     {
         if (inventoryPanel != null)
@@ -66,13 +80,18 @@ public class BagpackUI : MonoBehaviour
         PopulateSlots();
     }
 
+    /// <summary>
+    /// Fjern event-listeners ved ødelæggelse af objektet for at undgå memory leaks.
+    /// </summary>
     private void OnDestroy()
     {
         if (bagButton != null)
             bagButton.onClick.RemoveListener(ToggleInventory);
     }
 
-    // Toggle open/closed state
+    /// <summary>
+    /// Skifter mellem at åbne og lukke inventory-panelet.
+    /// </summary>
     public void ToggleInventory()
     {
         isOpen = !isOpen;
@@ -80,7 +99,10 @@ public class BagpackUI : MonoBehaviour
             inventoryPanel.SetActive(isOpen);
     }
 
-    // Populate the three slots with the configured sprites or placeholders when empty
+    /// <summary>
+    /// Opdaterer alle slots ud fra aktuelle ejerskaber og varianter.
+    /// Sætter også potion-teksten.
+    /// </summary>
     private void PopulateSlots()
     {
         SetSlot((int)SlotType.Key, GetSpriteForKey(), hasKey);
@@ -90,6 +112,11 @@ public class BagpackUI : MonoBehaviour
         UpdatePotionText();
     }
 
+    /// <summary>
+    /// Returnerer korrekt sprite for nøgle baseret på variant og ejerskab.
+    /// Hvis ingen nøgle men placeholders er aktiveret, returneres <see cref="emptySlotSprite"/>.
+    /// </summary>
+    /// <returns>Sprite til nøgle-slot eller null/placeholder.</returns>
     private Sprite GetSpriteForKey()
     {
         if (hasKey && keySprites != null && keySprites.Length > keyVariant)
@@ -98,6 +125,10 @@ public class BagpackUI : MonoBehaviour
         return showEmptyPlaceholders ? emptySlotSprite : null;
     }
 
+    /// <summary>
+    /// Returnerer potion-sprite hvis der er potions; ellers placeholder eller null.
+    /// </summary>
+    /// <returns>Sprite til potion-slot eller null/placeholder.</returns>
     private Sprite GetSpriteForPotion()
     {
         if (potionCount > 0 && potionSprite != null)
@@ -106,6 +137,11 @@ public class BagpackUI : MonoBehaviour
         return showEmptyPlaceholders ? emptySlotSprite : null;
     }
 
+    /// <summary>
+    /// Returnerer korrekt sprite for våben baseret på variant og ejerskab.
+    /// Hvis ingen våben men placeholders er aktiveret, returneres <see cref="emptySlotSprite"/>.
+    /// </summary>
+    /// <returns>Sprite til våben-slot eller null/placeholder.</returns>
     private Sprite GetSpriteForWeapon()
     {
         if (hasWeapon && weaponSprites != null && weaponSprites.Length > weaponVariant)
@@ -114,7 +150,13 @@ public class BagpackUI : MonoBehaviour
         return showEmptyPlaceholders ? emptySlotSprite : null;
     }
 
-    // index: slot index, sprite: sprite to assign (can be placeholder), owned: true when the player actually has the item
+    /// <summary>
+    /// Sætter et enkelt slot-image (sprite og alpha) baseret på index og ejerskab.
+    /// Håndterer også placeholder- og tomme-tilstande.
+    /// </summary>
+    /// <param name="index">Index i `slotImages` for det slot der skal sættes.</param>
+    /// <param name="sprite">Sprite der skal vises (kan være null eller placeholder).</param>
+    /// <param name="owned">Om spilleren ejer itemet (bruges til alpha-beregning).</param>
     private void SetSlot(int index, Sprite sprite, bool owned = true)
     {
         if (slotImages == null || index < 0 || index >= slotImages.Length)
@@ -127,14 +169,12 @@ public class BagpackUI : MonoBehaviour
         img.sprite = sprite;
         img.preserveAspect = true;
 
-        // Null sprite -> faint/hidden
         if (sprite == null)
         {
             img.color = new Color(1f, 1f, 1f, EmptySlotAlpha);
             return;
         }
 
-        // If this is an explicit empty placeholder (and placeholders are enabled) or not owned -> semi-transparent
         bool isPlaceholder = showEmptyPlaceholders && emptySlotSprite != null && sprite == emptySlotSprite;
         if (!owned || isPlaceholder)
         {
@@ -145,52 +185,83 @@ public class BagpackUI : MonoBehaviour
         img.color = OwnedColor;
     }
 
+    /// <summary>
+    /// Opdaterer valgfri potion-count tekst i UI.
+    /// Viser int-antal eller tom streng hvis 0.
+    /// </summary>
     private void UpdatePotionText()
     {
         if (potionCountText == null) return;
 
-        // Show count when more than zero; empty string hides the text visually.
         potionCountText.text = potionCount > 0 ? potionCount.ToString() : string.Empty;
     }
 
-    // Public API usable from editor or runtime
-
+    /// <summary>
+    /// Sætter aktiv key-variant (clampet til gyldigt interval) og opdaterer UI.
+    /// </summary>
+    /// <param name="variant">Variantindex (0..VariantCount-1).</param>
     public void SetKeyVariant(int variant)
     {
         keyVariant = Mathf.Clamp(variant, 0, VariantCount - 1);
         PopulateSlots();
     }
 
+    /// <summary>
+    /// Sætter aktiv weapon-variant (clampet til gyldigt interval) og opdaterer UI.
+    /// </summary>
+    /// <param name="variant">Variantindex (0..VariantCount-1).</param>
     public void SetWeaponVariant(int variant)
     {
         weaponVariant = Mathf.Clamp(variant, 0, VariantCount - 1);
         PopulateSlots();
     }
 
+    /// <summary>
+    /// Tilføjer potions (positive amount). Ignorerer negative værdier.
+    /// Opdaterer UI.
+    /// </summary>
+    /// <param name="amount">Antal der skal lægges til (standard 1).</param>
     public void AddPotions(int amount = 1)
     {
         potionCount = Mathf.Max(0, potionCount + Mathf.Max(0, amount));
         PopulateSlots();
     }
 
+    /// <summary>
+    /// Fjerner potions (positive amount). Ignorerer negative værdier.
+    /// Opdaterer UI.
+    /// </summary>
+    /// <param name="amount">Antal der skal fjernes (standard 1).</param>
     public void RemovePotions(int amount = 1)
     {
         potionCount = Mathf.Max(0, potionCount - Mathf.Max(0, amount));
         PopulateSlots();
     }
 
+    /// <summary>
+    /// Sætter potion-antal direkte (clampet til >= 0) og opdaterer UI.
+    /// </summary>
+    /// <param name="amount">Nyt antal potions.</param>
     public void SetPotions(int amount)
     {
         potionCount = Mathf.Max(0, amount);
         PopulateSlots();
     }
 
+    /// <summary>
+    /// Sætter om spilleren har en nøgle og opdaterer UI.
+    /// </summary>
+    /// <param name="owned">True hvis nøglen ejes.</param>
     public void SetHasKey(bool owned)
     {
         hasKey = owned;
         PopulateSlots();
     }
 
+    /// <summary>
+    /// Sætter om spilleren har et våben og opdaterer UI.
+    /// </summary>
+    /// <param name="owned">True hvis våbenet ejes.</param>
     public void SetHasWeapon(bool owned)
     {
         hasWeapon = owned;
@@ -198,7 +269,11 @@ public class BagpackUI : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    // Keep inspector array size correct while editing
+
+    /// <summary>
+    /// Editor-time validering: sørger for korrekte array-størrelser og gyldige værdier.
+    /// Kører i editor når værdier ændres i Inspector.
+    /// </summary>
     private void OnValidate()
     {
         if (slotImages == null || slotImages.Length != SlotCount)
@@ -214,7 +289,6 @@ public class BagpackUI : MonoBehaviour
         weaponVariant = Mathf.Clamp(weaponVariant, 0, VariantCount - 1);
         potionCount = Mathf.Max(0, potionCount);
 
-        // Reflect changes immediately in the Inspector
         PopulateSlots();
     }
 #endif

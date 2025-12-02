@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    // Simple item descriptor usable by chests / pickup logic.
     public enum ItemType
     {
         Key,
