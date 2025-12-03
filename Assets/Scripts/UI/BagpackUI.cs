@@ -63,7 +63,7 @@ public class BagpackUI : MonoBehaviour
     /// <summary>Alpha værdi der bruges til placeholder-ikoner.</summary>
     private const float PlaceholderAlpha = 0.5f;
     /// <summary>Alpha værdi der bruges for helt tomme slots.</summary>
-        private const float EmptySlotAlpha = 0.25f;
+    private const float EmptySlotAlpha = 0.25f;
 
     /// <summary>
     /// Unity Awake: initialiserer UI (skjuler panel, binder knap og udfylder slots).
@@ -154,9 +154,14 @@ public class BagpackUI : MonoBehaviour
     /// Sætter et enkelt slot-image (sprite og alpha) baseret på index og ejerskab.
     /// Håndterer også placeholder- og tomme-tilstande.
     /// </summary>
-    /// <param name="index">Index i `slotImages` for det slot der skal sættes.</param>
-    /// <param name="sprite">Sprite der skal vises (kan være null eller placeholder).</param>
-    /// <param name="owned">Om spilleren ejer itemet (bruges til alpha-beregning).</param>
+    /// <param name="index">Index i <c>slotImages</c> for det slot der skal sættes.
+    /// 0 = nøgle (Key), 1 = potion (Potion), 2 = våben (Weapon). 
+    /// Angiver hvilket af de faste slots der opdateres.</param>
+    /// <param name="sprite">Sprite der skal vises. Kan være:
+    /// - et item-sprite (fra keySprites/weaponSprites eller potionSprite),
+    /// - <c>emptySlotSprite</c> for en placeholder,
+    /// - eller <c>null</c> for et helt tomt slot.</param>
+    /// <param name="owned">Angiver om spilleren ejer det viste item.</param>
     private void SetSlot(int index, Sprite sprite, bool owned = true)
     {
         if (slotImages == null || index < 0 || index >= slotImages.Length)
@@ -199,7 +204,8 @@ public class BagpackUI : MonoBehaviour
     /// <summary>
     /// Sætter aktiv key-variant (clampet til gyldigt interval) og opdaterer UI.
     /// </summary>
-    /// <param name="variant">Variantindex (0..VariantCount-1).</param>
+    /// <param name="variant">Index for hvilken nøgle-variant der skal vises.
+    /// Vælger elementet i <c>keySprites</c>. Værdien klampes til intervallet 0..VariantCount-1.</param>
     public void SetKeyVariant(int variant)
     {
         keyVariant = Mathf.Clamp(variant, 0, VariantCount - 1);
@@ -209,7 +215,8 @@ public class BagpackUI : MonoBehaviour
     /// <summary>
     /// Sætter aktiv weapon-variant (clampet til gyldigt interval) og opdaterer UI.
     /// </summary>
-    /// <param name="variant">Variantindex (0..VariantCount-1).</param>
+    /// <param name="variant">Index for hvilken våben-variant der skal vises.
+    /// Vælger elementet i <c>weaponSprites</c>. Værdien klampes til intervallet 0..VariantCount-1.</param>
     public void SetWeaponVariant(int variant)
     {
         weaponVariant = Mathf.Clamp(variant, 0, VariantCount - 1);
@@ -220,7 +227,7 @@ public class BagpackUI : MonoBehaviour
     /// Tilføjer potions (positive amount). Ignorerer negative værdier.
     /// Opdaterer UI.
     /// </summary>
-    /// <param name="amount">Antal der skal lægges til (standard 1).</param>
+    /// <param name="amount">Antal der skal lægges til. Negative værdier ignoreres. Standard er 1.</param>
     public void AddPotions(int amount = 1)
     {
         potionCount = Mathf.Max(0, potionCount + Mathf.Max(0, amount));
@@ -231,7 +238,7 @@ public class BagpackUI : MonoBehaviour
     /// Fjerner potions (positive amount). Ignorerer negative værdier.
     /// Opdaterer UI.
     /// </summary>
-    /// <param name="amount">Antal der skal fjernes (standard 1).</param>
+    /// <param name="amount">Antal der skal fjernes. Negative værdier ignoreres. Standard er 1.</param>
     public void RemovePotions(int amount = 1)
     {
         potionCount = Mathf.Max(0, potionCount - Mathf.Max(0, amount));
@@ -241,7 +248,7 @@ public class BagpackUI : MonoBehaviour
     /// <summary>
     /// Sætter potion-antal direkte (clampet til >= 0) og opdaterer UI.
     /// </summary>
-    /// <param name="amount">Nyt antal potions.</param>
+    /// <param name="amount">Nyt antal potions. Negative input sættes til 0.</param>
     public void SetPotions(int amount)
     {
         potionCount = Mathf.Max(0, amount);
