@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Reference til spillerens Rigidbody, bruges til fysisk bevægelse og rotation.
     /// </summary>
-    private Rigidbody _SpillersRigidbody;
+    private Rigidbody _PlayerRigidbody;
 
     /// <summary>
     /// Reference til spillerens Animator, styrer gå-/idle-animationer.
@@ -81,10 +81,10 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        _SpillersRigidbody = GetComponent<Rigidbody>();
+        _PlayerRigidbody = GetComponent<Rigidbody>();
         _animation = GetComponent<Animator>();
 
-        _SpillersRigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+        _PlayerRigidbody.interpolation = RigidbodyInterpolation.Interpolate;
     }
 
     /// <summary>
@@ -227,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void ApplyRotation()
     {
-        float currentYaw = _SpillersRigidbody.rotation.eulerAngles.y;
+        float currentYaw = _PlayerRigidbody.rotation.eulerAngles.y;
         float targetYaw = currentYaw + _pendingYaw * Time.fixedDeltaTime;
 
         float smoothedYaw = Mathf.SmoothDampAngle(
@@ -239,7 +239,7 @@ public class PlayerMovement : MonoBehaviour
             Time.fixedDeltaTime
         );
 
-        _SpillersRigidbody.MoveRotation(Quaternion.Euler(0, smoothedYaw, 0));
+        _PlayerRigidbody.MoveRotation(Quaternion.Euler(0, smoothedYaw, 0));
     }
 
     /// <summary>
@@ -259,8 +259,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocity = planarMovement.normalized * (planarMovement.magnitude * movementSpeed);
 
         // Bevar lodret hastighed (tyngdekraft osv.)
-        velocity.y = _SpillersRigidbody.linearVelocity.y;
-        _SpillersRigidbody.linearVelocity = velocity;
+        velocity.y = _PlayerRigidbody.linearVelocity.y;
+        _PlayerRigidbody.linearVelocity = velocity;
     }
 
     /// <summary>
@@ -269,7 +269,7 @@ public class PlayerMovement : MonoBehaviour
     private void UpdateAnimation()
     {
         Vector3 localVelocity =
-            transform.InverseTransformDirection(_SpillersRigidbody.linearVelocity);
+            transform.InverseTransformDirection(_PlayerRigidbody.linearVelocity);
 
         Vector2 planarVelocity = new Vector2(localVelocity.x, localVelocity.z);
 
