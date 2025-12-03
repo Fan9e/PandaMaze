@@ -2,15 +2,24 @@ using UnityEngine;
 
 public class Key : Item
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    [Tooltip("ID på denne nøgle. Skal matche den dør, den kan åbne.")]
+    private int keyId = 1;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (!other.CompareTag("Player"))
+            return;
+
+        var inventory = other.GetComponent<PlayerInventory>();
+        if (inventory == null)
+            return;
+
+        bool pickedUp = inventory.AddKey(keyId);
+        if (pickedUp)
+        {
+            // TODO: Spil lyd / vis UI her hvis du vil
+            Destroy(gameObject); // fjern nøglen fra verden
+        }
     }
 }
