@@ -15,9 +15,12 @@ public class SpeechTaskUI : MonoBehaviour
     [SerializeField] private string sentenceToSay = "Jeg har set en pirat";
 
     [Header("Voice")]
-    [SerializeField] private VoiceMovement voiceMovement;   
+    [SerializeField] private VoiceMovement voiceMovement;
 
+    // Succes (rigtig sætning)
     public UnityEvent OnTaskCompleted;
+    // Fejl (forkert sætning)
+    public UnityEvent OnTaskFailed;
 
     private string normalizedTarget;
 
@@ -42,16 +45,17 @@ public class SpeechTaskUI : MonoBehaviour
 
         public void OnVoiceLevelChanged(float level)
         {
-            // Kan evt. bruges til en lille mic-animering, hvis du vil.
         }
 
         public void OnMicrophoneStateChanged(bool isOn)
         {
-            // Ikke nødvendigt her, men findes i interfacet.
         }
     }
 
     private TaskObserver taskObserver;
+
+    // Bruges af kamp-scriptet til at tjekke om opgaven er åben
+    public bool IsActive => panel != null && panel.activeSelf;
 
     private void Awake()
     {
@@ -73,9 +77,10 @@ public class SpeechTaskUI : MonoBehaviour
         StartListening();
     }
 
+    // Kan stadig bruges af en knap, hvis du vil,
+    // men er ikke nødvendig mere når kampen starter automatisk
     public void StartTask()
     {
-        // Bruges af en UI-knap uden parametre
         ShowTask();
     }
 
@@ -90,16 +95,21 @@ public class SpeechTaskUI : MonoBehaviour
     {
         string normalizedHeard = Normalize(recognizedText);
 
+        // Ét forsøg pr. runde – vi stopper altid mikrofonen her
+        StopListening();
+
         if (normalizedHeard == normalizedTarget)
         {
             feedbackText.text = "Rigtigt! 🐼";
-            StopListening();
             OnTaskCompleted?.Invoke();
             panel.SetActive(false);
         }
         else
         {
-            feedbackText.text = "Jeg hørte: \"" + recognizedText + "\"\nPrøv igen.";
+            feedbackText.text = "Jeg hørte: \"" + recognizedText + "\"";
+            OnTaskFailed?.Invoke();
+            // Panelet bliver stående, så man kan se hvad der blev hørt.
+            // Næste forsøg startes af kamp-scriptet.
         }
     }
 
@@ -109,17 +119,20 @@ public class SpeechTaskUI : MonoBehaviour
             return "";
 
         s = s.ToLowerInvariant().Trim();
-        s = s.Replace(".", "").Replace(",", "").Replace("!", "").Replace("?", "");
+        s = s.Replace(".", "")
+             .Replace(",", "")
+             .Replace("!", "")
+             .Replace("?", "");
         return s;
     }
 
     private void StartListening()
     {
-        if (!Application.isMobilePlatform)
-        {
-            Debug.Log("SpeechTaskUI: Spring talegenkendelse over i Editor.");
-            return;
-        }
+#if UNITY_EDITOR
+        Debug.Log("SpeechTaskUI (Editor): simulerer FORKERT sætning: hello world");
+        OnSpeechRecognized("hello world");   // altid forkert i Editor
+        return;
+#endif
 
         if (voiceMovement == null)
             voiceMovement = FindObjectOfType<VoiceMovement>();
@@ -136,6 +149,8 @@ public class SpeechTaskUI : MonoBehaviour
         voiceMovement.RegisterObserver(taskObserver);
         voiceMovement.StartMicrophone();
     }
+
+
 
 
     private void StopListening()
