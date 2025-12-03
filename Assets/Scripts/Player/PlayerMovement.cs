@@ -5,15 +5,13 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Animator))]
 public class PlayerMovement : MonoBehaviour
 {
-    // ==============================
-    // Inspector fields
-    // ==============================
-
     [Header("Movement")]
     /// <summary>
     /// Hvor hurtigt spilleren bevæger sig vandret i verden.
     /// </summary>
     [SerializeField] private float movementSpeed = 5f;
+
+    [SerializeField] private float keyboardForwardThreshold = 0.1f; 
 
     /// <summary>
     /// Mindste kvadrerede hastighed, før spilleren betragtes som gående (til animation).
@@ -38,23 +36,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Tooltip("Smoothness when turning.")]
     private float rotationSmoothTime = 0.08f;
 
-    // ==============================
-    // Components
-    // ==============================
-
     /// <summary>
     /// Reference til spillerens Rigidbody, bruges til fysisk bevægelse og rotation.
     /// </summary>
-    private Rigidbody _rb;
+    private Rigidbody _SpillersRigidbody;
 
     /// <summary>
     /// Reference til spillerens Animator, styrer gå-/idle-animationer.
     /// </summary>
-    private Animator _anim;
-
-    // ==============================
-    // Input state
-    // ==============================
+    private Animator _animation;
 
     /// <summary>
     /// Bevægelsesinput (x = strafe, y = frem/tilbage) fra joystick/keyboard.
@@ -76,10 +66,6 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private bool _turnFromInputSystem;
 
-    // ==============================
-    // Rotation smoothing
-    // ==============================
-
     /// <summary>
     /// Beregnet yaw-ændring (drejehastighed) for den næste fysik-opdatering.
     /// </summary>
@@ -90,19 +76,15 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private float _yawSmoothVelocity;
 
-    // ==============================
-    // Unity lifecycle
-    // ==============================
-
     /// <summary>
     /// Finder komponentreferencer og sætter Rigidbody interpolation.
     /// </summary>
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
-        _anim = GetComponent<Animator>();
+        _SpillersRigidbody = GetComponent<Rigidbody>();
+        _animation = GetComponent<Animator>();
 
-        _rb.interpolation = RigidbodyInterpolation.Interpolate;
+        _SpillersRigidbody.interpolation = RigidbodyInterpolation.Interpolate;
     }
 
     /// <summary>
@@ -110,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        ReadInput_EditorFallback(); // joystick + optional keyboard
+        ReadInput_EditorFallback();
         ComputeTurnInput();
         UpdateAnimation();
 
@@ -126,10 +108,6 @@ public class PlayerMovement : MonoBehaviour
         ApplyMovement();
     }
 
-    // ===========================================
-    // Public API (tests / legacy support)
-    // ===========================================
-
     /// <summary>
     /// Sætter bevægelsesinput udefra vha. et 3D-vektor (x/z bruges som 2D-input).
     /// </summary>
@@ -139,71 +117,67 @@ public class PlayerMovement : MonoBehaviour
         SetMoveInput(new Vector2(input3D.x, input3D.z));
     }
 
-    // ===========================================
-    // Input handlers (Input System)
-    // ===========================================
-
     /// <summary>
     /// Input System callback for Move (direkte Vector2).
     /// </summary>
-    public void OnMove(Vector2 v) => SetMoveInput(v);
+    public void OnMove(Vector2 movementVector) => SetMoveInput(movementVector);
 
     /// <summary>
     /// Input System callback for Move via InputValue wrapper.
     /// </summary>
-    public void OnMove(InputValue v) => SetMoveInput(v.Get<Vector2>());
+    public void OnMove(InputValue movementVector) => SetMoveInput(movementVector.Get<Vector2>());
 
     /// <summary>
     /// Input System callback for Move via CallbackContext (events/phase-baseret).
     /// </summary>
-    public void OnMove(InputAction.CallbackContext ctx) => SetMoveInput(ReadFromContext(ctx));
+    public void OnMove(InputAction.CallbackContext callbackContext) => SetMoveInput(ReadFromContext(callbackContext));
 
     /// <summary>
     /// Input System callback for Look/Turn (direkte Vector2).
     /// </summary>
-    public void OnLook(Vector2 v) => SetTurnInput(v);
+    public void OnLook(Vector2 movementVector) => SetTurnInput(movementVector);
 
     /// <summary>
     /// Input System callback for Look/Turn via InputValue wrapper.
     /// </summary>
-    public void OnLook(InputValue v) => SetTurnInput(v.Get<Vector2>());
+    public void OnLook(InputValue movementVector) => SetTurnInput(movementVector.Get<Vector2>());
 
     /// <summary>
     /// Input System callback for Look/Turn via CallbackContext (events/phase-baseret).
     /// </summary>
-    public void OnLook(InputAction.CallbackContext ctx) => SetTurnInput(ReadFromContext(ctx));
+    public void OnLook(InputAction.CallbackContext callbackContext) => SetTurnInput(ReadFromContext(callbackContext));
 
     /// <summary>
-    /// Læser et Vector2-input fra en InputAction-context, kun når den er aktiv/utført.
+    /// Læser et Vector2-input fra en InputAction-context, men kun når actionen er startet eller udført.
     /// </summary>
-    private static Vector2 ReadFromContext(InputAction.CallbackContext ctx)
+    /// <param name="callbackContext">Context-information fra InputAction-callbacken.</param>
+    private static Vector2 ReadFromContext(InputAction.CallbackContext callbackContext)
     {
-        return (ctx.phase == InputActionPhase.Performed || ctx.phase == InputActionPhase.Started)
-            ? ctx.ReadValue<Vector2>()
+        return (callbackContext.phase == InputActionPhase.Performed ||
+                callbackContext.phase == InputActionPhase.Started)
+            ? callbackContext.ReadValue<Vector2>()
             : Vector2.zero;
     }
 
     /// <summary>
-    /// Opdaterer bevægelsesinput og markerer at det kom fra Input System denne frame.
+    /// Opdaterer bevægelsesinput og markerer, at det kom fra Input System denne frame.
     /// </summary>
-    private void SetMoveInput(Vector2 v)
+    /// <param name="movementVector">Den modtagne bevægelsesvektor (x = strafe, y = frem/tilbage).</param>
+    private void SetMoveInput(Vector2 movementVector)
     {
-        _moveInput = v;
+        _moveInput = movementVector;
         _moveFromInputSystem = true;
     }
 
     /// <summary>
-    /// Opdaterer drejeinput og markerer at det kom fra Input System denne frame.
+    /// Opdaterer drejeinput og markerer, at det kom fra Input System denne frame.
     /// </summary>
-    private void SetTurnInput(Vector2 v)
+    /// <param name="turnVector">Den modtagne drejevektor (x = venstre/højre).</param>
+    private void SetTurnInput(Vector2 turnVector)
     {
-        _turnInput = v;
+        _turnInput = turnVector;
         _turnFromInputSystem = true;
     }
-
-    // ===========================================
-    // Editor keyboard fallback
-    // ===========================================
 
     /// <summary>
     /// Fallback til keyboard (WASD/piletaster) i editor, hvis Input System ikke gav input.
@@ -212,39 +186,36 @@ public class PlayerMovement : MonoBehaviour
     private void ReadInput_EditorFallback()
     {
 #if UNITY_EDITOR
-        float kbForward = Input.GetAxisRaw("Vertical");   // W/S, Up/Down
-        float kbTurn = Input.GetAxisRaw("Horizontal");    // A/D, Left/Right
+        float keyboardForwardInput = Input.GetAxisRaw("Vertical");
+        float keyboardTurnInput = Input.GetAxisRaw("Horizontal");
 
-        // Movement override (only if joystick gave no movement this frame)
+        // Movement overskrives (Hvis joystick ikke giver nogen bevægelse i den frame)
         if (!_moveFromInputSystem)
         {
-            _moveInput.y = kbForward;
+            _moveInput.y = keyboardForwardInput;
 
-            if (Mathf.Abs(kbForward) > 0.01f)
-                _moveInput.x = 0f; // disable strafe for keyboard
+            if (Mathf.Abs(keyboardForwardInput) > keyboardForwardThreshold)
+                _moveInput.x = 0f;
         }
 
-        // Turning override (only if joystick gave no turn input)
+        // Drejer overskrives(Kun hvis joystick ikke giver nogen inputs)
         if (!_turnFromInputSystem)
         {
-            _turnInput.x = kbTurn;
+            _turnInput.x = keyboardTurnInput;
         }
 #endif
-        // Apply deadzones (editor + device)
+        // tilføj deadzones
         if (Mathf.Abs(_moveInput.x) < inputDeadzone) _moveInput.x = 0f;
         if (Mathf.Abs(_moveInput.y) < inputDeadzone) _moveInput.y = 0f;
 
         if (Mathf.Abs(_turnInput.x) < inputDeadzone) _turnInput.x = 0f;
     }
 
-    // ===========================================
-    // Turning and movement
-    // ===========================================
-
     /// <summary>
     /// Beregner den ønskede yaw-hastighed (drejehastighed) ud fra input og deadzone.
     /// </summary>
     private void ComputeTurnInput()
+
     {
         _pendingYaw = Mathf.Abs(_turnInput.x) > inputDeadzone
             ? _turnInput.x * rotationSpeed
@@ -256,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void ApplyRotation()
     {
-        float currentYaw = _rb.rotation.eulerAngles.y;
+        float currentYaw = _SpillersRigidbody.rotation.eulerAngles.y;
         float targetYaw = currentYaw + _pendingYaw * Time.fixedDeltaTime;
 
         float smoothedYaw = Mathf.SmoothDampAngle(
@@ -268,7 +239,7 @@ public class PlayerMovement : MonoBehaviour
             Time.fixedDeltaTime
         );
 
-        _rb.MoveRotation(Quaternion.Euler(0, smoothedYaw, 0));
+        _SpillersRigidbody.MoveRotation(Quaternion.Euler(0, smoothedYaw, 0));
     }
 
     /// <summary>
@@ -276,42 +247,37 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void ApplyMovement()
     {
-        Vector3 forward = transform.forward;
-        Vector3 right = transform.right;
+        Vector3 forwardDirection = transform.forward;
+        Vector3 rightDirection = transform.right;
 
-        forward.y = 0;
-        right.y = 0;
-        forward.Normalize();
-        right.Normalize();
+        forwardDirection.y = 0f;
+        rightDirection.y = 0f;
+        forwardDirection.Normalize();
+        rightDirection.Normalize();
 
-        Vector3 planar = (forward * _moveInput.y) + (right * _moveInput.x);
-        Vector3 vel = planar.normalized * (planar.magnitude * movementSpeed);
+        Vector3 planarMovement = (forwardDirection * _moveInput.y) + (rightDirection * _moveInput.x);
+        Vector3 velocity = planarMovement.normalized * (planarMovement.magnitude * movementSpeed);
 
-        vel.y = _rb.linearVelocity.y; // keep gravity
-        _rb.linearVelocity = vel;
+        // Bevar lodret hastighed (tyngdekraft osv.)
+        velocity.y = _SpillersRigidbody.linearVelocity.y;
+        _SpillersRigidbody.linearVelocity = velocity;
     }
 
-    // ===========================================
-    // Animation
-    // ===========================================
-
     /// <summary>
-    /// Bestemmer om spilleren går eller drejer og sætter Animator-booleanen IsWalking.
+    /// Bestemmer om spilleren går eller drejer og sætter Animator-booleanen "IsWalking".
     /// </summary>
     private void UpdateAnimation()
     {
-        Vector3 localVel = transform.InverseTransformDirection(_rb.linearVelocity);
-        Vector2 planar = new Vector2(localVel.x, localVel.z);
+        Vector3 localVelocity =
+            transform.InverseTransformDirection(_SpillersRigidbody.linearVelocity);
 
-        bool isMoving = planar.sqrMagnitude > walkThreshold;
+        Vector2 planarVelocity = new Vector2(localVelocity.x, localVelocity.z);
+
+        bool isMoving = planarVelocity.sqrMagnitude > walkThreshold;
         bool isTurning = Mathf.Abs(_turnInput.x) > inputDeadzone;
 
-        _anim.SetBool("IsWalking", isMoving || isTurning);
+        _animation.SetBool("IsWalking", isMoving || isTurning);
     }
-
-    // ===========================================
-    // Reset Input Flags
-    // ===========================================
 
     /// <summary>
     /// Nulstiller flag for om input kom fra Input System, når input går tilbage til nul.
