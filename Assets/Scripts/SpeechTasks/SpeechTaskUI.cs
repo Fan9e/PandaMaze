@@ -146,8 +146,14 @@ public class SpeechTaskUI : MonoBehaviour
         if (taskObserver == null)
             taskObserver = new TaskObserver(this);
 
+        // Kun registrere observer
         voiceMovement.RegisterObserver(taskObserver);
-        voiceMovement.StartMicrophone();
+
+        // Men lad være med at starte mikrofonen automatisk
+        if (!voiceMovement.isMicrophoneOn && feedbackText != null)
+        {
+            feedbackText.text = "Tænd mikrofonen (Mic-knappen) for at sige sætningen.";
+        }
     }
 
 

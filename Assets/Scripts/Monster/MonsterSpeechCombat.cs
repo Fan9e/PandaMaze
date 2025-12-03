@@ -51,6 +51,25 @@ public class MonsterSpeechCombat : MonoBehaviour
         StartRound();
     }
 
+    private int GetCurrentWeaponDamage()
+    {
+        // Hvis der ikke er sat en spiller på monsteret, brug fallback
+        if (monster.Player == null)
+            return damagePerCorrect;
+
+        // Prøv at finde et Weapon-script på spilleren eller dens children
+        Weapon weapon = monster.Player.GetComponentInChildren<Weapon>();
+
+        if (weapon != null)
+        {
+            // Brug våbnets egen skadeberegning
+            return weapon.CalculateDamage();
+        }
+
+        // Hvis vi ikke fandt noget våben, falder vi tilbage til det faste tal
+        return damagePerCorrect;
+    }
+
     private void StartRound()
     {
         if (monster.CurrentHealth <= 0)
@@ -69,7 +88,9 @@ public class MonsterSpeechCombat : MonoBehaviour
     {
         if (!fightActive) return;
 
-        monster.TakeDamageOnly(damagePerCorrect);
+        // Brug våbnets skade i stedet for et fast tal
+        int damage = GetCurrentWeaponDamage();
+        monster.TakeDamageOnly(damage);
 
         if (monster.CurrentHealth <= 0)
         {
@@ -80,6 +101,7 @@ public class MonsterSpeechCombat : MonoBehaviour
             StartRound();
         }
     }
+
 
     private void HandleTaskFail()
     {
