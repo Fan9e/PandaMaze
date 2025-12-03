@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Drejeinput (x = venstre/højre) fra joystick/keyboard.
     /// </summary>
-    private Vector2 _turnInput; // x = turn left/right
+    private Vector2 _turnInput;
 
     /// <summary>
     /// Angiver om bevægelsesinput denne frame kom fra Input System.
