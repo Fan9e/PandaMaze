@@ -28,12 +28,21 @@ public class Door : MonoBehaviour
 
     /// <summary>
     /// Håndterer, når spilleren går ind i døren.
-    /// Tjekker om spilleren har den korrekte nøgle:
-    /// - Hvis ja: åbnes døren.
-    /// - Hvis nej: vises en besked om, at nøglen mangler.
+    /// Flytter al logik til en privat hjælpermetode for bedre læsbarhed og testbarhed.
     /// </summary>
     /// <param name="collision">Det objekt, der kolliderer med døren.</param>
     private void OnCollisionEnter(Collision collision)
+    {
+        HandlePlayerCollision(collision);
+    }
+
+    /// <summary>
+    /// Privat hjælpermetode der indeholder den tidligere OnCollisionEnter-logik.
+    /// Forsøger at åbne døren hvis kolliderende objekt er spilleren med korrekt nøgle,
+    /// ellers viser en besked om manglende nøgle.
+    /// </summary>
+    /// <param name="collision">Det objekt, der kolliderer med døren.</param>
+    private void HandlePlayerCollision(Collision collision)
     {
         const float MessageDuration = 5f;
 

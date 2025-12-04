@@ -8,11 +8,20 @@ public class Key : Item
 
     /// <summary>
     /// Håndterer, når en collider rammer nøglens trigger.
-    /// Hvis det er spilleren, forsøges nøglen tilføjet til spillerens inventory.
-    /// Lykkes det, fjernes nøglen fra scenen.
+    /// Flytter logikken til en privat hjælpermetode for bedre læsbarhed og testbarhed.
     /// </summary>
     /// <param name="other">Den collider, der rammer nøglens trigger.</param>
     private void OnTriggerEnter(Collider other)
+    {
+        HandlePickupTrigger(other);
+    }
+
+    /// <summary>
+    /// Privat hjælpermetode, der håndterer opsamling af nøglen når spilleren rammer triggeren.
+    /// Forsøger at finde spillerens inventory og tilføje nøglen; fjerner objektet ved succes.
+    /// </summary>
+    /// <param name="other">Den collider, der rammer nøglens trigger.</param>
+    private void HandlePickupTrigger(Collider other)
     {
         // Kun spilleren må samle nøglen op
         if (!other.CompareTag("Player"))
