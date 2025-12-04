@@ -13,7 +13,7 @@ public class Key : Item
     /// <param name="other">Den collider, der rammer nøglens trigger.</param>
     private void OnTriggerEnter(Collider other)
     {
-        HandlePickupTrigger(other);
+        TryPickupKey(other);
     }
 
     /// <summary>
@@ -21,7 +21,7 @@ public class Key : Item
     /// Forsøger at finde spillerens inventory og tilføje nøglen; fjerner objektet ved succes.
     /// </summary>
     /// <param name="other">Den collider, der rammer nøglens trigger.</param>
-    private void HandlePickupTrigger(Collider other)
+    private void TryPickupKey(Collider other)
     {
         // Kun spilleren må samle nøglen op
         if (!other.CompareTag("Player"))

@@ -16,27 +16,42 @@ public class UIMessageManager : MonoBehaviour
     [Tooltip("Objektet der skal vises/skjules (kan være selve teksten eller et panel).")]
     private GameObject messageRoot;
 
-    private Coroutine _currentRoutine;
+    private Coroutine _currentRoutine; // En Coroutine gør det muligt at lave ventetid og tidsbaserede handlinger i spillet uden at bruge Update() og uden at pause spillet.
 
     /// <summary>
-    /// Initialiserer manageren, sætter Singleton-instansen, finder root-objektet
-    /// og sørger for at besked-panelet starter med at være skjult.
+    /// Initialiserer UIMessageManager ved at sætte Singleton-instansen
+    /// og konfigurere det UI-element, der skal bruges til at vise beskeder.
     /// </summary>
     private void Awake()
+    {
+        SetupSingleton();
+        InitializeMessageRoot();
+    }
+
+    /// <summary>
+    /// Sikrer, at der kun findes én aktiv instans af UIMessageManager.
+    /// Hvis en anden instans allerede eksisterer, bliver denne destrueret.
+    /// </summary>
+    private void SetupSingleton()
     {
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
+    }
 
+    /// <summary>
+    /// Finder og klargør det UI-objekt, der skal vises og skjules,
+    /// når der kommer en besked. Starter altid med at skjule elementet.
+    /// </summary>
+    private void InitializeMessageRoot()
+    {
         if (messageRoot == null && messageText != null)
         {
             messageRoot = messageText.gameObject;
         }
-
         if (messageRoot != null)
         {
             messageRoot.SetActive(false);
@@ -55,7 +70,7 @@ public class UIMessageManager : MonoBehaviour
             return;
 
         // Stop evt. tidligere timer
-        if (_currentRoutine != null) // En Coroutine gør det muligt at lave ventetid og tidsbaserede handlinger i spillet uden at bruge Update() og uden at pause spillet.
+        if (_currentRoutine != null)
         {
             StopCoroutine(_currentRoutine);
         }

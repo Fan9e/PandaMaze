@@ -33,7 +33,7 @@ public class Door : MonoBehaviour
     /// <param name="collision">Det objekt, der kolliderer med døren.</param>
     private void OnCollisionEnter(Collision collision)
     {
-        HandlePlayerCollision(collision);
+        TryOpenDoor(collision);
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ public class Door : MonoBehaviour
     /// ellers viser en besked om manglende nøgle.
     /// </summary>
     /// <param name="collision">Det objekt, der kolliderer med døren.</param>
-    private void HandlePlayerCollision(Collision collision)
+    private void TryOpenDoor(Collision collision)
     {
         const float MessageDuration = 5f;
 
