@@ -25,6 +25,9 @@ public class Door : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
+        const float MessageDuration = 5f;
+
         Debug.Log("Panda ramte en dør: " + gameObject.name);
 
         if (!collision.collider.CompareTag("Player"))
@@ -46,7 +49,7 @@ public class Door : MonoBehaviour
             {
                 UIMessageManager.Instance.ShowMessage(
                     "Du mangler den rigtige nøgle til denne dør.",
-                    5f
+                    MessageDuration
                 );
             }
             else
