@@ -1,15 +1,25 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Monster))]
 [RequireComponent(typeof(SphereCollider))]
 public class MonsterSpeechCombat : MonoBehaviour
 {
+    [Header("Opgaver")]
     [SerializeField] private SpeechTaskUI speechTaskUI;
+
+    [Tooltip("Fallback-skade hvis vi ikke finder et Weapon på spilleren.")]
     [SerializeField] private int damagePerCorrect = 7;
+
+    [Tooltip("Liste af sætninger i rækkefølge for denne kamp.")]
+    [TextArea]
+    [SerializeField] private string[] sentences;
 
     private Monster monster;
     private SphereCollider trigger;
     private bool fightActive;
+    private bool waitingForResult;
+    private int currentSentenceIndex;
+
 
     private void Awake()
     {
@@ -38,7 +48,6 @@ public class MonsterSpeechCombat : MonoBehaviour
             speechTaskUI.OnTaskFailed.RemoveListener(HandleTaskFail);
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (fightActive) return;
@@ -48,25 +57,27 @@ public class MonsterSpeechCombat : MonoBehaviour
 
         monster.Player = player;
         fightActive = true;
+        waitingForResult = false;
+        currentSentenceIndex = 0;   // ← starter med første sætning
         StartRound();
     }
 
     private int GetCurrentWeaponDamage()
     {
-        // Hvis der ikke er sat en spiller p� monsteret, brug fallback
+        // Hvis der ikke er sat en spiller på monsteret, brug fallback
         if (monster.Player == null)
             return damagePerCorrect;
 
-        // Pr�v at finde et Weapon-script p� spilleren eller dens children
+        // Prøv at finde et Weapon-script på spilleren eller dens children
         Weapon weapon = monster.Player.GetComponentInChildren<Weapon>();
 
         if (weapon != null)
         {
-            // Brug v�bnets egen skadeberegning
+            // Brug våbnets egen skadeberegning
             return weapon.CalculateDamage();
         }
 
-        // Hvis vi ikke fandt noget v�ben, falder vi tilbage til det faste tal
+        // Hvis vi ikke fandt noget våben, falder vi tilbage til det faste tal
         return damagePerCorrect;
     }
 
@@ -78,34 +89,58 @@ public class MonsterSpeechCombat : MonoBehaviour
             return;
         }
 
+        // Allerede startet en opgave, venter på svar
+        if (waitingForResult)
+            return;
+
         if (speechTaskUI != null && !speechTaskUI.IsActive)
         {
-            speechTaskUI.ShowTask(); // samme s�tning hver gang
+            waitingForResult = true;      // nu venter vi på et resultat
+
+            // Hvis vi har defineret sætninger til dette monster
+            if (sentences != null && sentences.Length > 0)
+            {
+                int index = Mathf.Clamp(currentSentenceIndex, 0, sentences.Length - 1);
+                string sentence = sentences[index];
+                speechTaskUI.ShowTask(sentence);
+            }
+            else
+            {
+                // fallback: brug standard-sætningen fra SpeechTaskUI
+                speechTaskUI.ShowTask();
+            }
         }
     }
 
+
     private void HandleTaskSuccess()
     {
-        if (!fightActive) return;
+        if (!fightActive || !waitingForResult)
+            return;
 
-        // Brug v�bnets skade i stedet for et fast tal
+        waitingForResult = false;   // resultat modtaget
+
         int damage = GetCurrentWeaponDamage();
         monster.TakeDamageOnly(damage);
 
         if (monster.CurrentHealth <= 0)
         {
+            // Monster dødt → kamp slut
             fightActive = false;
+            return;
         }
-        else
-        {
-            StartRound();
-        }
-    }
 
+        // Monster lever stadig → gå videre til næste opgave
+        currentSentenceIndex++;
+        StartRound();
+    }
 
     private void HandleTaskFail()
     {
-        if (!fightActive) return;
+        if (!fightActive || !waitingForResult)
+            return;
+
+        waitingForResult = false;   // resultat modtaget
 
         monster.AttackPlayerOnly();
 
@@ -113,6 +148,7 @@ public class MonsterSpeechCombat : MonoBehaviour
             monster.Player.CurrentHealth > 0 &&
             monster.CurrentHealth > 0)
         {
+            // Samme sætning igen, fordi vi IKKE har ændret currentSentenceIndex
             StartRound();
         }
         else
@@ -120,4 +156,5 @@ public class MonsterSpeechCombat : MonoBehaviour
             fightActive = false;
         }
     }
+
 }

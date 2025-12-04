@@ -293,7 +293,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::MonsterSpeechCombat
   speechTaskUI: {fileID: 0}
   damagePerCorrect: 7
-  sentences: []
 --- !u!135 &269014649
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1457,12 +1456,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed28cc12c28aa7499aad637e7a1f59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Scripts::MonsterSpeechCombat
-  speechTaskUI: {fileID: 286994473}
-  damagePerCorrect: 0
-  sentences:
-  - Jeg har set en pirat
-  - "Du f\xE5r mig til at le"
-  - Giv mig et stykke kage tak
+  speechTaskUI: {fileID: 0}
+  damagePerCorrect: 7
 --- !u!135 &705418998
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3335,7 +3330,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   speechTaskUI: {fileID: 0}
   damagePerCorrect: 7
-  sentences: []
 --- !u!135 &8585253005820049724
 SphereCollider:
   m_ObjectHideFlags: 0
