@@ -26,7 +26,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - BACKFACE_NORMAL_MODE_MIRROR
-  - _WINDQUALITY_BEST
+  - _WINDQUALITY_BETTER
   m_InvalidKeywords:
   - EFFECT_BACKSIDE_NORMALS
   - EFFECT_BUMP
