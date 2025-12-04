@@ -2,9 +2,6 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-/// <summary>
-/// Viser midlertidige beskeder på skærmen.
-/// </summary>
 public class UIMessageManager : MonoBehaviour
 {
     /// <summary>
