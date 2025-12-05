@@ -1,15 +1,16 @@
+using System;
 using UnityEngine;
 
 public class FaceCamera : MonoBehaviour
 {
-    private Camera _camera; 
+    private Camera _camera;
 
     /// <summary>
     /// Initialiserer kamera-referencen ved at hente scenens hovedkamera.
     /// </summary>
     private void Start()
     {
-        _camera = Camera.main;   
+        _camera = Camera.main;
     }
 
     /// <summary>
