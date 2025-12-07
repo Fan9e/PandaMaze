@@ -4,6 +4,20 @@ using static UnityEngine.GraphicsBuffer;
 public abstract class Weapon : Item, IWeapon
 {
     [SerializeField] private string _attackAnimOverride;
+    [Header("Socket Offset")]
+    public Vector3 socketLocalPosition;     
+    public Vector3 socketLocalEulerAngles;  
+    public Vector3 socketLocalScale = Vector3.one;
+    /// <summary>
+    /// Sætter hvordan våbnet skal sidde i WeaponPivot.
+    /// Kan override’s i konkrete våben (f.eks. Axe, Sword).
+    /// </summary>
+    public virtual void ConfigureSocketTransform(Transform t)
+    {
+        t.localPosition = Vector3.zero;
+        t.localRotation = Quaternion.identity;
+        t.localScale = Vector3.one;
+    }
     /// <summary>
     /// Returnerer navnet på angrebs-animationen.
     /// Bruger <see cref="_attackAnimOverride"/> hvis det er sat;
