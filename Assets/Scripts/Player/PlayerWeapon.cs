@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
+    [Header("UI")]
+    [SerializeField] private BagpackUI bagpackUI;
+
     [Header("Weapon Auto Setup")]
     [Tooltip("Navnet på det child, som bruges som våben-socket.")]
     [SerializeField]
@@ -59,10 +62,16 @@ public class PlayerWeapon : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        if (bagpackUI == null)
+        {
+            bagpackUI = FindObjectOfType<BagpackUI>();
+        }
         SetupMonsterLayerMask();
         SetupWeaponSocketTransform();
         SetupWeaponComponent();
         SetupWeaponAnimator();
+        
+        
     }
 
     /// <summary>
@@ -166,6 +175,39 @@ public class PlayerWeapon : MonoBehaviour
         {
             Debug.LogError("Weapon-komponenten på Player implementerer ikke IWeapon.", equippedWeaponComponent);
         }
+        UpdateWeaponUI();
+    }
+    private void UpdateWeaponUI()
+    {
+        if (bagpackUI == null)
+        {
+            Debug.LogWarning("UpdateWeaponUI kaldt, men bagpackUI er null.", this);
+            return;
+        }
+
+        // Hvis vi ingen våben har, skal ikonet slukkes
+        if (equippedWeaponComponent == null || EquippedIWeapon == null)
+        {
+            bagpackUI.SetHasWeapon(false);
+            Debug.Log("UpdateWeaponUI: intet våben – slår weapon-slot fra");
+            return;
+        }
+
+        // VÆLG VARIANT UD FRA NAVN (simpel løsning)
+        int variant = 0;
+        string weaponName = equippedWeaponComponent.name;   // fx "OneHandSword(Clone)"
+
+        if (weaponName.Contains("OneHandSword"))
+            variant = 0;
+        else if (weaponName.Contains("Axe"))
+            variant = 1;
+        else if (weaponName.Contains("Bow"))
+            variant = 2;
+
+        bagpackUI.SetHasWeapon(true);
+        bagpackUI.SetWeaponVariant(variant);
+
+        Debug.Log($"UpdateWeaponUI: satte weapon-slot til variant {variant} for {weaponName}");
     }
 
 
@@ -393,7 +435,7 @@ public class PlayerWeapon : MonoBehaviour
             Transform child = weaponSocketTransform.GetChild(i);
             Debug.Log($"EquipNewWeapon: Socket-child {i}: {child.name}", child);
         }
-   
+        UpdateWeaponUI();
     }
 
     

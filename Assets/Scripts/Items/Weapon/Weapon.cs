@@ -4,6 +4,9 @@ using static UnityEngine.GraphicsBuffer;
 public abstract class Weapon : Item, IWeapon
 {
     [SerializeField] private string _attackAnimOverride;
+    [Header("UI")]
+    [SerializeField] private int bagpackVariantIndex = 0;
+    public int BagpackVariantIndex => bagpackVariantIndex;
     [Header("Socket Offset")]
     public Vector3 socketLocalPosition;     
     public Vector3 socketLocalEulerAngles;  

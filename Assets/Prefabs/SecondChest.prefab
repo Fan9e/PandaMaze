@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 6200720779120667069}
   - component: {fileID: 8954530874279614647}
   - component: {fileID: -5815806389639031700}
-  - component: {fileID: 5422677869926035597}
+  - component: {fileID: 2651703267473339129}
   m_Layer: 0
   m_Name: SecondChest
   m_TagString: Untagged
@@ -169,7 +169,7 @@ Animator:
   m_GameObject: {fileID: 6200720779111275133}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1cc6cc20abc7a464a9dec49ee02361cf, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d01c647003fb1e544bf5806e53f66aa8, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -224,12 +224,12 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &5422677869926035597
+--- !u!114 &2651703267473339129
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,7 +244,7 @@ MonoBehaviour:
   isOpened: 0
   openDistance: 1.2
   frontDotThreshold: 0.5
-  cachedController: {fileID: 0}
+  cachedController: {fileID: 9100000, guid: d01c647003fb1e544bf5806e53f66aa8, type: 2}
   lootDelayAfterOpen: 0.4
   openTriggerName: Open
   twoHandSwordWeaponPrefab: {fileID: 6427651055359656695, guid: e702ff0bf6144c641a493836e4c7d726, type: 3}

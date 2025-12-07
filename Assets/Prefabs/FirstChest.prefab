@@ -169,7 +169,7 @@ Animator:
   m_GameObject: {fileID: 6200720779111275133}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1cc6cc20abc7a464a9dec49ee02361cf, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d01c647003fb1e544bf5806e53f66aa8, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -215,6 +215,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Scripts::FirstChest
   isOpened: 0
+  openDistance: 1.2
+  frontDotThreshold: 0.5
+  cachedController: {fileID: 9100000, guid: d01c647003fb1e544bf5806e53f66aa8, type: 2}
+  lootDelayAfterOpen: 1
+  openTriggerName: Open
+  axeWeaponPrefab: {fileID: 7141490892390037720, guid: 126c4d01fbd2f8d4c84e8908afada68f, type: 3}
+  keyId: 1
 --- !u!54 &-5815806389639031700
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -237,8 +244,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
