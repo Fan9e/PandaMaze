@@ -55,14 +55,52 @@ public class VoiceMovement : MonoBehaviour
         UpdateLastRecognizedUI(string.Empty);
     }
 
-    /// <summary>
-    /// Lytter efter genvejstast (M) for at skifte mikrofonen.
-    /// </summary>
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
             ToggleMicrophone();
+
+#if UNITY_EDITOR
+        // DEBUG: Simulér taleresultat i editoren
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            // svarer til: "Jeg har set en pirat"
+            NotifyResult("Jeg har set en pirat");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            // svarer til: "Pirater er seje"
+            NotifyResult("Pirater er seje");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            // svarer til: "Jeg kan godt lide pirater"
+            NotifyResult("Jeg kan godt lide pirater");
+        }
+#endif
     }
+
+
+
+
+
+
+
+    //=============================================================
+    // Den rigtige upDate
+    //=============================================================
+    /// <summary>
+    /// Lytter efter genvejstast (M) for at skifte mikrofonen.
+    /// </summary>
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.M))
+    //        ToggleMicrophone();
+    //}
+    //=============================================================
+    // Den rigtige upDate
+    //=============================================================
+
 
     #region Observer API
     /// <summary>

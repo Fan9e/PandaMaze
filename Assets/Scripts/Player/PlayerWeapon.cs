@@ -28,6 +28,12 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField]
     private Weapon startingWeaponPrefab;
 
+    [SerializeField] private int damage = 10;
+
+    [SerializeField]
+    private string attackAnimationName = "OneHandSword";
+    public string AttackAnimationName => attackAnimationName;
+
     /// <summary>
     /// Det aktuelt udstyrede våben, tilgået via IWeapon-interfacet.
     /// </summary>
@@ -51,6 +57,21 @@ public class PlayerWeapon : MonoBehaviour
 
 
     #region Unity Lifecycle
+
+    public void Attack(Monster monster)
+    {
+        if (monster == null) return;
+
+        Debug.Log($"WEAPON: Attack på {monster.name} for {damage} skade");
+
+        // Vælg én af disse to – afhængigt af hvad du vil:
+
+        // 1) Brug hele kamp-systemet (monster slår evt. tilbage på player):
+        // monster.Fight(damage);
+
+        // 2) Kun skade på monsteret (ingen modangreb):
+        monster.TakeDamage(damage);
+    }
 
     /// <summary>
     /// Initialiserer våbensystemet, når objektet bliver oprettet.
@@ -211,14 +232,14 @@ public class PlayerWeapon : MonoBehaviour
 
     #region Combat And Attacking
 
-    //TODO: ændre at man kan angribe med ordene, i stedet for med musen
-    /// <summary>
-    /// Håndterer spillerens input til angreb.
-    /// Tjekker om venstre museknap er trykket, om der allerede er et angreb i gang,
-    /// om der er et våben udstyret, og om der findes et monster inden for angrebsrækkevidde.
-    /// Hvis alle betingelser er opfyldt, startes et angreb mod det nærmeste monster.
-    /// </summary>
-    public void HandleAttackPlayerInput()
+//TODO: ændre at man kan angribe med ordene, i stedet for med musen
+/// <summary>
+/// Håndterer spillerens input til angreb.
+/// Tjekker om venstre museknap er trykket, om der allerede er et angreb i gang,
+/// om der er et våben udstyret, og om der findes et monster inden for angrebsrækkevidde.
+/// Hvis alle betingelser er opfyldt, startes et angreb mod det nærmeste monster.
+/// </summary>
+public void HandleAttackPlayerInput()
     {
         if (!Input.GetMouseButtonDown(0))
         {
@@ -382,6 +403,17 @@ public class PlayerWeapon : MonoBehaviour
         }
 
         SetupWeaponAnimator();
+    }
+
+    public void AttackSpecificMonster(Monster monster)
+    {
+        Debug.Log("AttackSpecificMonster KALDT på: " + monster.name);
+
+        if (monster == null) return;
+        if (isCurrentlyAttacking) return;
+        if (EquippedWeaponInterface == null) return;
+
+        StartCoroutine(AttackRoutineCoroutine(monster));
     }
 
 

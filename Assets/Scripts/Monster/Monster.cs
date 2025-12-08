@@ -84,6 +84,19 @@ public abstract class Monster : MonoBehaviour
 
         Debug.Log(" HP: " + CurrentHealth);
     }
+
+    public void TakeDamage(int damageAmount)
+    {
+        // Brug den eksisterende logik
+        ReceiveDamage(damageAmount);
+
+        if (ShouldDie())
+        {
+            OnDeath();
+        }
+    }
+
+
     /// <summary>
     /// Giver skade til spilleren baseret på dette monsters angrebsstyrke.
     /// </summary>
