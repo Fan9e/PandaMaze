@@ -4,11 +4,13 @@ public class ChestLoot : IChestLoot
 {
     private readonly Weapon weaponPrefab;
     private readonly int keyId;
+    private readonly int potionAmount;
 
-    public ChestLoot(Weapon weaponPrefab, int keyId)
+    public ChestLoot(Weapon weaponPrefab, int keyId, int potionAmount = 0)
     {
         this.weaponPrefab = weaponPrefab;
         this.keyId = keyId;
+        this.potionAmount = Mathf.Max(0, potionAmount);
     }
 
     public void GiveItemsToPlayer(PlayerInventory inventory, PlayerWeapon weapon)
@@ -30,11 +32,20 @@ public class ChestLoot : IChestLoot
                 Debug.LogWarning("ChestLoot: weaponPrefab er null.");
         }
 
-        // Giv nøgle
+        // Giv nøgle + potions
         if (inventory != null)
         {
-            Debug.Log("ChestLoot: Giver nøgle med id " + keyId);
-            inventory.AddKey(keyId);
+            if (keyId >= 0)
+            {
+                Debug.Log("ChestLoot: Giver nøgle med id " + keyId);
+                inventory.AddKey(keyId);
+            }
+
+            if (potionAmount > 0)
+            {
+                Debug.Log("ChestLoot: Giver " + potionAmount + " potions.");
+                inventory.AddPotions(potionAmount);
+            }
         }
         else
         {

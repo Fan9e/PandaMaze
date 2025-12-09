@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public abstract class Chest : MonoBehaviour
 {
+
     [Header("Chest settings")]
     public bool isOpened = false;
     public float openDistance = 1.2f;
@@ -23,19 +24,54 @@ public abstract class Chest : MonoBehaviour
     protected PlayerInventory playerInventory;
     protected PlayerWeapon playerWeapon;
 
+    [Header("UI")]
+    [Tooltip("Fælles UIMessageManager til alle kister.")]
+    [SerializeField] protected UIMessageManager uiMessageManager;
+
+
     private Animator animator;
 
     private void Awake()
     {
         InitializeAnimator();
         InitializePlayer();
+        InitializeUIMessageManager();
+    }
+
+    /// <summary>
+    /// Forsøger at finde og sætte <see cref="uiMessageManager"/>, hvis den ikke allerede
+    /// er sat i Inspector. Prøver først via singleton, derefter via FindObjectOfType.
+    /// </summary>
+    protected void InitializeUIMessageManager()
+    {
+        if (uiMessageManager != null)
+            return;
+
+        // Prøv først via singleton, hvis projektet bruger det.
+        if (UIMessageManager.Instance != null)
+        {
+            uiMessageManager = UIMessageManager.Instance;
+        }
+        else
+        {
+            // Fallback: søg i scenen.
+            uiMessageManager = FindObjectOfType<UIMessageManager>();
+        }
+
+        if (uiMessageManager == null)
+        {
+            Debug.LogWarning("Chest: kunne ikke finde UIMessageManager i scenen.", this);
+        }
     }
 
     private void Update()
     {
         TryOpenChest();
     }
-
+    protected virtual bool CanOpen()
+    {
+        return true;
+    }
     private void InitializeAnimator()
     {
         animator = GetComponentInChildren<Animator>();
@@ -78,10 +114,11 @@ public abstract class Chest : MonoBehaviour
         float dot = Vector3.Dot(transform.forward, dirToPlayer);
         if (dot <= frontDotThreshold) return;
 
-        // ⭐ start coroutine i stedet for at kalde OpenChest direkte
+        // 🔹 VIGTIGT: ekstra betingelser (fx “dragen skal være død”)
+        if (!CanOpen()) return;
+
         StartOpenChest();
     }
-
     protected abstract IChestLoot CreateLoot();
 
     private void StartOpenChest()

@@ -6,13 +6,16 @@ public class PlayerInventory : MonoBehaviour
 {
     /// <summary>Reference til UI’en, så vi kan opdatere nøgle-slot.</summary>
     [SerializeField] private BagpackUI bagpackUI;
-  
+
     /// <summary>
     /// Mængde af nøgler spilleren har samlet op.
     /// HashSet sikrer, at der ikke kan opstå dubletter.
     /// </summary>
-    private readonly HashSet<int> _collectedKeys = new HashSet<int>();
+    [SerializeField] private readonly HashSet<int> _collectedKeys = new HashSet<int>();
 
+    [SerializeField] private List<int> _debugKeys = new List<int>();
+    [Header("Potions")]
+    [SerializeField, Min(0)] private int potionCount = 0;
     private void Awake()
     {
         // Hvis du glemmer at sætte den i Inspector, prøver vi selv at finde den.
@@ -24,6 +27,8 @@ public class PlayerInventory : MonoBehaviour
                 Debug.LogWarning("PlayerInventory kunne ikke finde nogen BagpackUI i scenen.", this);
             }
         }
+        UpdateKeyUIAfterChange();
+        UpdatePotionUI();
     }
     /// <summary>
     /// Tilføjer en nøgle til spillerens inventory.
@@ -37,6 +42,8 @@ public class PlayerInventory : MonoBehaviour
 
         _collectedKeys.Add(keyId);
         UpdateKeyUIAfterChange(keyId);
+        _debugKeys.Clear();
+        _debugKeys.AddRange(_collectedKeys);  // kun for at vise dem i Inspector
         Debug.Log($"Spilleren har samlet nøgle {keyId}");
         return true;
     }
@@ -117,5 +124,50 @@ public class PlayerInventory : MonoBehaviour
         // og du bare vil fordele dem over 3 sprites:
         int variant = Mathf.Abs(keyId) % 3; // giver 0,1 eller 2
         return variant;
+    }
+
+
+
+    /// <summary>
+    /// Tilføjer potions til spilleren og opdaterer BagpackUI.
+    /// </summary>
+    public void AddPotions(int amount)
+    {
+        if (amount <= 0) return;
+
+        potionCount += amount;
+        UpdatePotionUI();
+        Debug.Log($"Spilleren har fået {amount} potion(s). Total: {potionCount}");
+    }
+
+    /// <summary>
+    /// Forsøger at bruge én potion. Returnerer true hvis det lykkedes.
+    /// </summary>
+    public bool TryConsumePotion()
+    {
+        if (potionCount <= 0)
+            return false;
+
+        potionCount--;
+        UpdatePotionUI();
+        Debug.Log($"Spilleren brugte en potion. Tilbage: {potionCount}");
+        return true;
+    }
+
+    /// <summary>
+    /// Læser nuværende antal potions.
+    /// </summary>
+    public int GetPotionCount() => potionCount;
+
+    /// <summary>
+    /// Opdaterer BagpackUI’s potion-slot og tekst via det eksisterende BagpackUI-API.
+    /// (Vi ændrer ikke BagpackUI-scriptet, vi bruger bare SetPotions).
+    /// </summary>
+    private void UpdatePotionUI()
+    {
+        if (bagpackUI == null)
+            return;
+
+        bagpackUI.SetPotions(potionCount);
     }
 }

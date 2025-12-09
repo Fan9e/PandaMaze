@@ -200,7 +200,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2.6, y: 4, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-5815806389639031700
 Rigidbody:
@@ -247,5 +247,8 @@ MonoBehaviour:
   cachedController: {fileID: 9100000, guid: d01c647003fb1e544bf5806e53f66aa8, type: 2}
   lootDelayAfterOpen: 0.4
   openTriggerName: Open
+  uiMessageManager: {fileID: 0}
   twoHandSwordWeaponPrefab: {fileID: 6427651055359656695, guid: e702ff0bf6144c641a493836e4c7d726, type: 3}
   keyId: 2
+  potionAmount: 1
+  cat: {fileID: 0}

@@ -4,22 +4,38 @@ using static UnityEngine.GraphicsBuffer;
 public abstract class Weapon : Item, IWeapon
 {
     [SerializeField] private string _attackAnimOverride;
-    [Header("UI")]
-    [SerializeField] private int bagpackVariantIndex = 0;
-    public int BagpackVariantIndex => bagpackVariantIndex;
+
     [Header("Socket Offset")]
-    public Vector3 socketLocalPosition;     
-    public Vector3 socketLocalEulerAngles;  
+    /// <summary>
+    /// Lokal position i forhold til weapon-socket (WeaponPivot).
+    /// </summary>
+    public Vector3 socketLocalPosition = Vector3.zero;
+
+    /// <summary>
+    /// Lokal rotation (Euler-angles) i forhold til weapon-socket.
+    /// </summary>
+    public Quaternion socketLocalEulerAngles = Quaternion.identity;
+
+    /// <summary>
+    /// Lokal skalering i forhold til weapon-socket.
+    /// </summary>
     public Vector3 socketLocalScale = Vector3.one;
     /// <summary>
-    /// Sætter hvordan våbnet skal sidde i WeaponPivot.
-    /// Kan override’s i konkrete våben (f.eks. Axe, Sword).
+    /// Konfigurerer transformen for det socket, som våbnet skal sidde i.
+    /// Base-implementationen bruger <see cref="socketLocalPosition"/>,
+    /// <see cref="socketLocalEulerAngles"/> og <see cref="socketLocalScale"/>.
+    /// Konkrete våben (f.eks. Axe, Sword) kan override denne metode,
+    /// hvis de har brug for en helt speciel opsætning.
     /// </summary>
-    public virtual void ConfigureSocketTransform(Transform t)
+    /// <param name="socketTransform">
+    /// Transformen for det socket-objekt (fx WeaponPivot på spilleren),
+    /// som våbnet skal placeres i.
+    /// </param>
+    public virtual void ConfigureSocketTransform(Transform socketTransform)
     {
-        t.localPosition = Vector3.zero;
-        t.localRotation = Quaternion.identity;
-        t.localScale = Vector3.one;
+        socketTransform.localPosition = socketLocalPosition;
+        socketTransform.localRotation = socketLocalEulerAngles;
+        socketTransform.localScale = socketLocalScale;
     }
     /// <summary>
     /// Returnerer navnet på angrebs-animationen.

@@ -200,7 +200,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2.6, y: 4, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-575662083212499575
 MonoBehaviour:
@@ -220,8 +220,11 @@ MonoBehaviour:
   cachedController: {fileID: 9100000, guid: d01c647003fb1e544bf5806e53f66aa8, type: 2}
   lootDelayAfterOpen: 1
   openTriggerName: Open
+  uiMessageManager: {fileID: 0}
   axeWeaponPrefab: {fileID: 7141490892390037720, guid: 126c4d01fbd2f8d4c84e8908afada68f, type: 3}
   keyId: 1
+  potionAmount: 1
+  dragon: {fileID: 0}
 --- !u!54 &-5815806389639031700
 Rigidbody:
   m_ObjectHideFlags: 0
