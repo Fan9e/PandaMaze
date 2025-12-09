@@ -2830,7 +2830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Scripts::MonsterSpeechCombat
   speechTaskUI: {fileID: 590602}
-  damagePerCorrect: 7
+  damagePerCorrect: 10
   sentences: []
 --- !u!135 &1355124205
 SphereCollider:

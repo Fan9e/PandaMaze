@@ -7,19 +7,19 @@ public class MonsterSpeechCombat : MonoBehaviour
     [Header("Opgaver")]
     [SerializeField] private SpeechTaskUI speechTaskUI;
 
-    [Tooltip("Fallback-skade hvis vi ikke finder et Weapon på spilleren.")]
+    [Tooltip("Skade pr. rigtig sætning (tale-skade).")]
     [SerializeField] private int damagePerCorrect = 7;
 
-    [Tooltip("Liste af sætninger i rækkefølge for denne kamp.")]
+    [Tooltip("Liste af sætninger i rækkefølge for denne kamp. Hvis tom bruges standard-sætningen fra SpeechTaskUI.")]
     [TextArea]
     [SerializeField] private string[] sentences;
 
     private Monster monster;
     private SphereCollider trigger;
-    private bool fightActive;
-    private bool waitingForResult;
-    private int currentSentenceIndex;
 
+    private bool fightActive;        // Er vi i kamp mod dette monster?
+    private bool waitingForResult;   // Venter vi på, at spilleren siger noget?
+    private int currentSentenceIndex;
 
     private void Awake()
     {
@@ -48,113 +48,115 @@ public class MonsterSpeechCombat : MonoBehaviour
             speechTaskUI.OnTaskFailed.RemoveListener(HandleTaskFail);
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
+        // Hvis vi allerede er i kamp, så ignorer
         if (fightActive) return;
 
+        // Kun reagere på Player
         if (!other.TryGetComponent<Player>(out var player))
             return;
 
         monster.Player = player;
         fightActive = true;
         waitingForResult = false;
-        currentSentenceIndex = 0;   // ← starter med første sætning
+        currentSentenceIndex = 0;
+
         StartRound();
     }
 
-    private int GetCurrentWeaponDamage()
-    {
-        // Hvis der ikke er sat en spiller på monsteret, brug fallback
-        if (monster.Player == null)
-            return damagePerCorrect;
-
-        // Prøv at finde et Weapon-script på spilleren eller dens children
-        Weapon weapon = monster.Player.GetComponentInChildren<Weapon>();
-
-        if (weapon != null)
-        {
-            // Brug våbnets egen skadeberegning
-            return weapon.CalculateDamage();
-        }
-
-        // Hvis vi ikke fandt noget våben, falder vi tilbage til det faste tal
-        return damagePerCorrect;
-    }
-
+    /// <summary>
+    /// Starter en ny runde (viser en ny opgave), hvis både monster og spiller er i live.
+    /// </summary>
     private void StartRound()
     {
+        // Hvis monster allerede er dødt → afslut kamp
         if (monster.CurrentHealth <= 0)
         {
             fightActive = false;
             return;
         }
 
-        // Allerede startet en opgave, venter på svar
+        // Hvis vi stadig venter på resultat fra mikrofonen → gør ingenting
         if (waitingForResult)
             return;
 
-        if (speechTaskUI != null && !speechTaskUI.IsActive)
+        if (speechTaskUI == null)
         {
-            waitingForResult = true;      // nu venter vi på et resultat
+            Debug.LogWarning("MonsterSpeechCombat: Mangler reference til SpeechTaskUI.");
+            fightActive = false;
+            return;
+        }
 
-            // Hvis vi har defineret sætninger til dette monster
-            if (sentences != null && sentences.Length > 0)
-            {
-                int index = Mathf.Clamp(currentSentenceIndex, 0, sentences.Length - 1);
-                string sentence = sentences[index];
-                speechTaskUI.ShowTask(sentence);
-            }
-            else
-            {
-                // fallback: brug standard-sætningen fra SpeechTaskUI
-                speechTaskUI.ShowTask();
-            }
+        waitingForResult = true;
+
+        // Har vi defineret specifikke sætninger til dette monster?
+        if (sentences != null && sentences.Length > 0)
+        {
+            // Hvis vi når forbi sidste sætning, starter vi forfra fra index 0
+            int index = currentSentenceIndex % sentences.Length;
+            string sentence = sentences[index];
+            speechTaskUI.ShowTask(sentence);
+        }
+        else
+        {
+            // Fallback: brug standard-sætningen fra SpeechTaskUI
+            speechTaskUI.ShowTask();
         }
     }
 
-
+    /// <summary>
+    /// Kaldes når spilleren har sagt den rigtige sætning.
+    /// </summary>
     private void HandleTaskSuccess()
     {
         if (!fightActive || !waitingForResult)
             return;
 
-        waitingForResult = false;   // resultat modtaget
+        waitingForResult = false;
 
-        int damage = GetCurrentWeaponDamage();
+        // Her vælger vi at bruge fast tale-skade, så det altid er "speech damage".
+        int damage = damagePerCorrect;
         monster.TakeDamageOnly(damage);
 
+        // Er monsteret dødt nu?
         if (monster.CurrentHealth <= 0)
         {
-            // Monster dødt → kamp slut
             fightActive = false;
             return;
         }
 
-        // Monster lever stadig → gå videre til næste opgave
+        // Monster lever stadig → gå videre til næste sætning / runde
         currentSentenceIndex++;
         StartRound();
     }
 
+    /// <summary>
+    /// Kaldes når spilleren siger noget forkert.
+    /// </summary>
     private void HandleTaskFail()
     {
         if (!fightActive || !waitingForResult)
             return;
 
-        waitingForResult = false;   // resultat modtaget
+        waitingForResult = false;
 
+        // Monsteret slår spilleren
         monster.AttackPlayerOnly();
 
+        // Hvis både spiller og monster stadig er i live → samme eller næste runde igen
         if (monster.Player != null &&
             monster.Player.CurrentHealth > 0 &&
             monster.CurrentHealth > 0)
         {
-            // Samme sætning igen, fordi vi IKKE har ændret currentSentenceIndex
+            // Vi ændrer IKKE currentSentenceIndex her → samme sætning igen
             StartRound();
         }
         else
         {
+            // En af dem døde → afslut kamp
             fightActive = false;
         }
     }
-
 }
