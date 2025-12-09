@@ -1,12 +1,12 @@
 # ninja log v5
-117	951	7870098237484209	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	b440525ce37a3d40
-953	1283	7870098240500280	C:/Users/fanni/Desktop/PandaMaze/PandaMaze/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3j371fa1/obj/arm64-v8a/libswappywrapper.so	45582a4b3d665b75
-37	3720	7870098264858339	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	33d8b69c8030afec
-63	3774	7870098265598255	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	9e6ba0006db6a159
-26	3819	7870098266050640	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	7a543392149e0597
-96	3838	7870098266222224	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	bd92494697583465
-2	3950	7870098267387769	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	ea7b33778780dd46
-49	4309	7870098270985700	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	b82ff9ac4900157b
-13	4474	7870098272609340	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	2c7151d243af7749
-82	4611	7870098274030854	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	446faa575638e9b
-4612	4786	7870098275833034	C:/Users/fanni/Desktop/PandaMaze/PandaMaze/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3j371fa1/obj/arm64-v8a/libgame.so	8846f7e4a7275d1d
+69	856	7870132194753023	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	b440525ce37a3d40
+857	1119	7870132197187152	C:/Users/fanni/Desktop/PandaMaze/PandaMaze/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3j371fa1/obj/arm64-v8a/libswappywrapper.so	45582a4b3d665b75
+31	11736	7870132303427484	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	33d8b69c8030afec
+24	11774	7870132303812160	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	9e6ba0006db6a159
+9	11807	7870132304112937	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	7a543392149e0597
+58	11823	7870132304308766	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	bd92494697583465
+16	11903	7870132305132654	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	ea7b33778780dd46
+40	12129	7870132307415080	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	b82ff9ac4900157b
+1	12221	7870132308314293	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	2c7151d243af7749
+49	12324	7870132309385342	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	446faa575638e9b
+12325	12474	7870132310927109	C:/Users/fanni/Desktop/PandaMaze/PandaMaze/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3j371fa1/obj/arm64-v8a/libgame.so	8846f7e4a7275d1d

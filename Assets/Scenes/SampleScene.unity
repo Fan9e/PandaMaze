@@ -181,7 +181,7 @@ MonoBehaviour:
   OnTaskCompleted:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 65e2619986abeb24188af7c497ef9f46, type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
         m_Mode: 1
@@ -1998,10 +1998,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5974982831241363483, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1133240669}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
 --- !u!4 &755498754 stripped
 Transform:
@@ -2269,11 +2266,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4468069828743135862, guid: 6a6c11cf534ba114784af59fa521764d, type: 3}
   m_PrefabInstance: {fileID: 929192916}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &983637666 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4694859059881543036, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
-  m_PrefabInstance: {fileID: 8585253005820049716}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1113946486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,35 +2300,6 @@ Transform:
   - {fileID: 1768621619}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1133240668 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5974982831241363483, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
-  m_PrefabInstance: {fileID: 755498753}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1133240669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1133240668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e2619986abeb24188af7c497ef9f46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::SpeechTaskUI
-  panel: {fileID: 0}
-  instructionText: {fileID: 0}
-  sentenceText: {fileID: 0}
-  feedbackText: {fileID: 0}
-  sentenceToSay: Jeg har set en pirat
-  voiceMovement: {fileID: 0}
-  OnTaskCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTaskFailed:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1202676292
 GameObject:
   m_ObjectHideFlags: 0
@@ -2848,39 +2811,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 482087385325797976, guid: 920c8476d627b764283b67da86970efd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1355124204}
-    - targetCorrespondingSourceObject: {fileID: 482087385325797976, guid: 920c8476d627b764283b67da86970efd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1355124203}
   m_SourcePrefab: {fileID: 100100000, guid: 920c8476d627b764283b67da86970efd, type: 3}
 --- !u!4 &1355124202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5906427983753372136, guid: 920c8476d627b764283b67da86970efd, type: 3}
   m_PrefabInstance: {fileID: 1355124201}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1355124203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866599091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e2619986abeb24188af7c497ef9f46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::SpeechTaskUI
-  panel: {fileID: 590600}
-  instructionText: {fileID: 1202676294}
-  sentenceText: {fileID: 305851904}
-  feedbackText: {fileID: 1766603170}
-  sentenceToSay: Jeg har set en pirat
-  voiceMovement: {fileID: 0}
-  OnTaskCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTaskFailed:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1355124204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2893,7 +2829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed28cc12c28aa7499aad637e7a1f59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Scripts::MonsterSpeechCombat
-  speechTaskUI: {fileID: 0}
+  speechTaskUI: {fileID: 590602}
   damagePerCorrect: 7
   sentences: []
 --- !u!135 &1355124205
@@ -4055,6 +3991,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 590601}
   - {fileID: 278015004}
   - {fileID: 1783047582}
   - {fileID: 2011718068}
@@ -4063,7 +4000,6 @@ RectTransform:
   - {fileID: 587005626}
   - {fileID: 220314357}
   - {fileID: 5515237478259176594}
-  - {fileID: 590601}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5199,40 +5135,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4694859059881543036, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8585253005820049718}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
 --- !u!4 &8585253005820049717 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1596283839288419288, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
   m_PrefabInstance: {fileID: 8585253005820049716}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8585253005820049718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 983637666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e2619986abeb24188af7c497ef9f46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::SpeechTaskUI
-  panel: {fileID: 0}
-  instructionText: {fileID: 0}
-  sentenceText: {fileID: 0}
-  feedbackText: {fileID: 0}
-  sentenceToSay: Jeg har set en pirat
-  voiceMovement: {fileID: 0}
-  OnTaskCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTaskFailed:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!224 &8967289838624301428
 RectTransform:
   m_ObjectHideFlags: 0
