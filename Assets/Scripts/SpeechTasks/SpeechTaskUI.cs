@@ -35,7 +35,8 @@ public class SpeechTaskUI : MonoBehaviour
 
         public void OnPartialResult(string partial)
         {
-            owner.feedbackText.text = partial;
+            if (owner.feedbackText != null)
+                owner.feedbackText.text = partial;
         }
 
         public void OnResult(string result)
@@ -60,11 +61,17 @@ public class SpeechTaskUI : MonoBehaviour
     private void Awake()
     {
         if (panel == null) panel = gameObject;
-        instructionText.text = "Sig denne sætning:";
+
+        if (instructionText != null)
+            instructionText.text = "Sig denne sætning:";
+
         SetupSentence(sentenceToSay);
         panel.SetActive(false);
     }
 
+    /// <summary>
+    /// Almindelig opgave: vis sætningen som den er, og bed spilleren gentage den.
+    /// </summary>
     public void ShowTask(string newSentence = null)
     {
         if (!string.IsNullOrEmpty(newSentence))
@@ -72,13 +79,50 @@ public class SpeechTaskUI : MonoBehaviour
             SetupSentence(newSentence);
         }
 
-        feedbackText.text = "";
+        if (instructionText != null)
+            instructionText.text = "Sig denne sætning:";
+
+        if (feedbackText != null)
+            feedbackText.text = "";
+
         panel.SetActive(true);
         StartListening();
     }
 
-    // Kan stadig bruges af en knap, hvis du vil,
-    // men er ikke nødvendig mere når kampen starter automatisk
+    /// <summary>
+    /// Opgave hvor ordene i sætningen er blandet, og spilleren skal sige sætningen korrekt.
+    /// </summary>
+    public void ShowScrambledTask(string correctSentence)
+    {
+        if (string.IsNullOrWhiteSpace(correctSentence))
+        {
+            // Fallback til normal opgave, hvis der kom noget mærkeligt ind.
+            ShowTask();
+            return;
+        }
+
+        // Brug den korrekte sætning som "target" for sammenligning
+        SetupSentence(correctSentence);
+
+        // Bland ordene til visning
+        string scrambled = ScrambleWords(correctSentence);
+
+        if (instructionText != null)
+            instructionText.text = "Sæt ordene i rigtig rækkefølge og sig sætningen:";
+
+        if (sentenceText != null)
+            sentenceText.text = scrambled;
+
+        if (feedbackText != null)
+            feedbackText.text = "";
+
+        panel.SetActive(true);
+        StartListening();
+    }
+
+    /// <summary>
+    /// Kan stadig bruges af en knap, hvis du vil.
+    /// </summary>
     public void StartTask()
     {
         ShowTask();
@@ -87,7 +131,10 @@ public class SpeechTaskUI : MonoBehaviour
     private void SetupSentence(string text)
     {
         sentenceToSay = text;
-        sentenceText.text = "\"" + sentenceToSay + "\"";
+
+        if (sentenceText != null)
+            sentenceText.text = "\"" + sentenceToSay + "\"";
+
         normalizedTarget = Normalize(sentenceToSay);
     }
 
@@ -100,16 +147,20 @@ public class SpeechTaskUI : MonoBehaviour
 
         if (normalizedHeard == normalizedTarget)
         {
-            feedbackText.text = "Rigtigt! 🐼";
+            if (feedbackText != null)
+                feedbackText.text = "Rigtigt! 🐼";
+
             OnTaskCompleted?.Invoke();
-            panel.SetActive(false);
+            // VIGTIGT: vi skjuler IKKE panelet her,
+            // så kamp-scriptet kan vise næste opgave på samme panel.
         }
         else
         {
-            feedbackText.text = "Jeg hørte: \"" + recognizedText + "\"";
+            if (feedbackText != null)
+                feedbackText.text = "Jeg hørte: \"" + recognizedText + "\"";
+
             OnTaskFailed?.Invoke();
             // Panelet bliver stående, så man kan se hvad der blev hørt.
-            // Næste forsøg startes af kamp-scriptet.
         }
     }
 
@@ -124,6 +175,29 @@ public class SpeechTaskUI : MonoBehaviour
              .Replace("!", "")
              .Replace("?", "");
         return s;
+    }
+
+    /// <summary>
+    /// Blander rækkefølgen af ordene i en sætning.
+    /// </summary>
+    private string ScrambleWords(string sentence)
+    {
+        if (string.IsNullOrWhiteSpace(sentence))
+            return sentence;
+
+        string[] words = sentence.Split(' ');
+
+        if (words.Length <= 1)
+            return sentence;
+
+        // Fisher-Yates shuffle
+        for (int i = 0; i < words.Length; i++)
+        {
+            int rand = Random.Range(0, words.Length);
+            (words[i], words[rand]) = (words[rand], words[i]);
+        }
+
+        return string.Join(" ", words);
     }
 
     private void StartListening()
@@ -155,9 +229,6 @@ public class SpeechTaskUI : MonoBehaviour
             feedbackText.text = "Tænd mikrofonen (Mic-knappen) for at sige sætningen.";
         }
     }
-
-
-
 
     private void StopListening()
     {

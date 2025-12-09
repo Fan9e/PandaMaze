@@ -10,14 +10,14 @@ public class CatSpeechCombat : MonoBehaviour
     [Tooltip("Skade pr. rigtig sætning (tale-skade).")]
     [SerializeField] private int damagePerCorrect = 7;
 
-    [Tooltip("Liste af sætninger i rækkefølge for denne kamp.")]
+    [Tooltip("Liste af rigtige sætninger for denne kat-kamp.")]
     [TextArea]
     [SerializeField] private string[] sentences;
 
     private Monster monster;
     private SphereCollider trigger;
 
-    private bool fightActive;        // Er vi i kamp mod dette monster?
+    private bool fightActive;        // Er vi i kamp mod denne kat?
     private bool waitingForResult;   // Venter vi på, at spilleren siger noget?
     private int currentSentenceIndex;
 
@@ -67,11 +67,11 @@ public class CatSpeechCombat : MonoBehaviour
     }
 
     /// <summary>
-    /// Starter en ny runde (viser en ny opgave), hvis både monster og spiller er i live.
+    /// Starter en ny runde (viser en ny opgave), hvis både kat og spiller er i live.
     /// </summary>
     private void StartRound()
     {
-        // Hvis monster allerede er dødt → afslut kamp
+        // Hvis monster/kat allerede er død → afslut kamp
         if (monster.CurrentHealth <= 0)
         {
             fightActive = false;
@@ -84,24 +84,26 @@ public class CatSpeechCombat : MonoBehaviour
 
         if (speechTaskUI == null)
         {
-            Debug.LogWarning("MonsterSpeechCombat: Mangler reference til SpeechTaskUI.");
+            Debug.LogWarning("CatSpeechCombat: Mangler reference til SpeechTaskUI.");
             fightActive = false;
             return;
         }
 
         waitingForResult = true;
 
-        // Hvis der er defineret sætninger til dette monster
+        // Hvis der er defineret sætninger til denne kat
         if (sentences != null && sentences.Length > 0)
         {
-            // Gå sekventielt igennem listen, og wrap rundt når vi når slutningen
-            int index = Random.Range(0, sentences.Length);
+            // Gå sekventielt igennem listen og wrap rundt
+            int index = currentSentenceIndex % sentences.Length;
             string sentence = sentences[index];
-            speechTaskUI.ShowTask(sentence);
+
+            // Brug SCRAMBLED-opgave:
+            speechTaskUI.ShowScrambledTask(sentence);
         }
         else
         {
-            // Fallback: brug standard-sætningen fra SpeechTaskUI
+            // Fallback: brug normal opgave
             speechTaskUI.ShowTask();
         }
     }
@@ -116,17 +118,17 @@ public class CatSpeechCombat : MonoBehaviour
 
         waitingForResult = false;
 
-        // Brug fast tale-skade
+        // Brug tale-skade
         monster.TakeDamageOnly(damagePerCorrect);
 
-        // Er monsteret dødt nu?
+        // Er katten død nu?
         if (monster.CurrentHealth <= 0)
         {
             fightActive = false;
             return;
         }
 
-        // Monster lever stadig → gå videre til næste sætning
+        // Katten lever stadig → gå videre til næste sætning
         currentSentenceIndex++;
         StartRound();
     }
@@ -141,7 +143,7 @@ public class CatSpeechCombat : MonoBehaviour
 
         waitingForResult = false;
 
-        // Monsteret slår spilleren
+        // Katten angriber spilleren
         monster.AttackPlayerOnly();
 
         // Hvis begge er i live → prøv samme sætning igen
