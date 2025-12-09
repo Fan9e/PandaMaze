@@ -10,7 +10,7 @@ public class MonsterSpeechCombat : MonoBehaviour
     [Tooltip("Skade pr. rigtig sætning (tale-skade).")]
     [SerializeField] private int damagePerCorrect = 7;
 
-    [Tooltip("Liste af sætninger i rækkefølge for denne kamp. Hvis tom bruges standard-sætningen fra SpeechTaskUI.")]
+    [Tooltip("Liste af sætninger i rækkefølge for denne kamp.")]
     [TextArea]
     [SerializeField] private string[] sentences;
 
@@ -91,11 +91,11 @@ public class MonsterSpeechCombat : MonoBehaviour
 
         waitingForResult = true;
 
-        // Har vi defineret specifikke sætninger til dette monster?
+        // Hvis der er defineret sætninger til dette monster
         if (sentences != null && sentences.Length > 0)
         {
-            // Hvis vi når forbi sidste sætning, starter vi forfra fra index 0
-            int index = currentSentenceIndex % sentences.Length;
+            // Gå sekventielt igennem listen, og wrap rundt når vi når slutningen
+            int index = Random.Range(0, sentences.Length);
             string sentence = sentences[index];
             speechTaskUI.ShowTask(sentence);
         }
@@ -116,9 +116,8 @@ public class MonsterSpeechCombat : MonoBehaviour
 
         waitingForResult = false;
 
-        // Her vælger vi at bruge fast tale-skade, så det altid er "speech damage".
-        int damage = damagePerCorrect;
-        monster.TakeDamageOnly(damage);
+        // Brug fast tale-skade
+        monster.TakeDamageOnly(damagePerCorrect);
 
         // Er monsteret dødt nu?
         if (monster.CurrentHealth <= 0)
@@ -127,7 +126,7 @@ public class MonsterSpeechCombat : MonoBehaviour
             return;
         }
 
-        // Monster lever stadig → gå videre til næste sætning / runde
+        // Monster lever stadig → gå videre til næste sætning
         currentSentenceIndex++;
         StartRound();
     }
@@ -145,17 +144,15 @@ public class MonsterSpeechCombat : MonoBehaviour
         // Monsteret slår spilleren
         monster.AttackPlayerOnly();
 
-        // Hvis både spiller og monster stadig er i live → samme eller næste runde igen
+        // Hvis begge er i live → prøv samme sætning igen
         if (monster.Player != null &&
             monster.Player.CurrentHealth > 0 &&
             monster.CurrentHealth > 0)
         {
-            // Vi ændrer IKKE currentSentenceIndex her → samme sætning igen
-            StartRound();
+            StartRound(); // samme currentSentenceIndex → samme sætning igen
         }
         else
         {
-            // En af dem døde → afslut kamp
             fightActive = false;
         }
     }

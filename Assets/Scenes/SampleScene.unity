@@ -2831,7 +2831,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::MonsterSpeechCombat
   speechTaskUI: {fileID: 590602}
   damagePerCorrect: 10
-  sentences: []
+  sentences:
+  - Jeg har set en pirat
+  - Pirater er seje
+  - Jeg kan godt lide pirater
+  - "Pirater sejler p\xE5 havet"
+  - "Jeg har m\xF8dt en pirat"
 --- !u!135 &1355124205
 SphereCollider:
   m_ObjectHideFlags: 0
