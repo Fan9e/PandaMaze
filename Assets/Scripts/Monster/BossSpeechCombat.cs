@@ -8,7 +8,7 @@ public class BossSpeechCombat : MonoBehaviour
     [SerializeField] private SpeechTaskUI speechTaskUI;
 
     [Tooltip("Skade pr. rigtig sætning (tale-skade).")]
-    [SerializeField] private int damagePerCorrect = 7;
+    [SerializeField] private int damagePerCorrect = 20;
 
     [Tooltip("Liste af rigtige sætninger for denne kat-kamp.")]
     [TextArea]
@@ -108,9 +108,31 @@ public class BossSpeechCombat : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Kaldes når spilleren har sagt den rigtige sætning.
-    /// </summary>
+    ///// <summary>
+    ///// Kaldes når spilleren har sagt den rigtige sætning.
+    ///// </summary>
+    //private void HandleTaskSuccess()
+    //{
+    //    if (!fightActive || !waitingForResult)
+    //        return;
+
+    //    waitingForResult = false;
+
+    //    // Brug tale-skade
+    //    monster.TakeDamageOnly(damagePerCorrect);
+
+    //    // Er katten død nu?
+    //    if (monster.CurrentHealth <= 0)
+    //    {
+    //        fightActive = false;
+    //        return;
+    //    }
+
+    //    // Katten lever stadig → gå videre til næste sætning
+    //    currentSentenceIndex++;
+    //    StartRound();
+    //}
+
     private void HandleTaskSuccess()
     {
         if (!fightActive || !waitingForResult)
@@ -118,17 +140,25 @@ public class BossSpeechCombat : MonoBehaviour
 
         waitingForResult = false;
 
-        // Brug tale-skade
+        // Sværd-animation
+        if (monster.Player != null)
+        {
+            var playerWeapon = monster.Player.GetComponentInChildren<PlayerWeapon>();
+            if (playerWeapon != null)
+            {
+                playerWeapon.PlayAttackAnimationOnly();
+            }
+        }
+
+        // Tale-skade
         monster.TakeDamageOnly(damagePerCorrect);
 
-        // Er katten død nu?
         if (monster.CurrentHealth <= 0)
         {
             fightActive = false;
             return;
         }
 
-        // Katten lever stadig → gå videre til næste sætning
         currentSentenceIndex++;
         StartRound();
     }
@@ -158,4 +188,6 @@ public class BossSpeechCombat : MonoBehaviour
             fightActive = false;
         }
     }
+
+    
 }

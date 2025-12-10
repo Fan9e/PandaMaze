@@ -384,6 +384,35 @@ public class PlayerWeapon : MonoBehaviour
         SetupWeaponAnimator();
     }
 
+    /// <summary>
+    /// Spiller kun våbnets angrebsanimation uden at beregne skade.
+    /// Kan bruges af tale-opgaver, så sværdet svinger, når spilleren siger sætningen rigtigt.
+    /// </summary>
+    public void PlayAttackAnimationOnly()
+    {
+        if (weaponAnimator == null)
+            return;
+
+        if (isCurrentlyAttacking)
+            return;
+
+        StartCoroutine(PlayAttackAnimationOnlyCoroutine());
+    }
+
+    /// <summary>
+    /// Coroutine der spiller angrebsanimationen og venter, til den er færdig,
+    /// uden at kalde våbnets Attack()-logik.
+    /// </summary>
+    private IEnumerator PlayAttackAnimationOnlyCoroutine()
+    {
+        isCurrentlyAttacking = true;
+
+        // Genbrug den eksisterende animations-coroutine
+        yield return PlayAttackAnimationCoroutine();
+
+        isCurrentlyAttacking = false;
+    }
+
 
     #endregion
 }

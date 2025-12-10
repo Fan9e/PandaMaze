@@ -2,13 +2,13 @@
 
 [RequireComponent(typeof(Monster))]
 [RequireComponent(typeof(SphereCollider))]
-public class MonsterSpeechCombat : MonoBehaviour
+public class DragonSpeechCombat : MonoBehaviour
 {
-    [Header("Opgaver")]
+    [Header("Opgaver (Dragon)")]
     [SerializeField] private SpeechTaskUI speechTaskUI;
 
     [Tooltip("Skade pr. rigtig sætning (tale-skade).")]
-    [SerializeField] private int damagePerCorrect = 7;
+    [SerializeField] private int damagePerCorrect = 10;
 
     [Tooltip("Liste af sætninger i rækkefølge for denne kamp.")]
     [TextArea]
@@ -106,9 +106,31 @@ public class MonsterSpeechCombat : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Kaldes når spilleren har sagt den rigtige sætning.
-    /// </summary>
+    ///// <summary>
+    ///// Kaldes når spilleren har sagt den rigtige sætning.
+    ///// </summary>
+    //private void HandleTaskSuccess()
+    //{
+    //    if (!fightActive || !waitingForResult)
+    //        return;
+
+    //    waitingForResult = false;
+
+    //    // Brug fast tale-skade
+    //    monster.TakeDamageOnly(damagePerCorrect);
+
+    //    // Er monsteret dødt nu?
+    //    if (monster.CurrentHealth <= 0)
+    //    {
+    //        fightActive = false;
+    //        return;
+    //    }
+
+    //    // Monster lever stadig → gå videre til næste sætning
+    //    currentSentenceIndex++;
+    //    StartRound();
+    //}
+
     private void HandleTaskSuccess()
     {
         if (!fightActive || !waitingForResult)
@@ -116,17 +138,27 @@ public class MonsterSpeechCombat : MonoBehaviour
 
         waitingForResult = false;
 
-        // Brug fast tale-skade
+        // 1) Prøv at spille sværd-animation på spilleren
+        if (monster.Player != null)
+        {
+            var playerWeapon = monster.Player.GetComponentInChildren<PlayerWeapon>();
+            if (playerWeapon != null)
+            {
+                playerWeapon.PlayAttackAnimationOnly();
+            }
+        }
+
+        // 2) Tale-skade som før
         monster.TakeDamageOnly(damagePerCorrect);
 
-        // Er monsteret dødt nu?
+        // 3) Tjek om monsteret døde
         if (monster.CurrentHealth <= 0)
         {
             fightActive = false;
             return;
         }
 
-        // Monster lever stadig → gå videre til næste sætning
+        // 4) Næste opgave
         currentSentenceIndex++;
         StartRound();
     }
@@ -156,4 +188,5 @@ public class MonsterSpeechCombat : MonoBehaviour
             fightActive = false;
         }
     }
+
 }
