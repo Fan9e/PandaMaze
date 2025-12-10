@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -90,7 +91,7 @@ public class SpeechTaskUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Opgave hvor ordene i sætningen er blandet, og spilleren skal sige sætningen korrekt.
+    /// Opgave hvor ordene i sætningen er helt blandet.
     /// </summary>
     public void ShowScrambledTask(string correctSentence)
     {
@@ -109,6 +110,37 @@ public class SpeechTaskUI : MonoBehaviour
 
         if (instructionText != null)
             instructionText.text = "Sæt ordene i rigtig rækkefølge og sig sætningen:";
+
+        if (sentenceText != null)
+            sentenceText.text = scrambled;
+
+        if (feedbackText != null)
+            feedbackText.text = "";
+
+        panel.SetActive(true);
+        StartListening();
+    }
+
+    /// <summary>
+    /// Opgave hvor kun ét ord flyttes til en forkert position.
+    /// </summary>
+    public void ShowOneWordScrambledTask(string correctSentence)
+    {
+        if (string.IsNullOrWhiteSpace(correctSentence))
+        {
+            // Fallback til normal opgave.
+            ShowTask();
+            return;
+        }
+
+        // Korrekt sætning bruges som target
+        SetupSentence(correctSentence);
+
+        // Kun ét ord flyttes
+        string scrambled = ScrambleOneWord(correctSentence);
+
+        if (instructionText != null)
+            instructionText.text = "Ét ord står forkert. Sig sætningen korrekt:";
 
         if (sentenceText != null)
             sentenceText.text = scrambled;
@@ -151,7 +183,7 @@ public class SpeechTaskUI : MonoBehaviour
                 feedbackText.text = "Rigtigt! 🐼";
 
             OnTaskCompleted?.Invoke();
-            // VIGTIGT: vi skjuler IKKE panelet her,
+            // Vi skjuler IKKE panelet her,
             // så kamp-scriptet kan vise næste opgave på samme panel.
         }
         else
@@ -178,7 +210,7 @@ public class SpeechTaskUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Blander rækkefølgen af ordene i en sætning.
+    /// Blander rækkefølgen af alle ord i en sætning.
     /// </summary>
     private string ScrambleWords(string sentence)
     {
@@ -198,6 +230,43 @@ public class SpeechTaskUI : MonoBehaviour
         }
 
         return string.Join(" ", words);
+    }
+
+    /// <summary>
+    /// Flytter præcis ét ord til en anden position. De andre ord bevarer deres indbyrdes rækkefølge.
+    /// </summary>
+    private string ScrambleOneWord(string sentence)
+    {
+        if (string.IsNullOrWhiteSpace(sentence))
+            return sentence;
+
+        string[] words = sentence.Split(' ');
+
+        if (words.Length <= 1)
+            return sentence;
+
+        var list = new List<string>(words);
+
+        // Vælg ét ord at flytte
+        int fromIndex = Random.Range(0, list.Count);
+        int toIndex = fromIndex;
+
+        // Sørg for at vi vælger en anden position
+        while (toIndex == fromIndex)
+        {
+            toIndex = Random.Range(0, list.Count);
+        }
+
+        string wordToMove = list[fromIndex];
+        list.RemoveAt(fromIndex);
+
+        // Hvis vi fjerner før målet, rykker indekserne én ned
+        if (toIndex > fromIndex)
+            toIndex--;
+
+        list.Insert(toIndex, wordToMove);
+
+        return string.Join(" ", list);
     }
 
     private void StartListening()

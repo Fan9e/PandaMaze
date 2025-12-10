@@ -98,8 +98,8 @@ public class CatSpeechCombat : MonoBehaviour
             int index = currentSentenceIndex % sentences.Length;
             string sentence = sentences[index];
 
-            // Brug SCRAMBLED-opgave:
-            speechTaskUI.ShowScrambledTask(sentence);
+            // BRUG "ÉT ORD FORKERT"-opgave:
+            speechTaskUI.ShowOneWordScrambledTask(sentence);
         }
         else
         {
