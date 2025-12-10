@@ -279,35 +279,58 @@ public class VoiceMovement : MonoBehaviour
         NotifyPartial(partial);
 	}
 
-	/// <summary>
-	/// Modtager endeligt resultat eller fejl fra talegenkendelsen.
-	/// </summary>
-	/// <param name="spokenText">Den genkendte tekst (kan være fejltekst hvis errorCode != 0).</param>
-	/// <param name="errorCode">Valgfri fejlkode; null eller 0 betyder succes.</param>
-	public void OnResultReceived(string spokenText, int? errorCode)
-	{
-		if (errorCode.HasValue && errorCode.Value != 0)
-		{
-			Debug.LogWarning($"VoiceMovement: Speech returned error code {errorCode.Value}");
+    ///// <summary>
+    ///// Modtager endeligt resultat eller fejl fra talegenkendelsen.
+    ///// </summary>
+    ///// <param name="spokenText">Den genkendte tekst (kan være fejltekst hvis errorCode != 0).</param>
+    ///// <param name="errorCode">Valgfri fejlkode; null eller 0 betyder succes.</param>
+    //public void OnResultReceived(string spokenText, int? errorCode)
+    //{
+    //	if (errorCode.HasValue && errorCode.Value != 0)
+    //	{
+    //		Debug.LogWarning($"VoiceMovement: Speech returned error code {errorCode.Value}");
+    //           var errorText = $"Error {errorCode.Value}";
+    //           UpdateLastRecognizedUI(errorText);
+    //           NotifyResult(errorText);
+    //           StopMicrophone();
+    //		return;
+    //	}
+
+    //	Debug.Log($"VoiceMovement result: {spokenText}");
+    //       UpdateLastRecognizedUI(spokenText);
+    //       NotifyResult(spokenText);
+
+    //       StopMicrophone();
+    //}
+
+    public void OnResultReceived(string spokenText, int? errorCode)
+    {
+        if (errorCode.HasValue && errorCode.Value != 0)
+        {
+            Debug.LogWarning($"VoiceMovement: Speech returned error code {errorCode.Value}");
             var errorText = $"Error {errorCode.Value}";
             UpdateLastRecognizedUI(errorText);
-            NotifyResult(errorText);
-            StopMicrophone();
-			return;
-		}
 
-		Debug.Log($"VoiceMovement result: {spokenText}");
+            // VIGTIGT:
+            // Vi sender IKKE fejl-teksten videre som resultat.
+            // Så SpeechTaskUI får ingen "forkert sætning" – barnet bliver ikke straffet.
+            StopMicrophone();
+            return;
+        }
+
+        Debug.Log($"VoiceMovement result: {spokenText}");
         UpdateLastRecognizedUI(spokenText);
         NotifyResult(spokenText);
 
         StopMicrophone();
-	}
+    }
 
-	/// <summary>
-	/// Kaldes løbende med ændringer i mikrofonens lydniveau.
-	/// </summary>
-	/// <param name="level">Aktuelt lydniveau.</param>
-	public void OnVoiceLevelChanged(float level)
+
+    /// <summary>
+    /// Kaldes løbende med ændringer i mikrofonens lydniveau.
+    /// </summary>
+    /// <param name="level">Aktuelt lydniveau.</param>
+    public void OnVoiceLevelChanged(float level)
     {
         NotifyVoiceLevel(level);
     }
