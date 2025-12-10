@@ -14,10 +14,10 @@ public class OneHandSwordTest
     {
         var gameObject = new GameObject();
         var oneHandSword = gameObject.AddComponent<OneHandSword>();
-       
+
         int damage = oneHandSword.CalculateDamage();
 
-       
+
         Assert.AreEqual(10, damage);
     }
     /// <summary>
@@ -67,9 +67,9 @@ public class OneHandSwordTest
     /// </summary>
     [Test]
     public void Attack_DoesNotDamage_WhenNotAttacking()
-    { 
+    {
         var OneHandSwordGameObject = new GameObject("OneHandSword");
-        var OneHandSword = OneHandSwordGameObject.AddComponent<OneHandSword>(); 
+        var OneHandSword = OneHandSwordGameObject.AddComponent<OneHandSword>();
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
@@ -92,7 +92,7 @@ public class OneHandSwordTest
     {
         var OneHandSwordGameObject = new GameObject("OneHandSword");
         var OneHandSword = OneHandSwordGameObject.AddComponent<OneHandSword>();
-        
+
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();

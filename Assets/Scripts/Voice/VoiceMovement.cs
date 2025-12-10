@@ -279,11 +279,13 @@ public class VoiceMovement : MonoBehaviour
         NotifyPartial(partial);
 	}
 
-    ///// <summary>
-    ///// Modtager endeligt resultat eller fejl fra talegenkendelsen.
-    ///// </summary>
-    ///// <param name="spokenText">Den genkendte tekst (kan være fejltekst hvis errorCode != 0).</param>
-    ///// <param name="errorCode">Valgfri fejlkode; null eller 0 betyder succes.</param>
+    /// <summary>
+    /// Modtager det endelige resultat fra talegenkendelsen.
+    /// Hvis der opstår en fejl, vises en fejlbesked og resultatet sendes ikke videre,
+    /// så spilleren ikke bliver straffet. 
+    /// Hvis resultatet er gyldigt, sendes det videre til observers.
+    /// Mikrofonen stoppes altid efter et resultat.
+    /// </summary>
     public void OnResultReceived(string spokenText, int? errorCode)
     {
         if (errorCode.HasValue && errorCode.Value != 0)

@@ -219,4 +219,118 @@ public class PlayerWeaponTests
 
         Object.DestroyImmediate(tempGO);
     }
+
+    /// <summary>
+    /// Verificerer at PlayAttackAnimationOnly starter animation-coroutinen når en Animator og våben er til stede,
+    /// og at isCurrentlyAttacking er true mens animationen kører og false efter completion.
+    /// </summary>
+    [UnityTest]
+    public IEnumerator PlayAttackAnimationOnly_StartsAndCompletes_WhenAnimatorAndWeaponPresent()
+    {
+        
+        var animatorGO = new GameObject("TestAnimator");
+        var animator = animatorGO.AddComponent<Animator>();
+
+        var animatorField = typeof(PlayerWeapon).GetField(
+            "weaponAnimator",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
+        );
+        animatorField.SetValue(playerWeapon, animator);
+
+        var socketTransform = playerWeapon.transform.Find("WeaponPivot");
+        var weaponGO = new GameObject("TestWeapon");
+        weaponGO.transform.SetParent(socketTransform, false);
+        var concreteWeapon = weaponGO.AddComponent<OneHandSword>();
+
+        var equippedField = typeof(PlayerWeapon).GetField(
+            "equippedWeaponComponent",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
+        );
+        equippedField.SetValue(playerWeapon, concreteWeapon);
+
+        
+        var setupMethod = typeof(PlayerWeapon).GetMethod(
+            "SetupWeaponComponent",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
+        );
+        setupMethod.Invoke(playerWeapon, null);
+
+        var isAttField = typeof(PlayerWeapon).GetField(
+            "isCurrentlyAttacking",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
+        );
+        isAttField.SetValue(playerWeapon, false);
+        
+        playerWeapon.PlayAttackAnimationOnly();
+        
+        yield return null;
+        
+        Assert.IsTrue((bool)isAttField.GetValue(playerWeapon), "isCurrentlyAttacking should be true while animation is playing.");
+
+        yield return new WaitForSeconds(0.4f);
+
+        Assert.IsFalse((bool)isAttField.GetValue(playerWeapon), "isCurrentlyAttacking should be false after animation completes.");
+
+        Object.DestroyImmediate(weaponGO);
+        Object.DestroyImmediate(animatorGO);
+    }
+
+    /// <summary>
+    /// Verificerer at PlayAttackAnimationOnlyCoroutine sætter isCurrentlyAttacking på samme måde
+    /// når kørt direkte via StartCoroutine (private coroutine via reflection).
+    /// </summary>
+    [UnityTest]
+    public IEnumerator PlayAttackAnimationOnlyCoroutine_SetsFlag_WhileRunning()
+    {
+       
+        var animatorGO = new GameObject("TestAnimator_Coroutine");
+        var animator = animatorGO.AddComponent<Animator>();
+
+        var animatorField = typeof(PlayerWeapon).GetField(
+            "weaponAnimator",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
+        );
+        animatorField.SetValue(playerWeapon, animator);
+
+        var socketTransform = playerWeapon.transform.Find("WeaponPivot");
+        var weaponGO = new GameObject("TestWeapon_Coroutine");
+        weaponGO.transform.SetParent(socketTransform, false);
+        var concreteWeapon = weaponGO.AddComponent<OneHandSword>();
+
+        var equippedField = typeof(PlayerWeapon).GetField(
+            "equippedWeaponComponent",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
+        );
+        equippedField.SetValue(playerWeapon, concreteWeapon);
+
+        var setupMethod = typeof(PlayerWeapon).GetMethod(
+            "SetupWeaponComponent",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
+        );
+        setupMethod.Invoke(playerWeapon, null);
+
+        var isAttField = typeof(PlayerWeapon).GetField(
+            "isCurrentlyAttacking",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
+        );
+        isAttField.SetValue(playerWeapon, false);
+
+        var coroutineMethod = typeof(PlayerWeapon).GetMethod(
+            "PlayAttackAnimationOnlyCoroutine",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
+        );
+        var enumerator = (IEnumerator)coroutineMethod.Invoke(playerWeapon, null);
+        playerWeapon.StartCoroutine(enumerator);
+
+        yield return null;
+
+        Assert.IsTrue((bool)isAttField.GetValue(playerWeapon), "isCurrentlyAttacking should be true while coroutine is running.");
+
+        yield return new WaitForSeconds(0.4f);
+
+        Assert.IsFalse((bool)isAttField.GetValue(playerWeapon), "isCurrentlyAttacking should be false after coroutine completes.");
+
+        Object.DestroyImmediate(weaponGO);
+        Object.DestroyImmediate(animatorGO);
+    }
 }

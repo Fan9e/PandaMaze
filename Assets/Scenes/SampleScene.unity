@@ -176,7 +176,7 @@ MonoBehaviour:
   instructionText: {fileID: 1202676294}
   sentenceText: {fileID: 305851904}
   feedbackText: {fileID: 1766603170}
-  sentenceToSay: Jeg har set en pirat
+  defaultSentence: Jeg har set en pirat
   voiceMovement: {fileID: 2124826910}
   OnTaskCompleted:
     m_PersistentCalls:
@@ -619,7 +619,7 @@ Transform:
   m_GameObject: {fileID: 287764756}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000000033261658, y: 0.98940045, z: -0.1452131, w: -0.0000000137841}
-  m_LocalPosition: {x: 88.242, y: 6.192, z: 99.6}
+  m_LocalPosition: {x: 84.58, y: 5.73, z: 218.87}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -878,7 +878,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0000000019943869, y: 0.98940045, z: -0.14521307, w: -0.000000013588633}
-  m_LocalPosition: {x: 88.242, y: 6.192, z: 99.6}
+  m_LocalPosition: {x: 84.58, y: 5.73, z: 218.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1195,15 +1195,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 772691122164810125, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 88.242
+      value: 84.58
       objectReference: {fileID: 0}
     - target: {fileID: 772691122164810125, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.192
+      value: 2.73
       objectReference: {fileID: 0}
     - target: {fileID: 772691122164810125, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 89.6
+      value: 208.87
       objectReference: {fileID: 0}
     - target: {fileID: 772691122164810125, guid: 0c6e5cf335190f94c90c6d31633b0bb9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2026,7 +2026,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5974982831241363483, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1636572268}
   m_SourcePrefab: {fileID: 100100000, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
 --- !u!4 &755498754 stripped
 Transform:
@@ -2226,6 +2229,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 325816764157129933, guid: d77daed19a6a33c43aa1642a4cbad20a, type: 3}
   m_PrefabInstance: {fileID: 840176843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &866599091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 482087385325797976, guid: 920c8476d627b764283b67da86970efd, type: 3}
+  m_PrefabInstance: {fileID: 1355124201}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &929192916
 PrefabInstance:
@@ -2884,13 +2892,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 482087385325797976, guid: 920c8476d627b764283b67da86970efd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1355124213}
   m_SourcePrefab: {fileID: 100100000, guid: 920c8476d627b764283b67da86970efd, type: 3}
 --- !u!4 &1355124202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5906427983753372136, guid: 920c8476d627b764283b67da86970efd, type: 3}
   m_PrefabInstance: {fileID: 1355124201}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1355124213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866599091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03507d02a5efa574dbcd5f9d680de3e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::NewDragonCombat
+  speechTaskUI: {fileID: 590602}
+  damagePerCorrect: 10
+  sentences:
+  - Pirater er seje som vi ved
+  - Pirater er sjove som vi ved
+  - Pirater er kedelige som vi ved
 --- !u!1 &1390236555
 GameObject:
   m_ObjectHideFlags: 0
@@ -3308,6 +3337,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1636572261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5974982831241363483, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+  m_PrefabInstance: {fileID: 755498753}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1636572268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636572261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 585ef5c061ba55e43a23148be6c9e935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::NewBossCombat
+  speechTaskUI: {fileID: 590602}
+  damagePerCorrect: 10
+  sentences:
+  - Pirater er sjove som vi ved
+  - Pirater er seje som vi ved
+  - Pirater er kedelige som vi ved
 --- !u!1 &1766603168
 GameObject:
   m_ObjectHideFlags: 0
@@ -5221,6 +5273,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4694859059881543036, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
       insertIndex: 4
       addedObject: {fileID: 8585253005820049725}
+    - targetCorrespondingSourceObject: {fileID: 4694859059881543036, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8585253005820049734}
   m_SourcePrefab: {fileID: 100100000, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
 --- !u!4 &8585253005820049717 stripped
 Transform:
@@ -5254,6 +5309,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &8585253005820049734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983637666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55a13df47f8c7f547a08297b6b26c74f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::NewCatCombat
+  speechTaskUI: {fileID: 590602}
+  damagePerCorrect: 10
+  sentences:
+  - Pirater er seje som vi ved
+  - Pirater er sjove som vi ved
+  - Pirater er kedelige som vi ved
 --- !u!224 &8967289838624301428
 RectTransform:
   m_ObjectHideFlags: 0

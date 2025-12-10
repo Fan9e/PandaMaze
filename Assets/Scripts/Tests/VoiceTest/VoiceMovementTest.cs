@@ -131,5 +131,32 @@ public class VoiceMovementTest
 
         Object.DestroyImmediate(go);
     }
+
+    /// <summary>
+    /// Tester at VoiceMovement IKKE sender fejl-tekster videre som tale-resultat.
+    /// Når en fejl opstår, skal mikrofonen stoppes, observers skal kun informeres om
+    /// mikrofonens nye tilstand, og ingen tale-resultat må blive videresendt.
+    /// </summary>
+    [UnityTest]
+    public IEnumerator DoesNotForwardErrorText_ToObservers()
+    {
+        var go = new GameObject("vm_error");
+        var vm = go.AddComponent<VoiceMovement>();
+        var observer = new TestObserver();
+        vm.RegisterObserver(observer);
+
+        vm.isMicrophoneOn = true;
+
+        vm.OnResultReceived("Some internal error text", 6);
+
+        yield return null;
+
+        Assert.IsFalse(vm.isMicrophoneOn, "VoiceMovement should stop the microphone when an error result is received.");
+        Assert.IsNotNull(observer.lastMicState, "Observer should get microphone state updates.");
+        Assert.IsFalse(observer.lastMicState.Value, "Observer should be informed microphone is off after error.");
+        Assert.IsNull(observer.lastResult, "Observer must NOT receive error text as a final result.");
+
+        Object.DestroyImmediate(go);
+    }
 }
 

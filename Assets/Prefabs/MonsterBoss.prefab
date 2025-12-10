@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 1928002626334275197}
   - component: {fileID: 3153509879514881118}
   - component: {fileID: 4274083572358324150}
-  - component: {fileID: 9125308392940216368}
   m_Layer: 0
   m_Name: MonsterBoss
   m_TagString: Untagged
@@ -193,18 +192,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &9125308392940216368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5974982831241363483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00e253a9035bf0044a75a9beabb86387, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::BossSpeechCombat
-  speechTaskUI: {fileID: 0}
-  damagePerCorrect: 20
-  sentences: []
