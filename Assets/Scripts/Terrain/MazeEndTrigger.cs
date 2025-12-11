@@ -10,7 +10,12 @@ public class MazeEndTrigger : MonoBehaviour
     /// <summary>
     /// UI-panel der vises, når spilleren har vundet,
     /// </summary>
-    public GameObject winPanel;    
+    public GameObject winPanel;
+
+    /// <summary>
+    /// Knap der vises, når spilleren har vundet,
+    /// </summary>
+    public GameObject startOverButton;
 
     /// <summary>
     /// Usynlig mur, der aktiveres når spilleren når målet,
