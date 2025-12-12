@@ -151,10 +151,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e6929d07c01b9843bd322800819b16d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Scripts::TwoHandSword
+  backpackVariantIndex: 2
   _attackAnimOverride: TwoHandSword
-  bagpackVariantIndex: 0
-  socketLocalPosition: {x: 0, y: 0, z: 0}
-  socketLocalEulerAngles: {x: 0, y: 0, z: 0}
-  socketLocalScale: {x: 1, y: 1, z: 1}
   baseDamage: 30
+  socketLocalPosition: {x: -0.11, y: 0.689, z: 1.53}
+  socketLocalEulerAngles: {x: -32.737, y: 109.432, z: 59.494}
+  socketLocalScale: {x: 4, y: 4, z: 4}

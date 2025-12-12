@@ -12,6 +12,10 @@ public class ChestLoot : IChestLoot
         this.keyId = keyId;
         this.potionAmount = Mathf.Max(0, potionAmount);
     }
+    public ChestLoot(int keyId, int potionAmount = 0)
+    : this(null, keyId, potionAmount)
+    {
+    }
 
     public void GiveItemsToPlayer(PlayerInventory inventory, PlayerWeapon weapon)
     {

@@ -3,23 +3,20 @@ using static UnityEngine.GraphicsBuffer;
 
 public abstract class Weapon : Item, IWeapon
 {
+    [Header("Backpack UI")]
+    [Tooltip("Hvilket ikon i BagpackUI der skal bruges (0 = første, 1 = anden, 2 = tredje). " +
+             "Hvis værdien er negativ i editoren, sættes den automatisk ud fra navnet.")]
+    [SerializeField] private int backpackVariantIndex = -1;
+
+    /// <summary>
+    /// Index til hvilket våben-ikon der skal vises i <see cref="BagpackUI"/>.
+    /// Bruges til at vælge elementet i weaponSprites-arrayet (0 = første, 1 = anden, 2 = tredje).
+    /// </summary>
+    public int BackpackVariantIndex => backpackVariantIndex;
+
+    [Header("Weapon UI")]
     [SerializeField] private string _attackAnimOverride;
 
-    [Header("Socket Offset")]
-    /// <summary>
-    /// Lokal position i forhold til weapon-socket (WeaponPivot).
-    /// </summary>
-    public Vector3 socketLocalPosition = Vector3.zero;
-
-    /// <summary>
-    /// Lokal rotation (Euler-angles) i forhold til weapon-socket.
-    /// </summary>
-    public Quaternion socketLocalEulerAngles = Quaternion.identity;
-
-    /// <summary>
-    /// Lokal skalering i forhold til weapon-socket.
-    /// </summary>
-    public Vector3 socketLocalScale = Vector3.one;
     /// <summary>
     /// Konfigurerer transformen for det socket, som våbnet skal sidde i.
     /// Base-implementationen bruger <see cref="socketLocalPosition"/>,
@@ -33,9 +30,9 @@ public abstract class Weapon : Item, IWeapon
     /// </param>
     public virtual void ConfigureSocketTransform(Transform socketTransform)
     {
-        socketTransform.localPosition = socketLocalPosition;
-        socketTransform.localRotation = socketLocalEulerAngles;
-        socketTransform.localScale = socketLocalScale;
+        socketTransform.localPosition = Vector3.zero;
+        socketTransform.localEulerAngles = Vector3.zero;
+        socketTransform.localScale = Vector3.zero;
     }
     /// <summary>
     /// Returnerer navnet på angrebs-animationen.
@@ -71,16 +68,56 @@ public abstract class Weapon : Item, IWeapon
     }
 
 #if UNITY_EDITOR
+
     /// <summary>
-    /// Kører kun i Unity Editor og sørger for,
-    /// at <see cref="_attackAnimOverride"/> får en fornuftig standardværdi.
-    /// Hvis feltet er tomt i Inspector, sættes det automatisk til navnet
-    /// på den type/komponent, som scriptet sidder på.
+    /// Kaldt af Unity i editoren, når værdier ændres i Inspector eller scriptet recompiles.
+    /// Sørger for, at standard attack-animationsnavn og backpack-variant bliver sat automatisk,
+    /// hvis felterne endnu ikke er udfyldt.
     /// </summary>
     protected virtual void OnValidate()
+    {
+        AssignDefaultAttackAnimOverrideIfEmpty();
+        AutoAssignBackpackVariantFromNameIfUnset();
+    }
+
+    /// <summary>
+    /// Sætter automatisk <c>_attackAnimOverride</c> til klassens navn,
+    /// hvis feltet er tomt eller ikke sat.
+    /// </summary>
+    private void AssignDefaultAttackAnimOverrideIfEmpty()
     {
         if (string.IsNullOrEmpty(_attackAnimOverride))
             _attackAnimOverride = GetType().Name;
     }
+
+    /// <summary>
+    /// Sætter automatisk <c>backpackVariantIndex</c> ud fra objektets navn,
+    /// hvis feltet endnu ikke er sat (dvs. har en negativ værdi).
+    /// </summary>
+    /// <remarks>
+    /// Hvis navnet indeholder "OneHandSword" bruges index 0.
+    /// Hvis navnet indeholder "Axe" bruges index 1.
+    /// Hvis navnet indeholder "TwoHandSword" bruges index 2.
+    /// Hvis ingen af disse matcher, bruges 0 som standardværdi.
+    /// </remarks>
+    private void AutoAssignBackpackVariantFromNameIfUnset()
+    {
+        
+        if (backpackVariantIndex >= 0)
+            return;
+
+        string weaponObjectName = name; 
+
+        if (weaponObjectName.Contains("OneHandSword"))
+            backpackVariantIndex = 0;
+        else if (weaponObjectName.Contains("Axe"))
+            backpackVariantIndex = 1;
+        else if (weaponObjectName.Contains("TwoHandSword"))
+            backpackVariantIndex = 2;
+        else
+            backpackVariantIndex = 0; 
+    }
 #endif
+
+
 }

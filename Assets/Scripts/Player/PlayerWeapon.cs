@@ -185,7 +185,6 @@ public class PlayerWeapon : MonoBehaviour
             return;
         }
 
-        // Hvis vi ingen våben har, skal ikonet slukkes
         if (equippedWeaponComponent == null || EquippedIWeapon == null)
         {
             bagpackUI.SetHasWeapon(false);
@@ -193,22 +192,16 @@ public class PlayerWeapon : MonoBehaviour
             return;
         }
 
-        // VÆLG VARIANT UD FRA NAVN (simpel løsning)
-        int variant = 0;
-        string weaponName = equippedWeaponComponent.name;   // fx "OneHandSword(Clone)"
-
-        if (weaponName.Contains("OneHandSword"))
-            variant = 0;
-        else if (weaponName.Contains("Axe"))
-            variant = 1;
-        else if (weaponName.Contains("Bow"))
-            variant = 2;
+        // Læs varianten direkte fra Weapon
+        int variant = Mathf.Clamp(equippedWeaponComponent.BackpackVariantIndex, 0, 2);
 
         bagpackUI.SetHasWeapon(true);
         bagpackUI.SetWeaponVariant(variant);
 
-        Debug.Log($"UpdateWeaponUI: satte weapon-slot til variant {variant} for {weaponName}");
+        Debug.Log($"UpdateWeaponUI: satte weapon-slot til variant {variant} for {equippedWeaponComponent.name}");
     }
+
+
 
 
     /// <summary>

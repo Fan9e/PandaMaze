@@ -2,8 +2,7 @@
 using UnityEngine;
 
 public class SecondChest : Chest
-{
-
+{ 
     [Header("Second Chest Loot")]
 
     /// <summary>

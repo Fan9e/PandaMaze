@@ -5,13 +5,6 @@ public class ThirdChest : Chest
 {
 
     [Header("Third Chest Loot")]
-
-    /// <summary>
-    /// Våbenet, som spilleren modtager, når denne kiste åbnes.
-    /// Skal være et two-hand sword weapon-prefab.
-    /// </summary>
-    [SerializeField] private Weapon twoHandSwordWeaponPrefab;
-
     /// <summary>
     /// ID på den nøgle, som kisten giver til spilleren.
     /// </summary>
@@ -74,55 +67,7 @@ public class ThirdChest : Chest
     /// </returns>
     protected override IChestLoot CreateLoot()
     {
-        if (twoHandSwordWeaponPrefab == null)
-        {
-            Debug.LogError("ThirdChest: twoHandSwordWeaponPrefab er ikke sat i Inspector.", this);
-            return null;
-        }
-
-        return new ChestLoot(twoHandSwordWeaponPrefab, keyId, potionAmount);
+        return new ChestLoot(keyId, potionAmount);
     }
 
-#if UNITY_EDITOR
-    /// <summary>
-    /// Kaldt af Unity i editoren, når værdier ændres i Inspector
-    /// eller scriptet recompiles. Sørger for, at standard two-hand
-    /// sword-våbnet automatisk bliver sat, hvis feltet er tomt.
-    /// </summary>
-    private void OnValidate()
-    {
-        EnsureDefaultTwoHandSwordIsAssigned();
-    }
-
-    /// <summary>
-    /// Sørger for, at denne kiste altid har et two-hand sword-våben sat.
-    /// Hvis der ikke er sat noget i Inspector, forsøger metoden at hente
-    /// et standard-prefab fra projektmappen via en fast asset-sti.
-    /// Logger en advarsel, hvis prefabbet ikke kan findes.
-    /// </summary>
-    private void EnsureDefaultTwoHandSwordIsAssigned()
-    {
-        if (twoHandSwordWeaponPrefab != null)
-            return;
-
-        const string weaponPrefabPath = "Assets/Prefabs/TwoHandSword.prefab";
-        twoHandSwordWeaponPrefab = AssetDatabase.LoadAssetAtPath<Weapon>(weaponPrefabPath);
-
-        if (twoHandSwordWeaponPrefab != null)
-        {
-            Debug.Log(
-                $"ThirdChest: satte standard two-hand sword våben fra '{weaponPrefabPath}'. " +
-                $"Våben: {twoHandSwordWeaponPrefab.name}",
-                this
-            );
-        }
-        else
-        {
-            Debug.LogWarning(
-                $"ThirdChest: kunne ikke finde two-hand sword våben på path '{weaponPrefabPath}'.",
-                this
-            );
-        }
-    }
-#endif
 }

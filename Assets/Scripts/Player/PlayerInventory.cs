@@ -117,16 +117,11 @@ public class PlayerInventory : MonoBehaviour
     /// </summary>
     private int MapKeyIdToVariant(int keyId)
     {
-        // CASE 1: Hvis dine keyId'er er 0,1,2 i forvejen:
-        // return Mathf.Clamp(keyId, 0, 2);
-
-        // CASE 2: Hvis keyId kan være hvad som helst (10, 42, 99 osv.),
-        // og du bare vil fordele dem over 3 sprites:
-        int variant = Mathf.Abs(keyId) % 3; // giver 0,1 eller 2
+        
+        const int VariantCount = 3; // samme som i BagpackUI
+        int variant = Mathf.Clamp(keyId - 1, 0, VariantCount - 1);
         return variant;
     }
-
-
 
     /// <summary>
     /// Tilføjer potions til spilleren og opdaterer BagpackUI.

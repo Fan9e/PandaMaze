@@ -103,13 +103,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: baebe2e0a53c2394bb3406a46cb6f831, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Scripts::OneHandSword
+  backpackVariantIndex: 0
   _attackAnimOverride: OneHandSword
-  bagpackVariantIndex: 0
-  socketLocalPosition: {x: 0, y: 0, z: 0}
-  socketLocalEulerAngles: {x: 0, y: 0, z: 0}
-  socketLocalScale: {x: 1, y: 1, z: 1}
   baseDamage: 10
+  socketLocalPosition: {x: 0, y: 0, z: 0}
+  socketLocalEulerAngles: {x: -176.485, y: 93.837, z: -258.082}
+  socketLocalScale: {x: 3, y: 3, z: 3}
 --- !u!65 &-9113661327960294861
 BoxCollider:
   m_ObjectHideFlags: 0
