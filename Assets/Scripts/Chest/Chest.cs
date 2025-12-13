@@ -190,7 +190,7 @@ public abstract class Chest : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
 
         IChestLoot loot = CreateLoot();
-        loot?.GiveItemsToPlayer(playerInventory, playerWeapon);
+        loot?.GiveItemsToPlayer(playerInventory);
     }
 }
 

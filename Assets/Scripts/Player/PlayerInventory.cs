@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    [SerializeField] private PlayerWeapon playerWeapon;
+
+    /// <summary>
+    /// Reference til PlayerWeapon på spilleren (kan sættes i Inspector eller findes automatisk).
+    /// </summary>
+    public PlayerWeapon PlayerWeapon => playerWeapon;
     /// <summary>Reference til UI’en, så vi kan opdatere nøgle-slot.</summary>
     [SerializeField] private BagpackUI bagpackUI;
 
@@ -18,7 +24,13 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField, Min(0)] private int potionCount = 0;
     private void Awake()
     {
-        // Hvis du glemmer at sætte den i Inspector, prøver vi selv at finde den.
+        InitializeBackpackUI();
+        InitializePlayerWeapon();
+        UpdateKeyUIAfterChange();
+        UpdatePotionUI();
+    }
+    private void InitializeBackpackUI()
+    {
         if (bagpackUI == null)
         {
             bagpackUI = FindObjectOfType<BagpackUI>();
@@ -27,8 +39,14 @@ public class PlayerInventory : MonoBehaviour
                 Debug.LogWarning("PlayerInventory kunne ikke finde nogen BagpackUI i scenen.", this);
             }
         }
-        UpdateKeyUIAfterChange();
-        UpdatePotionUI();
+    }
+    private void InitializePlayerWeapon()
+    {
+        if (playerWeapon == null)
+            TryGetComponent(out playerWeapon);
+
+        if (playerWeapon == null)
+            Debug.LogWarning("PlayerInventory kunne ikke finde PlayerWeapon på spilleren.", this);
     }
     /// <summary>
     /// Tilføjer en nøgle til spillerens inventory.
@@ -164,5 +182,11 @@ public class PlayerInventory : MonoBehaviour
             return;
 
         bagpackUI.SetPotions(potionCount);
+    }
+
+    public void EquipWeapon(Weapon weaponPrefab)
+    {
+        if (playerWeapon == null) return;
+        playerWeapon.EquipNewWeapon(weaponPrefab);
     }
 }
