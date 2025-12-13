@@ -64,71 +64,25 @@ public class FirstChest : Chest
     /// caches <see cref="Monster"/>-komponenten i <see cref="dragonMonster"/> så vi kan tjekke HP.
     /// Metoden gør ingenting, hvis der hverken er sat en dragon eller der kan findes en via tag.
     /// </remarks>
-    private void ResolveDragon()
+   private void ResolveDragon()
     {
-        if (dragon == null)
-        {
-            if (TryFindDragonByTag(out GameObject found))
-                dragon = found;
-        }
-        if (dragon == null)
-            return;
+        dragon = GetOrFindByTag(dragon, dragonTag, nameof(FirstChest));
 
-        if (dragon != null && dragonMonster == null)
-        {
-            dragonMonster = dragon.GetComponent<Monster>()
-                           ?? dragon.GetComponentInParent<Monster>()
-                           ?? dragon.GetComponentInChildren<Monster>();
-        }
+        if (dragonMonster == null || (dragon != null && dragonMonster.gameObject != dragon))
+            dragonMonster = GetMonsterFrom(dragon);
     }
 
-    /// <summary>
-    /// Forsøger at finde et GameObject i scenen med det angivne dragon-tag.
-    /// </summary>
-    /// <remarks>
-    /// Metoden kaster ikke en exception, hvis tagget ikke findes; i stedet logges en advarsel,
-    /// og metoden returnerer false. Tagget skal være sat og ikke tomt, før der søges.
-    /// </remarks>
-    /// <param name="found">
-    /// Når metoden returnerer, indeholder den det GameObject, der blev fundet med dragon-tagget,
-    /// eller null hvis der ikke findes noget match.
-    /// </param>
-    /// <returns>
-    /// True hvis et GameObject med dragon-tagget blev fundet; ellers false.
-    /// </returns>
-    private bool TryFindDragonByTag(out GameObject found)
-    {
-        found = null;
 
-        if (string.IsNullOrWhiteSpace(dragonTag))
-            return false;
-
-        try
-        {
-            found = GameObject.FindGameObjectWithTag(dragonTag);
-            return found != null;
-        }
-        catch (UnityException)
-        {
-            Debug.LogWarning(
-                $"{nameof(FirstChest)}: Tag '{dragonTag}' findes ikke. Opret den under Tags & Layers eller sæt dragon manuelt i Inspector.",
-                this
-            );
-            return false;
-        }
-    }
 
     /// <summary>
     /// Afgør om dragen er besejret.
     /// True hvis dragon er destroyed, deaktiveret, eller hvis Monster.CurrentHealth <= 0.
     /// </summary>
+   
+
     private bool IsDragonDefeated()
     {
-        if (dragon == null) return true;    
-        if (!dragon.activeInHierarchy) return true;
-
-        if (dragonMonster == null) return false;
-        return dragonMonster.CurrentHealth <= 0;
+        return IsMonsterDefeated(dragon, dragonMonster);
     }
 
     /// <summary>
