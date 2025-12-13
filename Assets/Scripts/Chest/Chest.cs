@@ -4,74 +4,91 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public abstract class Chest : MonoBehaviour
 {
+    [Header("Kiste-indstillinger")]
 
-    [Header("Chest settings")]
-    public bool isOpened = false;
-    public float openDistance = 1.2f;
-    public float frontDotThreshold = 0.5f;
+    [Tooltip("True når kisten allerede er åbnet (kun én gang).")]
+    [SerializeField] private bool isOpened;
 
+    [Tooltip("Dot-product tærskel for at spilleren betragtes som værende foran kisten.")]
+    [SerializeField] private float frontDotThreshold = 0.5f;
+
+    [Tooltip("Maksimal afstand til spilleren før kisten kan åbnes.")]
+    public float openDistance = 1.2f; 
+
+    
     [Header("Animation")]
+    [Tooltip("Animator-controlleren der bruges, når kisten åbnes.")]
     public RuntimeAnimatorController cachedController;
 
-    // hvor længe vi venter, efter vi har startet åbne-animationen,
-    // før vi giver loot til spilleren
-    [SerializeField] private float lootDelayAfterOpen = 0.4f;
+    [SerializeField]
+    [Tooltip("Ekstra ventetid efter åbne-animationen før loot gives til spilleren.")]
+    private float lootDelayAfterOpen = 0.4f;
 
-    // hvis du har en trigger i animatoren (kan være tom)
-    [SerializeField] private string openTriggerName = "Open";
-
-    protected Transform player;
-    protected PlayerInventory playerInventory;
-    protected PlayerWeapon playerWeapon;
+    [SerializeField]
+    [Tooltip("Navn på trigger-parameteren i Animator til at starte åbne-animationen. Tom streng = ingen trigger.")]
+    private string openTriggerName = "Open";
 
     [Header("UI")]
-    [Tooltip("Fælles UIMessageManager til alle kister.")]
+    [Tooltip("Fælles UIMessageManager til alle kister. Hvis ikke sat i Inspector, forsøges den fundet automatisk.")]
     [SerializeField] protected UIMessageManager uiMessageManager;
+    [SerializeField] protected Transform player;
+    [SerializeField] protected PlayerInventory playerInventory;
+    [SerializeField] protected PlayerWeapon playerWeapon;
+    [SerializeField] protected Animator animator;
 
+    private bool PlayerInZone;
 
-    private Animator animator;
-
+    /// <summary>
+    /// Initialiserer de nødvendige referencer til animator, spiller og UI.
+    /// </summary>
     private void Awake()
     {
         InitializeAnimator();
         InitializePlayer();
         InitializeUIMessageManager();
     }
-
     /// <summary>
-    /// Forsøger at finde og sætte <see cref="uiMessageManager"/>, hvis den ikke allerede
-    /// er sat i Inspector. Prøver først via singleton, derefter via FindObjectOfType.
+    /// Tjekker hvert frame om kisten kan åbnes.
     /// </summary>
-    protected void InitializeUIMessageManager()
-    {
-        if (uiMessageManager != null)
-            return;
-
-        // Prøv først via singleton, hvis projektet bruger det.
-        if (UIMessageManager.Instance != null)
-        {
-            uiMessageManager = UIMessageManager.Instance;
-        }
-        else
-        {
-            // Fallback: søg i scenen.
-            uiMessageManager = FindObjectOfType<UIMessageManager>();
-        }
-
-        if (uiMessageManager == null)
-        {
-            Debug.LogWarning("Chest: kunne ikke finde UIMessageManager i scenen.", this);
-        }
-    }
-
     private void Update()
     {
         TryOpenChest();
     }
-    protected virtual bool CanOpen()
+
+    /// <summary>
+    /// Ekstra betingelser for at åbne kisten (overstyr i subklasser).
+    /// Eksempel: "bossen skal være død", "spilleren skal have en nøgle", osv.
+    /// </summary>
+    protected virtual bool CanOpen() => true;
+
+    /// <summary>
+    /// Opretter kistens loot (implementeres i subklasser).
+    /// </summary>
+    /// <returns>Et <see cref="IChestLoot"/>-objekt, eller null hvis der ikke skal gives loot.</returns>
+    protected abstract IChestLoot CreateLoot();
+
+
+    /// <summary>
+    /// Finder og sætter <see cref="uiMessageManager"/>, hvis den ikke allerede er sat i Inspector.
+    /// Prøver først via singleton (<see cref="UIMessageManager.Instance"/>), derefter via søgning i scenen.
+    /// </summary>
+    protected void InitializeUIMessageManager()
     {
-        return true;
+        if (uiMessageManager != null) return;
+
+        uiMessageManager = UIMessageManager.Instance;
+        if (uiMessageManager == null)
+            uiMessageManager = FindObjectOfType<UIMessageManager>();
+
+        if (uiMessageManager == null)
+            Debug.LogWarning($"{nameof(Chest)}: kunne ikke finde {nameof(UIMessageManager)} i scenen.", this);
     }
+
+
+    /// <summary>
+    /// Finder animatoren i børnene og cacher dens controller.
+    /// Controlleren sættes til null indtil kisten åbnes.
+    /// </summary>
     private void InitializeAnimator()
     {
         animator = GetComponentInChildren<Animator>();
@@ -83,84 +100,103 @@ public abstract class Chest : MonoBehaviour
         }
 
         cachedController = animator.runtimeAnimatorController;
-        animator.runtimeAnimatorController = null; // ingen controller før vi åbner
+        animator.runtimeAnimatorController = null; 
     }
 
+    /// <summary>
+    /// Finder spilleren via tagget "Player" og cacher relevante komponenter.
+    /// </summary>
     private void InitializePlayer()
     {
-        GameObject p = GameObject.FindWithTag("Player");
+        GameObject playerObject = GameObject.FindWithTag("Player");
 
-        if (p != null)
+        if (playerObject == null)
         {
-            player = p.transform;
-            playerInventory = p.GetComponent<PlayerInventory>();
-            playerWeapon = p.GetComponent<PlayerWeapon>();
+            Debug.LogError($"{nameof(Chest)}: Ingen GameObject med tag 'Player' fundet!", this);
+            return;
         }
-        else
-        {
-            Debug.LogError("Chest: Ingen GameObject med tag 'Player' fundet!", this);
-        }
+
+        player = playerObject.transform;
+        playerInventory = playerObject.GetComponent<PlayerInventory>();
+        playerWeapon = playerObject.GetComponent<PlayerWeapon>();
     }
 
+    /// <summary>
+    /// Forsøger at åbne kisten, hvis spilleren er tæt nok på, står foran kisten
+    /// og ekstra betingelser er opfyldt.
+    /// </summary>
     private void TryOpenChest()
     {
-        if (isOpened || player == null || animator == null) return;
+        if (isOpened || player == null || animator == null)
+            return;
 
-        Vector3 toPlayer = player.position - transform.position;
-        float distance = toPlayer.magnitude;
-        if (distance > openDistance) return;
+        if (!IsPlayerCloseEnough(out Vector3 toPlayer))
+            return;
 
-        Vector3 dirToPlayer = toPlayer.normalized;
-        float dot = Vector3.Dot(transform.forward, dirToPlayer);
-        if (dot <= frontDotThreshold) return;
+        if (!IsPlayerInFront(toPlayer))
+            return;
 
-        // 🔹 VIGTIGT: ekstra betingelser (fx “dragen skal være død”)
-        if (!CanOpen()) return;
+        if (!CanOpen())
+            return;
 
         StartOpenChest();
     }
-    protected abstract IChestLoot CreateLoot();
 
+    /// <summary>
+    /// Tjekker om spilleren er indenfor åbnings-afstand.
+    /// </summary>
+    private bool IsPlayerCloseEnough(out Vector3 toPlayer)
+    {
+        toPlayer = player.position - transform.position;
+        float maxDistSqr = openDistance * openDistance;
+        return toPlayer.sqrMagnitude <= maxDistSqr;
+    }
+    /// <summary>
+    /// Tjekker om spilleren står foran kisten (dot product).
+    /// </summary>
+    private bool IsPlayerInFront(Vector3 toPlayer)
+    {
+        Vector3 dirToPlayer = toPlayer.normalized;
+        float dot = Vector3.Dot(transform.forward, dirToPlayer);
+        return dot > frontDotThreshold;
+    }
+
+    /// <summary>
+    /// Markerer kisten som åbnet og starter coroutine til animation + loot.
+    /// </summary>
     private void StartOpenChest()
     {
-        if (isOpened) return;
-        isOpened = true;
+        if (isOpened)
+            return;
 
+        isOpened = true;
         StartCoroutine(OpenChestRoutine());
     }
 
+    /// <summary>
+    /// Afspiller åbne-animationen og giver loot efter animationens længde + ekstra delay.
+    /// </summary>
     private IEnumerator OpenChestRoutine()
     {
-     
         if (cachedController != null)
-        {
             animator.runtimeAnimatorController = cachedController;
-        }
 
-        Debug.Log("Chest opened – controller sat automatisk!");
-
-  
         if (!string.IsNullOrEmpty(openTriggerName))
-        {
             animator.SetTrigger(openTriggerName);
-        }
 
         yield return null;
 
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        float animLength = stateInfo.length;
+        animator.Update(0f);
 
-        // hvis du vil have “lidt mere” end animationen, kan du lægge lidt til:
-        float waitTime = animLength + lootDelayAfterOpen;  
-        yield return new WaitForSeconds(waitTime);
+        float animLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        float waitTime = Mathf.Max(0f, animLength) + lootDelayAfterOpen;
 
-        // 5) nu gives loot
+        if (waitTime > 0f)
+            yield return new WaitForSeconds(waitTime);
+
         IChestLoot loot = CreateLoot();
-        if (loot != null)
-        {
-            loot.GiveItemsToPlayer(playerInventory, playerWeapon);
-        }
+        loot?.GiveItemsToPlayer(playerInventory, playerWeapon);
     }
-
 }
+
 
