@@ -1,8 +1,17 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
+/// <summary>
+/// Første kiste i spillet.
+/// Kan først åbnes når dragen er besejret (destroyed, deaktiveret, eller HP <= 0).
+/// </summary>
 public class FirstChest : Chest
 {
+    private const float MessageDuration = 1f;
+    private const string MessageMissingDragon = "Du mangler at bekæmpe dragen.";
+
     [Header("First Chest Loot")]
 
     /// <summary>
@@ -28,30 +37,127 @@ public class FirstChest : Chest
     /// før kisten kan åbnes. Hvis feltet er tomt (null),
     /// kan kisten åbnes uden dette krav.
     /// </summary>
-    [Tooltip("Dragon-monsteret i scenen, som skal være død (destroyed), før kisten kan åbnes.")]
     [SerializeField] private GameObject dragon;
+
+    [SerializeField, Tooltip("Tag på dragon-objektet i scenen (skal oprettes i Tags & Layers).")]
+    private string dragonTag = "Dragon";
+
+    /// <summary>
+    /// Cached reference til Monster-komponenten på dragen (bruges til HP-check).
+    /// </summary>
+    private Monster dragonMonster;
+
+    /// <summary>
+    /// Start er kaldt af Unity, når objektet initialiseres.
+    /// </summary>
+    private void Start()
+    {
+        ResolveDragon();
+    }
+
+    /// <summary>
+    /// Finder og cacher reference til dragen samt dens <see cref="Monster"/>-komponent.
+    /// </summary>
+    /// <remarks>
+    /// Hvis <see cref="dragon"/> ikke er sat (eller er blevet destroyed), forsøger metoden at finde
+    /// et objekt i scenen med tagget <see cref="dragonTag"/>. Når <see cref="dragon"/> er fundet,
+    /// caches <see cref="Monster"/>-komponenten i <see cref="dragonMonster"/> så vi kan tjekke HP.
+    /// Metoden gør ingenting, hvis der hverken er sat en dragon eller der kan findes en via tag.
+    /// </remarks>
+    private void ResolveDragon()
+    {
+        if (dragon == null)
+        {
+            if (TryFindDragonByTag(out GameObject found))
+                dragon = found;
+        }
+        if (dragon == null)
+            return;
+
+        if (dragon != null && dragonMonster == null)
+        {
+            dragonMonster = dragon.GetComponent<Monster>()
+                           ?? dragon.GetComponentInParent<Monster>()
+                           ?? dragon.GetComponentInChildren<Monster>();
+        }
+    }
+
+    /// <summary>
+    /// Forsøger at finde et GameObject i scenen med det angivne dragon-tag.
+    /// </summary>
+    /// <remarks>
+    /// Metoden kaster ikke en exception, hvis tagget ikke findes; i stedet logges en advarsel,
+    /// og metoden returnerer false. Tagget skal være sat og ikke tomt, før der søges.
+    /// </remarks>
+    /// <param name="found">
+    /// Når metoden returnerer, indeholder den det GameObject, der blev fundet med dragon-tagget,
+    /// eller null hvis der ikke findes noget match.
+    /// </param>
+    /// <returns>
+    /// True hvis et GameObject med dragon-tagget blev fundet; ellers false.
+    /// </returns>
+    private bool TryFindDragonByTag(out GameObject found)
+    {
+        found = null;
+
+        if (string.IsNullOrWhiteSpace(dragonTag))
+            return false;
+
+        try
+        {
+            found = GameObject.FindGameObjectWithTag(dragonTag);
+            return found != null;
+        }
+        catch (UnityException)
+        {
+            Debug.LogWarning(
+                $"{nameof(FirstChest)}: Tag '{dragonTag}' findes ikke. Opret den under Tags & Layers eller sæt dragon manuelt i Inspector.",
+                this
+            );
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Afgør om dragen er besejret.
+    /// True hvis dragon er destroyed, deaktiveret, eller hvis Monster.CurrentHealth <= 0.
+    /// </summary>
+    private bool IsDragonDefeated()
+    {
+        if (dragon == null) return true;    
+        if (!dragon.activeInHierarchy) return true;
+
+        if (dragonMonster == null) return false;
+        return dragonMonster.CurrentHealth <= 0;
+    }
 
     /// <summary>
     /// Bestemmer om kisten må åbnes.
-    /// Kisten kan kun åbnes, når dragon-monsteret er død (eller ikke er sat).
-    /// Viser en UI-besked, hvis dragen stadig lever.
+    /// Kisten kan kun åbnes, når dragen er besejret.
     /// </summary>
     /// <returns>
     /// True, hvis kisten må åbnes; ellers false.
     /// </returns>
     protected override bool CanOpen()
     {
-        const float MessageDuration = 1f;
+        ResolveDragon();
 
-        if (dragon == null)
-        {
-            return base.CanOpen();
-        }
+        if (IsDragonDefeated())
+            return true;
 
+        ShowMessageDragonNotDefeated();
+        return false;
+    }
+
+    /// <summary>
+    /// Viser besked til spilleren om at dragen stadig skal besejres.
+    /// </summary>
+    private void ShowMessageDragonNotDefeated()
+    {
         if (uiMessageManager != null)
         {
             uiMessageManager.ShowMessage(
-                "Du mangler at bekæmpe dragen.",
+                MessageMissingDragon,
                 MessageDuration
             );
         }
@@ -60,16 +166,13 @@ public class FirstChest : Chest
             Debug.LogWarning("FirstChest: uiMessageManager er NULL, kan ikke vise besked.", this);
         }
 
-        return false;
     }
-
     /// <summary>
     /// Opretter det loot-objekt, der skal gives til spilleren,
     /// når kisten åbnes.
     /// </summary>
     /// <returns>
-    /// Et <see cref="IChestLoot"/>-objekt med økse, nøgle og potions,
-    /// eller null hvis våben-prefab mangler.
+    /// Et <see cref="IChestLoot"/>-objekt med økse, nøgle og potions.
     /// </returns>
     protected override IChestLoot CreateLoot()
     {
@@ -92,6 +195,7 @@ public class FirstChest : Chest
     private void OnValidate()
     {
         EnsureDefaultAxeIsAssigned();
+     
     }
 
     /// <summary>
