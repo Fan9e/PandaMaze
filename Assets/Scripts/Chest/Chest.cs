@@ -14,7 +14,6 @@ public abstract class Chest : MonoBehaviour
 
     [Tooltip("Maksimal afstand til spilleren før kisten kan åbnes.")]
     public float openDistance = 1.2f; 
-
     
     [Header("Animation")]
     [Tooltip("Animator-controlleren der bruges, når kisten åbnes.")]
@@ -35,8 +34,6 @@ public abstract class Chest : MonoBehaviour
     [SerializeField] protected PlayerInventory playerInventory;
     [SerializeField] protected PlayerWeapon playerWeapon;
     [SerializeField] protected Animator animator;
-
-    private bool PlayerInZone;
 
     /// <summary>
     /// Initialiserer de nødvendige referencer til animator, spiller og UI.
