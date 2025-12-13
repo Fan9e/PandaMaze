@@ -64,7 +64,6 @@ public abstract class Chest : MonoBehaviour
     /// <returns>Et <see cref="IChestLoot"/>-objekt, eller null hvis der ikke skal gives loot.</returns>
     protected abstract IChestLoot CreateLoot();
 
-
     /// <summary>
     /// Finder og sætter <see cref="uiMessageManager"/>, hvis den ikke allerede er sat i Inspector.
     /// Prøver først via singleton (<see cref="UIMessageManager.Instance"/>), derefter via søgning i scenen.
@@ -80,7 +79,6 @@ public abstract class Chest : MonoBehaviour
         if (uiMessageManager == null)
             Debug.LogWarning($"{nameof(Chest)}: kunne ikke finde {nameof(UIMessageManager)} i scenen.", this);
     }
-
 
     /// <summary>
     /// Finder animatoren i børnene og cacher dens controller.
