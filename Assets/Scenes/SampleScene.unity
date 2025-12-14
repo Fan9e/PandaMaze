@@ -1496,6 +1496,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2651703267473339129, guid: 4fe1aa71bf35e4f4ab28241ab08b05e1, type: 3}
+      propertyPath: requiredMonster
+      value: 
+      objectReference: {fileID: 1965067015}
     - target: {fileID: 6200720779110778461, guid: 4fe1aa71bf35e4f4ab28241ab08b05e1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 144.68106
@@ -2835,6 +2839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4718e17ffa748c644a42988bb9afa352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Scripts::PlayerInventory
+  playerWeapon: {fileID: 0}
   bagpackUI: {fileID: 0}
   _debugKeys: 
   potionCount: 0
@@ -3453,6 +3458,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1965067015 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1039954966337600853, guid: 920c8476d627b764283b67da86970efd, type: 3}
+  m_PrefabInstance: {fileID: 708525960}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 174e383cc98149648b000db107ac37d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2011718067
 GameObject:
   m_ObjectHideFlags: 0
