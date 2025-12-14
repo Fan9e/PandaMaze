@@ -35,7 +35,37 @@ public abstract class Chest : MonoBehaviour
     [SerializeField] protected PlayerWeapon playerWeapon;
     [SerializeField] protected Animator animator;
 
-   
+    [Header("Åbningskrav")]
+    [SerializeField, Tooltip("Hvis sat, kan kisten kun åbnes når dette monster er besejret.")]
+    private Monster requiredMonster;
+
+    [SerializeField, Tooltip("Besked der vises hvis kisten er låst.")]
+    private string monsterNotDefeatedMessage = "Du mangler at besejre monsteret.";
+
+    [SerializeField, Min(0f)]
+    private float monsterNotDefeatedMessageDuration = 1f;
+
+    /// <summary>
+    /// Tjekker om monsteret i <see cref="requiredMonster"/> er besejret.
+    /// </summary>
+    /// <remarks>
+    /// Returnerer <c>true</c> hvis der ikke er sat noget monster, hvis objektet er væk/deaktiveret,
+    /// eller hvis <see cref="Monster.CurrentHealth"/> er 0 eller mindre.
+    /// </remarks>
+    /// <returns>
+    /// <c>true</c> hvis kisten ikke længere er låst af monsteret; ellers <c>false</c>.
+    /// </returns>
+    protected bool IsRequiredMonsterDefeated()
+    {
+        if (requiredMonster == null) return true;
+
+        GameObject target = requiredMonster.gameObject;
+        if (target == null) return true;
+        if (!target.activeInHierarchy) return true;
+
+        return requiredMonster.CurrentHealth <= 0;
+    }
+
     /// <summary>
     /// Initialiserer de nødvendige referencer til animator, spiller og UI.
     /// </summary>
@@ -195,86 +225,23 @@ public abstract class Chest : MonoBehaviour
     }
 
     /// <summary>
-    /// Returnerer den eksisterende reference, hvis den allerede er sat.
-    /// Ellers forsøger den at finde et GameObject i scenen via et tag.
+    /// Viser en besked til spilleren om, at kisten er låst,
+    /// fordi det krævede monster ikke er besejret endnu.
     /// </summary>
-    /// <remarks>
-    /// Bruges til at undgå at kalde Find-metoder hver gang, hvis reference allerede er cached.
-    /// Hvis tagget ikke findes i projektet, logges en advarsel, og der returneres null.
-    /// </remarks>
-    /// <param name="current">
-    /// Den nuværende reference. Hvis den ikke er null, returneres den direkte.
-    /// </param>
-    /// <param name="tag">
-    /// Tagget der bruges til at finde objektet, hvis <paramref name="current"/> er null.
-    /// </param>
-    /// <param name="ownerNameForLog">
-    /// Valgfrit navn, der bruges i logbeskeder (fx nameof(FirstChest)).
-    /// Hvis ikke angivet, bruges nameof(Chest).
-    /// </param>
-    /// <returns>
-    /// Et GameObject fundet via tag, eller den eksisterende reference, eller null hvis intet kan findes.
-    /// </returns>
-    protected GameObject GetOrFindByTag(GameObject current, string tag, string ownerNameForLog = null)
+    protected void ShowMessageMonsterNotDefeated()
     {
-        if (current != null)
-            return current;
-
-        if (string.IsNullOrWhiteSpace(tag))
-            return null;
-
-        try
+        if (uiMessageManager != null)
         {
-            return GameObject.FindGameObjectWithTag(tag);
+            uiMessageManager.ShowMessage(
+                monsterNotDefeatedMessage,
+                monsterNotDefeatedMessageDuration
+            );
         }
-        catch (UnityException)
+        else
         {
-            string owner = string.IsNullOrWhiteSpace(ownerNameForLog) ? nameof(Chest) : ownerNameForLog;
-            Debug.LogWarning($"{owner}: Tag '{tag}' findes ikke. Opret den under Tags & Layers.", this);
-            return null;
+            Debug.LogWarning("uiMessageManager er NULL, kan ikke vise besked.", this);
         }
-    }
 
-    /// <summary>
-    /// Finder en <see cref="Monster"/>-komponent på et GameObject.
-    /// </summary>
-    /// <remarks>
-    /// Søger i denne rækkefølge:
-    /// På selve objektet
-    /// I parent-hierarkiet
-    /// I children-hierarkiet
-    /// Returnerer null hvis target er null eller hvis der ikke findes en Monster-komponent.
-    /// </remarks>
-    /// <param name="target">GameObject der repræsenterer monsteret.</param>
-    /// <returns>En fundet <see cref="Monster"/>-komponent, eller null.</returns>
-    protected static Monster GetMonsterFrom(GameObject target)
-    {
-        if (target == null)
-            return null;
-
-        return target.GetComponent<Monster>()
-            ?? target.GetComponentInParent<Monster>()
-            ?? target.GetComponentInChildren<Monster>();
-    }
-
-    /// <summary>
-    /// Afgør om et monster er besejret.
-    /// </summary>
-    /// <remarks>
-    /// Returnerer true hvis:
-    /// target er destroyed/mangler (null),
-    /// target er deaktiveret (activeInHierarchy == false),
-    /// eller monster eksisterer og har CurrentHealth &lt;= 0.
-    /// Hvis monster-komponenten mangler, antages monsteret stadig at leve (false).
-    /// </remarks>
-    /// <param name="target">GameObject der repræsenterer monsteret.</param>
-    /// <param name="monster">Monster-komponenten (kan være null).</param>
-    /// <returns>True hvis monsteret er besejret; ellers false.</returns>
-    protected static bool IsMonsterDefeated(GameObject target, Monster monster)
-    {
-        if (target == null) return true;
-        if (!target.activeInHierarchy) return true;
-        return monster != null && monster.CurrentHealth <= 0;
     }
 
 }

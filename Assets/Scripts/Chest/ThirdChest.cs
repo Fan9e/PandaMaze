@@ -1,9 +1,12 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// tjerde kiste i spillet.
+/// Kan først åbnes når dragen er besejret (destroyed, deaktiveret, eller HP <= 0).
+/// </summary>
 public class ThirdChest : Chest
 {
-
     [Header("Third Chest Loot")]
     /// <summary>
     /// ID på den nøgle, som kisten giver til spilleren.
@@ -16,44 +19,19 @@ public class ThirdChest : Chest
     [SerializeField, Min(0)] private int potionAmount = 1;
 
     /// <summary>
-    /// Boss-monsteret, som skal være besejret (destroyed),
-    /// før kisten kan åbnes. Hvis feltet er tomt (null),
-    /// kan kisten åbnes uden dette krav.
-    /// </summary>
-    [SerializeField] private GameObject monsterBoss;
-
-    /// <summary>
     /// Bestemmer om kisten må åbnes.
-    /// Kisten kan kun åbnes, når boss-monsteret er død (eller ikke er sat).
-    /// Viser en UI-besked, hvis bossen stadig lever.
+    /// Kisten kan kun åbnes, når monsteret er død (eller ikke er sat).
+    /// Viser en UI-besked, hvis monsteret stadig lever.
     /// </summary>
     /// <returns>
     /// True, hvis kisten må åbnes; ellers false.
     /// </returns>
     protected override bool CanOpen()
     {
-        const float MessageDuration = 1f;
+        if (IsRequiredMonsterDefeated())
+            return true;
 
-        // Hvis bossen ikke er sat, eller allerede er blevet destroyed,
-        // så må kisten opføre sig normalt og bruge base-logikken.
-        if (monsterBoss == null)
-        {
-            return base.CanOpen();
-        }
-
-        // Bossen lever stadig → vis besked og blokér åbning.
-        if (uiMessageManager != null)
-        {
-            uiMessageManager.ShowMessage(
-                "Du mangler at bekæmpe bossen.",
-                MessageDuration
-            );
-        }
-        else
-        {
-            Debug.LogWarning("ThirdChest: uiMessageManager er NULL, kan ikke vise besked.", this);
-        }
-
+        ShowMessageMonsterNotDefeated();
         return false;
     }
 

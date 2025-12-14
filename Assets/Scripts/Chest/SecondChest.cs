@@ -1,8 +1,13 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
+
+/// <summary>
+/// Anden kiste i spillet.
+/// Kan først åbnes når katten er besejret (destroyed, deaktiveret, eller HP <= 0).
+/// </summary>
 public class SecondChest : Chest
-{ 
+{
     [Header("Second Chest Loot")]
 
     /// <summary>
@@ -24,41 +29,19 @@ public class SecondChest : Chest
     [SerializeField, Min(0)] private int potionAmount = 1;
 
     /// <summary>
-    /// Katte-monsteret, som skal være besejret (destroyed),
-    /// før kisten kan åbnes. Hvis feltet er tomt (null),
-    /// kan kisten åbnes uden dette krav.
-    /// </summary>
-    [SerializeField] private GameObject cat;
-
-    /// <summary>
     /// Bestemmer, om kisten må åbnes på det aktuelle tidspunkt.
-    /// Kisten kan kun åbnes, når katte-monsteret er død (eller ikke er sat).
-    /// Viser en UI-besked, hvis katten stadig lever.
+    /// Kisten kan kun åbnes, når monsteret er død (eller ikke er sat).
+    /// Viser en UI-besked, hvis monsteret stadig lever.
     /// </summary>
     /// <returns>
     /// True, hvis kisten må åbnes; ellers false.
     /// </returns>
     protected override bool CanOpen()
     {
-        const float MessageDuration = 1f;
+        if (IsRequiredMonsterDefeated())
+            return true;
 
-        if (cat == null)
-        {
-            return base.CanOpen();
-        }
-
-        if (uiMessageManager != null)
-        {
-            uiMessageManager.ShowMessage(
-                "Du mangler at bekæmpe katten.",
-                MessageDuration
-            );
-        }
-        else
-        {
-            Debug.LogWarning("SecondChest: uiMessageManager er NULL, kan ikke vise besked.", this);
-        }
-
+        ShowMessageMonsterNotDefeated();
         return false;
     }
 
