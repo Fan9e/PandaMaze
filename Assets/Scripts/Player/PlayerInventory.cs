@@ -186,8 +186,7 @@ public class PlayerInventory : MonoBehaviour
     public int GetPotionCount() => potionCount;
 
     /// <summary>
-    /// Opdaterer BagpackUI’s potion-slot og tekst via det eksisterende BagpackUI-API.
-    /// (Vi ændrer ikke BagpackUI-scriptet, vi bruger bare SetPotions).
+    /// Opdaterer BagpackUI’s potion-slot og tekst via det eksisterende BagpackUI.
     /// </summary>
     private void UpdatePotionUI()
     {
