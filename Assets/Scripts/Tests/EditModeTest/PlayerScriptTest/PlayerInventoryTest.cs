@@ -13,25 +13,20 @@ public class PlayerInventoryTest
     [SetUp]
     public void SetUp()
     {
-    
-        LogAssert.Expect(LogType.Error, "Player kunne hverken finde eller oprette noget Weapon.");
-
         _playerGO = new GameObject("TestPlayer");
 
         _playerGO.AddComponent<PlayerWeapon>();
 
         _inventory = _playerGO.AddComponent<PlayerInventory>();
 
-
         var uiGO = new GameObject("MockBagpackUI");
         _uiMock = uiGO.AddComponent<BagpackUI>();
 
-        var uiField = typeof(PlayerInventory).GetField(
-            "bagpackUI",
-            BindingFlags.NonPublic | BindingFlags.Instance
-        );
+        var uiField = typeof(PlayerInventory)
+            .GetField("bagpackUI", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         uiField.SetValue(_inventory, _uiMock);
     }
+
 
     [TearDown]
     public void TearDown()
