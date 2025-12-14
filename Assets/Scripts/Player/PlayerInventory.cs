@@ -1,16 +1,20 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-
+[RequireComponent(typeof(PlayerWeapon))]
 public class PlayerInventory : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private PlayerWeapon playerWeapon;
 
     /// <summary>
     /// Reference til PlayerWeapon på spilleren (kan sættes i Inspector eller findes automatisk).
     /// </summary>
     public PlayerWeapon PlayerWeapon => playerWeapon;
-    /// <summary>Reference til UI’en, så vi kan opdatere nøgle-slot.</summary>
+
+    /// <summary>
+    /// Reference til UI'en, så inventory kan opdatere key/potion-slot.
+    /// </summary>
     [SerializeField] private BagpackUI bagpackUI;
 
     /// <summary>
@@ -19,16 +23,30 @@ public class PlayerInventory : MonoBehaviour
     /// </summary>
     [SerializeField] private readonly HashSet<int> _collectedKeys = new HashSet<int>();
 
+    /// <summary>
+    /// Kun til debug/inspector-visning. (Opdateres når keys ændrer sig)
+    /// </summary>
     [SerializeField] private List<int> _debugKeys = new List<int>();
     [Header("Potions")]
     [SerializeField, Min(0)] private int potionCount = 0;
     private void Awake()
     {
+        CacheReferences();
+        RefreshUI();
+    }
+
+    /// <summary>
+    /// Finder/cacher referencer (helst via Inspector, ellers forsøger vi auto-find).
+    /// </summary>
+    private void CacheReferences()
+    {
         InitializeBackpackUI();
         InitializePlayerWeapon();
-        UpdateKeyUIAfterChange();
-        UpdatePotionUI();
     }
+
+    /// <summary>
+    /// Intialiserer referencen til BagpackUI (enten via Inspector eller auto-find).
+    /// </summary>
     private void InitializeBackpackUI()
     {
         if (bagpackUI == null)
@@ -40,6 +58,18 @@ public class PlayerInventory : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Opdaterer alt UI for inventory (keys + potions).
+    /// </summary>
+    private void RefreshUI()
+    {
+        UpdateKeyUI();
+        UpdatePotionUI();
+    }
+    
+    /// <summary>
+    /// Intialiserer referencen til PlayerWeapon (enten via Inspector eller auto-find).
+    /// </summary>
     private void InitializePlayerWeapon()
     {
         if (playerWeapon == null)
@@ -48,6 +78,7 @@ public class PlayerInventory : MonoBehaviour
         if (playerWeapon == null)
             Debug.LogWarning("PlayerInventory kunne ikke finde PlayerWeapon på spilleren.", this);
     }
+
     /// <summary>
     /// Tilføjer en nøgle til spillerens inventory.
     /// Returnerer true hvis nøglen blev tilføjet, og false hvis spilleren allerede havde den.
@@ -59,11 +90,23 @@ public class PlayerInventory : MonoBehaviour
             return false;
 
         _collectedKeys.Add(keyId);
-        UpdateKeyUIAfterChange(keyId);
-        _debugKeys.Clear();
-        _debugKeys.AddRange(_collectedKeys);  // kun for at vise dem i Inspector
+
+        UpdateKeyUI(keyId);
+
+        SyncDebugKeys();
+
         Debug.Log($"Spilleren har samlet nøgle {keyId}");
         return true;
+    }
+
+    /// <summary>
+    /// Holder debugKeys i sync, så det kan se keys i Inspector.
+    /// (Kun til debugging)
+    /// </summary>
+    private void SyncDebugKeys()
+    {
+        _debugKeys.Clear();
+        _debugKeys.AddRange(_collectedKeys);
     }
 
     /// <summary>
@@ -76,67 +119,49 @@ public class PlayerInventory : MonoBehaviour
     {
         return _collectedKeys.Contains(keyId);
     }
-    /// <summary>
-    /// Fjerner en nøgle (hvis du fx vil "bruge" den til en dør)
-    /// og opdaterer UI derefter.
-    /// </summary>
-    public bool RemoveKey(int keyId)
-    {
-        if (!_collectedKeys.Remove(keyId))
-            return false;
-
-        Debug.Log($"Spilleren har brugt/fjernet nøgle {keyId}");
-
-        UpdateKeyUIAfterChange();
-
-        return true;
-    }
 
     /// <summary>
     /// Opdaterer BagpackUI baseret på de nøgler, spilleren har.
     /// Hvis der ikke er nogen nøgler, skjules ikonet.
     /// Hvis der er mindst én, viser vi varianten ud fra en valgt keyId.
     /// </summary>
-    private void UpdateKeyUIAfterChange(int lastAddedKeyId = -1)
+    private void UpdateKeyUI(int lastAddedKeyId = -1)
     {
         if (bagpackUI == null)
             return;
 
         if (_collectedKeys.Count == 0)
         {
-            // Ingen nøgler → slot “tomt”
             bagpackUI.SetHasKey(false);
             return;
         }
 
-        // Vælg hvilken nøgle der skal styre varianten:
-        int keyIdToUse = lastAddedKeyId;
+        int keyIdToUse = lastAddedKeyId >= 0 ? lastAddedKeyId : GetAnyKeyId();
 
-        // Hvis vi ikke fik en specifik (fx RemoveKey), tag bare en vilkårlig
-        if (keyIdToUse < 0)
-        {
-            foreach (int id in _collectedKeys)
-            {
-                keyIdToUse = id;
-                break;
-            }
-        }
-
-        // Map keyId -> variant-index (0..2)
         int variant = MapKeyIdToVariant(keyIdToUse);
 
         bagpackUI.SetHasKey(true);
         bagpackUI.SetKeyVariant(variant);
     }
+    /// <summary>
+    /// Henter en vilkårlig keyId fra HashSet (hurtig og enkel fallback).
+    /// Returnerer -1 hvis der (mod forventning) ingen keys er.
+    /// </summary>
+    private int GetAnyKeyId()
+    {
+        foreach (int id in _collectedKeys)
+            return id;
+
+        return -1;
+    }
 
     /// <summary>
-    /// Her bestemmer du, hvordan keyId oversættes til sprite-varianten (0..2)
-    /// i BagpackUI.keySprites.
+    /// Oversætter keyId til sprite-variant-index.
+    /// Denne mapping antager keyId i området 1..3.
     /// </summary>
     private int MapKeyIdToVariant(int keyId)
-    {
-        
-        const int VariantCount = 3; // samme som i BagpackUI
+    {   
+        const int VariantCount = 3;
         int variant = Mathf.Clamp(keyId - 1, 0, VariantCount - 1);
         return variant;
     }
@@ -149,22 +174,10 @@ public class PlayerInventory : MonoBehaviour
         if (amount <= 0) return;
 
         potionCount += amount;
+
         UpdatePotionUI();
+
         Debug.Log($"Spilleren har fået {amount} potion(s). Total: {potionCount}");
-    }
-
-    /// <summary>
-    /// Forsøger at bruge én potion. Returnerer true hvis det lykkedes.
-    /// </summary>
-    public bool TryConsumePotion()
-    {
-        if (potionCount <= 0)
-            return false;
-
-        potionCount--;
-        UpdatePotionUI();
-        Debug.Log($"Spilleren brugte en potion. Tilbage: {potionCount}");
-        return true;
     }
 
     /// <summary>
@@ -184,9 +197,4 @@ public class PlayerInventory : MonoBehaviour
         bagpackUI.SetPotions(potionCount);
     }
 
-    public void EquipWeapon(Weapon weaponPrefab)
-    {
-        if (playerWeapon == null) return;
-        playerWeapon.EquipNewWeapon(weaponPrefab);
-    }
 }
