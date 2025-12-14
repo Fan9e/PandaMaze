@@ -4,7 +4,7 @@ using UnityEngine.TestTools;
 using System.Reflection;
 
 [TestFixture]
-public class PlayerInventoryTests
+public class PlayerInventoryTest
 {
     private GameObject _playerGO;
     private PlayerInventory _inventory;
