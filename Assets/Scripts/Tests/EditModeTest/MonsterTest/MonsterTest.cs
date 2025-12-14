@@ -3,15 +3,15 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class MonsterTest : UnityTestBase
+public class MonsterTest
 {
     [Test]
     public void Fight_MonsterTakesDamage_AndDealsDamageToPlayer()
     {
-        var monsterGameObject = CreateGameObject();
+        var monsterGameObject = new GameObject("Monster");
         var monster = monsterGameObject.AddComponent<Dragon>();
 
-        var playerGameObject = CreateGameObject();
+        var playerGameObject = new GameObject("Player");
         var player = playerGameObject.AddComponent<Player>();
 
         monster.MaxHealth = 20;
@@ -29,9 +29,9 @@ public class MonsterTest : UnityTestBase
     [Test]
     public void Fight_MonsterDies_WhenHealthReachesZero()
     {
-        var monsterGameObject = CreateGameObject();
+        var monsterGameObject = new GameObject("Monster");
         var monster = monsterGameObject.AddComponent<Dragon>();
-        var playerGameObject = CreateGameObject();
+        var playerGameObject = new GameObject("Player");
         var player = playerGameObject.AddComponent<Player>();
 
         monster.MaxHealth = 15;
@@ -49,9 +49,9 @@ public class MonsterTest : UnityTestBase
     [Test]
     public void Fight_NegativeDamage_DoesNotChangeHealth()
     {
-        var monsterGameObject = CreateGameObject();
+        var monsterGameObject = new GameObject("Monster");
         var monster = monsterGameObject.AddComponent<Dragon>();
-        var playerGameObject = CreateGameObject();
+        var playerGameObject = new GameObject("Player");
         var player = playerGameObject.AddComponent<Player>();
         monster.MaxHealth = 20;
         monster.CurrentHealth = 20;
@@ -65,7 +65,7 @@ public class MonsterTest : UnityTestBase
     [Test]
     public void Fight_DoesNothing_IfNoPlayerAssigned()
     {
-        var monsterGameObject = CreateGameObject();
+        var monsterGameObject = new GameObject("Monster");
         var monster = monsterGameObject.AddComponent<Dragon>();
         monster.MaxHealth = 20;
         monster.CurrentHealth = 20;
@@ -79,9 +79,9 @@ public class MonsterTest : UnityTestBase
     [Test]
     public void Fight_DoesNothing_IfMonsterAlreadyDead()
     {
-        var monsterGameObject = CreateGameObject();
+        var monsterGameObject = new GameObject("Monster");
         var monster = monsterGameObject.AddComponent<Dragon>();
-        var playerGameObject = CreateGameObject();
+        var playerGameObject = new GameObject("Player");
         var player = playerGameObject.AddComponent<Player>();
 
         monster.MaxHealth = 10;
@@ -99,9 +99,9 @@ public class MonsterTest : UnityTestBase
     [Test]
     public void Fight_DoesNothing_IfMonsterDiesFromDamage()
     {
-        var monsterGameObject = CreateGameObject();
+        var monsterGameObject = new GameObject("Monster");
         var monster = monsterGameObject.AddComponent<Dragon>();
-        var playerGameObject = CreateGameObject();
+        var playerGameObject = new GameObject("Player");
         var player = playerGameObject.AddComponent<Player>();
 
         monster.MaxHealth = 10;
