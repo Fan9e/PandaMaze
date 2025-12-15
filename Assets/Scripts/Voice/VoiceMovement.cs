@@ -98,18 +98,21 @@ public class VoiceMovement : MonoBehaviour
     /// <param name="partial">Den delvise tekst der er genkendt indtil videre.</param>
     private void NotifyPartial(string partial)
     {
+        IVoiceObserver[] snapshot;
         lock (observersLock)
         {
-            foreach (var observer in observers)
-                try
-                {
-                    observer.OnPartialResult(partial);
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogWarning($"VoiceMovement: observer threw in OnPartialResult: {ex}");
-                }
+            snapshot = observers.ToArray();
         }
+
+        foreach (var observer in snapshot)
+            try
+            {
+                observer.OnPartialResult(partial);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"VoiceMovement: observer threw in OnPartialResult: {ex}");
+            }
     }
 
     /// <summary>
@@ -118,18 +121,21 @@ public class VoiceMovement : MonoBehaviour
     /// <param name="result">Den fuldt genkendte tekst (eller fejlbesked).</param>
     private void NotifyResult(string result)
     {
+        IVoiceObserver[] snapshot;
         lock (observersLock)
         {
-            foreach (var observer in observers)
-                try
-                {
-                    observer.OnResult(result);
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogWarning($"VoiceMovement: observer threw in OnResult: {ex}");
-                }
+            snapshot = observers.ToArray();
         }
+
+        foreach (var observer in snapshot)
+            try
+            {
+                observer.OnResult(result);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"VoiceMovement: observer threw in OnResult: {ex}");
+            }
     }
 
     /// <summary>
@@ -138,18 +144,21 @@ public class VoiceMovement : MonoBehaviour
     /// <param name="level">Lydniveauet (typisk i [0..1] eller platformspecifikt interval).</param>
     private void NotifyVoiceLevel(float level)
     {
+        IVoiceObserver[] snapshot;
         lock (observersLock)
         {
-            foreach (var observer in observers)
-                try
-                {
-                    observer.OnVoiceLevelChanged(level);
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogWarning($"VoiceMovement: observer threw in OnVoiceLevelChanged: {ex}");
-                }
+            snapshot = observers.ToArray();
         }
+
+        foreach (var observer in snapshot)
+            try
+            {
+                observer.OnVoiceLevelChanged(level);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"VoiceMovement: observer threw in OnVoiceLevelChanged: {ex}");
+            }
     }
 
     /// <summary>
@@ -158,18 +167,21 @@ public class VoiceMovement : MonoBehaviour
     /// <param name="isOn">True hvis mikrofon er tændt.</param>
     private void NotifyMicState(bool isOn)
     {
+        IVoiceObserver[] snapshot;
         lock (observersLock)
         {
-            foreach (var observer in observers)
-                try
-                {
-                    observer.OnMicrophoneStateChanged(isOn);
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogWarning($"VoiceMovement: observer threw in OnMicrophoneStateChanged: {ex}");
-                }
+            snapshot = observers.ToArray();
         }
+
+        foreach (var observer in snapshot)
+            try
+            {
+                observer.OnMicrophoneStateChanged(isOn);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"VoiceMovement: observer threw in OnMicrophoneStateChanged: {ex}");
+            }
     }
     #endregion
 
@@ -260,7 +272,7 @@ public class VoiceMovement : MonoBehaviour
     // undgår compile-fejl pga. manglende API/namespace.
     // Hvis koden kompileres på en platform uden de definerede muligheder,
     // ville denne kode block ekskluderes,
-    // da Visual studio ikke er en af mulighederne forkommer koden derfor grå.
+    // da Visual studio ikke er en af muligheder forkommer koden derfor grå.
     #region ISpeechToTextListener implementation
 #if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
     /// <summary>Kaldes når talegenkendelsen er klar til at modtage tale.</summary>
