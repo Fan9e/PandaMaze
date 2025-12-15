@@ -215,16 +215,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Scripts::FirstChest
   isOpened: 0
-  openDistance: 1.2
   frontDotThreshold: 0.5
+  openDistance: 1.2
   cachedController: {fileID: 9100000, guid: d01c647003fb1e544bf5806e53f66aa8, type: 2}
   lootDelayAfterOpen: 1
   openTriggerName: Open
   uiMessageManager: {fileID: 0}
+  player: {fileID: 0}
+  playerInventory: {fileID: 0}
+  playerWeapon: {fileID: 0}
+  animator: {fileID: 0}
+  requiredMonster: {fileID: 0}
+  monsterNotDefeatedMessage: Du mangler at besejre dragon
+  monsterNotDefeatedMessageDuration: 1
   axeWeaponPrefab: {fileID: 7141490892390037720, guid: 126c4d01fbd2f8d4c84e8908afada68f, type: 3}
   keyId: 1
   potionAmount: 1
-  dragon: {fileID: 0}
 --- !u!54 &-5815806389639031700
 Rigidbody:
   m_ObjectHideFlags: 0
