@@ -295,6 +295,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 68063638}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 68063639}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 68063642}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 68063643}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 68063644}
   m_SourcePrefab: {fileID: 100100000, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
 --- !u!4 &8829840 stripped
 Transform:
@@ -396,6 +408,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
   m_PrefabInstance: {fileID: 1220007350}
   m_PrefabAsset: {fileID: 0}
+--- !u!115 &54950435
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1 &61361726 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
@@ -617,6 +644,54 @@ MonoBehaviour:
   m_Script: {fileID: 1395811910}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &68063639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68063623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &68063642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68063623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &68063643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68063623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &68063644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68063623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &77765422 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 625969680929733462, guid: 3643a069b19394966a812adb62ddab10, type: 3}
@@ -709,6 +784,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83862549}
   m_CullTransparentMesh: 1
+--- !u!115 &88404078
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1 &91780013 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
@@ -726,6 +816,10 @@ GameObject:
   - component: {fileID: 106334809}
   - component: {fileID: 106334810}
   - component: {fileID: 106334811}
+  - component: {fileID: 106334812}
+  - component: {fileID: 106334813}
+  - component: {fileID: 106334814}
+  - component: {fileID: 106334815}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (9)
   m_TagString: Untagged
@@ -748,6 +842,7 @@ Transform:
   m_Children:
   - {fileID: 392628476}
   - {fileID: 1252393388}
+  - {fileID: 849434259}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: -51.974, z: 0}
 --- !u!65 &106334809
@@ -769,7 +864,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Size: {x: 1.5, y: 5.5, z: 5}
   m_Center: {x: 13.2, y: -13, z: 3}
 --- !u!114 &106334810
 MonoBehaviour:
@@ -793,6 +888,54 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1395811910}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &106334812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106334807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &106334813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106334807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &106334814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106334807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &106334815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106334807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &106560398 stripped
@@ -997,6 +1140,21 @@ MonoBehaviour:
   m_Script: {fileID: 493741733}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!115 &171641355
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1 &173490315 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8963639268562437955, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
@@ -1031,6 +1189,10 @@ GameObject:
   - component: {fileID: 207053562}
   - component: {fileID: 207053563}
   - component: {fileID: 207053564}
+  - component: {fileID: 207053565}
+  - component: {fileID: 207053566}
+  - component: {fileID: 207053567}
+  - component: {fileID: 207053568}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (1)
   m_TagString: Untagged
@@ -1053,6 +1215,7 @@ Transform:
   m_Children:
   - {fileID: 539342685}
   - {fileID: 842559278}
+  - {fileID: 1540127365}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: -5.66, z: 0}
 --- !u!65 &207053562
@@ -1074,7 +1237,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Size: {x: 1.5, y: 5.5, z: 5}
   m_Center: {x: 13.2, y: -13, z: 3}
 --- !u!114 &207053563
 MonoBehaviour:
@@ -1100,6 +1263,128 @@ MonoBehaviour:
   m_Script: {fileID: 1395811910}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &207053565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207053560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &207053566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207053560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &207053567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207053560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &207053568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207053560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!1001 &218840932
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 256411474}
+    m_Modifications:
+    - target: {fileID: 1998015601603110209, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_Name
+      value: JG_TobiIshi_A_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.135174
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.0517182
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7680568
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6403818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 31.337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+--- !u!4 &218840933 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+  m_PrefabInstance: {fileID: 218840932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &220314356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,6 +1569,10 @@ GameObject:
   - component: {fileID: 242409285}
   - component: {fileID: 242409286}
   - component: {fileID: 242409287}
+  - component: {fileID: 242409288}
+  - component: {fileID: 242409289}
+  - component: {fileID: 242409290}
+  - component: {fileID: 242409291}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (7)
   m_TagString: Untagged
@@ -1306,6 +1595,7 @@ Transform:
   m_Children:
   - {fileID: 1817447171}
   - {fileID: 1138488147}
+  - {fileID: 1102547897}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: -50.9, z: 0}
 --- !u!65 &242409285
@@ -1327,7 +1617,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Size: {x: 1.5, y: 5.5, z: 5}
   m_Center: {x: 13.2, y: -13, z: 3}
 --- !u!114 &242409286
 MonoBehaviour:
@@ -1351,6 +1641,54 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1395811910}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &242409288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242409283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &242409289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242409283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &242409290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242409283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &242409291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242409283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &246962425
@@ -1541,6 +1879,10 @@ GameObject:
   - component: {fileID: 256411475}
   - component: {fileID: 256411476}
   - component: {fileID: 256411477}
+  - component: {fileID: 256411478}
+  - component: {fileID: 256411479}
+  - component: {fileID: 256411480}
+  - component: {fileID: 256411481}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (3)
   m_TagString: Untagged
@@ -1563,6 +1905,7 @@ Transform:
   m_Children:
   - {fileID: 297826808}
   - {fileID: 155816800}
+  - {fileID: 218840933}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: 61.72, z: 0}
 --- !u!65 &256411475
@@ -1584,7 +1927,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Size: {x: 1.5, y: 5.5, z: 5}
   m_Center: {x: 13.2, y: -13, z: 3}
 --- !u!114 &256411476
 MonoBehaviour:
@@ -1610,6 +1953,128 @@ MonoBehaviour:
   m_Script: {fileID: 1395811910}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &256411478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256411473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &256411479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256411473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &256411480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256411473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &256411481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256411473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!1001 &256648335
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1735097044}
+    m_Modifications:
+    - target: {fileID: 1998015601603110209, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_Name
+      value: JG_TobiIshi_A_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.135174
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.0517182
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7680568
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6403818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 31.337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+--- !u!4 &256648336 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+  m_PrefabInstance: {fileID: 256648335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &262706975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1700,6 +2165,48 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1028615605}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615608}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615609}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615610}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615611}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615612}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615613}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615614}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615615}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615616}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615617}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615618}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615619}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615620}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615621}
   m_SourcePrefab: {fileID: 100100000, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
 --- !u!115 &262886389
 MonoScript:
@@ -1716,6 +2223,80 @@ MonoScript:
   m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
   m_Namespace: 
   m_AssemblyName: Scripts
+--- !u!1001 &270620931
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1810535746}
+    m_Modifications:
+    - target: {fileID: 1998015601603110209, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_Name
+      value: JG_TobiIshi_A_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.135174
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.0517182
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7680568
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6403818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 31.337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+--- !u!4 &270620932 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+  m_PrefabInstance: {fileID: 270620931}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &277260024 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
@@ -2564,6 +3145,10 @@ GameObject:
   - component: {fileID: 376747446}
   - component: {fileID: 376747447}
   - component: {fileID: 376747448}
+  - component: {fileID: 376747449}
+  - component: {fileID: 376747450}
+  - component: {fileID: 376747451}
+  - component: {fileID: 376747452}
   m_Layer: 0
   m_Name: Rock_Group (6)
   m_TagString: Untagged
@@ -2634,6 +3219,54 @@ MonoBehaviour:
   m_Script: {fileID: 1395811910}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &376747449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376747444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &376747450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376747444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &376747451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376747444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &376747452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376747444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &381073033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2646,6 +3279,10 @@ GameObject:
   - component: {fileID: 381073035}
   - component: {fileID: 381073036}
   - component: {fileID: 381073037}
+  - component: {fileID: 381073038}
+  - component: {fileID: 381073039}
+  - component: {fileID: 381073040}
+  - component: {fileID: 381073041}
   m_Layer: 0
   m_Name: Rock_Group (12)
   m_TagString: Untagged
@@ -2716,6 +3353,54 @@ MonoBehaviour:
   m_Script: {fileID: 1395811910}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &381073038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381073033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &381073039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381073033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &381073040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381073033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &381073041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381073033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!115 &390615799
 MonoScript:
   m_ObjectHideFlags: 0
@@ -2743,6 +3428,10 @@ GameObject:
   - component: {fileID: 391699008}
   - component: {fileID: 391699009}
   - component: {fileID: 391699010}
+  - component: {fileID: 391699011}
+  - component: {fileID: 391699012}
+  - component: {fileID: 391699013}
+  - component: {fileID: 391699014}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (4)
   m_TagString: Untagged
@@ -2765,6 +3454,7 @@ Transform:
   m_Children:
   - {fileID: 1572166991}
   - {fileID: 2091757400}
+  - {fileID: 1880916117}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: -59.306, z: 0}
 --- !u!65 &391699008
@@ -2786,7 +3476,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Size: {x: 1.5, y: 5.5, z: 5}
   m_Center: {x: 13.2, y: -13, z: 3}
 --- !u!114 &391699009
 MonoBehaviour:
@@ -2810,6 +3500,54 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1395811910}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &391699011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391699006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &391699012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391699006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &391699013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391699006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &391699014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391699006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &392628475
@@ -3121,6 +3859,10 @@ GameObject:
   - component: {fileID: 426751278}
   - component: {fileID: 426751279}
   - component: {fileID: 426751280}
+  - component: {fileID: 426751281}
+  - component: {fileID: 426751282}
+  - component: {fileID: 426751283}
+  - component: {fileID: 426751284}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (6)
   m_TagString: Untagged
@@ -3143,6 +3885,7 @@ Transform:
   m_Children:
   - {fileID: 1562350809}
   - {fileID: 877175519}
+  - {fileID: 649551895}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: 64.256, z: 0}
 --- !u!65 &426751278
@@ -3164,7 +3907,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Size: {x: 1.5, y: 5.5, z: 5}
   m_Center: {x: 13.2, y: -13, z: 3}
 --- !u!114 &426751279
 MonoBehaviour:
@@ -3188,6 +3931,54 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1395811910}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &426751281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426751276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &426751282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426751276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &426751283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426751276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &426751284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426751276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &444670577 stripped
@@ -3248,6 +4039,21 @@ MonoBehaviour:
   m_Script: {fileID: 262886389}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!115 &450207255
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1 &451660043 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 625969680929733462, guid: 3643a069b19394966a812adb62ddab10, type: 3}
@@ -3699,6 +4505,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 635012010}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 635012013}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 635012014}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 635012015}
     - targetCorrespondingSourceObject: {fileID: 8963639268562437955, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 410372058}
@@ -3715,6 +4530,10 @@ GameObject:
   - component: {fileID: 472555444}
   - component: {fileID: 472555445}
   - component: {fileID: 472555446}
+  - component: {fileID: 472555447}
+  - component: {fileID: 472555448}
+  - component: {fileID: 472555449}
+  - component: {fileID: 472555450}
   m_Layer: 0
   m_Name: Rock_Group (1)
   m_TagString: Untagged
@@ -3785,6 +4604,54 @@ MonoBehaviour:
   m_Script: {fileID: 1395811910}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &472555447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472555442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &472555448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472555442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &472555449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472555442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &472555450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472555442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!115 &493741733
 MonoScript:
   m_ObjectHideFlags: 0
@@ -3812,6 +4679,10 @@ GameObject:
   - component: {fileID: 506497638}
   - component: {fileID: 506497639}
   - component: {fileID: 506497640}
+  - component: {fileID: 506497641}
+  - component: {fileID: 506497642}
+  - component: {fileID: 506497643}
+  - component: {fileID: 506497644}
   m_Layer: 0
   m_Name: Rock_Group (8)
   m_TagString: Untagged
@@ -3882,6 +4753,143 @@ MonoBehaviour:
   m_Script: {fileID: 1395811910}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &506497641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506497636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &506497642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506497636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &506497643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506497636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &506497644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506497636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!115 &512825773
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
+--- !u!1001 &513456020
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 727285861}
+    m_Modifications:
+    - target: {fileID: 1998015601603110209, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_Name
+      value: JG_TobiIshi_A_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7680568
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6403818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 31.337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+--- !u!4 &513456021 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+  m_PrefabInstance: {fileID: 513456020}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &513797438 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 625969680929733462, guid: 3643a069b19394966a812adb62ddab10, type: 3}
@@ -3911,6 +4919,9 @@ GameObject:
   - component: {fileID: 515804898}
   - component: {fileID: 515804899}
   - component: {fileID: 515804900}
+  - component: {fileID: 515804901}
+  - component: {fileID: 515804902}
+  - component: {fileID: 515804903}
   m_Layer: 0
   m_Name: Rock_Group (10)
   m_TagString: Untagged
@@ -3981,11 +4992,62 @@ MonoBehaviour:
   m_Script: {fileID: 1395811910}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &515804901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515804896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &515804902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515804896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &515804903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515804896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &525432714 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7583593125602428525, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
   m_PrefabInstance: {fileID: 1946737946}
   m_PrefabAsset: {fileID: 0}
+--- !u!115 &530161866
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1 &530354997 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7583593125602428525, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
@@ -4098,6 +5160,9 @@ GameObject:
   - component: {fileID: 543081012}
   - component: {fileID: 543081013}
   - component: {fileID: 543081014}
+  - component: {fileID: 543081015}
+  - component: {fileID: 543081016}
+  - component: {fileID: 543081017}
   m_Layer: 0
   m_Name: Rock_Group (5)
   m_TagString: Untagged
@@ -4166,6 +5231,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1395811910}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &543081015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543081010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &543081016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543081010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &543081017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543081010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &555818684 stripped
@@ -4635,10 +5736,120 @@ MonoBehaviour:
   m_Script: {fileID: 1395811910}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &635012013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202120827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &635012014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202120827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &635012015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202120827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &644351799 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
   m_PrefabInstance: {fileID: 779223730}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &649551894
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 426751277}
+    m_Modifications:
+    - target: {fileID: 1998015601603110209, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_Name
+      value: JG_TobiIshi_A_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.135174
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.0517182
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7680568
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6403818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 31.337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+--- !u!4 &649551895 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+  m_PrefabInstance: {fileID: 649551894}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &649718068
 GameObject:
@@ -4652,6 +5863,9 @@ GameObject:
   - component: {fileID: 649718070}
   - component: {fileID: 649718071}
   - component: {fileID: 649718072}
+  - component: {fileID: 649718073}
+  - component: {fileID: 649718074}
+  - component: {fileID: 649718075}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (11)
   m_TagString: Untagged
@@ -4674,6 +5888,7 @@ Transform:
   m_Children:
   - {fileID: 1006427161}
   - {fileID: 919058814}
+  - {fileID: 925836118}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: -2.109, y: 17.295, z: 0}
 --- !u!65 &649718070
@@ -4695,7 +5910,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Size: {x: 1.5, y: 5.5, z: 5}
   m_Center: {x: 13.2, y: -13, z: 3}
 --- !u!114 &649718071
 MonoBehaviour:
@@ -4721,10 +5936,120 @@ MonoBehaviour:
   m_Script: {fileID: 1395811910}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &649718073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649718068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &649718074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649718068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &649718075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649718068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &652591147 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
   m_PrefabInstance: {fileID: 1135916529}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &657673325
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 943402227}
+    m_Modifications:
+    - target: {fileID: 1998015601603110209, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_Name
+      value: JG_TobiIshi_A_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.135174
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.0517182
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7680568
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6403818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 31.337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+--- !u!4 &657673326 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+  m_PrefabInstance: {fileID: 657673325}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &701069699
 GameObject:
@@ -4738,6 +6063,9 @@ GameObject:
   - component: {fileID: 701069701}
   - component: {fileID: 701069702}
   - component: {fileID: 701069703}
+  - component: {fileID: 701069704}
+  - component: {fileID: 701069705}
+  - component: {fileID: 701069706}
   m_Layer: 0
   m_Name: Rock_Group (11)
   m_TagString: Untagged
@@ -4806,6 +6134,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1395811910}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &701069704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701069699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &701069705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701069699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &701069706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701069699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &702208859
@@ -5300,6 +6664,9 @@ GameObject:
   - component: {fileID: 724420098}
   - component: {fileID: 724420099}
   - component: {fileID: 724420100}
+  - component: {fileID: 724420101}
+  - component: {fileID: 724420102}
+  - component: {fileID: 724420103}
   m_Layer: 0
   m_Name: Rock_Group
   m_TagString: Untagged
@@ -5344,7 +6711,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Size: {x: 2.6, y: 4, z: 5.5}
   m_Center: {x: 1.3, y: 0, z: 0}
 --- !u!114 &724420099
 MonoBehaviour:
@@ -5370,6 +6737,42 @@ MonoBehaviour:
   m_Script: {fileID: 1395811910}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &724420101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724420096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &724420102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724420096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &724420103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724420096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &727285860
 GameObject:
   m_ObjectHideFlags: 0
@@ -5382,6 +6785,9 @@ GameObject:
   - component: {fileID: 727285862}
   - component: {fileID: 727285863}
   - component: {fileID: 727285864}
+  - component: {fileID: 727285865}
+  - component: {fileID: 727285866}
+  - component: {fileID: 727285867}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (5)
   m_TagString: Untagged
@@ -5404,6 +6810,7 @@ Transform:
   m_Children:
   - {fileID: 226669164}
   - {fileID: 1103281483}
+  - {fileID: 513456021}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 2.543, y: -117.961, z: 0}
 --- !u!65 &727285862
@@ -5425,7 +6832,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Size: {x: 1.5, y: 5.5, z: 5}
   m_Center: {x: 13.2, y: -13, z: 3}
 --- !u!114 &727285863
 MonoBehaviour:
@@ -5449,6 +6856,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1395811910}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &727285865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727285860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &727285866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727285860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &727285867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727285860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &733422336
@@ -5627,6 +7070,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
   m_PrefabInstance: {fileID: 743898592}
   m_PrefabAsset: {fileID: 0}
+--- !u!115 &746376416
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1001 &755498753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6169,6 +7627,48 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 842559292}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559295}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559296}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559297}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559298}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559299}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559300}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559301}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559302}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559303}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559304}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559305}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559306}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559307}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559308}
   m_SourcePrefab: {fileID: 100100000, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
 --- !u!4 &842559278 stripped
 Transform:
@@ -6295,6 +7795,248 @@ MonoBehaviour:
   m_Script: {fileID: 1395811910}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 450207255}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1005550476}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2131985853}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 867688813}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 171641355}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 530161866}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2053424867}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1439702725}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 88404078}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1662623064}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1338001737}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!1001 &849434258
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 106334808}
+    m_Modifications:
+    - target: {fileID: 1998015601603110209, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_Name
+      value: JG_TobiIshi_A_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.135174
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.0517182
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7680568
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6403818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 31.337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+--- !u!4 &849434259 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+  m_PrefabInstance: {fileID: 849434258}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &863598867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6400,6 +8142,21 @@ MonoBehaviour:
   m_Script: {fileID: 262886389}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!115 &867688813
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!4 &868390397 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6943167430675135337, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
@@ -6417,6 +8174,8 @@ GameObject:
   - component: {fileID: 872702402}
   - component: {fileID: 872702403}
   - component: {fileID: 872702404}
+  - component: {fileID: 872702405}
+  - component: {fileID: 872702406}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (10)
   m_TagString: Untagged
@@ -6439,6 +8198,7 @@ Transform:
   m_Children:
   - {fileID: 1092699300}
   - {fileID: 841678253}
+  - {fileID: 1548182557}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: 62.897, z: 0}
 --- !u!65 &872702402
@@ -6460,7 +8220,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Size: {x: 1.5, y: 5.5, z: 5}
   m_Center: {x: 13.2, y: -13, z: 3}
 --- !u!114 &872702403
 MonoBehaviour:
@@ -6484,6 +8244,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1395811910}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &872702405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872702400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &872702406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872702400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &877175518
@@ -6660,6 +8444,48 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
       insertIndex: -1
       addedObject: {fileID: 901265523}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265526}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265527}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265528}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265529}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265530}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265531}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265532}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265533}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265534}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265535}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265536}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265537}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265538}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265539}
     - targetCorrespondingSourceObject: {fileID: 625969680929733462, guid: 3643a069b19394966a812adb62ddab10, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1000632058}
@@ -6715,6 +8541,174 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1395811910}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 450207255}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1005550476}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2131985853}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 867688813}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 171641355}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 530161866}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2053424867}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1439702725}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 88404078}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1662623064}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1338001737}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &919058813
@@ -6833,6 +8827,80 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3156099888769367291, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
   m_PrefabInstance: {fileID: 1562350808}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &925836117
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 649718069}
+    m_Modifications:
+    - target: {fileID: 1998015601603110209, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_Name
+      value: JG_TobiIshi_A_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7680568
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6403818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 31.337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+--- !u!4 &925836118 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+  m_PrefabInstance: {fileID: 925836117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &929192916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6929,6 +8997,8 @@ GameObject:
   - component: {fileID: 943402228}
   - component: {fileID: 943402229}
   - component: {fileID: 943402230}
+  - component: {fileID: 943402231}
+  - component: {fileID: 943402232}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (12)
   m_TagString: Untagged
@@ -6951,6 +9021,7 @@ Transform:
   m_Children:
   - {fileID: 1921003278}
   - {fileID: 982935859}
+  - {fileID: 657673326}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: 75.74, z: 0}
 --- !u!65 &943402228
@@ -6972,7 +9043,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Size: {x: 1.5, y: 5.5, z: 5}
   m_Center: {x: 13.2, y: -13, z: 3}
 --- !u!114 &943402229
 MonoBehaviour:
@@ -6996,6 +9067,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1395811910}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &943402231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943402226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &943402232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943402226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &956958337
@@ -7323,6 +9418,8 @@ GameObject:
   - component: {fileID: 984027129}
   - component: {fileID: 984027130}
   - component: {fileID: 984027131}
+  - component: {fileID: 984027132}
+  - component: {fileID: 984027133}
   m_Layer: 0
   m_Name: Rock_Group (4)
   m_TagString: Untagged
@@ -7393,6 +9490,30 @@ MonoBehaviour:
   m_Script: {fileID: 1395811910}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &984027132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984027127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &984027133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984027127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &984114767 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6329159907605863020, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
@@ -7410,6 +9531,11 @@ MonoBehaviour:
   m_Script: {fileID: 262886389}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!4 &991630891 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+  m_PrefabInstance: {fileID: 1933265470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1000632056 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 625969680929733462, guid: 3643a069b19394966a812adb62ddab10, type: 3}
@@ -7427,6 +9553,21 @@ MonoBehaviour:
   m_Script: {fileID: 262886389}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!115 &1005550476
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1 &1005686300 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7583593125602428525, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
@@ -7525,6 +9666,8 @@ GameObject:
   - component: {fileID: 1024553395}
   - component: {fileID: 1024553396}
   - component: {fileID: 1024553397}
+  - component: {fileID: 1024553398}
+  - component: {fileID: 1024553399}
   m_Layer: 0
   m_Name: Rock_Group (9)
   m_TagString: Untagged
@@ -7593,6 +9736,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1395811910}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1024553398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024553393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1024553399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024553393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &1027691347 stripped
@@ -7759,6 +9926,174 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1395811910}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 450207255}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1005550476}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2131985853}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 867688813}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 171641355}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 530161866}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2053424867}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1439702725}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 88404078}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1662623064}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1338001737}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &1031801978
@@ -8004,6 +10339,8 @@ GameObject:
   - component: {fileID: 1093003286}
   - component: {fileID: 1093003287}
   - component: {fileID: 1093003288}
+  - component: {fileID: 1093003289}
+  - component: {fileID: 1093003290}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group
   m_TagString: Untagged
@@ -8026,6 +10363,7 @@ Transform:
   m_Children:
   - {fileID: 868390397}
   - {fileID: 1028615591}
+  - {fileID: 991630891}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: -48.304, z: 0}
 --- !u!65 &1093003286
@@ -8047,7 +10385,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Size: {x: 1.5, y: 5.5, z: 5}
   m_Center: {x: 13.2, y: -13, z: 3}
 --- !u!114 &1093003287
 MonoBehaviour:
@@ -8073,6 +10411,104 @@ MonoBehaviour:
   m_Script: {fileID: 1395811910}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1093003289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093003284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1093003290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093003284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!1001 &1102547896
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 242409284}
+    m_Modifications:
+    - target: {fileID: 1998015601603110209, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_Name
+      value: JG_TobiIshi_A_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.135174
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.0517182
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7680568
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6403818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 31.337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+--- !u!4 &1102547897 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+  m_PrefabInstance: {fileID: 1102547896}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1103281482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8257,11 +10693,13 @@ MonoBehaviour:
   - over
   - hop
   - up
+  - Hello world
   bambooKeywords:
   - duck
   - under
   - crouch
   - down
+  - Hello world
   promptPrefab: {fileID: 0}
   promptAnchoredPosition: {x: 0, y: 120}
   promptFormat: 'Say one of: {0}
@@ -8778,6 +11216,48 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1220007357}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007360}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007361}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007362}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007363}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007364}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007365}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007366}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007367}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007368}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007369}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007370}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007371}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007372}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007373}
     - targetCorrespondingSourceObject: {fileID: 8963639268562437955, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1129255321}
@@ -8796,7 +11276,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1395811910}
+  m_Script: {fileID: 1338001737}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1220007355
@@ -8808,7 +11288,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 390615799}
+  m_Script: {fileID: 1338001737}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1220007356
@@ -8820,7 +11300,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1854510825}
+  m_Script: {fileID: 1338001737}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1220007357
@@ -8832,7 +11312,175 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1395811910}
+  m_Script: {fileID: 1338001737}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 512825773}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 54950435}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 450207255}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1005550476}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2131985853}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 867688813}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 171641355}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 530161866}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2053424867}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1439702725}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 88404078}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1662623064}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1338001737}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!115 &1220379894
@@ -8964,12 +11612,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1252393389}
-    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1252393392}
-    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1252393393}
   m_SourcePrefab: {fileID: 100100000, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
 --- !u!4 &1252393388 stripped
 Transform:
@@ -8985,31 +11627,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 319950798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1395811910}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1252393392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319950798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1395811910}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1252393393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319950798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 262886389}
+  m_Script: {fileID: 54950435}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &1253284740
@@ -9024,6 +11642,8 @@ GameObject:
   - component: {fileID: 1253284742}
   - component: {fileID: 1253284743}
   - component: {fileID: 1253284744}
+  - component: {fileID: 1253284745}
+  - component: {fileID: 1253284746}
   m_Layer: 0
   m_Name: Rock_Group (2)
   m_TagString: Untagged
@@ -9079,7 +11699,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1253284740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1854510825}
+  m_Script: {fileID: 746376416}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1253284744
@@ -9091,7 +11711,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1253284740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1395811910}
+  m_Script: {fileID: 746376416}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1253284745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253284740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1779926811}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1253284746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253284740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 746376416}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &1274863812 stripped
@@ -9316,6 +11960,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7583593125602428525, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
   m_PrefabInstance: {fileID: 1969874109}
   m_PrefabAsset: {fileID: 0}
+--- !u!115 &1338001737
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1 &1338343838
 GameObject:
   m_ObjectHideFlags: 0
@@ -9955,6 +12614,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4718e17ffa748c644a42988bb9afa352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Scripts::PlayerInventory
+--- !u!115 &1439702725
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1001 &1448371903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10368,6 +13042,80 @@ MonoBehaviour:
   m_Script: {fileID: 262886389}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!1001 &1540127364
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 207053561}
+    m_Modifications:
+    - target: {fileID: 1998015601603110209, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_Name
+      value: JG_TobiIshi_A_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.135174
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.61689
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.0517182
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7680568
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6403818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 31.337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+--- !u!4 &1540127365 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+  m_PrefabInstance: {fileID: 1540127364}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1545881905 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 625969680929733462, guid: 3643a069b19394966a812adb62ddab10, type: 3}
@@ -10385,6 +13133,80 @@ MonoBehaviour:
   m_Script: {fileID: 1220379894}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!1001 &1548182556
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 872702401}
+    m_Modifications:
+    - target: {fileID: 1998015601603110209, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_Name
+      value: JG_TobiIshi_A_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.135174
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.0517182
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7680568
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6403818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 31.337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+--- !u!4 &1548182557 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+  m_PrefabInstance: {fileID: 1548182556}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1557363413 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
@@ -10672,7 +13494,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1569706086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1854510825}
+  m_Script: {fileID: 746376416}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1569706090
@@ -11012,6 +13834,21 @@ MonoBehaviour:
   m_Script: {fileID: 1220379894}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!115 &1662623064
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1 &1669213816 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
@@ -11110,13 +13947,10 @@ PrefabInstance:
       addedObject: {fileID: 1670365991}
     - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1670365994}
+      addedObject: {fileID: 1670365999}
     - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1670365995}
-    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1670365996}
+      addedObject: {fileID: 1670366000}
     - targetCorrespondingSourceObject: {fileID: 8963639268562437955, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 600758483}
@@ -11135,10 +13969,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 91780013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1395811910}
+  m_Script: {fileID: 54950435}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1670365994
+--- !u!114 &1670365999
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11147,10 +13981,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 91780013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 390615799}
+  m_Script: {fileID: 746376416}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1670365995
+--- !u!114 &1670366000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11159,19 +13993,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 91780013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1854510825}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1670365996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 91780013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1395811910}
+  m_Script: {fileID: 512825773}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &1677932486 stripped
@@ -11272,13 +14094,10 @@ PrefabInstance:
       addedObject: {fileID: 1696244937}
     - targetCorrespondingSourceObject: {fileID: 7583593125602428525, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1696244940}
+      addedObject: {fileID: 1696244945}
     - targetCorrespondingSourceObject: {fileID: 7583593125602428525, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1696244941}
-    - targetCorrespondingSourceObject: {fileID: 7583593125602428525, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1696244942}
+      addedObject: {fileID: 1696244946}
     - targetCorrespondingSourceObject: {fileID: 6329159907605863020, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1847664834}
@@ -11297,10 +14116,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 158846159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1395811910}
+  m_Script: {fileID: 54950435}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1696244940
+--- !u!114 &1696244945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11309,10 +14128,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 158846159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 390615799}
+  m_Script: {fileID: 746376416}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1696244941
+--- !u!114 &1696244946
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11321,19 +14140,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 158846159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1854510825}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1696244942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 158846159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1395811910}
+  m_Script: {fileID: 512825773}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &1705671119
@@ -11597,6 +14404,7 @@ Transform:
   m_Children:
   - {fileID: 956958338}
   - {fileID: 1925529639}
+  - {fileID: 256648336}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: -86.074, z: 0}
 --- !u!65 &1735097045
@@ -11618,7 +14426,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Size: {x: 1.5, y: 5.5, z: 5}
   m_Center: {x: 13.2, y: -13, z: 3}
 --- !u!114 &1735097046
 MonoBehaviour:
@@ -11629,7 +14437,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1735097043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1854510825}
+  m_Script: {fileID: 746376416}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1735097047
@@ -11840,6 +14648,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6244019025027968255, guid: 2be2608b662efd8458e53e6bb8a58f4a, type: 3}
   m_PrefabInstance: {fileID: 1768621618}
   m_PrefabAsset: {fileID: 0}
+--- !u!115 &1779926811
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1 &1783047581
 GameObject:
   m_ObjectHideFlags: 0
@@ -11977,6 +14800,7 @@ Transform:
   m_Children:
   - {fileID: 1999559165}
   - {fileID: 8829840}
+  - {fileID: 270620932}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: -17.774, z: 0}
 --- !u!65 &1810535747
@@ -11998,7 +14822,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Size: {x: 1.5, y: 5.5, z: 5}
   m_Center: {x: 13.2, y: -13, z: 3}
 --- !u!114 &1810535748
 MonoBehaviour:
@@ -12009,7 +14833,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1810535745}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1854510825}
+  m_Script: {fileID: 1779926811}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1810535749
@@ -12122,13 +14946,10 @@ PrefabInstance:
       addedObject: {fileID: 1812540838}
     - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1812540841}
+      addedObject: {fileID: 1812540846}
     - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1812540842}
-    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1812540843}
+      addedObject: {fileID: 1812540847}
     - targetCorrespondingSourceObject: {fileID: 8963639268562437955, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 106560400}
@@ -12147,10 +14968,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 61361726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1395811910}
+  m_Script: {fileID: 54950435}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1812540841
+--- !u!114 &1812540846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12159,10 +14980,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 61361726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 390615799}
+  m_Script: {fileID: 746376416}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1812540842
+--- !u!114 &1812540847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12171,19 +14992,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 61361726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1854510825}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1812540843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 61361726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1395811910}
+  m_Script: {fileID: 512825773}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &1817447170
@@ -12689,6 +15498,80 @@ MonoBehaviour:
   m_Script: {fileID: 1220379894}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!1001 &1880916116
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 391699007}
+    m_Modifications:
+    - target: {fileID: 1998015601603110209, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_Name
+      value: JG_TobiIshi_A_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.135174
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.0517182
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7680568
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6403818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 31.337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+--- !u!4 &1880916117 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+  m_PrefabInstance: {fileID: 1880916116}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1882599753 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8963639268562437955, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
@@ -12966,7 +15849,7 @@ MonoBehaviour:
   overHeight: 1.5
   underDepth: 0.5
   autoStartMicrophone: 1
-  changePlayerColliderWhenDucking: 1
+  changePlayerColliderWhenDucking: 0
   duckColliderHeightMultiplier: 0.5
   colliderChangeDuration: 0.12
   rockKeywords:
@@ -12974,16 +15857,87 @@ MonoBehaviour:
   - over
   - hop
   - up
+  - Hello world
   bambooKeywords:
   - duck
   - under
   - crouch
   - down
+  - Hello world
   promptPrefab: {fileID: 0}
   promptAnchoredPosition: {x: 0, y: 120}
   promptFormat: 'Say one of: {0}
 
     To {1} the obstacle.'
+--- !u!1001 &1933265470
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1093003285}
+    m_Modifications:
+    - target: {fileID: 1998015601603110209, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_Name
+      value: JG_TobiIshi_A_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.135174
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.61689
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.0517182
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7680568
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6403818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 31.337
+      objectReference: {fileID: 0}
+    - target: {fileID: 2936418891738199583, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2c91d1688ac1b0b8af3144fa89bee74, type: 3}
 --- !u!1 &1942022085
 GameObject:
   m_ObjectHideFlags: 0
@@ -13754,6 +16708,21 @@ MonoBehaviour:
   m_Script: {fileID: 1854510825}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!115 &2053424867
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1001 &2074916367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14183,6 +17152,21 @@ MonoBehaviour:
   m_Script: {fileID: 1220379894}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!115 &2131985853
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1 &2138416739 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
