@@ -283,6 +283,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 68063632}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 68063633}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 68063636}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 68063637}
   m_SourcePrefab: {fileID: 100100000, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
 --- !u!4 &8829840 stripped
 Transform:
@@ -557,6 +566,42 @@ MonoBehaviour:
   m_Script: {fileID: 493741733}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &68063633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68063623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1069831501}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &68063636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68063623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 390615799}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &68063637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68063623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &77765422 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 625969680929733462, guid: 3643a069b19394966a812adb62ddab10, type: 3}
@@ -663,6 +708,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 106334808}
+  - component: {fileID: 106334809}
+  - component: {fileID: 106334810}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (9)
   m_TagString: Untagged
@@ -687,6 +734,39 @@ Transform:
   - {fileID: 1252393388}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: -51.974, z: 0}
+--- !u!65 &106334809
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106334807}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Center: {x: 13.2, y: -13, z: 3}
+--- !u!114 &106334810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106334807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &106560398 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8963639268562437955, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
@@ -920,6 +1000,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 207053561}
+  - component: {fileID: 207053562}
+  - component: {fileID: 207053563}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (1)
   m_TagString: Untagged
@@ -944,6 +1026,39 @@ Transform:
   - {fileID: 842559278}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: -5.66, z: 0}
+--- !u!65 &207053562
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207053560}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Center: {x: 13.2, y: -13, z: 3}
+--- !u!114 &207053563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207053560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &220314356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,6 +1240,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 242409284}
+  - component: {fileID: 242409285}
+  - component: {fileID: 242409286}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (7)
   m_TagString: Untagged
@@ -1149,6 +1266,39 @@ Transform:
   - {fileID: 1138488147}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: -50.9, z: 0}
+--- !u!65 &242409285
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242409283}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Center: {x: 13.2, y: -13, z: 3}
+--- !u!114 &242409286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242409283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &246962425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1334,6 +1484,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 256411474}
+  - component: {fileID: 256411475}
+  - component: {fileID: 256411476}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (3)
   m_TagString: Untagged
@@ -1358,6 +1510,39 @@ Transform:
   - {fileID: 155816800}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: 61.72, z: 0}
+--- !u!65 &256411475
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256411473}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Center: {x: 13.2, y: -13, z: 3}
+--- !u!114 &256411476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256411473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &262706975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1439,6 +1624,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1028615600}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615603}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1028615604}
   m_SourcePrefab: {fileID: 100100000, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
 --- !u!115 &262886389
 MonoScript:
@@ -1591,7 +1782,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287764756}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5847103, y: -0.000000011557735, z: 0.000000008330345, w: 0.81124216}
+  m_LocalRotation: {x: 0.58471036, y: -0.000000022248006, z: 0.000000016035457, w: 0.81124216}
   m_LocalPosition: {x: 145.8, y: 31.15, z: 59.945}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
@@ -1910,7 +2101,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.58471036, y: -0.000000011557734, z: 0.0000000083303435, w: 0.81124216}
+  m_LocalRotation: {x: 0.58471036, y: -0.00000002224801, z: 0.000000016035461, w: 0.81124216}
   m_LocalPosition: {x: 145.8, y: 31.15, z: 59.945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2300,6 +2491,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 376747445}
+  - component: {fileID: 376747446}
+  - component: {fileID: 376747447}
   m_Layer: 0
   m_Name: Rock_Group (6)
   m_TagString: Untagged
@@ -2325,6 +2518,39 @@ Transform:
   - {fileID: 1539622619}
   m_Father: {fileID: 1105398793}
   m_LocalEulerAnglesHint: {x: 0, y: 86.597, z: 0}
+--- !u!65 &376747446
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376747444}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Center: {x: 1.3, y: 0, z: 0}
+--- !u!114 &376747447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376747444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &381073033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2334,6 +2560,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 381073034}
+  - component: {fileID: 381073035}
+  - component: {fileID: 381073036}
   m_Layer: 0
   m_Name: Rock_Group (12)
   m_TagString: Untagged
@@ -2359,6 +2587,54 @@ Transform:
   - {fileID: 1745379440}
   m_Father: {fileID: 1105398793}
   m_LocalEulerAnglesHint: {x: 0, y: 45.111, z: 0}
+--- !u!65 &381073035
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381073033}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Center: {x: 1.3, y: 0, z: 0}
+--- !u!114 &381073036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381073033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!115 &390615799
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1 &391699006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2368,6 +2644,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 391699007}
+  - component: {fileID: 391699008}
+  - component: {fileID: 391699009}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (4)
   m_TagString: Untagged
@@ -2392,6 +2670,39 @@ Transform:
   - {fileID: 2091757400}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: -59.306, z: 0}
+--- !u!65 &391699008
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391699006}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Center: {x: 13.2, y: -13, z: 3}
+--- !u!114 &391699009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391699006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &392628475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2698,6 +3009,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 426751277}
+  - component: {fileID: 426751278}
+  - component: {fileID: 426751279}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (6)
   m_TagString: Untagged
@@ -2722,6 +3035,39 @@ Transform:
   - {fileID: 877175519}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: 64.256, z: 0}
+--- !u!65 &426751278
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426751276}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Center: {x: 13.2, y: -13, z: 3}
+--- !u!114 &426751279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426751276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &444670577 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3156099888769367291, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
@@ -3222,6 +3568,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 635012005}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 635012008}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 635012009}
     - targetCorrespondingSourceObject: {fileID: 8963639268562437955, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 410372058}
@@ -3235,6 +3587,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 472555443}
+  - component: {fileID: 472555444}
+  - component: {fileID: 472555445}
   m_Layer: 0
   m_Name: Rock_Group (1)
   m_TagString: Untagged
@@ -3260,6 +3614,39 @@ Transform:
   - {fileID: 2074916368}
   m_Father: {fileID: 1105398793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &472555444
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472555442}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Center: {x: 1.3, y: 0, z: 0}
+--- !u!114 &472555445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472555442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!115 &493741733
 MonoScript:
   m_ObjectHideFlags: 0
@@ -3284,6 +3671,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 506497637}
+  - component: {fileID: 506497638}
+  - component: {fileID: 506497639}
   m_Layer: 0
   m_Name: Rock_Group (8)
   m_TagString: Untagged
@@ -3309,6 +3698,39 @@ Transform:
   - {fileID: 1812540837}
   m_Father: {fileID: 1105398793}
   m_LocalEulerAnglesHint: {x: 0, y: -69.552, z: 0}
+--- !u!65 &506497638
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506497636}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Center: {x: 1.3, y: 0, z: 0}
+--- !u!114 &506497639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506497636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &513797438 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 625969680929733462, guid: 3643a069b19394966a812adb62ddab10, type: 3}
@@ -3335,6 +3757,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 515804897}
+  - component: {fileID: 515804898}
+  - component: {fileID: 515804899}
   m_Layer: 0
   m_Name: Rock_Group (10)
   m_TagString: Untagged
@@ -3360,6 +3784,39 @@ Transform:
   - {fileID: 1670365990}
   m_Father: {fileID: 1105398793}
   m_LocalEulerAnglesHint: {x: 0, y: 50.74, z: 0}
+--- !u!65 &515804898
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515804896}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Center: {x: 1.3, y: 0, z: 0}
+--- !u!114 &515804899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515804896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &525432714 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7583593125602428525, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
@@ -3474,6 +3931,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 543081011}
+  - component: {fileID: 543081012}
+  - component: {fileID: 543081013}
   m_Layer: 0
   m_Name: Rock_Group (5)
   m_TagString: Untagged
@@ -3499,6 +3958,39 @@ Transform:
   - {fileID: 1220007351}
   m_Father: {fileID: 1105398793}
   m_LocalEulerAnglesHint: {x: 0, y: 110.517, z: 0}
+--- !u!65 &543081012
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543081010}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Center: {x: 1.3, y: 0, z: 0}
+--- !u!114 &543081013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543081010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &555818684 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
@@ -3930,6 +4422,30 @@ MonoBehaviour:
   m_Script: {fileID: 493741733}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &635012008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202120827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 390615799}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &635012009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202120827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &644351799 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
@@ -3944,6 +4460,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 649718069}
+  - component: {fileID: 649718070}
+  - component: {fileID: 649718071}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (11)
   m_TagString: Untagged
@@ -3968,6 +4486,39 @@ Transform:
   - {fileID: 919058814}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: -2.109, y: 17.295, z: 0}
+--- !u!65 &649718070
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649718068}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Center: {x: 13.2, y: -13, z: 3}
+--- !u!114 &649718071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649718068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &652591147 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
@@ -3982,6 +4533,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 701069700}
+  - component: {fileID: 701069701}
+  - component: {fileID: 701069702}
   m_Layer: 0
   m_Name: Rock_Group (11)
   m_TagString: Untagged
@@ -4007,6 +4560,39 @@ Transform:
   - {fileID: 1605426207}
   m_Father: {fileID: 1105398793}
   m_LocalEulerAnglesHint: {x: 0, y: -40.613, z: 0}
+--- !u!65 &701069701
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701069699}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Center: {x: 1.3, y: 0, z: 0}
+--- !u!114 &701069702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701069699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &702208859
 GameObject:
   m_ObjectHideFlags: 0
@@ -4496,6 +5082,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 724420097}
+  - component: {fileID: 724420098}
+  - component: {fileID: 724420099}
   m_Layer: 0
   m_Name: Rock_Group
   m_TagString: Untagged
@@ -4521,6 +5109,39 @@ Transform:
   - {fileID: 635012004}
   m_Father: {fileID: 1105398793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &724420098
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724420096}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Center: {x: 1.3, y: 0, z: 0}
+--- !u!114 &724420099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724420096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &727285860
 GameObject:
   m_ObjectHideFlags: 0
@@ -4530,6 +5151,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 727285861}
+  - component: {fileID: 727285862}
+  - component: {fileID: 727285863}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (5)
   m_TagString: Untagged
@@ -4554,6 +5177,39 @@ Transform:
   - {fileID: 1103281483}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 2.543, y: -117.961, z: 0}
+--- !u!65 &727285862
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727285860}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Center: {x: 13.2, y: -13, z: 3}
+--- !u!114 &727285863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727285860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &733422336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5263,6 +5919,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 842559287}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559290}
+    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 842559291}
   m_SourcePrefab: {fileID: 100100000, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
 --- !u!4 &842559278 stripped
 Transform:
@@ -5351,6 +6013,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 493741733}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 390615799}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &842559291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34384842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &863598867
@@ -5472,6 +6158,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 872702401}
+  - component: {fileID: 872702402}
+  - component: {fileID: 872702403}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (10)
   m_TagString: Untagged
@@ -5496,6 +6184,39 @@ Transform:
   - {fileID: 841678253}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: 62.897, z: 0}
+--- !u!65 &872702402
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872702400}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Center: {x: 13.2, y: -13, z: 3}
+--- !u!114 &872702403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872702400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &877175518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5661,6 +6382,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
       insertIndex: -1
       addedObject: {fileID: 901265518}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265521}
+    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 901265522}
     - targetCorrespondingSourceObject: {fileID: 625969680929733462, guid: 3643a069b19394966a812adb62ddab10, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1000632058}
@@ -5680,6 +6407,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 493741733}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 390615799}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &901265522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43376345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &919058813
@@ -5891,6 +6642,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 943402227}
+  - component: {fileID: 943402228}
+  - component: {fileID: 943402229}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (12)
   m_TagString: Untagged
@@ -5915,6 +6668,39 @@ Transform:
   - {fileID: 982935859}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: 75.74, z: 0}
+--- !u!65 &943402228
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943402226}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Center: {x: 13.2, y: -13, z: 3}
+--- !u!114 &943402229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943402226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &956958337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6237,6 +7023,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 984027128}
+  - component: {fileID: 984027129}
+  - component: {fileID: 984027130}
   m_Layer: 0
   m_Name: Rock_Group (4)
   m_TagString: Untagged
@@ -6262,6 +7050,39 @@ Transform:
   - {fileID: 1732852726}
   m_Father: {fileID: 1105398793}
   m_LocalEulerAnglesHint: {x: 0, y: 100.529, z: 0}
+--- !u!65 &984027129
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984027127}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Center: {x: 1.3, y: 0, z: 0}
+--- !u!114 &984027130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984027127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &984114767 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6329159907605863020, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
@@ -6391,6 +7212,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1024553394}
+  - component: {fileID: 1024553395}
+  - component: {fileID: 1024553396}
   m_Layer: 0
   m_Name: Rock_Group (9)
   m_TagString: Untagged
@@ -6416,6 +7239,39 @@ Transform:
   - {fileID: 863598868}
   m_Father: {fileID: 1105398793}
   m_LocalEulerAnglesHint: {x: 0, y: -6.722, z: 0}
+--- !u!65 &1024553395
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024553393}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Center: {x: 1.3, y: 0, z: 0}
+--- !u!114 &1024553396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024553393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &1027691347 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3156099888769367291, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
@@ -6546,6 +7402,30 @@ MonoBehaviour:
   m_Script: {fileID: 493741733}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 390615799}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1028615604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30750971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &1031801978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6634,6 +7514,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 339525886574571808, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
   m_PrefabInstance: {fileID: 1031801978}
   m_PrefabAsset: {fileID: 0}
+--- !u!115 &1069831501
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!4 &1087367011 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 339525886574571808, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
@@ -6771,6 +7666,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1093003285}
+  - component: {fileID: 1093003286}
+  - component: {fileID: 1093003287}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group
   m_TagString: Untagged
@@ -6795,6 +7692,39 @@ Transform:
   - {fileID: 1028615591}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: -48.304, z: 0}
+--- !u!65 &1093003286
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093003284}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Center: {x: 13.2, y: -13, z: 3}
+--- !u!114 &1093003287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093003284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &1103281482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6966,7 +7896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate
   Kind: 0
   useChildColliders: 1
-  passDistance: 2
+  passDistance: 3.5
   passDuration: 0.5
   overHeight: 1.2
   underDepth: 0.5
@@ -7251,12 +8181,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1138488148}
-    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1138488151}
-    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1138488152}
   m_SourcePrefab: {fileID: 100100000, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
 --- !u!4 &1138488147 stripped
 Transform:
@@ -7272,31 +8196,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1132776807}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1220379894}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1138488151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132776807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2125619832}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1138488152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132776807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 262886389}
+  m_Script: {fileID: 390615799}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &1152820647 stripped
@@ -7522,6 +8422,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1220007352}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007355}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007356}
     - targetCorrespondingSourceObject: {fileID: 8963639268562437955, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1129255321}
@@ -7540,7 +8446,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 493741733}
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 390615799}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!115 &1220379894
@@ -7693,7 +8623,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 319950798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1220379894}
+  m_Script: {fileID: 1854510825}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1252393392
@@ -7705,7 +8635,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 319950798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 2125619832}
+  m_Script: {fileID: 1854510825}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1252393393
@@ -7729,6 +8659,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1253284741}
+  - component: {fileID: 1253284742}
+  - component: {fileID: 1253284743}
   m_Layer: 0
   m_Name: Rock_Group (2)
   m_TagString: Untagged
@@ -7754,6 +8686,39 @@ Transform:
   - {fileID: 1619401148}
   m_Father: {fileID: 1105398793}
   m_LocalEulerAnglesHint: {x: 0, y: 21.643, z: 0}
+--- !u!65 &1253284742
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253284740}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Center: {x: 1.3, y: 0, z: 0}
+--- !u!114 &1253284743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253284740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &1274863812 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3156099888769367291, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
@@ -9110,12 +10075,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3156099888769367291, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1562350810}
-    - targetCorrespondingSourceObject: {fileID: 3156099888769367291, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1562350813}
-    - targetCorrespondingSourceObject: {fileID: 3156099888769367291, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1562350814}
   m_SourcePrefab: {fileID: 100100000, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
 --- !u!4 &1562350809 stripped
 Transform:
@@ -9131,31 +10090,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 919486279}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1220379894}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1562350813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919486279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2125619832}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1562350814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919486279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 262886389}
+  m_Script: {fileID: 390615799}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &1563020545 stripped
@@ -9289,6 +10224,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1569706087}
+  - component: {fileID: 1569706088}
+  - component: {fileID: 1569706089}
   m_Layer: 0
   m_Name: Rock_Group (13)
   m_TagString: Untagged
@@ -9314,6 +10251,39 @@ Transform:
   - {fileID: 365574677}
   m_Father: {fileID: 1105398793}
   m_LocalEulerAnglesHint: {x: 0, y: 46.056, z: 0}
+--- !u!65 &1569706088
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569706086}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Center: {x: 1.3, y: 0, z: 0}
+--- !u!114 &1569706089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569706086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &1572166990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9735,6 +10705,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1670365991}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1670365994}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1670365995}
     - targetCorrespondingSourceObject: {fileID: 8963639268562437955, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 600758483}
@@ -9753,7 +10729,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 91780013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 493741733}
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1670365994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91780013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 390615799}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1670365995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91780013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &1677932486 stripped
@@ -9852,6 +10852,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7583593125602428525, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1696244937}
+    - targetCorrespondingSourceObject: {fileID: 7583593125602428525, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1696244940}
+    - targetCorrespondingSourceObject: {fileID: 7583593125602428525, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1696244941}
     - targetCorrespondingSourceObject: {fileID: 6329159907605863020, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1847664834}
@@ -9870,7 +10876,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 158846159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 493741733}
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1696244940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158846159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 390615799}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1696244941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158846159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &1705671119
@@ -10109,6 +11139,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1735097044}
+  - component: {fileID: 1735097045}
+  - component: {fileID: 1735097046}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (8)
   m_TagString: Untagged
@@ -10133,6 +11165,39 @@ Transform:
   - {fileID: 1925529639}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: -86.074, z: 0}
+--- !u!65 &1735097045
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735097043}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Center: {x: 13.2, y: -13, z: 3}
+--- !u!114 &1735097046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735097043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &1745379439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10441,6 +11506,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1810535746}
+  - component: {fileID: 1810535747}
+  - component: {fileID: 1810535748}
   m_Layer: 0
   m_Name: Fallen_Bamboo_Group (2)
   m_TagString: Untagged
@@ -10465,6 +11532,39 @@ Transform:
   - {fileID: 8829840}
   m_Father: {fileID: 1931560824}
   m_LocalEulerAnglesHint: {x: 0, y: -17.774, z: 0}
+--- !u!65 &1810535747
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810535745}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 5.5, z: 5}
+  m_Center: {x: 13.2, y: -13, z: 3}
+--- !u!114 &1810535748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810535745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &1810995211 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
@@ -10561,6 +11661,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1812540838}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1812540841}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1812540842}
     - targetCorrespondingSourceObject: {fileID: 8963639268562437955, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 106560400}
@@ -10579,7 +11685,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 61361726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 493741733}
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1812540841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61361726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 390615799}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1812540842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61361726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &1817447170
@@ -10853,6 +11983,21 @@ MonoBehaviour:
   m_Script: {fileID: 1220379894}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!115 &1854510825
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1001 &1866228130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12076,6 +13221,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2035894287}
+  - component: {fileID: 2035894288}
+  - component: {fileID: 2035894289}
   m_Layer: 0
   m_Name: Rock_Group (3)
   m_TagString: Untagged
@@ -12101,6 +13248,39 @@ Transform:
   - {fileID: 1135916530}
   m_Father: {fileID: 1105398793}
   m_LocalEulerAnglesHint: {x: 0, y: 41.489, z: 0}
+--- !u!65 &2035894288
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035894286}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Center: {x: 1.3, y: 0, z: 0}
+--- !u!114 &2035894289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035894286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &2074916367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12308,6 +13488,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2094525761}
+  - component: {fileID: 2094525762}
+  - component: {fileID: 2094525763}
   m_Layer: 0
   m_Name: Rock_Group (7)
   m_TagString: Untagged
@@ -12333,6 +13515,39 @@ Transform:
   - {fileID: 252768101}
   m_Father: {fileID: 1105398793}
   m_LocalEulerAnglesHint: {x: 0, y: -72.717, z: 0}
+--- !u!65 &2094525762
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094525760}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 4, z: 5.5}
+  m_Center: {x: 1.3, y: 0, z: 0}
+--- !u!114 &2094525763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094525760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1854510825}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1 &2124826909
 GameObject:
   m_ObjectHideFlags: 0
