@@ -1,116 +1,100 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 /// <summary>
-/// Styrer en "voice gate" for forhindringer hvor spilleren skal sige et nøgleord for at passere.
-/// Registrerer sig som observer på <see cref="VoiceMovement"/> når spilleren er indenfor triggeren,
-/// viser en valgfri UI-prompt og udfører en "over" eller "under" bevægelse baseret på genkendt tale.
+/// En port/obstacle der reagerer på talte kommandoer for at lade spilleren passere.
+/// Registrerer sig som en IVoiceObserver når spilleren går ind i triggeren,
+/// viser relevante nøgleord i UI og udfører enten en "over" eller "under" passage.
 /// </summary>
 public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 {
     /// <summary>
-    /// Typer af forhindringer som bestemmer hvilken handling der forventes (hoppe eller dykke).
+    /// Type af forhindring - afgør hvilke kommandoer der tæller som "over" eller "under".
     /// </summary>
     public enum ObstacleKind { Rocks, FallenBamboo }
 
     [Header("General")]
     /// <summary>
-    /// Angiver hvilken slags forhindring dette gate repræsenterer.
+    /// Hvilken slags forhindring dette objekt repræsenterer.
     /// </summary>
     public ObstacleKind Kind = ObstacleKind.Rocks;
 
     [Tooltip("If true the script will gather child colliders and forward their trigger events to this component.")]
     /// <summary>
-    /// Hvis sandt samles child-colliders og deres trigger-events videresendes til denne komponent.
+    /// Hvis sandt, vil komponenten samle kollidere fra børn og videresende deres trigger-events hertil.
     /// </summary>
     public bool useChildColliders = true;
 
     [Header("Pass settings")]
     /// <summary>
-    /// Horisontal afstand spilleren flyttes ved et vellykket pass (meter).
+    /// Hvor langt spilleren bevæger sig frem under passagen (måleenhed: Unity units/meters).
     /// </summary>
     public float passDistance = 3.5f;
     /// <summary>
-    /// Varighed af pass-bevægelsen i sekunder.
+    /// Varighed i sekunder for passagens animation (over/under).
     /// </summary>
     public float passDuration = 0.5f;
     /// <summary>
-    /// Maks højde (over) ved et "over"-pass.
+    /// Maksimum højde der løftes ved en "over"-passage.
     /// </summary>
     public float overHeight = 1.5f;
     /// <summary>
-    /// Maks dybde (under) ved et "under"-pass.
+    /// Maksimum dybde der dykkes ved en "under"-passage.
     /// </summary>
     public float underDepth = 0.5f;
     [Tooltip("If true will attempt to start the microphone automatically when the player enters.")]
     /// <summary>
-    /// Hvis sandt forsøges mikrofonen startet automatisk når spilleren går ind i triggeren.
+    /// Hvis sandt forsøger VoiceMovement at starte mikrofonen automatisk når spilleren går ind.
     /// </summary>
     public bool autoStartMicrophone = true;
 
     [Header("Collider Ducking (optional)")]
     [Tooltip("If true will temporarily reduce player's CapsuleCollider/CharacterController height while performing an 'under' pass.")]
     /// <summary>
-    /// Hvis sandt ændres spillerens collider midlertidigt ved et "under"-pass for at simulere ducking.
+    /// Hvis sandt ændres spillerens CapsuleCollider/CharacterController højde midlertidigt under en "under"-passage.
     /// </summary>
     public bool changePlayerColliderWhenDucking = true;
     [Tooltip("Multiplier applied to collider height when ducking (0..1). Typical 0.4-0.7.")]
     /// <summary>
-    /// Multiplikator anvendt på collider-højden ved ducking (værdi mellem 0 og 1).
+    /// Multiplikator der anvendes på collider-højden ved ducking (0..1).
     /// </summary>
     public float duckColliderHeightMultiplier = 0.5f;
     [Tooltip("Duration (seconds) for the collider height change to lerp down/up.")]
     /// <summary>
-    /// Tid i sekunder for interpolation af collider-højde ned/op.
+    /// Hvor lang tid (sekunder) det tager at lerpe collider-højden ned/op igen.
     /// </summary>
     public float colliderChangeDuration = 0.12f;
 
     [Header("Keywords (editable)")]
     /// <summary>
-    /// Liste af nøgleord som genkendes til "over"-handling for Rocks.
+    /// Liste af nøgleord der tæller som "over"-kommandoer (for Rocks).
     /// </summary>
     public string[] rockKeywords = new[] { "over", "hop", "op", "Hello world" };
     /// <summary>
-    /// Liste af nøgleord som genkendes til "under"-handling for FallenBamboo.
+    /// Liste af nøgleord der tæller som "under"-kommandoer (for FallenBamboo).
     /// </summary>
     public string[] bambooKeywords = new[] { "duk", "under", "ned", "Hello world" };
 
-    [Header("UI Prompt (optional)")]
-    [Tooltip("Optional TextMeshProUGUI prefab to use as the on-screen prompt. If null, a simple prompt is created at runtime.")]
-    /// <summary>
-    /// Valgfri TextMeshProUGUI-prefab der bruges som on-screen prompt. Hvis null oprettes en simpel prompt ved runtime.
-    /// </summary>
-    public TextMeshProUGUI promptPrefab;
-    [Tooltip("Anchor/offset for generated prompt when no prefab is provided (screen-space overlay).")]
-    /// <summary>
-    /// Anchor/offset for den genererede prompt når ingen prefab er angivet (screen-space overlay).
-    /// </summary>
-    public Vector2 promptAnchoredPosition = new Vector2(0, 120);
-    [Tooltip("The message shown when player is in range; {0} is replaced with the keywords list, {1} with the action (\"jump/duck\").")]
-    [TextArea]
-    /// <summary>
-    /// Formatstrengen for prompten. {0} erstattes af nøgleordene, {1} af handlingen (f.eks. "jump/over" eller "duck/under").
-    /// </summary>
-    public string promptFormat = "Sig en af følgende: {0}\nTil {1} forhindringen.";
-
+    // Interne state-variabler
     private bool playerInside = false;
     private Transform playerTransform;
-    private Rigidbody playerRb;
+    private Rigidbody playerRigidbody;
     private PlayerMovement playerMovement;
     private VoiceMovement voiceMovement;
     private bool isPassing = false;
 
-    private TextMeshProUGUI promptInstance;
-    private Canvas overlayCanvas;
+    private string[] rockKeywordsLower;
+    private string[] bambooKeywordsLower;
 
     /// <summary>
-    /// Unity callback kaldt i editor/inspektør når værdier ændres — sikrer at child forwarders oprettes korrekt.
+    /// Unity callback kørt i editor/inspektør når værdier ændres. Sørger for at oprette child-forwarders
+    /// og opdatere cache af nøgleord.
     /// </summary>
     private void OnValidate()
     {
@@ -124,10 +108,12 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 #else
         EnsureChildForwarders(useUndo: false);
 #endif
+
+        UpdateKeywordCache();
     }
 
     /// <summary>
-    /// Unity Awake. Sætter egen collider til trigger hvis relevant og opretter child forwarders hvis aktiveret.
+    /// Awake initialisering: sætter egen collider til trigger hvis mulig, sikrer child-forwarders og opdaterer cache.
     /// </summary>
     private void Awake()
     {
@@ -137,12 +123,30 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
         if (useChildColliders)
             EnsureChildForwarders(useUndo: false);
+
+        UpdateKeywordCache();
     }
 
     /// <summary>
-    /// Opretter eller genbruger ObstacleTriggerForwarder komponenter på child-colliders.
+    /// Opdaterer interne lower-case caches for nøgleord, for hurtigere sammenligning ved talegenkendelse.
     /// </summary>
-    /// <param name="useUndo">Hvis sandt bruges Undo.AddComponent i editoren (nyttigt ved redigering).</param>
+    private void UpdateKeywordCache()
+    {
+        rockKeywordsLower = (rockKeywords ?? System.Array.Empty<string>())
+            .Where(k => !string.IsNullOrEmpty(k))
+            .Select(k => k.ToLowerInvariant())
+            .ToArray();
+
+        bambooKeywordsLower = (bambooKeywords ?? System.Array.Empty<string>())
+            .Where(k => !string.IsNullOrEmpty(k))
+            .Select(k => k.ToLowerInvariant())
+            .ToArray();
+    }
+
+    /// <summary>
+    /// Søger efter colliders i børnenoder og tilføjer/enabler et ObstacleTriggerForwarder-komponent der videresender trigger-events.
+    /// </summary>
+    /// <param name="useUndo">Hvis sandt bruges Undo når komponenter oprettes (kun i editor).</param>
     private void EnsureChildForwarders(bool useUndo)
     {
         var colliders = GetComponentsInChildren<Collider>(true);
@@ -175,16 +179,15 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     }
 
     /// <summary>
-    /// Prøver sikkert at sætte en collider til trigger. Returnerer false hvis f.eks. en concave MeshCollider findes.
+    /// Forsøger sikkert at sætte en collider som trigger. Springes over for ikke-konvekse MeshColliders.
     /// </summary>
-    /// <param name="colliderToSet">Collider der forsøges ændret.</param>
-    /// <returns>True hvis collider er sat til trigger, ellers false.</returns>
+    /// <param name="colliderToSet">Collideren der skal sættes som trigger.</param>
+    /// <returns>True hvis operationen lykkedes og collideren er/is trigger.</returns>
     private bool TrySetTriggerSafe(Collider colliderToSet)
     {
         if (colliderToSet == null) return false;
 
-        var meshCollider = colliderToSet as MeshCollider;
-        if (meshCollider != null && !meshCollider.convex)
+        if (colliderToSet is MeshCollider meshCollider && !meshCollider.convex)
         {
             Debug.LogWarning($"ObstacleVoiceGate: Skipping making concave MeshCollider '{colliderToSet.name}' a trigger. Unity does not support triggers on concave MeshColliders. Make the MeshCollider convex or use primitive colliders (Box/Sphere/Capsule) instead.", colliderToSet.gameObject);
             return false;
@@ -207,36 +210,11 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     }
 
     /// <summary>
-    /// Unity OnEnable. Finder eller opretter overlay-canvas til prompt UI.
-    /// </summary>
-    private void OnEnable()
-    {
-        overlayCanvas = FindObjectOfType<Canvas>();
-        if (overlayCanvas == null)
-            overlayCanvas = CreateOverlayCanvas();
-    }
-
-    /// <summary>
-    /// Opretter en simpel overlay Canvas som ikke destrueres på sceneskift.
-    /// </summary>
-    /// <returns>Den oprettede Canvas.</returns>
-    private Canvas CreateOverlayCanvas()
-    {
-        var canvasGO = new GameObject("VoicePromptCanvas");
-        var canvas = canvasGO.AddComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvasGO.AddComponent<CanvasScaler>();
-        canvasGO.AddComponent<GraphicRaycaster>();
-        DontDestroyOnLoad(canvasGO);
-        return canvas;
-    }
-
-    /// <summary>
-    /// Modtager forwarded trigger-enter fra child forwarders.
+    /// Modtager forwardede OnTriggerEnter-events fra child-colliders.
     /// </summary>
     internal void ChildTriggerEnter(GameObject childColliderOwner, Collider other) => HandleTriggerEnter(other);
     /// <summary>
-    /// Modtager forwarded trigger-exit fra child forwarders.
+    /// Modtager forwardede OnTriggerExit-events fra child-colliders.
     /// </summary>
     internal void ChildTriggerExit(GameObject childColliderOwner, Collider other) => HandleTriggerExit(other);
 
@@ -244,9 +222,9 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     private void OnTriggerExit(Collider other) => HandleTriggerExit(other);
 
     /// <summary>
-    /// Håndterer når noget går ind i triggeren. Registrerer spiller og voice-observer hvis det er spilleren.
+    /// Håndterer når noget går ind i triggeren. Hvis det er spilleren registreres voice observer og UI viser nøgleord.
     /// </summary>
-    /// <param name="other">Collider der triggede.</param>
+    /// <param name="other">Collideren som gik ind i triggeren.</param>
     private void HandleTriggerEnter(Collider other)
     {
         if (playerInside) return;
@@ -254,20 +232,21 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
         playerInside = true;
         playerMovement = foundPlayerMovement;
-        playerTransform = other.transform;
-        playerRb = foundRigidbody;
+        playerTransform = foundPlayerMovement.transform;
+        playerRigidbody = foundRigidbody;
 
         RegisterVoiceObserver();
 
-        ShowPrompt();
+        var keywords = GetKeywordsForKind();
+        ObstacleKeywordsUI.Instance?.ShowKeywords(keywords);
 
         Debug.Log($"ObstacleVoiceGate: Player entered {name}. Say the correct command to pass ({Kind}).");
     }
 
     /// <summary>
-    /// Håndterer når noget forlader triggeren. Afregistrerer voice-observer hvis det er spilleren.
+    /// Håndterer når noget forlader triggeren. Hvis det er spilleren afregistreres voice observer og UI skjules.
     /// </summary>
-    /// <param name="other">Collider der forlod triggeren.</param>
+    /// <param name="other">Collideren som forlod triggeren.</param>
     private void HandleTriggerExit(Collider other)
     {
         if (!TryGetPlayerFromCollider(other, out var foundPlayerMovement, out var foundRigidbody)) return;
@@ -276,44 +255,61 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         playerInside = false;
         UnregisterVoiceObserver();
 
-        HidePrompt();
+        ObstacleKeywordsUI.Instance?.HideKeywords();
 
         if (!isPassing)
-        {
-            playerTransform = null;
-            playerRb = null;
-            playerMovement = null;
-        }
+            ClearPlayerReferences();
 
         Debug.Log($"ObstacleVoiceGate: Player left {name}. Voice observer unregistered.");
     }
 
     /// <summary>
-    /// Forsøger at hente PlayerMovement og Rigidbody fra en collider.
+    /// Rydder gemte referencer til spilleren.
     /// </summary>
-    /// <param name="collider">Collider der skal tjekkes.</param>
-    /// <param name="foundPlayerMovement">Udgående fundet PlayerMovement (eller null).</param>
-    /// <param name="foundRigidbody">Udgående fundet Rigidbody (eller null).</param>
-    /// <returns>True hvis PlayerMovement blev fundet, ellers false.</returns>
+    private void ClearPlayerReferences()
+    {
+        playerTransform = null;
+        playerRigidbody = null;
+        playerMovement = null;
+    }
+
+    /// <summary>
+    /// Forsøger at finde PlayerMovement og Rigidbody ud fra en collider.
+    /// </summary>
+    /// <param name="collider">Collider at søge fra.</param>
+    /// <param name="foundPlayerMovement">Returnerer fundet PlayerMovement hvis succes.</param>
+    /// <param name="foundRigidbody">Returnerer fundet Rigidbody hvis succes.</param>
+    /// <returns>True hvis en spiller blev fundet.</returns>
     private bool TryGetPlayerFromCollider(Collider collider, out PlayerMovement foundPlayerMovement, out Rigidbody foundRigidbody)
     {
-        foundPlayerMovement = collider.GetComponent<PlayerMovement>();
+        foundPlayerMovement = collider.GetComponentInParent<PlayerMovement>();
         if (foundPlayerMovement == null)
         {
             foundRigidbody = null;
             return false;
         }
 
-        foundRigidbody = collider.GetComponent<Rigidbody>();
+        foundRigidbody = foundPlayerMovement.GetComponent<Rigidbody>();
         return true;
     }
 
     /// <summary>
-    /// Finder VoiceMovement i scenen og registrerer denne gate som observer. Starter mikrofon hvis aktiveret.
+    /// Henter de relevante nøgleord baseret på ObstacleKind.
+    /// </summary>
+    /// <returns>Array af nøgleord som skal vises/tjekkes.</returns>
+    private string[] GetKeywordsForKind()
+    {
+        return Kind == ObstacleKind.Rocks ? rockKeywords : bambooKeywords;
+    }
+
+    /// <summary>
+    /// Registrerer denne gate som en observer på VoiceMovement (hvis tilgængelig) og starter mikrofon automatisk hvis sat.
     /// </summary>
     private void RegisterVoiceObserver()
     {
-        voiceMovement = FindObjectOfType<VoiceMovement>();
+        if (voiceMovement == null)
+            voiceMovement = FindObjectOfType<VoiceMovement>();
+
         if (voiceMovement == null) return;
 
         voiceMovement.RegisterObserver(this);
@@ -322,7 +318,7 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     }
 
     /// <summary>
-    /// Afregistrerer denne gate fra VoiceMovement-observatører.
+    /// Afregistrerer denne gate som observer og nulstiller lokal voiceMovement-referencen.
     /// </summary>
     private void UnregisterVoiceObserver()
     {
@@ -333,15 +329,15 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
     #region IVoiceObserver
     /// <summary>
-    /// Delresultat fra talegenkendelse. Ikke brugt i denne implementation.
+    /// Delvis tale-resultat (kan ignoreres).
     /// </summary>
-    /// <param name="partial">Delvist genkendt tekst.</param>
+    /// <param name="partial">Den delvise tekst som blev genkendt.</param>
     public void OnPartialResult(string partial) { }
 
     /// <summary>
-    /// Endeligt resultat fra talegenkendelse. Starter pass hvis et nøgleord genkendes.
+    /// Hovedmetode der modtager ferdigt genkendt tale. Matcher mod nøgleord og starter passende passage.
     /// </summary>
-    /// <param name="result">Den genkendte sætning.</param>
+    /// <param name="result">Det genkendte tale-resultat som tekst.</param>
     public void OnResult(string result)
     {
         if (!playerInside || isPassing) return;
@@ -351,6 +347,8 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
         if (MatchesKeywords(spoken, out var isOverAction))
         {
+            ObstacleKeywordsUI.Instance?.HideKeywords();
+
             if (isOverAction)
                 StartCoroutine(PerformOver());
             else
@@ -359,38 +357,36 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         else
         {
             Debug.Log($"ObstacleVoiceGate: command not recognized for {Kind}. Spoken: '{result}'");
-            if (promptInstance != null)
-                promptInstance.text = $"Ikke genkendt. {GeneratePromptKeywordsText()}";
         }
 
         UnregisterVoiceObserver();
     }
 
     /// <summary>
-    /// Kaldes når mikrofonens lydniveau ændres. Ikke brugt her, men kræves af IVoiceObserver.
+    /// Modtages når stemmeniveauet ændres (kan ignoreres).
     /// </summary>
-    /// <param name="level">Lydniveau (0..1).</param>
+    /// <param name="level">Styrken af mikrofon-input.</param>
     public void OnVoiceLevelChanged(float level) { }
 
     /// <summary>
-    /// Kaldes når mikrofonens tilstand (on/off) ændres. Ikke brugt her.
+    /// Modtages når mikrofonens tilstand ændres (kan ignoreres).
     /// </summary>
-    /// <param name="isOn">True hvis mikrofonen er tændt.</param>
+    /// <param name="isOn">Om mikrofonen er tændt.</param>
     public void OnMicrophoneStateChanged(bool isOn) { }
     #endregion
 
     /// <summary>
-    /// Tjekker om den talte tekst indeholder et af de konfigurerede nøgleord.
+    /// Sammenligner det talte input med cachede nøgleord for den aktuelle ObstacleKind.
     /// </summary>
-    /// <param name="spoken">Den talte tekst (forventes allerede lowercase/trimmet).</param>
-    /// <param name="isOverAction">Udgående: true hvis det matcher en "over"-handling.</param>
-    /// <returns>True hvis et match blev fundet, ellers false.</returns>
+    /// <param name="spoken">Det talte og normaliserede tekstinput.</param>
+    /// <param name="isOverAction">Returneres som true hvis det matchede et "over"-ord.</param>
+    /// <returns>True hvis et nøgleord matchede.</returns>
     private bool MatchesKeywords(string spoken, out bool isOverAction)
     {
         isOverAction = false;
         if (Kind == ObstacleKind.Rocks)
         {
-            if (rockKeywords != null && rockKeywords.Any(k => !string.IsNullOrEmpty(k) && spoken.Contains(k.ToLowerInvariant())))
+            if (rockKeywordsLower != null && rockKeywordsLower.Any(k => spoken.Contains(k)))
             {
                 isOverAction = true;
                 return true;
@@ -398,7 +394,7 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         }
         else
         {
-            if (bambooKeywords != null && bambooKeywords.Any(k => !string.IsNullOrEmpty(k) && spoken.Contains(k.ToLowerInvariant())))
+            if (bambooKeywordsLower != null && bambooKeywordsLower.Any(k => spoken.Contains(k)))
             {
                 isOverAction = false;
                 return true;
@@ -409,18 +405,44 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     }
 
     /// <summary>
-    /// Coroutine der udfører en "over" bevægelse (hop) for spilleren.
+    /// Sætter spillerens movement og rigidbody i en 'paused' tilstand før passagen (disables movement, sætter kinematic).
     /// </summary>
-    /// <returns>IEnumerator til brug med StartCoroutine.</returns>
+    /// <param name="previousKinematicState">Returnerer rigidbody's tidligere kinematic-tilstand så den kan gendannes.</param>
+    private void PausePlayerForPass(out bool previousKinematicState)
+    {
+        previousKinematicState = false;
+        if (playerMovement != null)
+            playerMovement.enabled = false;
+
+        if (playerRigidbody != null)
+        {
+            previousKinematicState = playerRigidbody.isKinematic;
+            playerRigidbody.isKinematic = true;
+        }
+    }
+
+    /// <summary>
+    /// Gendanner spillerens movement og rigidbody-tilstand efter passagen.
+    /// </summary>
+    /// <param name="previousKinematicState">Den tidligere kinematic-tilstand der skal gendannes.</param>
+    private void ResumePlayerAfterPass(bool previousKinematicState)
+    {
+        if (playerRigidbody != null)
+            playerRigidbody.isKinematic = previousKinematicState;
+
+        if (playerMovement != null)
+            playerMovement.enabled = true;
+    }
+
+    /// <summary>
+    /// Coroutine der udfører en "over"-passage: løfter spilleren i en kort bue fremad.
+    /// </summary>
     private IEnumerator PerformOver()
     {
-        if (playerTransform == null || playerRb == null || playerMovement == null) yield break;
+        if (playerTransform == null || playerRigidbody == null || playerMovement == null) yield break;
         isPassing = true;
-        HidePrompt();
 
-        playerMovement.enabled = false;
-        bool prevKinematic = playerRb.isKinematic;
-        playerRb.isKinematic = true;
+        PausePlayerForPass(out var previousKinematicState);
 
         Vector3 start = playerTransform.position;
         Vector3 forward = playerTransform.forward.normalized;
@@ -438,29 +460,24 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         }
 
         playerTransform.position = end;
-        playerRb.isKinematic = prevKinematic;
-        playerMovement.enabled = true;
+        ResumePlayerAfterPass(previousKinematicState);
         isPassing = false;
     }
 
     /// <summary>
-    /// Coroutine der udfører en "under" bevægelse (duck) for spilleren, inklusive midlertidig collider-ændring hvis aktiveret.
+    /// Coroutine der udfører en "under"-passage: dipper spilleren nedad og valgfrit smalner collideren ind under passagen.
     /// </summary>
-    /// <returns>IEnumerator til brug med StartCoroutine.</returns>
     private IEnumerator PerformUnder()
     {
-        if (playerTransform == null || playerRb == null || playerMovement == null) yield break;
+        if (playerTransform == null || playerRigidbody == null || playerMovement == null) yield break;
         isPassing = true;
-        HidePrompt();
 
-        playerMovement.enabled = false;
-        bool prevKinematic = playerRb.isKinematic;
-        playerRb.isKinematic = true;
+        PausePlayerForPass(out var previousKinematicState);
 
         CapsuleCollider capsuleCollider = null;
         CharacterController characterController = null;
-        float origCapsuleHeight = 0f;
-        Vector3 origCapsuleCenter = Vector3.zero;
+        float originalCapsuleHeight = 0f;
+        Vector3 originalCapsuleCenter = Vector3.zero;
         float targetCapsuleHeight = 0f;
         Vector3 targetCapsuleCenter = Vector3.zero;
 
@@ -471,19 +488,19 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
             if (capsuleCollider != null)
             {
-                origCapsuleHeight = capsuleCollider.height;
-                origCapsuleCenter = capsuleCollider.center;
-                targetCapsuleHeight = Mathf.Max(0.01f, origCapsuleHeight * duckColliderHeightMultiplier);
-                float delta = (origCapsuleHeight - targetCapsuleHeight) * 0.5f;
-                targetCapsuleCenter = origCapsuleCenter - new Vector3(0f, delta, 0f);
+                originalCapsuleHeight = capsuleCollider.height;
+                originalCapsuleCenter = capsuleCollider.center;
+                targetCapsuleHeight = Mathf.Max(0.01f, originalCapsuleHeight * duckColliderHeightMultiplier);
+                float delta = (originalCapsuleHeight - targetCapsuleHeight) * 0.5f;
+                targetCapsuleCenter = originalCapsuleCenter - new Vector3(0f, delta, 0f);
             }
             else if (characterController != null)
             {
-                origCapsuleHeight = characterController.height;
-                origCapsuleCenter = characterController.center;
-                targetCapsuleHeight = Mathf.Max(0.01f, origCapsuleHeight * duckColliderHeightMultiplier);
-                float delta = (origCapsuleHeight - targetCapsuleHeight) * 0.5f;
-                targetCapsuleCenter = origCapsuleCenter - new Vector3(0f, delta, 0f);
+                originalCapsuleHeight = characterController.height;
+                originalCapsuleCenter = characterController.center;
+                targetCapsuleHeight = Mathf.Max(0.01f, originalCapsuleHeight * duckColliderHeightMultiplier);
+                float delta = (originalCapsuleHeight - targetCapsuleHeight) * 0.5f;
+                targetCapsuleCenter = originalCapsuleCenter - new Vector3(0f, delta, 0f);
             }
         }
 
@@ -501,16 +518,16 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
             if (changePlayerColliderWhenDucking && (capsuleCollider != null || characterController != null))
             {
-                float colT = Mathf.Clamp01(elapsed / colliderChangeDuration);
+                float colliderLerpT = Mathf.Clamp01(elapsed / colliderChangeDuration);
                 if (capsuleCollider != null)
                 {
-                    capsuleCollider.height = Mathf.Lerp(origCapsuleHeight, targetCapsuleHeight, colT);
-                    capsuleCollider.center = Vector3.Lerp(origCapsuleCenter, targetCapsuleCenter, colT);
+                    capsuleCollider.height = Mathf.Lerp(originalCapsuleHeight, targetCapsuleHeight, colliderLerpT);
+                    capsuleCollider.center = Vector3.Lerp(originalCapsuleCenter, targetCapsuleCenter, colliderLerpT);
                 }
                 else if (characterController != null)
                 {
-                    characterController.height = Mathf.Lerp(origCapsuleHeight, targetCapsuleHeight, colT);
-                    characterController.center = Vector3.Lerp(origCapsuleCenter, targetCapsuleCenter, colT);
+                    characterController.height = Mathf.Lerp(originalCapsuleHeight, targetCapsuleHeight, colliderLerpT);
+                    characterController.center = Vector3.Lerp(originalCapsuleCenter, targetCapsuleCenter, colliderLerpT);
                 }
             }
 
@@ -525,16 +542,16 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
             float restoreElapsed = 0f;
             while (restoreElapsed < colliderChangeDuration)
             {
-                float rt = Mathf.Clamp01(restoreElapsed / colliderChangeDuration);
+                float restoreT = Mathf.Clamp01(restoreElapsed / colliderChangeDuration);
                 if (capsuleCollider != null)
                 {
-                    capsuleCollider.height = Mathf.Lerp(targetCapsuleHeight, origCapsuleHeight, rt);
-                    capsuleCollider.center = Vector3.Lerp(targetCapsuleCenter, origCapsuleCenter, rt);
+                    capsuleCollider.height = Mathf.Lerp(targetCapsuleHeight, originalCapsuleHeight, restoreT);
+                    capsuleCollider.center = Vector3.Lerp(targetCapsuleCenter, originalCapsuleCenter, restoreT);
                 }
                 else if (characterController != null)
                 {
-                    characterController.height = Mathf.Lerp(targetCapsuleHeight, origCapsuleHeight, rt);
-                    characterController.center = Vector3.Lerp(targetCapsuleCenter, origCapsuleCenter, rt);
+                    characterController.height = Mathf.Lerp(targetCapsuleHeight, originalCapsuleHeight, restoreT);
+                    characterController.center = Vector3.Lerp(targetCapsuleCenter, originalCapsuleCenter, restoreT);
                 }
 
                 restoreElapsed += Time.deltaTime;
@@ -543,83 +560,32 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
             if (capsuleCollider != null)
             {
-                capsuleCollider.height = origCapsuleHeight;
-                capsuleCollider.center = origCapsuleCenter;
+                capsuleCollider.height = originalCapsuleHeight;
+                capsuleCollider.center = originalCapsuleCenter;
             }
             else if (characterController != null)
             {
-                characterController.height = origCapsuleHeight;
-                characterController.center = origCapsuleCenter;
+                characterController.height = originalCapsuleHeight;
+                characterController.center = originalCapsuleCenter;
             }
         }
 
-        playerRb.isKinematic = prevKinematic;
-        playerMovement.enabled = true;
+        ResumePlayerAfterPass(previousKinematicState);
         isPassing = false;
+
+        if (!playerInside)
+            ClearPlayerReferences();
     }
-
-    #region Prompt UI helpers
-    /// <summary>
-    /// Viser prompten (opretter en instans hvis nødvendig).
-    /// </summary>
-    private void ShowPrompt()
-    {
-        if (overlayCanvas == null) return;
-
-        if (promptInstance == null)
-        {
-            if (promptPrefab != null)
-            {
-                promptInstance = Instantiate(promptPrefab, overlayCanvas.transform);
-            }
-            else
-            {
-                var promptGO = new GameObject("VoicePrompt");
-                promptGO.transform.SetParent(overlayCanvas.transform, false);
-                promptInstance = promptGO.AddComponent<TextMeshProUGUI>();
-                promptInstance.fontSize = 28;
-                promptInstance.alignment = TextAlignmentOptions.Center;
-                promptInstance.color = Color.yellow;
-
-                var rectTransform = promptInstance.rectTransform;
-                rectTransform.anchorMin = new Vector2(0.5f, 0);
-                rectTransform.anchorMax = new Vector2(0.5f, 0);
-                rectTransform.pivot = new Vector2(0.5f, 0.5f);
-                rectTransform.anchoredPosition = promptAnchoredPosition;
-                rectTransform.sizeDelta = new Vector2(800, 100);
-            }
-        }
-
-        string keywordsText = GeneratePromptKeywordsText();
-        string action = Kind == ObstacleKind.Rocks ? "jump/over" : "duck/under";
-        promptInstance.text = string.Format(promptFormat, keywordsText, action);
-        promptInstance.gameObject.SetActive(true);
-    }
-
-    /// <summary>
-    /// Skjuler prompten.
-    /// </summary>
-    private void HidePrompt()
-    {
-        if (promptInstance != null)
-            promptInstance.gameObject.SetActive(false);
-    }
-
-    /// <summary>
-    /// Genererer en kommasepareret streng med de relevante nøgleord for prompten.
-    /// </summary>
-    /// <returns>Streng med nøgleord eller "(no keywords)" hvis ingen er konfigureret.</returns>
-    private string GeneratePromptKeywordsText()
-    {
-        var keywordsArray = Kind == ObstacleKind.Rocks ? rockKeywords : bambooKeywords;
-        if (keywordsArray == null || keywordsArray.Length == 0) return "(no keywords)";
-        return string.Join(", ", keywordsArray);
-    }
-    #endregion
 
     [DisallowMultipleComponent]
+    /// <summary>
+    /// Liten helper-komponent der placeres på child-collider gameobjects for at videresende OnTrigger events til parent-gaten.
+    /// </summary>
     private sealed class ObstacleTriggerForwarder : MonoBehaviour
     {
+        /// <summary>
+        /// Reference til den parent ObstacleVoiceGate som skal modtage forwarded events.
+        /// </summary>
         internal ObstacleVoiceGate parentGate;
 
         private void OnTriggerEnter(Collider other)
