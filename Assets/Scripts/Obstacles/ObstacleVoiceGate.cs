@@ -81,16 +81,59 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     /// </summary>
     public string[] bambooKeywords = new[] { "duk", "under", "ned", "Hello world" };
 
-    // Interne state-variabler
+    [Tooltip("If true the script will try to make concave MeshColliders convex when creating child forwarders. Use with care.")]
+    /// <summary>
+    /// Hvis sandt forsøger scriptet at gøre konvekse MeshColliders til konvekse når der oprettes child forwarders.
+    /// Brug med omhu - konveksions kan ændre kollisionsform og kan fejle for komplekse meshes.
+    /// </summary>
+    public bool autoMakeMeshCollidersConvex = false;
+
+    /// <summary>
+    /// Om spilleren i øjeblikket befinder sig inde i gate-triggeren.
+    /// </summary>
     private bool playerInside = false;
+    /// <summary>
+    /// Cache reference til spillerens <see cref="Transform"/> mens spilleren er inde i triggeren.
+    /// </summary>
     private Transform playerTransform;
+    /// <summary>
+    /// Cache reference til spillerens <see cref="Rigidbody"/> for at kunne sætte kinematic under passager.
+    /// </summary>
     private Rigidbody playerRigidbody;
+    /// <summary>
+    /// Cache reference til spillerens <see cref="PlayerMovement"/> så movement kan disable/enable.
+    /// </summary>
     private PlayerMovement playerMovement;
+    /// <summary>
+    /// Cache reference til <see cref="VoiceMovement"/> brugt til at registrere/afregistrere som observer.
+    /// </summary>
     private VoiceMovement voiceMovement;
+    /// <summary>
+    /// Indikerer om en passage-animation (over/under) i øjeblikket kører.
+    /// </summary>
     private bool isPassing = false;
 
+    /// <summary>
+    /// Lower-cased cache af rock-nøgleord til hurtig sammenligning.
+    /// </summary>
     private string[] rockKeywordsLower;
+    /// <summary>
+    /// Lower-cased cache af bamboo-nøgleord til hurtig sammenligning.
+    /// </summary>
     private string[] bambooKeywordsLower;
+
+    /// <summary>
+    /// Faktor der normaliserer parabelformen  t*(1-t) så toppen = 1 ved t=0.5.
+    /// Bruges sammen med overHeight/underDepth til at styre maksimal højde/dybde.
+    /// </summary>
+    private const float ParabolaNormalization = 4f;
+
+    private CapsuleCollider duckCapsuleCollider;
+    private CharacterController duckCharacterController;
+    private float duckOriginalHeight = 0f;
+    private Vector3 duckOriginalCenter = Vector3.zero;
+    private float duckTargetHeight = 0f;
+    private Vector3 duckTargetCenter = Vector3.zero;
 
     /// <summary>
     /// Unity callback kørt i editor/inspektør når værdier ændres. Sørger for at oprette child-forwarders
@@ -133,13 +176,13 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     private void UpdateKeywordCache()
     {
         rockKeywordsLower = (rockKeywords ?? System.Array.Empty<string>())
-            .Where(k => !string.IsNullOrEmpty(k))
-            .Select(k => k.ToLowerInvariant())
+            .Where(keyword => !string.IsNullOrEmpty(keyword))
+            .Select(keyword => keyword.ToLowerInvariant())
             .ToArray();
 
         bambooKeywordsLower = (bambooKeywords ?? System.Array.Empty<string>())
-            .Where(k => !string.IsNullOrEmpty(k))
-            .Select(k => k.ToLowerInvariant())
+            .Where(keyword => !string.IsNullOrEmpty(keyword))
+            .Select(keyword => keyword.ToLowerInvariant())
             .ToArray();
     }
 
@@ -189,6 +232,28 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
         if (colliderToSet is MeshCollider meshCollider && !meshCollider.convex)
         {
+            if (autoMakeMeshCollidersConvex)
+            {
+#if UNITY_EDITOR
+                if (!EditorApplication.isPlaying)
+                {
+                    Undo.RecordObject(meshCollider, "Make MeshCollider convex and set trigger");
+                    meshCollider.convex = true;
+                    colliderToSet.isTrigger = true;
+                }
+                else
+                {
+                    meshCollider.convex = true;
+                    colliderToSet.isTrigger = true;
+                }
+#else
+                meshCollider.convex = true;
+                colliderToSet.isTrigger = true;
+#endif
+                Debug.Log($"ObstacleVoiceGate: Converted MeshCollider '{colliderToSet.name}' to convex and set as trigger.", colliderToSet.gameObject);
+                return true;
+            }
+
             Debug.LogWarning($"ObstacleVoiceGate: Skipping making concave MeshCollider '{colliderToSet.name}' a trigger. Unity does not support triggers on concave MeshColliders. Make the MeshCollider convex or use primitive colliders (Box/Sphere/Capsule) instead.", colliderToSet.gameObject);
             return false;
         }
@@ -386,7 +451,7 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         isOverAction = false;
         if (Kind == ObstacleKind.Rocks)
         {
-            if (rockKeywordsLower != null && rockKeywordsLower.Any(k => spoken.Contains(k)))
+            if (rockKeywordsLower != null && rockKeywordsLower.Any(keyword => spoken.Contains(keyword)))
             {
                 isOverAction = true;
                 return true;
@@ -394,7 +459,7 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         }
         else
         {
-            if (bambooKeywordsLower != null && bambooKeywordsLower.Any(k => spoken.Contains(k)))
+            if (bambooKeywordsLower != null && bambooKeywordsLower.Any(keyword => spoken.Contains(keyword)))
             {
                 isOverAction = false;
                 return true;
@@ -453,7 +518,7 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         {
             float t = Mathf.Clamp01(elapsed / passDuration);
             Vector3 horiz = Vector3.Lerp(start, end, t);
-            float height = 4f * overHeight * t * (1 - t);
+            float height = ParabolaNormalization * overHeight * t * (1 - t);
             playerTransform.position = new Vector3(horiz.x, horiz.y + height, horiz.z);
             elapsed += Time.deltaTime;
             yield return null;
@@ -474,35 +539,8 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
         PausePlayerForPass(out var previousKinematicState);
 
-        CapsuleCollider capsuleCollider = null;
-        CharacterController characterController = null;
-        float originalCapsuleHeight = 0f;
-        Vector3 originalCapsuleCenter = Vector3.zero;
-        float targetCapsuleHeight = 0f;
-        Vector3 targetCapsuleCenter = Vector3.zero;
 
-        if (changePlayerColliderWhenDucking)
-        {
-            capsuleCollider = playerTransform.GetComponent<CapsuleCollider>() ?? playerTransform.GetComponentInChildren<CapsuleCollider>();
-            characterController = playerTransform.GetComponent<CharacterController>() ?? playerTransform.GetComponentInChildren<CharacterController>();
-
-            if (capsuleCollider != null)
-            {
-                originalCapsuleHeight = capsuleCollider.height;
-                originalCapsuleCenter = capsuleCollider.center;
-                targetCapsuleHeight = Mathf.Max(0.01f, originalCapsuleHeight * duckColliderHeightMultiplier);
-                float delta = (originalCapsuleHeight - targetCapsuleHeight) * 0.5f;
-                targetCapsuleCenter = originalCapsuleCenter - new Vector3(0f, delta, 0f);
-            }
-            else if (characterController != null)
-            {
-                originalCapsuleHeight = characterController.height;
-                originalCapsuleCenter = characterController.center;
-                targetCapsuleHeight = Mathf.Max(0.01f, originalCapsuleHeight * duckColliderHeightMultiplier);
-                float delta = (originalCapsuleHeight - targetCapsuleHeight) * 0.5f;
-                targetCapsuleCenter = originalCapsuleCenter - new Vector3(0f, delta, 0f);
-            }
-        }
+        SetupDuckCollider();
 
         Vector3 start = playerTransform.position;
         Vector3 forward = playerTransform.forward.normalized;
@@ -513,23 +551,10 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         {
             float t = Mathf.Clamp01(elapsed / passDuration);
             Vector3 horiz = Vector3.Lerp(start, end, t);
-            float dip = -4f * underDepth * t * (1 - t);
+            float dip = -ParabolaNormalization * underDepth * t * (1 - t);
             playerTransform.position = new Vector3(horiz.x, horiz.y + dip, horiz.z);
 
-            if (changePlayerColliderWhenDucking && (capsuleCollider != null || characterController != null))
-            {
-                float colliderLerpT = Mathf.Clamp01(elapsed / colliderChangeDuration);
-                if (capsuleCollider != null)
-                {
-                    capsuleCollider.height = Mathf.Lerp(originalCapsuleHeight, targetCapsuleHeight, colliderLerpT);
-                    capsuleCollider.center = Vector3.Lerp(originalCapsuleCenter, targetCapsuleCenter, colliderLerpT);
-                }
-                else if (characterController != null)
-                {
-                    characterController.height = Mathf.Lerp(originalCapsuleHeight, targetCapsuleHeight, colliderLerpT);
-                    characterController.center = Vector3.Lerp(originalCapsuleCenter, targetCapsuleCenter, colliderLerpT);
-                }
-            }
+            UpdateDuckColliderDuringMove(elapsed);
 
             elapsed += Time.deltaTime;
             yield return null;
@@ -537,37 +562,9 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
         playerTransform.position = end;
 
-        if (changePlayerColliderWhenDucking && (capsuleCollider != null || characterController != null))
+        if (changePlayerColliderWhenDucking && (duckCapsuleCollider != null || duckCharacterController != null))
         {
-            float restoreElapsed = 0f;
-            while (restoreElapsed < colliderChangeDuration)
-            {
-                float restoreT = Mathf.Clamp01(restoreElapsed / colliderChangeDuration);
-                if (capsuleCollider != null)
-                {
-                    capsuleCollider.height = Mathf.Lerp(targetCapsuleHeight, originalCapsuleHeight, restoreT);
-                    capsuleCollider.center = Vector3.Lerp(targetCapsuleCenter, originalCapsuleCenter, restoreT);
-                }
-                else if (characterController != null)
-                {
-                    characterController.height = Mathf.Lerp(targetCapsuleHeight, originalCapsuleHeight, restoreT);
-                    characterController.center = Vector3.Lerp(targetCapsuleCenter, originalCapsuleCenter, restoreT);
-                }
-
-                restoreElapsed += Time.deltaTime;
-                yield return null;
-            }
-
-            if (capsuleCollider != null)
-            {
-                capsuleCollider.height = originalCapsuleHeight;
-                capsuleCollider.center = originalCapsuleCenter;
-            }
-            else if (characterController != null)
-            {
-                characterController.height = originalCapsuleHeight;
-                characterController.center = originalCapsuleCenter;
-            }
+            yield return RestoreDuckCollider();
         }
 
         ResumePlayerAfterPass(previousKinematicState);
@@ -575,6 +572,107 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
         if (!playerInside)
             ClearPlayerReferences();
+    }
+
+    /// <summary>
+    /// Forbereder collider-referencer og beregner originale og målværdier til duk.
+    /// </summary>
+    private void SetupDuckCollider()
+    {
+        duckCapsuleCollider = null;
+        duckCharacterController = null;
+        duckOriginalHeight = 0f;
+        duckOriginalCenter = Vector3.zero;
+        duckTargetHeight = 0f;
+        duckTargetCenter = Vector3.zero;
+
+        if (!changePlayerColliderWhenDucking || playerTransform == null)
+            return;
+
+        duckCapsuleCollider = playerTransform.GetComponent<CapsuleCollider>() ?? playerTransform.GetComponentInChildren<CapsuleCollider>();
+        duckCharacterController = playerTransform.GetComponent<CharacterController>() ?? playerTransform.GetComponentInChildren<CharacterController>();
+
+        if (duckCapsuleCollider != null)
+        {
+            duckOriginalHeight = duckCapsuleCollider.height;
+            duckOriginalCenter = duckCapsuleCollider.center;
+            duckTargetHeight = Mathf.Max(0.01f, duckOriginalHeight * duckColliderHeightMultiplier);
+            float delta = (duckOriginalHeight - duckTargetHeight) * 0.5f;
+            duckTargetCenter = duckOriginalCenter - new Vector3(0f, delta, 0f);
+        }
+        else if (duckCharacterController != null)
+        {
+            duckOriginalHeight = duckCharacterController.height;
+            duckOriginalCenter = duckCharacterController.center;
+            duckTargetHeight = Mathf.Max(0.01f, duckOriginalHeight * duckColliderHeightMultiplier);
+            float delta = (duckOriginalHeight - duckTargetHeight) * 0.5f;
+            duckTargetCenter = duckOriginalCenter - new Vector3(0f, delta, 0f);
+        }
+    }
+
+    /// <summary>
+    /// Opdaterer spillerens collider under bevægelsen (lerper højden ned over colliderChangeDuration).
+    /// </summary>
+    /// <param name="elapsed">Tid gået siden passagens start i sekunder.</param>
+    private void UpdateDuckColliderDuringMove(float elapsed)
+    {
+        if (!changePlayerColliderWhenDucking) return;
+        if (duckCapsuleCollider == null && duckCharacterController == null) return;
+
+        float colliderLerpT = Mathf.Clamp01(elapsed / colliderChangeDuration);
+
+        if (duckCapsuleCollider != null)
+        {
+            duckCapsuleCollider.height = Mathf.Lerp(duckOriginalHeight, duckTargetHeight, colliderLerpT);
+            duckCapsuleCollider.center = Vector3.Lerp(duckOriginalCenter, duckTargetCenter, colliderLerpT);
+        }
+        else if (duckCharacterController != null)
+        {
+            duckCharacterController.height = Mathf.Lerp(duckOriginalHeight, duckTargetHeight, colliderLerpT);
+            duckCharacterController.center = Vector3.Lerp(duckOriginalCenter, duckTargetCenter, colliderLerpT);
+        }
+    }
+
+    /// <summary>
+    /// Gendanner spillerens collider til oprindelige værdier over colliderChangeDuration.
+    /// </summary>
+    private IEnumerator RestoreDuckCollider()
+    {
+        if (!changePlayerColliderWhenDucking) yield break;
+        if (duckCapsuleCollider == null && duckCharacterController == null) yield break;
+
+        float restoreElapsed = 0f;
+        while (restoreElapsed < colliderChangeDuration)
+        {
+            float restoreT = Mathf.Clamp01(restoreElapsed / colliderChangeDuration);
+
+            if (duckCapsuleCollider != null)
+            {
+                duckCapsuleCollider.height = Mathf.Lerp(duckTargetHeight, duckOriginalHeight, restoreT);
+                duckCapsuleCollider.center = Vector3.Lerp(duckTargetCenter, duckOriginalCenter, restoreT);
+            }
+            else if (duckCharacterController != null)
+            {
+                duckCharacterController.height = Mathf.Lerp(duckTargetHeight, duckOriginalHeight, restoreT);
+                duckCharacterController.center = Vector3.Lerp(duckTargetCenter, duckOriginalCenter, restoreT);
+            }
+
+            restoreElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        if (duckCapsuleCollider != null)
+        {
+            duckCapsuleCollider.height = duckOriginalHeight;
+            duckCapsuleCollider.center = duckOriginalCenter;
+        }
+        else if (duckCharacterController != null)
+        {
+            duckCharacterController.height = duckOriginalHeight;
+            duckCharacterController.center = duckOriginalCenter;
+        }
+
+        yield break;
     }
 
     [DisallowMultipleComponent]
