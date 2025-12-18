@@ -242,13 +242,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Scripts::SecondChest
   isOpened: 0
-  openDistance: 1.2
   frontDotThreshold: 0.5
+  openDistance: 1.2
   cachedController: {fileID: 9100000, guid: d01c647003fb1e544bf5806e53f66aa8, type: 2}
   lootDelayAfterOpen: 0.4
   openTriggerName: Open
   uiMessageManager: {fileID: 0}
+  player: {fileID: 0}
+  playerInventory: {fileID: 0}
+  playerWeapon: {fileID: 0}
+  animator: {fileID: 0}
+  requiredMonster: {fileID: 0}
+  monsterNotDefeatedMessage: Du mangler at besejre katte-monsteret
+  monsterNotDefeatedMessageDuration: 1
   twoHandSwordWeaponPrefab: {fileID: 6427651055359656695, guid: e702ff0bf6144c641a493836e4c7d726, type: 3}
   keyId: 2
   potionAmount: 1
-  cat: {fileID: 0}
