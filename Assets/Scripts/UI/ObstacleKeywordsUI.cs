@@ -39,18 +39,6 @@ public class ObstacleKeywordsUI : MonoBehaviour
     private Coroutine _autoHideRoutine;
 
     /// <summary>
-    /// Hardkodet fallback-liste med nøgleord for klippe-forhindringer.
-    /// Bruges når den redigerbare <c>rockKeywords</c>-listen er tom eller ikke initialiseret.
-    /// </summary>
-    private static readonly string[] DefaultRockKeywords = new[] { "hop" };
-
-    /// <summary>
-    /// Hardkodet fallback-liste med nøgleord for bambus-forhindringer.
-    /// Bruges når den redigerbare <c>bambooKeywords</c>-listen er tom eller ikke initialiseret.
-    /// </summary>
-    private static readonly string[] DefaultBambooKeywords = new[] { "duk" };
-
-    /// <summary>
     /// Unity Awake-lifecycle. Sørger for singleton-opførsel, initierer standardreferencer og sikrer at panelet er skjult ved opstart.
     /// </summary>
     private void Awake()
