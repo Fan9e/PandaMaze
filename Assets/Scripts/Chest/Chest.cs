@@ -36,11 +36,11 @@ public abstract class Chest : MonoBehaviour
     [SerializeField] protected Animator animator;
 
     [Header("Åbningskrav")]
-    [SerializeField, Tooltip("Hvis sat, kan kisten kun åbnes når dette monster er besejret.")]
+    [SerializeField, Tooltip("Hvis sat, kan kisten kun åbnes når dette monster er besejret (sættes i inspector)")]
     private Monster requiredMonster;
 
     [SerializeField, Tooltip("Besked der vises hvis kisten er låst.")]
-    private string monsterNotDefeatedMessage = "Du mangler at besejre monsteret.";
+    private string monsterNotDefeatedMessage = "Du mangler at besejre monsteret";
 
     [SerializeField, Min(0f)]
     private float monsterNotDefeatedMessageDuration = 1f;
