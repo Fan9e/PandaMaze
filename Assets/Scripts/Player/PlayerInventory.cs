@@ -29,6 +29,11 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private List<int> _debugKeys = new List<int>();
     [Header("Potions")]
     [SerializeField, Min(0)] private int potionCount = 0;
+
+    /// <summary>
+    /// Unity-callback der køres, når objektet initialiseres.
+    /// Cacher nødvendige referencer og opdaterer UI'et med den aktuelle tilstand.
+    /// </summary>
     private void Awake()
     {
         CacheReferences();
