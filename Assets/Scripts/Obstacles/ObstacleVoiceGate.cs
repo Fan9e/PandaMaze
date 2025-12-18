@@ -123,7 +123,7 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     private string[] bambooKeywordsLower;
 
     /// <summary>
-    /// Faktor der normaliserer parabelformen  t*(1-t) så toppen = 1 ved t=0.5.
+    /// Faktor der normaliserer parabelformen progress*(1-progress) så toppen = 1 ved progress=0.5.
     /// Bruges sammen med overHeight/underDepth til at styre maksimal højde/dybde.
     /// </summary>
     private const float ParabolaNormalization = 4f;
@@ -516,9 +516,9 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
         while (elapsed < passDuration)
         {
-            float t = Mathf.Clamp01(elapsed / passDuration);
-            Vector3 horiz = Vector3.Lerp(start, end, t);
-            float height = ParabolaNormalization * overHeight * t * (1 - t);
+            float progress = Mathf.Clamp01(elapsed / passDuration);
+            Vector3 horiz = Vector3.Lerp(start, end, progress);
+            float height = ParabolaNormalization * overHeight * progress * (1 - progress);
             playerTransform.position = new Vector3(horiz.x, horiz.y + height, horiz.z);
             elapsed += Time.deltaTime;
             yield return null;
@@ -549,9 +549,9 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
         while (elapsed < passDuration)
         {
-            float t = Mathf.Clamp01(elapsed / passDuration);
-            Vector3 horiz = Vector3.Lerp(start, end, t);
-            float dip = -ParabolaNormalization * underDepth * t * (1 - t);
+            float progress = Mathf.Clamp01(elapsed / passDuration);
+            Vector3 horiz = Vector3.Lerp(start, end, progress);
+            float dip = -ParabolaNormalization * underDepth * progress * (1 - progress);
             playerTransform.position = new Vector3(horiz.x, horiz.y + dip, horiz.z);
 
             UpdateDuckColliderDuringMove(elapsed);

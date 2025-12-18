@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 using TMPro;
 
@@ -33,12 +32,6 @@ public class ObstacleKeywordsUI : MonoBehaviour
 
     [SerializeField]
     private string[] bambooKeywords;
-
-    /// <summary>
-    /// Lower-case caches for hurtigere sammenligning ved talegenkendelse.
-    /// </summary>
-    private string[] rockKeywordsLower = System.Array.Empty<string>();
-    private string[] bambooKeywordsLower = System.Array.Empty<string>();
 
     /// <summary>
     /// Reference til den aktive auto-hide coroutine, hvis en sådan kører.
@@ -97,9 +90,13 @@ public class ObstacleKeywordsUI : MonoBehaviour
         }
 
         string[] cleaned = System.Array.FindAll(keywords ?? new string[0], keyword => !string.IsNullOrWhiteSpace(keyword));
-        string joined = cleaned.Length > 0 ? string.Join(", ", cleaned) : "(no keywords)";
+        string joined = cleaned.Length > 0 ? string.Join(", ", cleaned) : "Genstart spillet";
 
-        keywordsText.text = $"Sig ét af følgende ord: {joined}";
+        if (cleaned.Length == 0)
+            keywordsText.text = $"Fejl på spillet: {joined}";
+        else if (joined.Length > 0)
+            keywordsText.text = $"Sig ét af følgende ord: {joined}";
+
         panelRoot.SetActive(true);
 
         if (_autoHideRoutine != null)
@@ -137,43 +134,5 @@ public class ObstacleKeywordsUI : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         panelRoot.SetActive(false);
         _autoHideRoutine = null;
-    }
-
-    /// <summary>
-    /// Opdaterer interne lower-case caches for nøgleord, for hurtigere sammenligning ved talegenkendelse.
-    /// Hvis de redigerbare lister er tomme, bruges hardcodede fallback-ord i stedet.
-    /// </summary>
-    private void UpdateKeywordCache()
-    {
-        var effectiveRockKeywords = (rockKeywords == null || rockKeywords.Length == 0)
-            ? DefaultRockKeywords
-            : rockKeywords;
-
-        var effectiveBambooKeywords = (bambooKeywords == null || bambooKeywords.Length == 0)
-            ? DefaultBambooKeywords
-            : bambooKeywords;
-
-        rockKeywordsLower = (effectiveRockKeywords ?? System.Array.Empty<string>())
-            .Where(keyword => !string.IsNullOrEmpty(keyword))
-            .Select(keyword => keyword.ToLowerInvariant())
-            .ToArray();
-
-        bambooKeywordsLower = (effectiveBambooKeywords ?? System.Array.Empty<string>())
-            .Where(keyword => !string.IsNullOrEmpty(keyword))
-            .Select(keyword => keyword.ToLowerInvariant())
-            .ToArray();
-    }
-
-    /// <summary>
-    /// Henter de relevante nøgleord baseret på ObstacleKind.
-    /// Returnerer hardcodede fallback-ord hvis den konfigurerede liste er tom.
-    /// </summary>
-    /// <returns>Array af nøgleord som skal vises/tjekkes.</returns>
-    private string[] GetKeywordsForKind(ObstacleVoiceGate.ObstacleKind kind)
-    {
-        if (kind == ObstacleVoiceGate.ObstacleKind.Rocks)
-            return (rockKeywords != null && rockKeywords.Length > 0) ? rockKeywords : DefaultRockKeywords;
-        else
-            return (bambooKeywords != null && bambooKeywords.Length > 0) ? bambooKeywords : DefaultBambooKeywords;
     }
 }
