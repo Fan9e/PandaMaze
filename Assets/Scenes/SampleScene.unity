@@ -2437,6 +2437,7 @@ GameObject:
   - component: {fileID: 287764759}
   - component: {fileID: 287764758}
   - component: {fileID: 287764761}
+  - component: {fileID: 287764763}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -2462,7 +2463,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 30, z: -10}
+  FollowOffset: {x: 0, y: 1.5, z: -10}
 --- !u!114 &287764759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2487,7 +2488,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 15
+    FieldOfView: 20
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -2514,8 +2515,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287764756}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.58471036, y: -0.000000022248006, z: 0.000000016035457, w: 0.81124216}
-  m_LocalPosition: {x: 145.8, y: 31.15, z: 59.945}
+  m_LocalRotation: {x: 0.07437624, y: -8.8371777e-10, z: 6.5910145e-11, w: 0.9972303}
+  m_LocalPosition: {x: 145.8, y: 2.65, z: 59.945}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2550,232 +2551,45 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
---- !u!115 &288983771
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 7
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_Type: 0
-  m_ExecutionOrder: 0
-  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
-  m_Namespace: 
-  m_AssemblyName: Scripts
---- !u!1 &295659651 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6329159907605863020, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
-  m_PrefabInstance: {fileID: 1031801978}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &295659653
+--- !u!114 &287764763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295659651}
+  m_GameObject: {fileID: 287764756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 262886389}
+  m_Script: {fileID: 11500000, guid: dbe43d662878a7c43bcd44d43c9e2094, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!1001 &296044751
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 984027128}
-    m_Modifications:
-    - target: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.1657867
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.075763345
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.24689484
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_Name
-      value: JG_Rock_A_03
-      objectReference: {fileID: 0}
-    - target: {fileID: 5306556007667204217, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 881651494}
-    - targetCorrespondingSourceObject: {fileID: 625969680929733462, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 451660045}
-  m_SourcePrefab: {fileID: 100100000, guid: 3643a069b19394966a812adb62ddab10, type: 3}
---- !u!4 &296044752 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2971580718634974966, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-  m_PrefabInstance: {fileID: 296044751}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &297826807
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 256411474}
-    m_Modifications:
-    - target: {fileID: 3156099888769367291, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      propertyPath: m_Name
-      value: Tree_Bamboo_Small_Green_02
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943167430675135337, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 12.974365
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943167430675135337, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -13.257891
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943167430675135337, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.52623
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943167430675135337, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.88312745
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943167430675135337, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.46512508
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943167430675135337, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.06037324
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943167430675135337, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.009984922
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943167430675135337, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -55.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943167430675135337, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -9.861
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943167430675135337, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 3.886
-      objectReference: {fileID: 0}
-    - target: {fileID: 7156451802609676877, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3156099888769367291, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1878807090}
-  m_SourcePrefab: {fileID: 100100000, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
---- !u!4 &297826808 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6943167430675135337, guid: 58b754b8454fca331838da843a8c1dc7, type: 3}
-  m_PrefabInstance: {fileID: 297826807}
-  m_PrefabAsset: {fileID: 0}
---- !u!115 &298460931
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 7
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_Type: 0
-  m_ExecutionOrder: 0
-  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
-  m_Namespace: 
-  m_AssemblyName: Scripts
---- !u!1 &301081205 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6329159907605863020, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
-  m_PrefabInstance: {fileID: 1873976832}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &301081207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301081205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 262886389}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!1 &319950798 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
-  m_PrefabInstance: {fileID: 1252393387}
-  m_PrefabAsset: {fileID: 0}
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineDeoccluder
+  CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 1
+  IgnoreTag: 
+  TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  MinimumDistanceFromTarget: 1
+  AvoidObstacles:
+    Enabled: 1
+    DistanceLimit: 0
+    MinimumOcclusionTime: 0
+    CameraRadius: 0.4
+    UseFollowTarget:
+      Enabled: 0
+      YOffset: 0
+    Strategy: 0
+    MaximumEffort: 10
+    SmoothingTime: 0
+    Damping: 0
+    DampingWhenOccluded: 0
+  ShotQualityEvaluation:
+    Enabled: 0
+    OptimalDistance: 10
+    NearLimit: 5
+    FarLimit: 30
+    MaxQualityBoost: 0.2
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2837,7 +2651,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 15
+  field of view: 20
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2863,8 +2677,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.58471036, y: -0.00000002224801, z: 0.000000016035461, w: 0.81124216}
-  m_LocalPosition: {x: 145.8, y: 31.15, z: 59.945}
+  m_LocalRotation: {x: 0.07437624, y: -8.837178e-10, z: 6.5910166e-11, w: 0.9972303}
+  m_LocalPosition: {x: 145.8, y: 2.65, z: 59.945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
