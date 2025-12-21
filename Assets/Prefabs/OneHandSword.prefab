@@ -52,7 +52,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518328416023387386}
   m_Enabled: 1
-  m_CastShadows: 0
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -64,8 +64,6 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -87,7 +85,6 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -103,13 +100,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: baebe2e0a53c2394bb3406a46cb6f831, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Scripts::OneHandSword
-  backpackVariantIndex: 0
-  _attackAnimOverride: OneHandSword
-  baseDamage: 10
-  socketLocalPosition: {x: 0, y: 0, z: 0}
-  socketLocalEulerAngles: {x: -176.485, y: 93.837, z: -258.082}
-  socketLocalScale: {x: 3, y: 3, z: 3}
+  m_EditorClassIdentifier: 
+  isAttacking: 1
 --- !u!65 &-9113661327960294861
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -138,10 +130,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518328416023387386}
-  serializedVersion: 5
+  serializedVersion: 4
   m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_Drag: 0
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
