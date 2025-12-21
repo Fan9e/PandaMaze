@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
+    [Header("UI")]
+    [SerializeField] private BagpackUI bagpackUI;
+
     [Header("Weapon Auto Setup")]
     [Tooltip("Navnet på det child, som bruges som våben-socket.")]
     [SerializeField]
@@ -31,7 +34,7 @@ public class PlayerWeapon : MonoBehaviour
     /// <summary>
     /// Det aktuelt udstyrede våben, tilgået via IWeapon-interfacet.
     /// </summary>
-    public IWeapon EquippedWeaponInterface { get; private set; }
+    public IWeapon EquippedIWeapon { get; private set; }
 
     [Header("Attack Settings")]
     [SerializeField]
@@ -59,10 +62,16 @@ public class PlayerWeapon : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        if (bagpackUI == null)
+        {
+            bagpackUI = FindObjectOfType<BagpackUI>();
+        }
         SetupMonsterLayerMask();
         SetupWeaponSocketTransform();
         SetupWeaponComponent();
         SetupWeaponAnimator();
+        
+        
     }
 
     /// <summary>
@@ -89,10 +98,13 @@ public class PlayerWeapon : MonoBehaviour
     /// </summary>
     private void SetupMonsterLayerMask()
     {
-        if (monsterLayerMask.value == 0 && !string.IsNullOrEmpty(monsterLayerName))
-        {
-            monsterLayerMask = LayerMask.GetMask(monsterLayerName);
-        }
+        if (monsterLayerMask.value != 0 || string.IsNullOrEmpty(monsterLayerName))
+            return;
+
+        monsterLayerMask = LayerMask.GetMask(monsterLayerName);
+
+        if (monsterLayerMask.value == 0)
+            Debug.LogWarning($"Layer '{monsterLayerName}' findes ikke, eller ingen objekter bruger den. Attack rammer intet.", this);
     }
 
     /// <summary>
@@ -161,21 +173,46 @@ public class PlayerWeapon : MonoBehaviour
             equippedWeaponComponent.transform.SetParent(weaponSocketTransform, true);
         }
 
-        EquippedWeaponInterface = equippedWeaponComponent as IWeapon;
-        if (EquippedWeaponInterface == null)
+        EquippedIWeapon = equippedWeaponComponent as IWeapon;
+        if (EquippedIWeapon == null)
         {
             Debug.LogError("Weapon-komponenten på Player implementerer ikke IWeapon.", equippedWeaponComponent);
         }
+        UpdateWeaponUI();
     }
+    private void UpdateWeaponUI()
+    {
+        if (bagpackUI == null)
+        {
+            Debug.LogWarning("UpdateWeaponUI kaldt, men bagpackUI er null.", this);
+            return;
+        }
+
+        if (equippedWeaponComponent == null || EquippedIWeapon == null)
+        {
+            bagpackUI.SetHasWeapon(false);
+            Debug.Log("UpdateWeaponUI: intet våben – slår weapon-slot fra");
+            return;
+        }
+
+        int variant = Mathf.Clamp(equippedWeaponComponent.BackpackVariantIndex, 0, 2);
+
+        bagpackUI.SetHasWeapon(true);
+        bagpackUI.SetWeaponVariant(variant);
+
+        Debug.Log($"UpdateWeaponUI: satte weapon-slot til variant {variant} for {equippedWeaponComponent.name}");
+    }
+
+
 
 
     /// <summary>
     /// Finder og sætter den Animator, der skal bruges til våbnets animationer.
     /// Hvis weaponAnimator allerede er sat, gør metoden ikke noget.
     /// Ellers forsøger den i denne rækkefølge:
-    /// 1) At finde en Animator på weaponSocketTransform eller dets children.
-    /// 2) At finde en Animator på equippedWeaponComponent eller dens parents.
-    /// 3) At finde en vilkårlig Animator i spillerens children.
+    /// At finde en Animator på weaponSocketTransform eller dets children.
+    /// At finde en Animator på equippedWeaponComponent eller dens parents.
+    /// At finde en vilkårlig Animator i spillerens children.
     /// Hvis ingen Animator findes, logges en advarsel.
     /// </summary>
     private void SetupWeaponAnimator()
@@ -230,7 +267,7 @@ public class PlayerWeapon : MonoBehaviour
             return;
         }
 
-        if (EquippedWeaponInterface == null)
+        if (EquippedIWeapon == null)
         {
             return;
         }
@@ -257,9 +294,9 @@ public class PlayerWeapon : MonoBehaviour
 
         yield return PlayAttackAnimationCoroutine();
 
-        if (monster != null && EquippedWeaponInterface != null)
+        if (monster != null && EquippedIWeapon != null)
         {
-            EquippedWeaponInterface.Attack(monster);
+            EquippedIWeapon.Attack(monster);
         }
 
         isCurrentlyAttacking = false;
@@ -278,10 +315,10 @@ public class PlayerWeapon : MonoBehaviour
     /// </returns>
     private IEnumerator PlayAttackAnimationCoroutine()
     {
-        if (weaponAnimator == null || EquippedWeaponInterface == null)
+        if (weaponAnimator == null || EquippedIWeapon == null)
             yield break;
 
-        string attackAnimationName = EquippedWeaponInterface.AttackAnimationName;
+        string attackAnimationName = EquippedIWeapon.AttackAnimationName;
         Debug.Log($"Prøver at spille animation-state: {attackAnimationName}");
 
         weaponAnimator.Play(attackAnimationName, 0, 0f);
@@ -349,9 +386,7 @@ public class PlayerWeapon : MonoBehaviour
     /// Det gamle våben bliver fjernet (destrueret), og det nye våben
     /// bliver placeret på våben-socket'en og gjort til det aktive våben.
     /// </summary>
-    /// <param name="newWeaponComponent">
-    /// Den nye Weapon-komponent, som spilleren skal bruge.
-    /// </param>
+    /// <param name="weaponPrefab">Våben-prefab der skal equips.</param>
     public void EquipNewWeapon(Weapon weaponPrefab)
     {
         if (weaponPrefab == null)
@@ -360,30 +395,43 @@ public class PlayerWeapon : MonoBehaviour
             return;
         }
 
-        if (equippedWeaponComponent != null)
-        {
-            Destroy(equippedWeaponComponent.gameObject);
-        }
-
         if (weaponSocketTransform == null)
         {
             Debug.LogError("weaponSocketTransform er ikke sat, kan ikke equipppe nyt våben.", this);
             return;
         }
 
-        equippedWeaponComponent = Instantiate(weaponPrefab, weaponSocketTransform);
-        equippedWeaponComponent.transform.localPosition = Vector3.zero;
-        equippedWeaponComponent.transform.localRotation = Quaternion.identity;
+        Debug.Log($"EquipNewWeapon: prøver at equippe {weaponPrefab} på socket {weaponSocketTransform.name}");
 
-        EquippedWeaponInterface = equippedWeaponComponent as IWeapon;
-        if (EquippedWeaponInterface == null)
+        if (equippedWeaponComponent != null)
+        {
+            Debug.Log("EquipNewWeapon: Destroyer gammelt våben: " + equippedWeaponComponent.name);
+            Destroy(equippedWeaponComponent.gameObject);
+        }
+        
+ 
+        equippedWeaponComponent = Instantiate(weaponPrefab, weaponSocketTransform);
+
+        equippedWeaponComponent.ConfigureSocketTransform(equippedWeaponComponent.transform);
+
+        Debug.Log("EquipNewWeapon: Nyt våben-instans: " + equippedWeaponComponent.name);
+        EquippedIWeapon = equippedWeaponComponent as IWeapon;
+        if (EquippedIWeapon == null)
         {
             Debug.LogError("Det nye Weapon implementerer ikke IWeapon.", equippedWeaponComponent);
         }
 
         SetupWeaponAnimator();
+
+        for (int i = 0; i < weaponSocketTransform.childCount; i++)
+        {
+            Transform child = weaponSocketTransform.GetChild(i);
+            Debug.Log($"EquipNewWeapon: Socket-child {i}: {child.name}", child);
+        }
+        UpdateWeaponUI();
     }
 
+    
 
     #endregion
 }

@@ -52,7 +52,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889559103492153120}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -136,7 +136,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -151,6 +151,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e6929d07c01b9843bd322800819b16d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  isAttacking: 0
+  m_EditorClassIdentifier: Scripts::TwoHandSword
+  backpackVariantIndex: 2
+  _attackAnimOverride: TwoHandSword
   baseDamage: 30
+  socketLocalPosition: {x: -0.11, y: 0.689, z: 1.53}
+  socketLocalEulerAngles: {x: -32.737, y: 109.432, z: 59.494}
+  socketLocalScale: {x: 4, y: 4, z: 4}

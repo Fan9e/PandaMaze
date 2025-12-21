@@ -49,6 +49,7 @@
   <Project Path="UnityEditor.UI.csproj" />
   <Project Path="Unity.Notifications.csproj" />
   <Project Path="Unity.2D.Sprite.Editor.csproj" />
+  <Project Path="EditModeTest.csproj" />
   <Project Path="Unity.Multiplayer.Center.Common.csproj" />
   <Project Path="Unity.Notifications.Unified.csproj" />
   <Project Path="Unity.InputSystem.ForUI.csproj" />
@@ -57,7 +58,6 @@
   <Project Path="Unity.VisualScripting.SettingsProvider.Editor.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="Tests.csproj" />
-  <Project Path="WeaponTest.csproj" />
   <Project Path="Unity.Settings.Editor.csproj" />
   <Project Path="Unity.InputSystem.TestFramework.csproj" />
   <Project Path="Unity.CollabProxy.Editor.csproj" />
@@ -70,7 +70,6 @@
   <Project Path="SpeechToText.Editor.csproj" />
   <Project Path="Unity.Rendering.LightTransport.Editor.csproj" />
   <Project Path="Unity.InputSystem.DocCodeSamples.csproj" />
-  <Project Path="PlayerTests.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Shaders.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Runtime.Shared.csproj" />
   <Project Path="Unity.2D.Sprite.AIIntegration.Editor.csproj" />
