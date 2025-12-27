@@ -688,7 +688,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -413, y: 20}
+  m_AnchoredPosition: {x: 150.9, y: 20}
   m_SizeDelta: {x: 450, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &305851904
@@ -1995,6 +1995,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+      propertyPath: speechTaskUI
+      value: 
+      objectReference: {fileID: 590602}
+    - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+      propertyPath: damagePerCorrect
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+      propertyPath: sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+      propertyPath: 'sentences.Array.data[0]'
+      value: Jeg har en hund
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+      propertyPath: 'sentences.Array.data[1]'
+      value: Det er snart jul
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+      propertyPath: 'sentences.Array.data[2]'
+      value: "Det er snart nyt\xE5r"
+      objectReference: {fileID: 0}
     - target: {fileID: 9125308392940216368, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
       propertyPath: speechTaskUI
       value: 
@@ -2026,10 +2050,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5974982831241363483, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1636572268}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
 --- !u!4 &755498754 stripped
 Transform:
@@ -2230,11 +2251,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 325816764157129933, guid: d77daed19a6a33c43aa1642a4cbad20a, type: 3}
   m_PrefabInstance: {fileID: 840176843}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &866599091 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 482087385325797976, guid: 920c8476d627b764283b67da86970efd, type: 3}
-  m_PrefabInstance: {fileID: 1355124201}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &929192916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2370,7 +2386,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -535, y: 80}
+  m_AnchoredPosition: {x: 26.9, y: 80}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1202676294
@@ -2892,34 +2908,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 482087385325797976, guid: 920c8476d627b764283b67da86970efd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1355124213}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 920c8476d627b764283b67da86970efd, type: 3}
 --- !u!4 &1355124202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5906427983753372136, guid: 920c8476d627b764283b67da86970efd, type: 3}
   m_PrefabInstance: {fileID: 1355124201}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1355124213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866599091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03507d02a5efa574dbcd5f9d680de3e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::NewDragonCombat
-  speechTaskUI: {fileID: 590602}
-  damagePerCorrect: 10
-  sentences:
-  - Pirater er seje som vi ved
-  - Pirater er sjove som vi ved
-  - Pirater er kedelige som vi ved
 --- !u!1 &1390236555
 GameObject:
   m_ObjectHideFlags: 0
@@ -3028,7 +3023,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::PlayerMonsterDetector
   player: {fileID: 1439659095}
   monsterHealthUI: {fileID: 2011718069}
-  showDistance: 5
+  showDistance: 9
   updateInterval: 0.1
 --- !u!114 &1439659107
 MonoBehaviour:
@@ -3337,29 +3332,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1636572261 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5974982831241363483, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
-  m_PrefabInstance: {fileID: 755498753}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1636572268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636572261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 585ef5c061ba55e43a23148be6c9e935, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::NewBossCombat
-  speechTaskUI: {fileID: 590602}
-  damagePerCorrect: 10
-  sentences:
-  - Pirater er sjove som vi ved
-  - Pirater er seje som vi ved
-  - Pirater er kedelige som vi ved
 --- !u!1 &1766603168
 GameObject:
   m_ObjectHideFlags: 0
@@ -3394,7 +3366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -535, y: -48}
+  m_AnchoredPosition: {x: 25.4, y: -48}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1766603170
@@ -5273,9 +5245,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4694859059881543036, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
       insertIndex: 4
       addedObject: {fileID: 8585253005820049725}
-    - targetCorrespondingSourceObject: {fileID: 4694859059881543036, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8585253005820049734}
   m_SourcePrefab: {fileID: 100100000, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
 --- !u!4 &8585253005820049717 stripped
 Transform:
@@ -5309,24 +5278,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &8585253005820049734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 983637666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55a13df47f8c7f547a08297b6b26c74f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::NewCatCombat
-  speechTaskUI: {fileID: 590602}
-  damagePerCorrect: 10
-  sentences:
-  - Pirater er seje som vi ved
-  - Pirater er sjove som vi ved
-  - Pirater er kedelige som vi ved
 --- !u!224 &8967289838624301428
 RectTransform:
   m_ObjectHideFlags: 0

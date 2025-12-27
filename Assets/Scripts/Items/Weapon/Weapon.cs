@@ -34,7 +34,7 @@ public abstract class Weapon : Item, IWeapon
     private void DealDamage(Monster monster)
     {
         int damage = CalculateDamage();
-        //monster.Fight(damage);
+        monster.Fight(damage);
     }
 
 #if UNITY_EDITOR

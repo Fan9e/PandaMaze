@@ -261,7 +261,7 @@ public class PlayerWeaponTests
         );
         isAttField.SetValue(playerWeapon, false);
         
-        playerWeapon.PlayAttackAnimationOnly();
+       // playerWeapon.PlayAttackAnimationOnly();
         
         yield return null;
         

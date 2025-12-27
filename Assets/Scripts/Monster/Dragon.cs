@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Dragon : Monster
 {
+    protected override ISpeechTaskPresenter CreatePresenter() => new NormalPresenter();
     /// <summary>
     /// Initialiserer dragen ved at sætte dens maksimale liv og angrebskraft
     /// og kalder Monster-basislogikken via base.Start().

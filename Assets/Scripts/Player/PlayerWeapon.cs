@@ -65,17 +65,6 @@ public class PlayerWeapon : MonoBehaviour
         SetupWeaponAnimator();
     }
 
-    /// <summary>
-    /// Hvis handleInputInThisComponent er sand, håndteres angrebsinput her.
-    /// Ellers kan en anden komponent (for eksempel Player) kalde HandleAttackPlayerInput manuelt.
-    /// </summary>
-    private void Update()
-    {
-        if (handleInputInThisComponent)
-        {
-            HandleAttackPlayerInput();
-        }
-    }
 
     #endregion
 
@@ -218,30 +207,17 @@ public class PlayerWeapon : MonoBehaviour
     /// om der er et våben udstyret, og om der findes et monster inden for angrebsrækkevidde.
     /// Hvis alle betingelser er opfyldt, startes et angreb mod det nærmeste monster.
     /// </summary>
-    public void HandleAttackPlayerInput()
+    public void AttackSpecificMonster(Monster monster)
     {
-        if (!Input.GetMouseButtonDown(0))
-        {
-            return;
-        }
+        if (isCurrentlyAttacking) return;
+        if (EquippedWeaponInterface == null) return;
+        if (monster == null) return;
 
-        if (isCurrentlyAttacking)
-        {
-            return;
-        }
+        // Spil animation (uden at vente på den)
+        StartCoroutine(PlayAttackAnimationCoroutine());
 
-        if (EquippedWeaponInterface == null)
-        {
-            return;
-        }
-
-        Monster monster = GetClosestMonsterInAttackRange();
-        if (monster == null)
-        {
-            return;
-        }
-
-        StartCoroutine(AttackRoutineCoroutine(monster));
+        // Giv skade NU
+        EquippedWeaponInterface.Attack(monster);
     }
 
     /// <summary>
@@ -251,19 +227,19 @@ public class PlayerWeapon : MonoBehaviour
     /// hvis målet stadig er gyldigt.
     /// </summary>
     /// <param name="monster">Det Monster, som spilleren forsøger at angribe.</param>
-    private IEnumerator AttackRoutineCoroutine(Monster monster)
-    {
-        isCurrentlyAttacking = true;
+    //private IEnumerator AttackRoutineCoroutine(Monster monster)
+    //{
+    //    isCurrentlyAttacking = true;
 
-        yield return PlayAttackAnimationCoroutine();
+    //    yield return PlayAttackAnimationCoroutine();
 
-        if (monster != null && EquippedWeaponInterface != null)
-        {
-            EquippedWeaponInterface.Attack(monster);
-        }
+    //    if (monster != null && EquippedWeaponInterface != null)
+    //    {
+    //        EquippedWeaponInterface.Attack(monster);
+    //    }
 
-        isCurrentlyAttacking = false;
-    }
+    //    isCurrentlyAttacking = false;
+    //}
 
     /// <summary>
     /// Afspiller våbnets angrebsanimation på <see cref="weaponAnimator"/> 
@@ -299,45 +275,6 @@ public class PlayerWeapon : MonoBehaviour
         yield return new WaitForSeconds(animationLengthInSeconds);
     }
 
-    /// <summary>
-    /// Finder det nærmeste monster, som befinder sig inden for spillerens angrebsområde.
-    /// Angrebsområdet er en usynlig kugle foran spilleren med centrum i
-    /// spillerens position plus fremad-retningen gange attackDistanceForwardFromPlayer.
-    /// Kun colliders på monsterLayerMask bliver taget med.
-    /// </summary>
-    /// <returns>
-    /// Det nærmeste Monster inden for rækkevidde,
-    /// eller null hvis der ikke er nogen monstre i angrebsområdet.
-    /// </returns>
-    private Monster GetClosestMonsterInAttackRange()
-    {
-        Vector3 attackCenter = transform.position + transform.forward * attackDistanceForwardFromPlayer;
-
-        Collider[] hitColliders = Physics.OverlapSphere(attackCenter, attackRadius, monsterLayerMask);
-
-        Monster closestMonster = null;
-        float closestDistanceSquared = Mathf.Infinity;
-
-        foreach (Collider hitCollider in hitColliders)
-        {
-            Monster monster = hitCollider.GetComponentInParent<Monster>();
-            if (monster == null)
-            {
-                continue;
-            }
-
-            float distanceSquared =
-                (monster.transform.position - attackCenter).sqrMagnitude;
-
-            if (distanceSquared < closestDistanceSquared)
-            {
-                closestDistanceSquared = distanceSquared;
-                closestMonster = monster;
-            }
-        }
-
-        return closestMonster;
-    }
 
     #endregion
 
@@ -384,34 +321,9 @@ public class PlayerWeapon : MonoBehaviour
         SetupWeaponAnimator();
     }
 
-    /// <summary>
-    /// Spiller kun våbnets angrebsanimation uden at beregne skade.
-    /// Kan bruges af tale-opgaver, så sværdet svinger, når spilleren siger sætningen rigtigt.
-    /// </summary>
-    public void PlayAttackAnimationOnly()
-    {
-        if (weaponAnimator == null)
-            return;
 
-        if (isCurrentlyAttacking)
-            return;
 
-        StartCoroutine(PlayAttackAnimationOnlyCoroutine());
-    }
 
-    /// <summary>
-    /// Coroutine der spiller angrebsanimationen og venter, til den er færdig,
-    /// uden at kalde våbnets Attack()-logik.
-    /// </summary>
-    private IEnumerator PlayAttackAnimationOnlyCoroutine()
-    {
-        isCurrentlyAttacking = true;
-
-        // Genbrug den eksisterende animations-coroutine
-        yield return PlayAttackAnimationCoroutine();
-
-        isCurrentlyAttacking = false;
-    }
 
 
     #endregion
