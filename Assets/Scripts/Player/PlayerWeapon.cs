@@ -277,7 +277,12 @@ public class PlayerWeapon : MonoBehaviour
         }
 
         if (destroyOld && equippedWeaponComponent != null)
-            Destroy(equippedWeaponComponent.gameObject);
+        {
+            if (Application.isPlaying)
+                Destroy(gameObject);
+            else
+                DestroyImmediate(gameObject);
+        }
 
         equippedWeaponComponent = Instantiate(weaponPrefab, weaponSocketTransform);
         equippedWeaponComponent.transform.localPosition = Vector3.zero;
