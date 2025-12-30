@@ -1,20 +1,59 @@
 using UnityEngine;
 
-public partial class Monster : MonoBehaviour
+
+/// <summary>
+/// Partial monster-klasse, der håndterer speech-baseret kampflow.
+/// </summary>
+public partial class Monster
 {
     [Header("Speech Combat")]
+    /// <summary>
+    /// UI’et der viser speech-opgaven og sender succes/fejl events tilbage.
+    /// </summary>
     [SerializeField] private SpeechTaskUI speechTaskUI;
+
+    /// <summary>
+    /// Mulige sætninger der kan blive valgt tilfældigt og vist i UI’et.
+    /// </summary>
     [TextArea][SerializeField] private string[] sentences;
 
+    /// <summary>
+    /// Trigger-collideren der starter kampen, når spilleren går ind i området.
+    /// </summary>
     private SphereCollider triggerCollider;
 
+    /// <summary>
+    /// Angiver om fight/flowet er aktivt (spilleren er engageret i speech-kampen).
+    /// </summary>
     private bool isFightActive;
+
+    /// <summary>
+    /// Angiver om vi venter på et resultat fra speech-tasken (succes eller fejl).
+    /// </summary>
     private bool isWaitingForResult;
+
+    /// <summary>
+    /// Den sætning, som er aktiv i den nuværende runde.
+    /// </summary>
     private string currentSentence;
 
+    /// <summary>
+    /// Fabriksmetode der skal returnere en presenter, som kan vise en speech-task i UI’et.
+    /// Implementeres i en afledt klasse.
+    /// </summary>
+    /// <returns>En presenter der implementerer <see cref="ISpeechTaskPresenter"/>.</returns>
     protected abstract ISpeechTaskPresenter CreatePresenter();
+
+    /// <summary>
+    /// Den konkrete presenter-instans som bruges til at vise opgaven.
+    /// </summary>
     private ISpeechTaskPresenter presenter;
 
+    /// <summary>
+    /// Unity-callback der kører når objektet oprettes.
+    /// Finder og konfigurerer trigger-collideren, finder UI hvis det mangler,
+    /// og opretter presenter via <see cref="CreatePresenter"/>.
+    /// </summary>
     protected virtual void Awake()
     {
         triggerCollider = GetComponent<SphereCollider>();
@@ -26,6 +65,10 @@ public partial class Monster : MonoBehaviour
         presenter = CreatePresenter();
     }
 
+    /// <summary>
+    /// Unity-callback når komponenten bliver enabled.
+    /// Tilmeld lyttere til UI’ets events for succes og fejl.
+    /// </summary>
     protected virtual void OnEnable()
     {
         if (speechTaskUI == null) return;
@@ -33,6 +76,10 @@ public partial class Monster : MonoBehaviour
         speechTaskUI.OnTaskFailed.AddListener(HandleTaskFail);
     }
 
+    /// <summary>
+    /// Unity-callback når komponenten bliver disabled.
+    /// Afmeld lyttere fra UI’ets events for at undgå leaks/dobbelt callbacks.
+    /// </summary>
     protected virtual void OnDisable()
     {
         if (speechTaskUI == null) return;
@@ -40,6 +87,11 @@ public partial class Monster : MonoBehaviour
         speechTaskUI.OnTaskFailed.RemoveListener(HandleTaskFail);
     }
 
+    /// <summary>
+    /// Unity-callback når noget går ind i triggeren.
+    /// Starter en ny speech-kamp hvis det er en <see cref="Player"/> og der ikke allerede kæmpes.
+    /// </summary>
+    /// <param name="other">Collideren der gik ind i triggeren.</param>
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (isFightActive) return;
@@ -52,6 +104,13 @@ public partial class Monster : MonoBehaviour
         StartNewRound(pickNewSentence: true);
     }
 
+    /// <summary>
+    /// Starter en ny runde i speech-kampen.
+    /// Vælger evt. en ny sætning og viser opgaven i UI’et, hvis vi må fortsætte.
+    /// </summary>
+    /// <param name="pickNewSentence">
+    /// Hvis true vælges en ny sætning; ellers genbruges den nuværende (hvis den findes).
+    /// </param>
     private void StartNewRound(bool pickNewSentence)
     {
         if (!isFightActive) return;
@@ -75,12 +134,22 @@ public partial class Monster : MonoBehaviour
         presenter?.Show(speechTaskUI, currentSentence);
     }
 
+    /// <summary>
+    /// Vælger næste sætning til speech-opgaven.
+    /// Returnerer en fallback-tekst hvis der ikke er sat sætninger op.
+    /// </summary>
+    /// <returns>En tilfældig sætning fra <see cref="sentences"/> eller en fallback-tekst.</returns>
     private string GetNextSentence()
     {
         if (sentences == null || sentences.Length == 0) return "Denne sætning skal hjælp med at udtale orden";
         return sentences[Random.Range(0, sentences.Length)];
     }
 
+    /// <summary>
+    /// Kaldes når speech-opgaven er gennemført korrekt.
+    /// Lader spilleren angribe monsteret (via PlayerWeapon hvis muligt), ellers falder tilbage til standard skade.
+    /// Starter derefter en ny runde eller slutter kampen hvis monsteret dør.
+    /// </summary>
     private void HandleTaskSuccess()
     {
         if (!isFightActive || !isWaitingForResult) return;
@@ -113,6 +182,11 @@ public partial class Monster : MonoBehaviour
         StartNewRound(pickNewSentence: true);
     }
 
+    /// <summary>
+    /// Kaldes når speech-opgaven fejler.
+    /// Anvender “fejl”-konsekvens (her Fight(0)), og afgør om kampen fortsætter
+    /// med samme sætning eller slutter afhængigt af om spiller/monster er i live.
+    /// </summary>
     private void HandleTaskFail()
     {
         if (!isFightActive || !isWaitingForResult) return;
@@ -129,6 +203,10 @@ public partial class Monster : MonoBehaviour
             EndFight();
     }
 
+    /// <summary>
+    /// Afslutter speech-kampen og rydder state.
+    /// Skjuler UI’et og nulstiller den aktuelle sætning.
+    /// </summary>
     private void EndFight()
     {
         isFightActive = false;
