@@ -85,6 +85,9 @@ public partial class Monster
         if (speechTaskUI == null) return;
         speechTaskUI.OnTaskCompleted.RemoveListener(HandleTaskSuccess);
         speechTaskUI.OnTaskFailed.RemoveListener(HandleTaskFail);
+
+        if (isFightActive)
+            EndFight();
     }
 
     /// <summary>

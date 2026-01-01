@@ -121,6 +121,8 @@ public abstract partial class Monster : MonoBehaviour
     /// </summary>
     protected virtual void OnDeath()
     {
+        EndFight();
+
         Debug.Log("Monster døde");
         if (Application.isPlaying)
             Destroy(gameObject);

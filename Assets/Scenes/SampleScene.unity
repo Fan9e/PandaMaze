@@ -2825,6 +2825,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.82896
       objectReference: {fileID: 0}
+    - target: {fileID: 1039954966337600853, guid: 920c8476d627b764283b67da86970efd, type: 3}
+      propertyPath: speechTaskUI
+      value: 
+      objectReference: {fileID: 590602}
     - target: {fileID: 2013016323608412791, guid: 920c8476d627b764283b67da86970efd, type: 3}
       propertyPath: speechTaskUI
       value: 
@@ -3043,8 +3047,6 @@ MonoBehaviour:
   weaponSocketTransform: {fileID: 0}
   weaponAnimator: {fileID: 0}
   startingWeaponPrefab: {fileID: 0}
-  attackRadius: 2
-  attackDistanceForwardFromPlayer: 1
   monsterLayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -5146,6 +5148,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1826803511}
     m_Modifications:
+    - target: {fileID: 442925646153960912, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
+      propertyPath: speechTaskUI
+      value: 
+      objectReference: {fileID: 590602}
     - target: {fileID: 1596283839288419288, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.489998

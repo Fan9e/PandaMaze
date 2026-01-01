@@ -106,11 +106,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 174e383cc98149648b000db107ac37d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Scripts::Dragon
   player: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   attackPower: 0
+  speechTaskUI: {fileID: 0}
+  sentences: []
 --- !u!114 &4966271134346643380
 MonoBehaviour:
   m_ObjectHideFlags: 0
