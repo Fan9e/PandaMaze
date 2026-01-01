@@ -165,23 +165,9 @@ public partial class Monster
             {
                 playerWeapon.AttackSpecificMonster(this);
             }
-            else
-            {
-                Debug.LogWarning("PlayerWeapon blev ikke fundet på Player.");
-                Fight(10); 
-            }
+       
         }
-        else
-        {
-            Fight(10);
-        }
-
-        if (CurrentHealth <= 0)
-        {
-            EndFight();
-            return;
-        }
-
+  
         StartNewRound(pickNewSentence: true);
     }
 
@@ -197,13 +183,8 @@ public partial class Monster
 
         Fight(0);
 
-        bool playerAlive = Player != null && Player.CurrentHealth > 0;
-        bool monsterAlive = CurrentHealth > 0;
-
-        if (playerAlive && monsterAlive)
-            StartNewRound(pickNewSentence: false);
-        else
-            EndFight();
+        StartNewRound(pickNewSentence: false);
+      
     }
 
     /// <summary>
