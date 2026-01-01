@@ -2009,19 +2009,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
       propertyPath: 'sentences.Array.data[0]'
-      value: "Pirater kommer i t\xE5ge"
+      value: Pirater synger en sang
       objectReference: {fileID: 0}
     - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
       propertyPath: 'sentences.Array.data[1]'
-      value: Pirater gemmer sig nu
+      value: "Pirater g\xE5r i land"
       objectReference: {fileID: 0}
     - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
       propertyPath: 'sentences.Array.data[2]'
-      value: "Pirater g\xE5r stille frem"
+      value: "Pirater ror i en b\xE5d"
       objectReference: {fileID: 0}
     - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
       propertyPath: 'sentences.Array.data[3]'
-      value: Pirater forsvinder igen
+      value: Pirater vinker farvel
       objectReference: {fileID: 0}
     - target: {fileID: 9125308392940216368, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
       propertyPath: speechTaskUI
@@ -5186,7 +5186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 442925646153960912, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
       propertyPath: 'sentences.Array.data[1]'
-      value: Pirater skyder med kanonen
+      value: "Pirater ser en \xF8"
       objectReference: {fileID: 0}
     - target: {fileID: 442925646153960912, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
       propertyPath: 'sentences.Array.data[2]'
