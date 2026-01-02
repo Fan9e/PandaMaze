@@ -15,7 +15,9 @@ public abstract class Weapon : Item, IWeapon
     public int BackpackVariantIndex => backpackVariantIndex;
 
     [Header("Weapon UI")]
-    [SerializeField] private string _attackAnimOverride;
+
+    [SerializeField, Tooltip("Navnet på attack-animationen. Tom = bruger klassens navn.")]
+    private string _attackAnimationName;
 
     /// <summary>
     /// Konfigurerer transformen for det socket, som våbnet skal sidde i.
@@ -34,15 +36,16 @@ public abstract class Weapon : Item, IWeapon
         socketTransform.localEulerAngles = Vector3.zero;
         socketTransform.localScale = Vector3.zero;
     }
+
     /// <summary>
     /// Returnerer navnet på angrebs-animationen.
-    /// Bruger <see cref="_attackAnimOverride"/> hvis det er sat;
-    /// ellers bruges klassens navn efterfulgt af "Attack"
+    /// Bruger <see cref="_attackAnimationName"/> hvis det er sat;
+    /// ellers bruges klassens navn
     /// </summary>
     public string AttackAnimationName =>
-       string.IsNullOrEmpty(_attackAnimOverride)
-           ? GetType().Name + "Attack"
-           : _attackAnimOverride;
+       string.IsNullOrWhiteSpace(_attackAnimationName)
+           ? GetType().Name
+           : _attackAnimationName;
     public abstract int CalculateDamage();
 
     /// <summary>
@@ -76,18 +79,18 @@ public abstract class Weapon : Item, IWeapon
     /// </summary>
     protected virtual void OnValidate()
     {
-        AssignDefaultAttackAnimOverrideIfEmpty();
+        AssignDefaultAttackAnimationNameIfEmpty();
         AutoAssignBackpackVariantFromNameIfUnset();
     }
 
     /// <summary>
-    /// Sætter automatisk <c>_attackAnimOverride</c> til klassens navn,
+    /// Sætter automatisk _attackAnimationName til klassens navn,
     /// hvis feltet er tomt eller ikke sat.
     /// </summary>
-    private void AssignDefaultAttackAnimOverrideIfEmpty()
+    private void AssignDefaultAttackAnimationNameIfEmpty()
     {
-        if (string.IsNullOrEmpty(_attackAnimOverride))
-            _attackAnimOverride = GetType().Name;
+        if (string.IsNullOrWhiteSpace(_attackAnimationName))
+            _attackAnimationName = GetType().Name;
     }
 
     /// <summary>
