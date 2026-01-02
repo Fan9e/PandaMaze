@@ -257,29 +257,19 @@ public class PlayerWeapon : MonoBehaviour
     /// </summary>
     public void HandleAttackPlayerInput()
     {
-        if (!Input.GetMouseButtonDown(0))
-        {
-            return;
-        }
+        if (!Input.GetMouseButtonDown(0)) return;
+        Debug.Log("Klik registreret");
 
-        if (isCurrentlyAttacking)
-        {
-            return;
-        }
-
-        if (EquippedIWeapon == null)
-        {
-            return;
-        }
+        if (isCurrentlyAttacking) { Debug.Log("Stop: isCurrentlyAttacking"); return; }
+        if (EquippedIWeapon == null) { Debug.Log("Stop: EquippedIWeapon == null"); return; }
 
         Monster monster = GetClosestMonsterInAttackRange();
-        if (monster == null)
-        {
-            return;
-        }
+        if (monster == null) { Debug.Log("Stop: ingen monster i range"); return; }
 
+        Debug.Log("Starter attack coroutine");
         StartCoroutine(AttackRoutineCoroutine(monster));
     }
+
 
     /// <summary>
     /// Håndterer et fuldt angreb mod det angivne monster.
