@@ -181,7 +181,7 @@ public partial class Monster
         if (!isFightActive || !isWaitingForResult) return;
         isWaitingForResult = false;
 
-        Fight(0);
+        Fight(0, false);
 
         StartNewRound(pickNewSentence: false);
       

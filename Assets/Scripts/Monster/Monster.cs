@@ -47,7 +47,7 @@ public abstract partial class Monster : MonoBehaviour
     /// Monsteret modtager skade, tjekker om det dør og forsøger derefter at give skade til spilleren. 
     /// </summary>
     /// <param name="damageAmount">Mængden af skade, som dette monster modtager i starten af kampen.</param>
-    public void Fight(int damageAmount)
+    public void Fight(int damageAmount, bool wasSpokenCorrectly)
     {
 
         if (!EnsureHasPlayer(Player)) return;
@@ -56,7 +56,10 @@ public abstract partial class Monster : MonoBehaviour
         if (ShouldDie())
             OnDeath();
         else
-            GiveDamage(Player);
+            if (!wasSpokenCorrectly)
+            {
+                GiveDamage(player);
+            }
 
     }
 
