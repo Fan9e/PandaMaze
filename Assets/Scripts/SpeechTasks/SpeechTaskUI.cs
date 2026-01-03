@@ -267,9 +267,9 @@ public class SpeechTaskUI : MonoBehaviour // hovedklasse
 
     /// <summary>
     /// Gør en sætning klar til sammenligning ved at:
-    /// - Konvertere til små bogstaver
-    /// - Fjerne tegnsætning
-    /// - Trimme mellemrum
+    /// Konvertere til små bogstaver
+    /// Fjerne tegnsætning
+    /// Trimme mellemrum
     /// Bruges til både barnets svar og målsætningen.
     /// </summary>
     private string Normalize(string sentence)
