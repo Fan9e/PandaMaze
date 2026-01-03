@@ -150,7 +150,7 @@ public partial class Monster
 
     /// <summary>
     /// Kaldes når speech-opgaven er gennemført korrekt.
-    /// Lader spilleren angribe monsteret (via PlayerWeapon hvis muligt), ellers falder tilbage til standard skade.
+    /// Lader spilleren angribe monsteret (via PlayerWeapon hvis muligt), ellers ingen skade.
     /// Starter derefter en ny runde eller slutter kampen hvis monsteret dør.
     /// </summary>
     private void HandleTaskSuccess()
