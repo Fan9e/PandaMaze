@@ -71,14 +71,36 @@ public class MonsterCatTest
         player.MaxHealth = 100;
         player.CurrentHealth = 100;
         monster.Player = player;
-        monster.Fight(7);
+        monster.Fight(7, false);
 
         Assert.AreEqual(53, monster.CurrentHealth);
         Assert.AreEqual(80, player.CurrentHealth);
 
         DestroyImmediately(monsterGameObject, playerGameObject);
     }
+    /// <summary>
+    /// Tester at Fight() ikke giver Player skade hvis den true.
+    /// </summary>
+    [Test]
+    public void Fight_DoesNothing_IfSentenceWasCorrect()
+    {
+        var monsterGameObject = new GameObject();
+        var monster = monsterGameObject.AddComponent<Cat>();
+        var playerGameObject = new GameObject();
+        var player = playerGameObject.AddComponent<Player>();
+        player.MaxHealth = 30;
+        player.CurrentHealth = 30;
+        monster.MaxHealth = 20;
+        monster.CurrentHealth = 20;
+        monster.AttackPower = 5;
+        monster.Player = player;
+        monster.Fight(0, true);
 
+        Assert.AreEqual(20, monster.CurrentHealth);
+        Assert.AreEqual(30, player.CurrentHealth);
+
+        DestroyImmediately(monsterGameObject);
+    }
     /// <summary>
     /// Tester at Cat dør når health når 0 via Fight().
     /// </summary>
@@ -96,7 +118,7 @@ public class MonsterCatTest
         player.MaxHealth = 30;
         player.CurrentHealth = 60;
         monster.Player = player;
-        monster.Fight(20);
+        monster.Fight(20, false);
 
         Assert.AreEqual(0, monster.CurrentHealth);
 
@@ -118,7 +140,7 @@ public class MonsterCatTest
         monster.CurrentHealth = 20;
         monster.AttackPower = 20;
         monster.Player = player;
-        monster.Fight(-5);
+        monster.Fight(-5, false);
 
         Assert.AreEqual(20, monster.CurrentHealth);
 
@@ -137,7 +159,7 @@ public class MonsterCatTest
         monster.CurrentHealth = 20;
         monster.AttackPower = 20;
         monster.Player = null;
-        monster.Fight(5);
+        monster.Fight(5, false);
 
         Assert.AreEqual(20, monster.CurrentHealth);
 
@@ -161,7 +183,7 @@ public class MonsterCatTest
         player.MaxHealth = 30;
         player.CurrentHealth = 30;
         monster.Player = player;
-        monster.Fight(5);
+        monster.Fight(5, false);
 
         Assert.AreEqual(0, monster.CurrentHealth);
         Assert.AreEqual(30, player.CurrentHealth);
@@ -186,7 +208,7 @@ public class MonsterCatTest
         player.MaxHealth = 30;
         player.CurrentHealth = 30;
         monster.Player = player;
-        monster.Fight(15);
+        monster.Fight(15, false);
 
         Assert.AreEqual(0, monster.CurrentHealth);
         Assert.AreEqual(30, player.CurrentHealth);
