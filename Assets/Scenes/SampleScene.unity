@@ -2748,6 +2748,124 @@ MonoBehaviour:
     NearLimit: 5
     FarLimit: 30
     MaxQualityBoost: 0.2
+--- !u!1001 &301882825
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2124826914}
+    m_Modifications:
+    - target: {fileID: 69757705731750249, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_Name
+      value: SpeechTaskPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 122
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 95.23919
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -21
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+--- !u!224 &301882826 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+  m_PrefabInstance: {fileID: 301882825}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -17587,6 +17705,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1220007405}
+    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1220007406}
     - targetCorrespondingSourceObject: {fileID: 8963639268562437955, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1129255321}
@@ -18001,7 +18122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1534905468}
+  m_Script: {fileID: 1968910140}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1220007396
@@ -18025,7 +18146,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1534905468}
+  m_Script: {fileID: 1968910140}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1220007400
@@ -18037,7 +18158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1534905468}
+  m_Script: {fileID: 1968910140}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1220007401
@@ -18049,7 +18170,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1534905468}
+  m_Script: {fileID: 1968910140}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1220007402
@@ -18061,7 +18182,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1534905468}
+  m_Script: {fileID: 1968910140}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1220007405
@@ -18073,7 +18194,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1534905468}
+  m_Script: {fileID: 1968910140}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!114 &1220007406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49774586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1968910140}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!115 &1220379894
@@ -18990,7 +19123,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 174e383cc98149648b000db107ac37d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Scripts::Dragon
 --- !u!1001 &1382413991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19314,15 +19447,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1ac91b689cc5c49a93aecb4837449a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Scripts::PlayerWeapon
-  bagpackUI: {fileID: 0}
   weaponSocketChildName: WeaponPivot
   monsterLayerName: Monster
   equippedWeaponComponent: {fileID: 0}
   weaponSocketTransform: {fileID: 0}
   weaponAnimator: {fileID: 0}
   startingWeaponPrefab: {fileID: 0}
-  attackRadius: 2
-  attackDistanceForwardFromPlayer: 1
   monsterLayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -23491,6 +23621,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!115 &1968910140
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!1001 &1969874109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24207,6 +24352,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 301882826}
   - {fileID: 278015004}
   - {fileID: 1783047582}
   - {fileID: 2011718068}
