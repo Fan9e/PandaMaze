@@ -68,7 +68,7 @@ public class TwoHandSwordTest
     {
         var TwoHandSwordGameObject = new GameObject("TwoHandSword");
         var TwoHandSword = TwoHandSwordGameObject.AddComponent<TwoHandSword>();
-    
+
 
         var MonsterGameObject = new GameObject("Monster");
         var MonsterBoxCollider = MonsterGameObject.AddComponent<BoxCollider>();
