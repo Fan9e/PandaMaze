@@ -3,16 +3,19 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
+    [Header("UI")]
+    [SerializeField] private BagpackUI bagpackUI;
+
     [Header("Weapon Auto Setup")]
-    [Tooltip("Navnet på det child, som bruges som våben-socket.")]
+    [Tooltip("Navnet pï¿½ det child, som bruges som vï¿½ben-socket.")]
     [SerializeField]
     private string weaponSocketChildName = "WeaponPivot";
 
-    [Tooltip("Navnet på den Layer, som alle monstre ligger på (for eksempel 'Monster').")]
+    [Tooltip("Navnet pï¿½ den Layer, som alle monstre ligger pï¿½ (for eksempel 'Monster').")]
     [SerializeField]
     private string monsterLayerName = "Monster";
 
-    [Tooltip("Hvis den er tom, finder PlayerWeapon selv det første Weapon i sine children.")]
+    [Tooltip("Hvis den er tom, finder PlayerWeapon selv det fï¿½rste Weapon i sine children.")]
     [SerializeField]
     private Weapon equippedWeaponComponent;
 
@@ -20,7 +23,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField]
     private Transform weaponSocketTransform;
 
-    [Tooltip("Hvis den er tom, finder PlayerWeapon selv en Animator, der kan bruges til våben-animationer.")]
+    [Tooltip("Hvis den er tom, finder PlayerWeapon selv en Animator, der kan bruges til vï¿½ben-animationer.")]
     [SerializeField]
     private Animator weaponAnimator;
 
@@ -29,37 +32,37 @@ public class PlayerWeapon : MonoBehaviour
     private Weapon startingWeaponPrefab;
 
     /// <summary>
-    /// Det aktuelt udstyrede våben, tilgået via IWeapon-interfacet.
+    /// Det aktuelt udstyrede vï¿½ben, tilgï¿½et via IWeapon-interfacet.
     /// </summary>
-    public IWeapon EquippedWeaponInterface { get; private set; }
+    public IWeapon EquippedIWeapon { get; private set; }
 
     [Header("Attack Settings")]
     [SerializeField]
     private LayerMask monsterLayerMask;
 
-    [Tooltip("Hvis sand, læser PlayerWeapon selv input i Update.")]
+    [Tooltip("Hvis sand, lï¿½ser PlayerWeapon selv input i Update.")]
     [SerializeField]
     private bool handleInputInThisComponent = true;
     /// <summary>
-    /// Sand mens en angrebs-coroutine kører, så vi undgår overlappende angreb.
+    /// Sand mens en angrebs-coroutine kï¿½rer, sï¿½ vi undgï¿½r overlappende angreb.
     /// </summary>
     private bool isCurrentlyAttacking;
 
     /// <summary>
-    /// Reference til den angrebs-coroutine der kører, hvis der er en i gang.
+    /// Reference til den angrebs-coroutine der kï¿½rer, hvis der er en i gang.
     /// </summary>
     private Coroutine attackRoutine;
 
     /// <summary>
-    /// Reserve-ventetid hvis animatoren rapporterer meget kort eller ingen længde.
+    /// Reserve-ventetid hvis animatoren rapporterer meget kort eller ingen lï¿½ngde.
     /// </summary>
     private const float FallbackAnimLength = 0.3f;
 
     #region Unity Lifecycle
 
     /// <summary>
-    /// Unity-callback. Kører ved oprettelse og sikrer at lagmaske, våbenfatning,
-    /// våben og animator er sat korrekt.
+    /// Unity-callback. Kï¿½rer ved oprettelse og sikrer at lagmaske, vï¿½benfatning,
+    /// vï¿½ben og animator er sat korrekt.
     /// </summary>
     private void Awake()
     {
@@ -76,19 +79,22 @@ public class PlayerWeapon : MonoBehaviour
 
     /// <summary>
     /// Sikrer at monsterLayerMask er sat til den korrekte Layer for monstre.
-    /// Hvis masken endnu ikke har nogen værdi (0), og monsterLayerName ikke er tom,
+    /// Hvis masken endnu ikke har nogen vï¿½rdi (0), og monsterLayerName ikke er tom,
     /// oprettes en LayerMask ud fra navnet (for eksempel "Monster").
     /// </summary>
     private void EnsureMonsterLayerMask()
     {
-        if (monsterLayerMask.value == 0 && !string.IsNullOrEmpty(monsterLayerName))
-        {
-            monsterLayerMask = LayerMask.GetMask(monsterLayerName);
-        }
+        if (monsterLayerMask.value != 0 || string.IsNullOrEmpty(monsterLayerName))
+            return;
+
+        monsterLayerMask = LayerMask.GetMask(monsterLayerName);
+
+        if (monsterLayerMask.value == 0)
+            Debug.LogWarning($"Layer '{monsterLayerName}' findes ikke, eller ingen objekter bruger den. Attack rammer intet.", this);
     }
 
     /// <summary>
-    /// Sikrer at våbenfatningens transform er sat.
+    /// Sikrer at vï¿½benfatningens transform er sat.
     /// Finder et child-objekt med det angivne navn, hvis muligt,
     /// ellers bruges spillerens egen transform som reserve.
     /// </summary>
@@ -110,10 +116,10 @@ public class PlayerWeapon : MonoBehaviour
     }
 
     /// <summary>
-    /// Sikrer at spilleren har et våben:
-    /// Finder et eksisterende våben i child-objekter, hvis muligt.
-    /// Ellers instansieres startvåbenet, hvis det er sat.
-    /// Sikrer derefter at våbnet sidder på våbenfatningen og sætter interfacet.
+    /// Sikrer at spilleren har et vï¿½ben:
+    /// Finder et eksisterende vï¿½ben i child-objekter, hvis muligt.
+    /// Ellers instansieres startvï¿½benet, hvis det er sat.
+    /// Sikrer derefter at vï¿½bnet sidder pï¿½ vï¿½benfatningen og sï¿½tter interfacet.
     /// </summary>
     private void EnsureWeaponEquipped()
     {
@@ -125,7 +131,7 @@ public class PlayerWeapon : MonoBehaviour
 
         if (equippedWeaponComponent == null)
         {
-            Debug.LogError("Spilleren kunne hverken finde eller oprette et våben.", this);
+            Debug.LogError("Spilleren kunne hverken finde eller oprette et vï¿½ben.", this);
             EquippedWeaponInterface = null;
             return;
         }
@@ -135,35 +141,59 @@ public class PlayerWeapon : MonoBehaviour
 
         EquippedWeaponInterface = equippedWeaponComponent as IWeapon;
         if (EquippedWeaponInterface == null)
-            Debug.LogError("Våben-komponenten på spilleren implementerer ikke IWeapon-interfacet.", equippedWeaponComponent);
+            Debug.LogError("Vï¿½ben-komponenten pï¿½ spilleren implementerer ikke IWeapon-interfacet.", equippedWeaponComponent);
+    }
+    private void UpdateWeaponUI()
+    {
+        if (bagpackUI == null)
+        {
+            Debug.LogWarning("UpdateWeaponUI kaldt, men bagpackUI er null.", this);
+            return;
+        }
+
+        if (equippedWeaponComponent == null || EquippedIWeapon == null)
+        {
+            bagpackUI.SetHasWeapon(false);
+            Debug.Log("UpdateWeaponUI: intet vï¿½ben ï¿½ slï¿½r weapon-slot fra");
+            return;
+        }
+
+        int variant = Mathf.Clamp(equippedWeaponComponent.BackpackVariantIndex, 0, 2);
+
+        bagpackUI.SetHasWeapon(true);
+        bagpackUI.SetWeaponVariant(variant);
+
+        Debug.Log($"UpdateWeaponUI: satte weapon-slot til variant {variant} for {equippedWeaponComponent.name}");
     }
 
+
+
     /// <summary>
-    /// Sikrer at animatoren til våbenanimationer er sat.
-    /// Forsøger i denne rækkefølge:
-    /// Animator på våbenfatningen eller dens child-objekter.
-    /// Animator på våbnet eller dets forældre-objekter.
-    /// Animator et vilkårligt sted i spillerens child-objekter.
+    /// Sikrer at animatoren til vï¿½benanimationer er sat.
+    /// Forsï¿½ger i denne rï¿½kkefï¿½lge:
+    /// Animator pï¿½ vï¿½benfatningen eller dens child-objekter.
+    /// Animator pï¿½ vï¿½bnet eller dets forï¿½ldre-objekter.
+    /// Animator et vilkï¿½rligt sted i spillerens child-objekter.
     /// Hvis ingen animator findes, logges en advarsel.
     /// </summary>
     private void EnsureWeaponAnimator()
     {
         if (weaponAnimator != null) return;
 
-        // 1) Våbenfatningens child-objekter
+        // 1) Vï¿½benfatningens child-objekter
         if (weaponSocketTransform != null)
             weaponAnimator = weaponSocketTransform.GetComponentInChildren<Animator>();
 
-        // 2) Våbnets forældre-objekter
+        // 2) Vï¿½bnets forï¿½ldre-objekter
         if (weaponAnimator == null && equippedWeaponComponent != null)
             weaponAnimator = equippedWeaponComponent.GetComponentInParent<Animator>();
 
-        // 3) Et vilkårligt sted i spillerens child-objekter
+        // 3) Et vilkï¿½rligt sted i spillerens child-objekter
         if (weaponAnimator == null)
             weaponAnimator = GetComponentInChildren<Animator>();
 
         if (weaponAnimator == null)
-            Debug.LogWarning("PlayerWeapon kunne ikke finde en animator til våbenanimationer.", this);
+            Debug.LogWarning("PlayerWeapon kunne ikke finde en animator til vï¿½benanimationer.", this);
     }
     #endregion
 
@@ -171,9 +201,9 @@ public class PlayerWeapon : MonoBehaviour
     #region Combat And Attacking
 
     /// <summary>
-    /// Udfører et angreb mod et specifikt monster, hvis spilleren ikke allerede angriber,
-    /// der er et våben udstyret, og monster-referencen er gyldig.
-    /// Angrebet håndteres i en coroutine, så vi kan afspille animation og vente korrekt.
+    /// Udfï¿½rer et angreb mod et specifikt monster, hvis spilleren ikke allerede angriber,
+    /// der er et vï¿½ben udstyret, og monster-referencen er gyldig.
+    /// Angrebet hï¿½ndteres i en coroutine, sï¿½ vi kan afspille animation og vente korrekt.
     /// </summary>
     /// <param name="monster">Monsteret der skal angribes.</param>
     public void AttackSpecificMonster(Monster monster)
@@ -190,13 +220,13 @@ public class PlayerWeapon : MonoBehaviour
 
     /// <summary>
     /// Afvikler et angreb som coroutine:
-    /// Sætter at spilleren angriber.
-    /// Afspiller våbenets angrebsanimation (hvis muligt) og beregner ventetid.
-    /// Kalder våbnets angrebslogik på monsteret.
-    /// Venter til animationen forventes at være færdig.
+    /// Sï¿½tter at spilleren angriber.
+    /// Afspiller vï¿½benets angrebsanimation (hvis muligt) og beregner ventetid.
+    /// Kalder vï¿½bnets angrebslogik pï¿½ monsteret.
+    /// Venter til animationen forventes at vï¿½re fï¿½rdig.
     /// </summary>
     /// <param name="monster">Monsteret der angribes.</param>
-    /// <returns>En coroutine der kører hele angrebsforløbet.</returns>
+    /// <returns>En coroutine der kï¿½rer hele angrebsforlï¿½bet.</returns>
     private IEnumerator HandleAttackSequenceCoroutine(Monster monster)
     {
         isCurrentlyAttacking = true;
@@ -243,11 +273,11 @@ public class PlayerWeapon : MonoBehaviour
     #region Weapon switching and equipping
 
     /// <summary>
-    /// Udstyrer spilleren med et nyt våben.
-    /// Det gamle våben bliver fjernet (destrueret), og det nye våben
-    /// bliver instansieret på våbenfatningen og gjort til det aktive våben.
+    /// Udstyrer spilleren med et nyt vï¿½ben.
+    /// Det gamle vï¿½ben bliver fjernet (destrueret), og det nye vï¿½ben
+    /// bliver instansieret pï¿½ vï¿½benfatningen og gjort til det aktive vï¿½ben.
     /// </summary>
-    /// <param name="weaponPrefab">Våbenobjektet der skal instansieres og udstyres.</param>
+    /// <param name="weaponPrefab">Vï¿½benobjektet der skal instansieres og udstyres.</param>
     public void EquipNewWeapon(Weapon weaponPrefab)
     {
         if (weaponPrefab == null)
@@ -261,18 +291,18 @@ public class PlayerWeapon : MonoBehaviour
     }
 
     /// <summary>
-    /// Intern hjælpemetode der instansierer og udstyrer et våben på våbenfatningen.
-    /// Bruges både ved start (startvåben) og ved udskiftning af våben.
+    /// Intern hjï¿½lpemetode der instansierer og udstyrer et vï¿½ben pï¿½ vï¿½benfatningen.
+    /// Bruges bï¿½de ved start (startvï¿½ben) og ved udskiftning af vï¿½ben.
     /// </summary>
-    /// <param name="weaponPrefab">Våbenobjektet der skal instansieres.</param>
-    /// <param name="destroyOld">Hvis sand destrueres det eksisterende våben først.</param>
+    /// <param name="weaponPrefab">Vï¿½benobjektet der skal instansieres.</param>
+    /// <param name="destroyOld">Hvis sand destrueres det eksisterende vï¿½ben fï¿½rst.</param>
     private void EquipWeaponInternal(Weapon weaponPrefab, bool destroyOld)
     {
         EnsureWeaponSocket();
 
         if (weaponSocketTransform == null)
         {
-            Debug.LogError("Våbenfatningens transform er ikke sat, kan ikke instansiere eller udstyre våben.", this);
+            Debug.LogError("Vï¿½benfatningens transform er ikke sat, kan ikke instansiere eller udstyre vï¿½ben.", this);
             return;
         }
 
@@ -290,7 +320,7 @@ public class PlayerWeapon : MonoBehaviour
 
         EquippedWeaponInterface = equippedWeaponComponent as IWeapon;
         if (EquippedWeaponInterface == null)
-            Debug.LogError("Det nye våben implementerer ikke IWeapon-interfacet.", equippedWeaponComponent);
+            Debug.LogError("Det nye vï¿½ben implementerer ikke IWeapon-interfacet.", equippedWeaponComponent);
     }
 
     #endregion
