@@ -1187,21 +1187,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111152602}
   m_CullTransparentMesh: 1
---- !u!115 &120067441
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 7
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_Type: 0
-  m_ExecutionOrder: 0
-  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
-  m_Namespace: 
-  m_AssemblyName: Scripts
 --- !u!1001 &155816799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2461,12 +2446,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1028615653}
-    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1028615656}
-    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1028615657}
   m_SourcePrefab: {fileID: 100100000, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
 --- !u!115 &262886389
 MonoScript:
@@ -2769,6 +2748,135 @@ MonoBehaviour:
     NearLimit: 5
     FarLimit: 30
     MaxQualityBoost: 0.2
+--- !u!1001 &301882825
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2124826914}
+    m_Modifications:
+    - target: {fileID: 69757705731750249, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_Name
+      value: SpeechTaskPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 122
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 95.23919
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -21
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+--- !u!224 &301882826 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3526722230473756513, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+  m_PrefabInstance: {fileID: 301882825}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &301882827 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7817470515048407096, guid: 552f4a9a33327244a81f9ecfd22358dc, type: 3}
+  m_PrefabInstance: {fileID: 301882825}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e2619986abeb24188af7c497ef9f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::SpeechTaskUI
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -9400,7 +9508,7 @@ Animator:
   m_GameObject: {fileID: 465551454}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 740c26630334aca4e965a26cb8a3e22f, type: 2}
+  m_Controller: {fileID: 9100000, guid: d0b4237a03945c046ac98e6b67a2d7b8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -10676,21 +10784,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
   m_PrefabInstance: {fileID: 1539622618}
   m_PrefabAsset: {fileID: 0}
---- !u!115 &602427231
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 7
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_Type: 0
-  m_ExecutionOrder: 0
-  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
-  m_Namespace: 
-  m_AssemblyName: Scripts
 --- !u!1 &607481373 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8963639268562437955, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
@@ -11572,11 +11665,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 339525886574571808, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
   m_PrefabInstance: {fileID: 706320255}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &708710865 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5974982831241363483, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
-  m_PrefabInstance: {fileID: 755498753}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &713698776 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6329159907605863020, guid: e004bbbbff5c0cb6ba1e8e87d3b42b94, type: 3}
@@ -12307,19 +12395,34 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 4645507802962352618, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+    - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+      propertyPath: speechTaskUI
+      value: 
+      objectReference: {fileID: 301882827}
+    - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+      propertyPath: sentences.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+      propertyPath: 'sentences.Array.data[0]'
+      value: "Pirater sejler p\xE5 havet"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+      propertyPath: 'sentences.Array.data[1]'
+      value: Pirater gemmer guldet
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+      propertyPath: 'sentences.Array.data[2]'
+      value: "Pirater g\xE5r p\xE5 d\xE6kket"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
+      propertyPath: 'sentences.Array.data[3]'
+      value: "Pirater skyder p\xE5 skibet"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5974982831241363483, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 755498761}
-    - targetCorrespondingSourceObject: {fileID: 5974982831241363483, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 755498760}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
 --- !u!4 &755498754 stripped
 Transform:
@@ -12331,60 +12434,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6633042483584238905, guid: 3d99b96b0fbf078409795ae69a6e1412, type: 3}
   m_PrefabInstance: {fileID: 755498753}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708710865}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d186267ebf350d94182e0e0de7ef98fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
---- !u!65 &755498760
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708710865}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 8.78, y: 10.23, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &755498761
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708710865}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 22
-  m_CollisionDetection: 0
 --- !u!1001 &779223730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12918,12 +12973,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 842559340}
-    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 842559343}
-    - targetCorrespondingSourceObject: {fileID: 2793838128797895747, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 842559344}
   m_SourcePrefab: {fileID: 100100000, guid: 174b3e2b2d04e5f0786317905a7428e2, type: 3}
 --- !u!4 &842559278 stripped
 Transform:
@@ -13480,30 +13529,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1534905468}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &842559343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34384842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 602427231}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &842559344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34384842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 120067441}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &849434258
@@ -14301,12 +14326,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
       insertIndex: -1
       addedObject: {fileID: 901265571}
-    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 901265574}
-    - targetCorrespondingSourceObject: {fileID: 5083551167392405842, guid: 3643a069b19394966a812adb62ddab10, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 901265575}
     - targetCorrespondingSourceObject: {fileID: 625969680929733462, guid: 3643a069b19394966a812adb62ddab10, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1000632058}
@@ -14794,30 +14813,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1534905468}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &901265574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43376345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 602427231}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &901265575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43376345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 120067441}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &919058813
@@ -16483,30 +16478,6 @@ MonoBehaviour:
   m_Script: {fileID: 1534905468}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1028615656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30750971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 602427231}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1028615657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30750971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 120067441}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!1001 &1031801978
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17778,10 +17749,7 @@ PrefabInstance:
       addedObject: {fileID: 1220007406}
     - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1220007409}
-    - targetCorrespondingSourceObject: {fileID: 4439803689819457143, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1220007410}
+      addedObject: {fileID: 1220007407}
     - targetCorrespondingSourceObject: {fileID: 8963639268562437955, guid: 61f3a4213e8d75166be1473ff817bbae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1129255321}
@@ -18196,7 +18164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 120067441}
+  m_Script: {fileID: 2052501083}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1220007396
@@ -18220,7 +18188,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 120067441}
+  m_Script: {fileID: 2052501083}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1220007400
@@ -18232,7 +18200,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 120067441}
+  m_Script: {fileID: 2052501083}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1220007401
@@ -18244,7 +18212,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 120067441}
+  m_Script: {fileID: 2052501083}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1220007402
@@ -18256,7 +18224,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 120067441}
+  m_Script: {fileID: 2052501083}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1220007405
@@ -18268,7 +18236,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 120067441}
+  m_Script: {fileID: 2052501083}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!114 &1220007406
@@ -18280,10 +18248,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 120067441}
+  m_Script: {fileID: 2052501083}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1220007409
+--- !u!114 &1220007407
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18292,19 +18260,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 49774586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 602427231}
-  m_Name: 
-  m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
---- !u!114 &1220007410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49774586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 120067441}
+  m_Script: {fileID: 2052501083}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
 --- !u!115 &1220379894
@@ -19161,6 +19117,30 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1039954966337600853, guid: 920c8476d627b764283b67da86970efd, type: 3}
+      propertyPath: speechTaskUI
+      value: 
+      objectReference: {fileID: 301882827}
+    - target: {fileID: 1039954966337600853, guid: 920c8476d627b764283b67da86970efd, type: 3}
+      propertyPath: sentences.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039954966337600853, guid: 920c8476d627b764283b67da86970efd, type: 3}
+      propertyPath: 'sentences.Array.data[0]'
+      value: Pirater vinker farvel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039954966337600853, guid: 920c8476d627b764283b67da86970efd, type: 3}
+      propertyPath: 'sentences.Array.data[1]'
+      value: "Pirater g\xE5r i land"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039954966337600853, guid: 920c8476d627b764283b67da86970efd, type: 3}
+      propertyPath: 'sentences.Array.data[2]'
+      value: "Pirater ser en \xF8"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039954966337600853, guid: 920c8476d627b764283b67da86970efd, type: 3}
+      propertyPath: 'sentences.Array.data[3]'
+      value: Pirater har et skib
+      objectReference: {fileID: 0}
     - target: {fileID: 5906427983753372136, guid: 920c8476d627b764283b67da86970efd, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.099999994
@@ -19225,7 +19205,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 174e383cc98149648b000db107ac37d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Scripts::Dragon
 --- !u!1001 &1382413991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19549,15 +19529,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1ac91b689cc5c49a93aecb4837449a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Scripts::PlayerWeapon
-  bagpackUI: {fileID: 0}
   weaponSocketChildName: WeaponPivot
   monsterLayerName: Monster
   equippedWeaponComponent: {fileID: 0}
   weaponSocketTransform: {fileID: 0}
   weaponAnimator: {fileID: 0}
   startingWeaponPrefab: {fileID: 0}
-  attackRadius: 2
-  attackDistanceForwardFromPlayer: 1
   monsterLayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -24030,6 +24007,21 @@ MonoBehaviour:
   m_Script: {fileID: 1854510825}
   m_Name: 
   m_EditorClassIdentifier: Scripts::ObstacleVoiceGate/ObstacleTriggerForwarder
+--- !u!115 &2052501083
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: ObstacleVoiceGate/ObstacleTriggerForwarder
+  m_Namespace: 
+  m_AssemblyName: Scripts
 --- !u!115 &2053424867
 MonoScript:
   m_ObjectHideFlags: 0
@@ -24442,6 +24434,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 301882826}
   - {fileID: 278015004}
   - {fileID: 1783047582}
   - {fileID: 2011718068}
@@ -25649,6 +25642,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1826803511}
     m_Modifications:
+    - target: {fileID: 442925646153960912, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
+      propertyPath: speechTaskUI
+      value: 
+      objectReference: {fileID: 301882827}
+    - target: {fileID: 442925646153960912, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
+      propertyPath: sentences.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 442925646153960912, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
+      propertyPath: 'sentences.Array.data[0]'
+      value: Pirater finder en skat
+      objectReference: {fileID: 0}
+    - target: {fileID: 442925646153960912, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
+      propertyPath: 'sentences.Array.data[1]'
+      value: "Pirater f\xF8lger et kort"
+      objectReference: {fileID: 0}
+    - target: {fileID: 442925646153960912, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
+      propertyPath: 'sentences.Array.data[2]'
+      value: "Pirater \xE5bner en kiste"
+      objectReference: {fileID: 0}
+    - target: {fileID: 442925646153960912, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
+      propertyPath: 'sentences.Array.data[3]'
+      value: "Pirater ror i en b\xE5d"
+      objectReference: {fileID: 0}
     - target: {fileID: 1596283839288419288, guid: 6b865d93156e3c840b04d955f146f206, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.489998

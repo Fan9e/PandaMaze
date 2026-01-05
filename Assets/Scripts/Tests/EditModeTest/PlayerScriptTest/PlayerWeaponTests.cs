@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -10,213 +11,346 @@ using UnityEngine.TestTools;
 public class PlayerWeaponTests
 {
     /// <summary>
-    /// GameObject der bruges som test-player i de fleste tests.
+    /// Hjælpe-konstanter til reflection flags.
     /// </summary>
-    private GameObject playerObject;
+    private const BindingFlags PrivateInstanceFlags = BindingFlags.Instance | BindingFlags.NonPublic;
 
     /// <summary>
-    /// PlayerWeapon-komponenten, som der testes på.
-    /// </summary>
-    private PlayerWeapon playerWeapon;
-
-    /// <summary>
-    /// Kører før hver test.
-    /// Opretter en Player med PlayerWeapon og en WeaponPivot-socket.
-    /// </summary>
-    [SetUp]
-    public void Setup()
-    {
-        playerObject = new GameObject("Player");
-        playerWeapon = playerObject.AddComponent<PlayerWeapon>();
-
-        var socketGO = new GameObject("WeaponPivot");
-        socketGO.transform.SetParent(playerObject.transform, false);
-
-        var socketField = typeof(PlayerWeapon).GetField(
-            "weaponSocketTransform",
-            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
-        );
-        socketField.SetValue(playerWeapon, socketGO.transform);
-    }
-
-    /// <summary>
-    /// Rydder op efter hver test ved at destruere player-objektet.
+    /// Rydder op efter hver test, hvis der blev oprettet objekter, som ikke blev fjernet.
     /// </summary>
     [TearDown]
     public void TearDown()
     {
+        // Find alle root-objekter og slet dem, der matcher vores test-navne.
+        // (Det gør testen mere robust, hvis en test fejler før DestroyImmediate.)
+        foreach (var root in UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None))
+        {
+            if (root == null) continue;
+
+            if (root.name.StartsWith("Test_", System.StringComparison.Ordinal))
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Tester at EnsureWeaponSocket sætter weaponSocketTransform til et child,
+    /// når child-objektet "WeaponPivot" findes.
+    /// </summary>
+    [Test]
+    public void EnsureWeaponSocket_SetsSocketToChild_WhenWeaponPivotExists()
+    {
+        var playerObject = new GameObject("Test_Player");
+        var weaponPivot = new GameObject("WeaponPivot");
+        weaponPivot.transform.SetParent(playerObject.transform, false);
+
+        var playerWeapon = playerObject.AddComponent<PlayerWeapon>();
+
+        SetPrivateField(playerWeapon, "weaponSocketChildName", "WeaponPivot");
+        SetPrivateField(playerWeapon, "weaponSocketTransform", null);
+
+        InvokePrivateMethod(playerWeapon, "EnsureWeaponSocket");
+
+        var socketTransform = GetPrivateField<Transform>(playerWeapon, "weaponSocketTransform");
+        Assert.AreEqual(weaponPivot.transform, socketTransform);
+
         Object.DestroyImmediate(playerObject);
     }
 
     /// <summary>
-    /// Sikrer at EquipNewWeapon(null) ikke ændrer det eksisterende våben.
+    /// Tester at EnsureWeaponSocket falder tilbage til spillerens egen transform,
+    /// når der ikke findes et child med navnet "WeaponPivot".
     /// </summary>
     [Test]
-    public void EquipNewWeapon_WithNull_DoesNotChangeExistingWeapon()
+    public void EnsureWeaponSocket_FallsBackToOwnTransform_WhenWeaponPivotDoesNotExist()
     {
-        var socketTransform = playerWeapon.transform.Find("WeaponPivot");
-        var oldWeaponGO = new GameObject("OldWeapon");
-        oldWeaponGO.transform.SetParent(socketTransform, false);
-        var oldWeapon = oldWeaponGO.AddComponent<OneHandSword>();
+        var playerObject = new GameObject("Test_Player_NoPivot");
+        var playerWeapon = playerObject.AddComponent<PlayerWeapon>();
 
-        var equippedField = typeof(PlayerWeapon).GetField(
-            "equippedWeaponComponent",
-            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
-        );
-        equippedField.SetValue(playerWeapon, oldWeapon);
+        SetPrivateField(playerWeapon, "weaponSocketChildName", "WeaponPivot");
+        SetPrivateField(playerWeapon, "weaponSocketTransform", null);
+
+        InvokePrivateMethod(playerWeapon, "EnsureWeaponSocket");
+
+        var socketTransform = GetPrivateField<Transform>(playerWeapon, "weaponSocketTransform");
+        Assert.AreEqual(playerObject.transform, socketTransform);
+
+       Object.DestroyImmediate(playerObject);
+    }
+
+    /// <summary>
+    /// Tester at EnsureMonsterLayerMask sætter monsterLayerMask,
+    /// når maskens værdi er 0 og layer-navnet er et eksisterende layer.
+    /// (Vi bruger "Default", fordi det altid findes i Unity.)
+    /// </summary>
+    [Test]
+    public void EnsureMonsterLayerMask_SetsMask_WhenValueIsZero_AndLayerExists()
+    {
+        var playerObject = new GameObject("Test_Player_Mask");
+        var playerWeapon = playerObject.AddComponent<PlayerWeapon>();
+
+        SetPrivateField(playerWeapon, "monsterLayerName", "Default");
+
+        var mask = GetPrivateField<LayerMask>(playerWeapon, "monsterLayerMask");
+        mask.value = 0;
+        SetPrivateField(playerWeapon, "monsterLayerMask", mask);
+
+        InvokePrivateMethod(playerWeapon, "EnsureMonsterLayerMask");
+
+        var after = GetPrivateField<LayerMask>(playerWeapon, "monsterLayerMask");
+        Assert.AreNotEqual(0, after.value);
+
+        Object.DestroyImmediate(playerObject);
+    }
+
+    /// <summary>
+    /// Tester at EquipNewWeapon(null) ikke ændrer det eksisterende weapon component.
+    /// </summary>
+    [Test]
+    public void EquipNewWeapon_WithNull_DoesNotChangeExistingWeaponComponent()
+    {
+        var playerObject = new GameObject("Test_Player_EquipNull");
+        var weaponPivot = new GameObject("WeaponPivot");
+        weaponPivot.transform.SetParent(playerObject.transform, false);
+
+        var playerWeapon = playerObject.AddComponent<PlayerWeapon>();
+
+        // VIGTIGT:
+        // Denne test forudsætter at du har en konkret Weapon-type i dit projekt, fx OneHandSword.
+        // Hvis du ikke har OneHandSword, så udskift den med din egen konkrete Weapon-klasse.
+        var oldWeaponObject = new GameObject("Test_OldWeapon");
+        oldWeaponObject.transform.SetParent(weaponPivot.transform, false);
+        var oldWeapon = oldWeaponObject.AddComponent<OneHandSword>();
+
+        SetPrivateField(playerWeapon, "equippedWeaponComponent", oldWeapon);
 
         playerWeapon.EquipNewWeapon(null);
 
-        var after = (OneHandSword)equippedField.GetValue(playerWeapon);
+        var after = GetPrivateField<Weapon>(playerWeapon, "equippedWeaponComponent");
         Assert.AreSame(oldWeapon, after);
+
+        Object.DestroyImmediate(playerObject);
     }
 
     /// <summary>
-    /// Tester at GetClosestMonsterInAttackRange returnerer null,
-    /// når der ikke er nogen monstre inden for rækkevidde.
+    /// Tester at EnsureWeaponAnimator finder en Animator under weapon socket,
+    /// når weaponAnimator ikke allerede er sat.
     /// </summary>
     [Test]
-    public void GetClosestMonsterInAttackRange_ReturnsNull_WhenNoMonsters()
+    public void EnsureWeaponAnimator_FindsAnimatorInWeaponPivotChildren()
     {
-        var method = typeof(PlayerWeapon).GetMethod(
-            "GetClosestMonsterInAttackRange",
-            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
-        );
+        var playerObject = new GameObject("Test_Player_Animator");
+        var weaponPivot = new GameObject("WeaponPivot");
+        weaponPivot.transform.SetParent(playerObject.transform, false);
 
-        var result = method.Invoke(playerWeapon, null) as Monster;
+        var animatorHolder = new GameObject("AnimatorHolder");
+        animatorHolder.transform.SetParent(weaponPivot.transform, false);
+        var animator = animatorHolder.AddComponent<Animator>();
 
-        Assert.IsNull(result);
-    }
+        var playerWeapon = playerObject.AddComponent<PlayerWeapon>();
 
- 
-    /// <summary>
-    /// Tester at GetClosestMonsterInAttackRange returnerer det nærmeste monster,
-    /// når flere monstre er inden for angrebsområdet.
-    /// </summary>
-    [Test]
-    public void GetClosestMonsterInAttackRange_Returns_Closest_Monster()
-    {
-        var maskField = typeof(PlayerWeapon).GetField(
-            "monsterLayerMask",
-            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
-        );
-        var mask = (LayerMask)maskField.GetValue(playerWeapon);
-        mask.value = ~0;
-        maskField.SetValue(playerWeapon, mask);
+        SetPrivateField(playerWeapon, "weaponSocketTransform", weaponPivot.transform);
+        SetPrivateField(playerWeapon, "weaponAnimator", null);
 
-        playerObject.transform.position = Vector3.zero;
-        playerObject.transform.forward = Vector3.forward;
+        InvokePrivateMethod(playerWeapon, "EnsureWeaponAnimator");
 
-       
-        var m1GO = new GameObject("Monster1");
-        m1GO.transform.position = new Vector3(0f, 0f, 2f);
-        m1GO.AddComponent<SphereCollider>();
-        var m1 = m1GO.AddComponent<Dragon>();
+        var foundAnimator = GetPrivateField<Animator>(playerWeapon, "weaponAnimator");
+        Assert.AreSame(animator, foundAnimator);
 
-        var m2GO = new GameObject("Monster2");
-        m2GO.transform.position = new Vector3(0f, 0f, 2.5f);
-        m2GO.AddComponent<SphereCollider>();
-        m2GO.AddComponent<Dragon>();
-
-        var method = typeof(PlayerWeapon).GetMethod(
-            "GetClosestMonsterInAttackRange",
-            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
-        );
-        var result = method.Invoke(playerWeapon, null) as Monster;
-
-        Assert.AreSame(m1, result);
-
-        Object.DestroyImmediate(m1GO);
-        Object.DestroyImmediate(m2GO);
-    }
-   
-    /// <summary>
-    /// Tester at SetupWeaponSocketTransform vælger et child med navnet "WeaponPivot"
-    /// når et sådant eksisterer.
-    /// </summary>
-    [Test]
-    public void SetupWeaponSocketTransform_UsesChild_WhenChildExists()
-    {
-        var tempGO = new GameObject("TempPlayer");
-        var tempWeapon = tempGO.AddComponent<PlayerWeapon>();
-
-        var childSocketGO = new GameObject("WeaponPivot");
-        childSocketGO.transform.SetParent(tempGO.transform, false);
-
-        var socketField = typeof(PlayerWeapon).GetField(
-            "weaponSocketTransform",
-            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
-        );
-        socketField.SetValue(tempWeapon, null);
-
-        var method = typeof(PlayerWeapon).GetMethod(
-            "SetupWeaponSocketTransform",
-            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
-        );
-        method.Invoke(tempWeapon, null);
-
-        var value = (Transform)socketField.GetValue(tempWeapon);
-        Assert.AreEqual(childSocketGO.transform, value);
-
-        Object.DestroyImmediate(tempGO);
+        UnityEngine.Object.DestroyImmediate(playerObject);
     }
 
     /// <summary>
-    /// Tester at SetupWeaponSocketTransform falder tilbage til objektets egen transform,
-    /// når der ikke eksisterer et child med navnet "WeaponPivot".
+    /// Tester at EnsureWeaponEquipped:
+    /// Finder et Weapon i child-objekter
+    /// Flytter våbnet til weaponSocketTransform hvis det ikke allerede sidder der
+    /// Sætter EquippedWeaponInterface (forudsætter at våbnet implementerer IWeapon)
     /// </summary>
     [Test]
-    public void SetupWeaponSocketTransform_FallsBack_ToOwnTransform_WhenNoChild()
+    public void EnsureWeaponEquipped_FindsWeaponAndParentsItToSocket_AndSetsInterface()
     {
-        var tempGO = new GameObject("TempPlayer_NoChild");
-        var tempWeapon = tempGO.AddComponent<PlayerWeapon>();
+        var playerObject = new GameObject("Test_Player_EnsureWeapon");
+        var weaponPivot = new GameObject("WeaponPivot");
+        weaponPivot.transform.SetParent(playerObject.transform, false);
 
-        var socketField = typeof(PlayerWeapon).GetField(
-            "weaponSocketTransform",
-            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
-        );
-        socketField.SetValue(tempWeapon, null);
+        // Læg våbnet et andet sted end socket, så vi kan se at det bliver flyttet.
+        var weaponHolder = new GameObject("WeaponHolder");
+        weaponHolder.transform.SetParent(playerObject.transform, false);
 
-        var method = typeof(PlayerWeapon).GetMethod(
-            "SetupWeaponSocketTransform",
-            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
-        );
-        method.Invoke(tempWeapon, null);
+        var weaponObject = new GameObject("Test_Weapon");
+        weaponObject.transform.SetParent(weaponHolder.transform, false);
+        var weapon = weaponObject.AddComponent<OneHandSword>();
 
-        var value = (Transform)socketField.GetValue(tempWeapon);
-        Assert.AreEqual(tempGO.transform, value);
+        var playerWeapon = playerObject.AddComponent<PlayerWeapon>();
 
-        Object.DestroyImmediate(tempGO);
+        SetPrivateField(playerWeapon, "weaponSocketTransform", weaponPivot.transform);
+        SetPrivateField(playerWeapon, "equippedWeaponComponent", null);
+
+        InvokePrivateMethod(playerWeapon, "EnsureWeaponEquipped");
+
+        var equippedWeaponComponent = GetPrivateField<Weapon>(playerWeapon, "equippedWeaponComponent");
+        Assert.AreSame(weapon, equippedWeaponComponent);
+        Assert.AreEqual(weaponPivot.transform, weapon.transform.parent);
+
+        var equippedInterface = GetPublicProperty<object>(playerWeapon, "EquippedWeaponInterface");
+        Assert.IsNotNull(equippedInterface, "EquippedWeaponInterface skal være sat, hvis våbnet implementerer IWeapon.");
+
+        Object.DestroyImmediate(playerObject);
+    }
+
+    [Test]
+    public void AttackSpecificMonster_DoesNothing_WhenNoWeaponOrNullMonster()
+    {
+        var player = new GameObject("Test_Player_Attack");
+        var weaponPivot = new GameObject("WeaponPivot");
+        weaponPivot.transform.SetParent(player.transform, false);
+        var pw = player.AddComponent<PlayerWeapon>();
+        SetPrivateField(pw, "weaponSocketTransform", weaponPivot.transform);
+
+        // Case 1: null monster
+        pw.AttackSpecificMonster(null);
+        Assert.IsNull(GetPrivateField<Coroutine>(pw, "attackRoutine"));
+
+        // Case 2: no weapon
+        var dummyMonster = new GameObject("Monster").AddComponent<Dragon>();
+        pw.AttackSpecificMonster(dummyMonster);
+        Assert.IsNull(GetPrivateField<Coroutine>(pw, "attackRoutine"));
+
+        Object.DestroyImmediate(player);
+        Object.DestroyImmediate(dummyMonster.gameObject);
+    }
+    private class FakeWeapon : Weapon, IWeapon
+    {
+        public bool attacked;
+        public string AttackAnimationName => "";
+        public void Attack(Monster m) => attacked = true;
+
+        public override int CalculateDamage()
+        {
+            return 12;
+        }
+    }
+
+    [UnityTest]
+    public IEnumerator AttackSpecificMonster_StartsCoroutine_WhenValid()
+    {
+        var player = new GameObject("Test_Player_Attack");
+        var pivot = new GameObject("WeaponPivot");
+        pivot.transform.SetParent(player.transform, false);
+
+        var pw = player.AddComponent<PlayerWeapon>();
+        SetPrivateField(pw, "weaponSocketTransform", pivot.transform);
+
+        var fakeW = new GameObject("FakeWeapon").AddComponent<FakeWeapon>();
+        fakeW.transform.SetParent(pivot.transform, false);
+        SetPrivateField(pw, "equippedWeaponComponent", fakeW);
+        SetPublicField(pw, "EquippedWeaponInterface", fakeW);
+
+        var monster = new GameObject("Monster").AddComponent<Dragon>();
+
+        pw.AttackSpecificMonster(monster);
+
+        yield return null;
+
+        Assert.IsTrue(fakeW.attacked, "Weapon.Attack() skulle være kaldt");
+        Assert.IsFalse(GetPrivateField<bool>(pw, "isCurrentlyAttacking"), "flag skulle nulstilles til false");
+
+        Object.DestroyImmediate(player);
+        Object.DestroyImmediate(monster.gameObject);
+    }
+
+
+    [Test]
+    public void EquipWeaponInternal_DestroysOldWeapon_WhenDestroyOldTrue()
+    {
+        var player = new GameObject("Test_Player_EquipInternal");
+        var pivot = new GameObject("WeaponPivot");
+        pivot.transform.SetParent(player.transform, false);
+        var pw = player.AddComponent<PlayerWeapon>();
+
+        SetPrivateField(pw, "weaponSocketTransform", pivot.transform);
+
+        var oldW = new GameObject("OldWeapon").AddComponent<OneHandSword>();
+        SetPrivateField(pw, "equippedWeaponComponent", oldW);
+
+        var method = typeof(PlayerWeapon).GetMethod("EquipWeaponInternal", BindingFlags.Instance | BindingFlags.NonPublic);
+        var prefab = new GameObject("PrefabWeapon").AddComponent<OneHandSword>();
+
+        method.Invoke(pw, new object[] { prefab, true });
+
+        var equipped = GetPrivateField<Weapon>(pw, "equippedWeaponComponent");
+        Assert.IsNotNull(equipped);
+        Assert.AreNotSame(oldW, equipped);
+    }
+
+    [Test]
+    public void EnsureWeaponEquipped_LogsError_WhenNoWeaponAndNoPrefab()
+    {
+        var player = new GameObject("Test_Player_NoWeapon");
+        var pivot = new GameObject("WeaponPivot");
+        pivot.transform.SetParent(player.transform, false);
+        var pw = player.AddComponent<PlayerWeapon>();
+        SetPrivateField(pw, "weaponSocketTransform", pivot.transform);
+        SetPrivateField(pw, "startingWeaponPrefab", null);
+
+        LogAssert.ignoreFailingMessages = false;
+        LogAssert.Expect(LogType.Error, "Spilleren kunne hverken finde eller oprette et våben.");
+
+        InvokePrivateMethod(pw, "EnsureWeaponEquipped");
+
+        var eq = GetPublicProperty<IWeapon>(pw, "EquippedWeaponInterface");
+        Assert.IsNull(eq);
     }
 
     /// <summary>
-    /// Tester at SetupMonsterLayerMask sætter en gyldig mask,
-    /// når den oprindelige værdi er 0.
+    /// Kalder en private metode på et objekt via reflection.
     /// </summary>
-    [Test]
-    public void SetupMonsterLayerMask_SetsMask_WhenValueIsZero()
+    private static void InvokePrivateMethod(object instance, string methodName)
     {
-        var tempGO = new GameObject("TempPlayer_Mask");
-        var tempWeapon = tempGO.AddComponent<PlayerWeapon>();
+        var method = instance.GetType().GetMethod(methodName, PrivateInstanceFlags);
+        Assert.IsNotNull(method, $"Kunne ikke finde metoden '{methodName}'. Tjek at navnet matcher PlayerWeapon.");
+        method.Invoke(instance, null);
+    }
 
-        var maskField = typeof(PlayerWeapon).GetField(
-            "monsterLayerMask",
-            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
-        );
+    /// <summary>
+    /// Henter en private field via reflection.
+    /// </summary>
+    private static T GetPrivateField<T>(object instance, string fieldName)
+    {
+        var field = instance.GetType().GetField(fieldName, PrivateInstanceFlags);
+        Assert.IsNotNull(field, $"Kunne ikke finde field '{fieldName}'. Tjek at navnet matcher PlayerWeapon.");
+        return (T)field.GetValue(instance);
+    }
 
-        var mask = (LayerMask)maskField.GetValue(tempWeapon);
-        mask.value = 0;
-        maskField.SetValue(tempWeapon, mask);
+    /// <summary>
+    /// Sætter en private field via reflection.
+    /// </summary>
+    private static void SetPrivateField(object instance, string fieldName, object value)
+    {
+        var field = instance.GetType().GetField(fieldName, PrivateInstanceFlags);
+        Assert.IsNotNull(field, $"Kunne ikke finde field '{fieldName}'. Tjek at navnet matcher PlayerWeapon.");
+        field.SetValue(instance, value);
+    }
 
-        var method = typeof(PlayerWeapon).GetMethod(
-            "SetupMonsterLayerMask",
-            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic
-        );
-        method.Invoke(tempWeapon, null);
+    /// <summary>
+    /// Sætter en public property (auto-property) via reflection.
+    /// </summary>
+    private static void SetPublicField(object instance, string propertyName, object value)
+    {
+        var property = instance.GetType().GetProperty(propertyName, BindingFlags.Instance | BindingFlags.Public);
+        Assert.IsNotNull(property, $"Kunne ikke finde public property '{propertyName}'.");
+        property.SetValue(instance, value);
+    }
 
-        var after = (LayerMask)maskField.GetValue(tempWeapon);
-        Assert.AreNotEqual(0, after.value);
-
-        Object.DestroyImmediate(tempGO);
+    /// <summary>
+    /// Henter en public property (auto-property) via reflection.
+    /// Bruges fx til EquippedWeaponInterface.
+    /// </summary>
+    private static T GetPublicProperty<T>(object instance, string propertyName)
+    {
+        var property = instance.GetType().GetProperty(propertyName, BindingFlags.Instance | BindingFlags.Public);
+        Assert.IsNotNull(property, $"Kunne ikke finde public property '{propertyName}'.");
+        return (T)property.GetValue(instance);
     }
 }
