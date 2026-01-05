@@ -1,7 +1,8 @@
 using UnityEngine;
 
 [RequireComponent(typeof(FaceCamera))]
-public abstract class Monster : MonoBehaviour
+[RequireComponent(typeof(SphereCollider))]
+public abstract partial class Monster : MonoBehaviour
 {
     [SerializeField] private Player player;
     [SerializeField] private int maxHealth = 0;
@@ -46,16 +47,19 @@ public abstract class Monster : MonoBehaviour
     /// Monsteret modtager skade, tjekker om det dør og forsøger derefter at give skade til spilleren. 
     /// </summary>
     /// <param name="damageAmount">Mængden af skade, som dette monster modtager i starten af kampen.</param>
-    public void Fight(int damageAmount)
+    public void Fight(int damageAmount, bool wasSpokenCorrectly)
     {
-        
+
         if (!EnsureHasPlayer(Player)) return;
         ReceiveDamage(damageAmount);
 
         if (ShouldDie())
-            OnDeath();   
+            OnDeath();
         else
-            GiveDamage(Player);
+            if (!wasSpokenCorrectly)
+            {
+                GiveDamage(player);
+            }
 
     }
 
@@ -89,7 +93,7 @@ public abstract class Monster : MonoBehaviour
     /// </summary>
     protected virtual void GiveDamage(Player player)
     {
-        player.CurrentHealth -= AttackPower;  
+        player.CurrentHealth -= AttackPower;
     }
 
     /// <summary>
@@ -105,7 +109,7 @@ public abstract class Monster : MonoBehaviour
 
         Player = FindFirstObjectByType<Player>();
 
-        if (player == null)
+        if (Player == null)
         {
             Debug.LogWarning("Monster kunne ikke finde nogen Player at kæmpe imod.", this);
             return false;
@@ -120,11 +124,12 @@ public abstract class Monster : MonoBehaviour
     /// </summary>
     protected virtual void OnDeath()
     {
+        EndFight();
+
         Debug.Log("Monster døde");
         if (Application.isPlaying)
             Destroy(gameObject);
         else
             DestroyImmediate(gameObject);
     }
-
 }
