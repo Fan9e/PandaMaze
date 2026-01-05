@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
+    [Header("UI")]
+    [SerializeField] private BagpackUI bagpackUI;
+
     [Header("Weapon Auto Setup")]
     [Tooltip("Navnet på det child, som bruges som våben-socket.")]
     [SerializeField]
@@ -31,7 +34,7 @@ public class PlayerWeapon : MonoBehaviour
     /// <summary>
     /// Det aktuelt udstyrede våben, tilgået via IWeapon-interfacet.
     /// </summary>
-    public IWeapon EquippedWeaponInterface { get; private set; }
+    public IWeapon EquippedIWeapon { get; private set; }
 
     [Header("Attack Settings")]
     [SerializeField]
@@ -62,7 +65,11 @@ public class PlayerWeapon : MonoBehaviour
     /// våben og animator er sat korrekt.
     /// </summary>
     private void Awake()
-    {
+    { 
+        if (bagpackUI == null)
+        {
+            bagpackUI = FindObjectOfType<BagpackUI>();
+        }
         EnsureMonsterLayerMask();
         EnsureWeaponSocket();
         EnsureWeaponEquipped();
@@ -126,16 +133,41 @@ public class PlayerWeapon : MonoBehaviour
         if (equippedWeaponComponent == null)
         {
             Debug.LogError("Spilleren kunne hverken finde eller oprette et våben.", this);
-            EquippedWeaponInterface = null;
+            EquippedIWeapon = null;
             return;
         }
 
         if (weaponSocketTransform != null && equippedWeaponComponent.transform.parent != weaponSocketTransform)
             equippedWeaponComponent.transform.SetParent(weaponSocketTransform, worldPositionStays: true);
 
-        EquippedWeaponInterface = equippedWeaponComponent as IWeapon;
-        if (EquippedWeaponInterface == null)
+        EquippedIWeapon = equippedWeaponComponent as IWeapon;
+        if (EquippedIWeapon == null)
             Debug.LogError("Våben-komponenten på spilleren implementerer ikke IWeapon-interfacet.", equippedWeaponComponent);
+
+        UpdateWeaponUI();
+    }
+
+    private void UpdateWeaponUI()
+    {
+        if (bagpackUI == null)
+        {
+            Debug.LogWarning("UpdateWeaponUI kaldt, men bagpackUI er null.", this);
+            return;
+        }
+
+        if (equippedWeaponComponent == null || EquippedIWeapon == null)
+        {
+            bagpackUI.SetHasWeapon(false);
+            Debug.Log("UpdateWeaponUI: intet våben – slår weapon-slot fra");
+            return;
+        }
+
+        int variant = Mathf.Clamp(equippedWeaponComponent.BackpackVariantIndex, 0, 2);
+
+        bagpackUI.SetHasWeapon(true);
+        bagpackUI.SetWeaponVariant(variant);
+
+        Debug.Log($"UpdateWeaponUI: satte weapon-slot til variant {variant} for {equippedWeaponComponent.name}");
     }
 
     /// <summary>
@@ -150,15 +182,12 @@ public class PlayerWeapon : MonoBehaviour
     {
         if (weaponAnimator != null) return;
 
-        // 1) Våbenfatningens child-objekter
         if (weaponSocketTransform != null)
             weaponAnimator = weaponSocketTransform.GetComponentInChildren<Animator>();
 
-        // 2) Våbnets forældre-objekter
         if (weaponAnimator == null && equippedWeaponComponent != null)
             weaponAnimator = equippedWeaponComponent.GetComponentInParent<Animator>();
 
-        // 3) Et vilkårligt sted i spillerens child-objekter
         if (weaponAnimator == null)
             weaponAnimator = GetComponentInChildren<Animator>();
 
@@ -179,7 +208,7 @@ public class PlayerWeapon : MonoBehaviour
     public void AttackSpecificMonster(Monster monster)
     {
         if (monster == null) return;
-        if (EquippedWeaponInterface == null) return;
+        if (EquippedIWeapon == null) return;
         if (isCurrentlyAttacking) return;
 
         if (attackRoutine != null)
@@ -201,7 +230,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         isCurrentlyAttacking = true;
 
-        var weapon = EquippedWeaponInterface;
+        var weapon = EquippedIWeapon;
         if (weapon == null || monster == null)
         {
             isCurrentlyAttacking = false;
@@ -213,7 +242,7 @@ public class PlayerWeapon : MonoBehaviour
 
         if (weaponAnimator != null)
         {
-            string attackAnimationName = EquippedWeaponInterface.AttackAnimationName;
+            string attackAnimationName = EquippedIWeapon.AttackAnimationName;
 
             if (!string.IsNullOrEmpty(attackAnimationName))
             {
@@ -228,7 +257,7 @@ public class PlayerWeapon : MonoBehaviour
             }
         }
 
-        EquippedWeaponInterface.Attack(monster);
+        EquippedIWeapon.Attack(monster);
 
         if (waitTimeInSeconds > 0f)
             yield return new WaitForSeconds(waitTimeInSeconds);
@@ -279,18 +308,20 @@ public class PlayerWeapon : MonoBehaviour
         if (destroyOld && equippedWeaponComponent != null)
         {
             if (Application.isPlaying)
-                Destroy(gameObject);
+                Destroy(equippedWeaponComponent.gameObject);
+
             else
-                DestroyImmediate(gameObject);
+                Destroy(equippedWeaponComponent.gameObject);
+
         }
 
         equippedWeaponComponent = Instantiate(weaponPrefab, weaponSocketTransform);
-        equippedWeaponComponent.transform.localPosition = Vector3.zero;
-        equippedWeaponComponent.transform.localRotation = Quaternion.identity;
+        equippedWeaponComponent.ConfigureSocketTransform(equippedWeaponComponent.transform);
 
-        EquippedWeaponInterface = equippedWeaponComponent as IWeapon;
-        if (EquippedWeaponInterface == null)
+        EquippedIWeapon = equippedWeaponComponent as IWeapon;
+        if (EquippedIWeapon == null)
             Debug.LogError("Det nye våben implementerer ikke IWeapon-interfacet.", equippedWeaponComponent);
+        UpdateWeaponUI();
     }
 
     #endregion
