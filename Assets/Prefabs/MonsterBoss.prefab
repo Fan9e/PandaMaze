@@ -111,6 +111,8 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   attackPower: 0
+  speechTaskUI: {fileID: 0}
+  sentences: []
 --- !u!114 &1998330850836179157
 MonoBehaviour:
   m_ObjectHideFlags: 0
