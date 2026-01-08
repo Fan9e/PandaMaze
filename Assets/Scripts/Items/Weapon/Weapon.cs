@@ -53,7 +53,7 @@ public abstract class Weapon : Item, IWeapon
     /// og vi vil slå et bestemt monster.
     /// </summary>
     /// <param name="monster">Det monster, der skal modtage skaden</param>
-    public void Attack(Monster monster)
+    public virtual void Attack(Monster monster)
     {
         if (monster == null) return;
         DealDamage(monster);
@@ -64,7 +64,7 @@ public abstract class Weapon : Item, IWeapon
     /// og anvende den.
     /// </summary>
     /// <param name="monster">Det monster, der skal modtage skaden</param>
-    private void DealDamage(Monster monster)
+    protected void DealDamage(Monster monster)
     {
         int damage = CalculateDamage();
         monster.Fight(damage, true);
