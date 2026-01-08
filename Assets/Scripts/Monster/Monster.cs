@@ -49,18 +49,20 @@ public abstract partial class Monster : MonoBehaviour
     /// <param name="damageAmount">Mængden af skade, som dette monster modtager i starten af kampen.</param>
     public void Fight(int damageAmount, bool wasSpokenCorrectly)
     {
-
         if (!EnsureHasPlayer(Player)) return;
+
         ReceiveDamage(damageAmount);
 
         if (ShouldDie())
+        {
             OnDeath();
-        else
-            if (!wasSpokenCorrectly)
-            {
-                GiveDamage(player);
-            }
+            return;
+        }
 
+        if (!wasSpokenCorrectly)
+        {
+            GiveDamage(Player);
+        }
     }
 
     /// <summary>
@@ -78,7 +80,7 @@ public abstract partial class Monster : MonoBehaviour
     /// Livet begrænses til området mellem 0 og MaxHealth.
     /// </summary>
     /// <param name="damageAmount">Mængden af skade, der skal påføres.</param>
-    protected void ReceiveDamage(int damageAmount)
+    protected virtual void ReceiveDamage(int damageAmount)
     {
         if (damageAmount < 0) return;
 
