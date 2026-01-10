@@ -75,11 +75,11 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     /// <summary>
     /// Liste af nøgleord der tæller som "over"-kommandoer (for Rocks).
     /// </summary>
-    public string[] rockKeywords = new[] { "over", "hop", "op" };
+    public string[] rockKeywords = new[] { "gå  over", "hop over", "hop op" };
     /// <summary>
     /// Liste af nøgleord der tæller som "under"-kommandoer (for FallenBamboo).
     /// </summary>
-    public string[] bambooKeywords = new[] { "duk", "under", "ned" };
+    public string[] bambooKeywords = new[] { "duk under", "gå under", "ned under" };
 
     [Tooltip("If true the script will try to make concave MeshColliders convex when creating child forwarders. Use with care.")]
     /// <summary>

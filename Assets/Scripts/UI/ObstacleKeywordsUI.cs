@@ -66,7 +66,7 @@ public class ObstacleKeywordsUI : MonoBehaviour
     /// Standard er 0 (forbliver synligt indtil <see cref="HideKeywords"/> kaldes).
     /// </param>
     /// <remarks>
-    /// Metoden sætter teksten til formen "Sig ét af følgende ord: &lt;ordnet liste&gt;".
+    /// Metoden sætter teksten til formen "Sig ét af følgende sætninger: &lt;ordnet liste&gt;".
     /// Hvis der allerede kører en auto-hide coroutine stoppes denne før eventuelt at starte en ny.
     /// </remarks>
     public void ShowKeywords(string[] keywords, float duration = 0f)
@@ -83,7 +83,7 @@ public class ObstacleKeywordsUI : MonoBehaviour
         if (cleaned.Length == 0)
             keywordsText.text = $"Fejl på spillet: {joined}";
         else if (joined.Length > 0)
-            keywordsText.text = $"Sig ét af følgende ord: {joined}";
+            keywordsText.text = $"Sig ét af følgende sætninger: {joined}";
 
         panelRoot.SetActive(true);
 
