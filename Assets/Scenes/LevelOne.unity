@@ -11989,21 +11989,25 @@ MonoBehaviour:
   Kind: 0
   useChildColliders: 1
   passDistance: 4
-  passDuration: 0.5
+  passDuration: 1
   overHeight: 1.5
   underDepth: 0.5
   autoStartMicrophone: 0
-  underEndRise: 0
+  underEndRise: 1
+  collisionSafetyMargin: 0.3
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   changePlayerColliderWhenDucking: 1
   duckColliderHeightMultiplier: 0.5
   colliderChangeDuration: 0.12
   rockKeywords:
-  - "g\xE5 over"
   - hop over
+  - "g\xE5 over"
   - hop op
   bambooKeywords:
-  - duk under
   - "g\xE5 under"
+  - duk under
   - ned under
   autoMakeMeshCollidersConvex: 0
 --- !u!54 &1105398795
@@ -15996,11 +16000,15 @@ MonoBehaviour:
   Kind: 1
   useChildColliders: 1
   passDistance: 4
-  passDuration: 0.5
+  passDuration: 1
   overHeight: 1.5
   underDepth: 0.5
   autoStartMicrophone: 0
   underEndRise: 1
+  collisionSafetyMargin: 0.3
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   changePlayerColliderWhenDucking: 1
   duckColliderHeightMultiplier: 0.5
   colliderChangeDuration: 0.12

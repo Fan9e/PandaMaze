@@ -59,7 +59,14 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     /// <summary>
     /// Hvor meget spilleren løftes ved afslutningen af en "under"-passage (tilføjes til den endelige position).
     /// </summary>
-    public float underEndRise = 0f;
+    public float underEndRise = 1f;
+
+    [Header("Collision Safety")]
+    [Tooltip("Ekstra radius tilføjet til collision checks for at forhindre klemning i vægge.")]
+    public float collisionSafetyMargin = 0.3f;
+    
+    [Tooltip("LayerMask for hvad der betragtes som forhindringer under passage.")]
+    public LayerMask obstacleLayerMask = -1; 
 
     [Header("Collider Ducking (optional)")]
     [Tooltip("If true will temporarily reduce player's CapsuleCollider/CharacterController height while performing an 'under' pass.")]
@@ -147,6 +154,9 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
     // New: cache CharacterController on the player (if any). Using CharacterController.Move preserves collision during scripted moves.
     private CharacterController playerCharacterController;
+    
+    // New: cached player collider radius for collision checks
+    private float playerColliderRadius = 0.5f;
 
     /// <summary>
     /// Unity callback kørt i editor/inspektør når værdier ændres. Samler child-colliders (hvis valgt) og opdaterer cache af nøgleord.
@@ -324,12 +334,36 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         // Cache possible CharacterController to use CharacterController.Move (preserves collisions)
         playerCharacterController = foundPlayerMovement.GetComponent<CharacterController>() ?? foundPlayerMovement.GetComponentInChildren<CharacterController>();
 
+        // Cache player collider radius for collision detection
+        CachePlayerColliderRadius();
+
         RegisterVoiceObserver();
 
         var keywords = GetKeywordsForKind();
         ObstacleKeywordsUI.Instance?.ShowKeywords(keywords);
 
         Debug.Log($"ObstacleVoiceGate: Player entered {name}. Say the correct command to pass ({Kind}).");
+    }
+
+    /// <summary>
+    /// Cacher spillerens collider-radius til brug for collision checks under passage.
+    /// </summary>
+    private void CachePlayerColliderRadius()
+    {
+        playerColliderRadius = 0.5f; // default fallback
+        
+        if (playerCharacterController != null)
+        {
+            playerColliderRadius = playerCharacterController.radius;
+        }
+        else
+        {
+            var capsule = playerTransform.GetComponent<CapsuleCollider>() ?? playerTransform.GetComponentInChildren<CapsuleCollider>();
+            if (capsule != null)
+            {
+                playerColliderRadius = capsule.radius;
+            }
+        }
     }
 
     /// <summary>
@@ -535,8 +569,68 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     }
 
     /// <summary>
+    /// Tjekker om en given position vil kollidere med omgivelserne.
+    /// </summary>
+    /// <param name="position">Positionen der skal tjekkes.</param>
+    /// <param name="checkRadius">Radius at tjekke indenfor.</param>
+    /// <returns>True hvis positionen er sikker (ingen kollision), false hvis der er kollision.</returns>
+    private bool IsPositionSafe(Vector3 position, float checkRadius)
+    {
+        // Use OverlapSphere to check if the position would collide with anything
+        Collider[] hits = Physics.OverlapSphere(position, checkRadius, obstacleLayerMask, QueryTriggerInteraction.Ignore);
+        
+        // Filter out the gate's own colliders and the player's collider
+        foreach (var hit in hits)
+        {
+            // Skip if this is the gate itself or its children
+            if (hit.transform == transform || hit.transform.IsChildOf(transform))
+                continue;
+                
+            // Skip if this is the player
+            if (hit.transform == playerTransform || hit.transform.IsChildOf(playerTransform))
+                continue;
+                
+            // We found a collision with something else
+            return false;
+        }
+        
+        return true;
+    }
+
+    /// <summary>
+    /// Finder den nærmeste sikre position fra en given position.
+    /// </summary>
+    /// <param name="desiredPosition">Den ønskede position.</param>
+    /// <param name="previousSafePosition">Den sidste kendte sikre position.</param>
+    /// <returns>En sikker position at flytte til.</returns>
+    private Vector3 FindSafePosition(Vector3 desiredPosition, Vector3 previousSafePosition)
+    {
+        float checkRadius = playerColliderRadius + collisionSafetyMargin;
+        
+        // Check if desired position is safe
+        if (IsPositionSafe(desiredPosition, checkRadius))
+            return desiredPosition;
+        
+        // Raycast from previous safe position toward desired position
+        Vector3 direction = (desiredPosition - previousSafePosition).normalized;
+        float maxDistance = Vector3.Distance(previousSafePosition, desiredPosition);
+        
+        RaycastHit hit;
+        if (Physics.SphereCast(previousSafePosition, checkRadius, direction, out hit, maxDistance, obstacleLayerMask, QueryTriggerInteraction.Ignore))
+        {
+            // Found an obstacle - stop just before it
+            float safeDistance = Mathf.Max(0, hit.distance - collisionSafetyMargin * 2);
+            return previousSafePosition + direction * safeDistance;
+        }
+        
+        // No obstacle found in direct path - use desired position
+        return desiredPosition;
+    }
+
+    /// <summary>
     /// Coroutine der udfører en "over"-passage: løfter spilleren i en kort bue fremad.
-    /// Uses CharacterController.Move or Rigidbody.MovePosition to preserve collision resolution and avoid falling through ground.
+    /// Uses CharacterController.Move or Rigidbody.MovePosition to preserve collision resolution and avoid falling gennem ground.
+    /// Now includes collision checking to prevent getting stuck in walls.
     /// </summary>
     private IEnumerator PerformOver()
     {
@@ -550,6 +644,9 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         Vector3 end = start + forward * passDistance;
         float elapsed = 0f;
 
+        Vector3 lastSafePosition = start;
+        float checkRadius = playerColliderRadius + collisionSafetyMargin;
+
         if (playerCharacterController != null)
         {
             // Use CharacterController.Move per-frame to keep collision callbacks and prevent penetrating ground.
@@ -559,19 +656,24 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
                 float progress = Mathf.Clamp01(elapsed / passDuration);
                 Vector3 horiz = Vector3.Lerp(start, end, progress);
                 float height = ParabolaNormalization * overHeight * progress * (1 - progress);
-                Vector3 target = new Vector3(horiz.x, horiz.y + height, horiz.z);
+                Vector3 desiredTarget = new Vector3(horiz.x, horiz.y + height, horiz.z);
 
-                Vector3 delta = target - prev;
+                // Check if target position is safe
+                Vector3 safeTarget = FindSafePosition(desiredTarget, lastSafePosition);
+                
+                Vector3 delta = safeTarget - prev;
                 // CharacterController.Move applies collisions
                 playerCharacterController.Move(delta);
                 prev = playerCharacterController.transform.position;
+                lastSafePosition = prev;
 
                 elapsed += Time.deltaTime;
                 yield return null;
             }
 
-            // ensure final position exactly at end (move any remaining delta)
-            Vector3 finalDelta = end - playerCharacterController.transform.position;
+            // ensure final position exactly at end (move any remaining delta, but check safety)
+            Vector3 finalSafe = FindSafePosition(end, lastSafePosition);
+            Vector3 finalDelta = finalSafe - playerCharacterController.transform.position;
             playerCharacterController.Move(finalDelta);
         }
         else if (playerRigidbody != null)
@@ -582,15 +684,20 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
                 float progress = Mathf.Clamp01(elapsed / passDuration);
                 Vector3 horiz = Vector3.Lerp(start, end, progress);
                 float height = ParabolaNormalization * overHeight * progress * (1 - progress);
-                Vector3 target = new Vector3(horiz.x, horiz.y + height, horiz.z);
+                Vector3 desiredTarget = new Vector3(horiz.x, horiz.y + height, horiz.z);
 
-                playerRigidbody.MovePosition(target);
+                // Check if target position is safe
+                Vector3 safeTarget = FindSafePosition(desiredTarget, lastSafePosition);
+                
+                playerRigidbody.MovePosition(safeTarget);
+                lastSafePosition = safeTarget;
 
                 elapsed += Time.deltaTime;
                 yield return null;
             }
 
-            playerRigidbody.MovePosition(end);
+            Vector3 finalSafe = FindSafePosition(end, lastSafePosition);
+            playerRigidbody.MovePosition(finalSafe);
         }
         else
         {
@@ -600,12 +707,18 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
                 float progress = Mathf.Clamp01(elapsed / passDuration);
                 Vector3 horiz = Vector3.Lerp(start, end, progress);
                 float height = ParabolaNormalization * overHeight * progress * (1 - progress);
-                playerTransform.position = new Vector3(horiz.x, horiz.y + height, horiz.z);
+                Vector3 desiredTarget = new Vector3(horiz.x, horiz.y + height, horiz.z);
+                
+                Vector3 safeTarget = FindSafePosition(desiredTarget, lastSafePosition);
+                playerTransform.position = safeTarget;
+                lastSafePosition = safeTarget;
+                
                 elapsed += Time.deltaTime;
                 yield return null;
             }
 
-            playerTransform.position = end;
+            Vector3 finalSafe = FindSafePosition(end, lastSafePosition);
+            playerTransform.position = finalSafe;
         }
 
         ResumePlayerAfterPass(previousKinematicState);
@@ -615,6 +728,7 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     /// <summary>
     /// Coroutine der udfører en "under"-passage: dipper spilleren nedad og valgfrit smalner collideren ind under passagen.
     /// Uses CharacterController.Move or Rigidbody.MovePosition to preserve collision resolution and avoid getting stuck in ground.
+    /// Now includes collision checking to prevent getting stuck in walls.
     /// </summary>
     private IEnumerator PerformUnder()
     {
@@ -622,7 +736,6 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         isPassing = true;
 
         PausePlayerForPass(out var previousKinematicState);
-
 
         SetupDuckCollider();
 
@@ -632,6 +745,9 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         Vector3 finalEnd = endHorizontal + Vector3.up * underEndRise;
         float elapsed = 0f;
 
+        Vector3 lastSafePosition = start;
+        float checkRadius = playerColliderRadius + collisionSafetyMargin;
+
         if (playerCharacterController != null)
         {
             Vector3 prev = playerCharacterController.transform.position;
@@ -640,11 +756,15 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
                 float progress = Mathf.Clamp01(elapsed / passDuration);
                 Vector3 horiz = Vector3.Lerp(start, endHorizontal, progress);
                 float dip = -ParabolaNormalization * underDepth * progress * (1 - progress);
-                Vector3 target = new Vector3(horiz.x, horiz.y + dip, horiz.z);
+                Vector3 desiredTarget = new Vector3(horiz.x, horiz.y + dip, horiz.z);
 
-                Vector3 delta = target - prev;
+                // Check if target position is safe
+                Vector3 safeTarget = FindSafePosition(desiredTarget, lastSafePosition);
+
+                Vector3 delta = safeTarget - prev;
                 playerCharacterController.Move(delta);
                 prev = playerCharacterController.transform.position;
+                lastSafePosition = prev;
 
                 UpdateDuckColliderDuringMove(elapsed);
 
@@ -652,7 +772,8 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
                 yield return null;
             }
 
-            Vector3 finalDelta = finalEnd - playerCharacterController.transform.position;
+            Vector3 finalSafe = FindSafePosition(finalEnd, lastSafePosition);
+            Vector3 finalDelta = finalSafe - playerCharacterController.transform.position;
             playerCharacterController.Move(finalDelta);
         }
         else if (playerRigidbody != null)
@@ -662,9 +783,13 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
                 float progress = Mathf.Clamp01(elapsed / passDuration);
                 Vector3 horiz = Vector3.Lerp(start, endHorizontal, progress);
                 float dip = -ParabolaNormalization * underDepth * progress * (1 - progress);
-                Vector3 target = new Vector3(horiz.x, horiz.y + dip, horiz.z);
+                Vector3 desiredTarget = new Vector3(horiz.x, horiz.y + dip, horiz.z);
 
-                playerRigidbody.MovePosition(target);
+                // Check if target position is safe
+                Vector3 safeTarget = FindSafePosition(desiredTarget, lastSafePosition);
+
+                playerRigidbody.MovePosition(safeTarget);
+                lastSafePosition = safeTarget;
 
                 UpdateDuckColliderDuringMove(elapsed);
 
@@ -672,7 +797,8 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
                 yield return null;
             }
 
-            playerRigidbody.MovePosition(finalEnd);
+            Vector3 finalSafe = FindSafePosition(finalEnd, lastSafePosition);
+            playerRigidbody.MovePosition(finalSafe);
         }
         else
         {
@@ -681,7 +807,11 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
                 float progress = Mathf.Clamp01(elapsed / passDuration);
                 Vector3 horiz = Vector3.Lerp(start, endHorizontal, progress);
                 float dip = -ParabolaNormalization * underDepth * progress * (1 - progress);
-                playerTransform.position = new Vector3(horiz.x, horiz.y + dip, horiz.z);
+                Vector3 desiredTarget = new Vector3(horiz.x, horiz.y + dip, horiz.z);
+
+                Vector3 safeTarget = FindSafePosition(desiredTarget, lastSafePosition);
+                playerTransform.position = safeTarget;
+                lastSafePosition = safeTarget;
 
                 UpdateDuckColliderDuringMove(elapsed);
 
@@ -689,7 +819,8 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
                 yield return null;
             }
 
-            playerTransform.position = finalEnd;
+            Vector3 finalSafe = FindSafePosition(finalEnd, lastSafePosition);
+            playerTransform.position = finalSafe;
         }
 
         if (changePlayerColliderWhenDucking && (duckCapsuleCollider != null || duckCharacterController != null))
