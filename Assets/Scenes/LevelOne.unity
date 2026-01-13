@@ -16013,12 +16013,12 @@ MonoBehaviour:
   duckColliderHeightMultiplier: 0.5
   colliderChangeDuration: 0.12
   rockKeywords:
-  - "g\xE5 over"
   - hop over
+  - "g\xE5 over"
   - hop op
   bambooKeywords:
-  - duk under
   - "g\xE5 under"
+  - duk under
   - ned under
   autoMakeMeshCollidersConvex: 0
 --- !u!54 &1931560826
