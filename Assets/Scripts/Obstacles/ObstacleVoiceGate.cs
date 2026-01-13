@@ -25,9 +25,10 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     /// </summary>
     public ObstacleKind Kind = ObstacleKind.Rocks;
 
-    [Tooltip("If true the script will gather child colliders and forward their trigger events to this component.")]
+    [Tooltip("If true the script will gather child colliders and treat them as part of the gate volume.")]
     /// <summary>
-    /// Hvis sandt, vil komponenten samle kollidere fra børn og videresende deres trigger-events hertil.
+    /// Hvis sandt, vil komponenten samle kollidere fra børn og betragte dem som en del af gate-volumenet.
+    /// (Previously this created forwarding components. Forwarders are removed; we now test overlaps directly.)
     /// </summary>
     public bool useChildColliders = true;
 
@@ -35,7 +36,7 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     /// <summary>
     /// Hvor langt spilleren bevæger sig frem under passagen (måleenhed: Unity units/meters).
     /// </summary>
-    public float passDistance = 3.5f;
+    public float passDistance = 4f;
     /// <summary>
     /// Varighed i sekunder for passagens animation (over/under).
     /// </summary>
@@ -53,6 +54,12 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     /// Hvis sandt forsøger VoiceMovement at starte mikrofonen automatisk når spilleren går ind.
     /// </summary>
     public bool autoStartMicrophone = true;
+
+    [Tooltip("Additional upward offset (meters) applied to the player's final position after an 'under' pass.")]
+    /// <summary>
+    /// Hvor meget spilleren løftes ved afslutningen af en "under"-passage (tilføjes til den endelige position).
+    /// </summary>
+    public float underEndRise = 0f;
 
     [Header("Collider Ducking (optional)")]
     [Tooltip("If true will temporarily reduce player's CapsuleCollider/CharacterController height while performing an 'under' pass.")]
@@ -81,9 +88,9 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     /// </summary>
     public string[] bambooKeywords = new[] { "duk under", "gå under", "ned under" };
 
-    [Tooltip("If true the script will try to make concave MeshColliders convex when creating child forwarders. Use with care.")]
+    [Tooltip("If true the script will try to make concave MeshColliders convex when setting them as triggers. Use with care.")]
     /// <summary>
-    /// Hvis sandt forsøger scriptet at gøre konvekse MeshColliders til konvekse når der oprettes child forwarders.
+    /// Hvis sandt forsøger scriptet at gøre konvekse MeshColliders til konvekse når de sættes som trigger.
     /// Brug med omhu - konveksions kan ændre kollisionsform og kan fejle for komplekse meshes.
     /// </summary>
     public bool autoMakeMeshCollidersConvex = false;
@@ -135,28 +142,36 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     private float duckTargetHeight = 0f;
     private Vector3 duckTargetCenter = Vector3.zero;
 
+    // New: tracked child colliders (does not add forwarder components)
+    private List<Collider> trackedChildColliders = new List<Collider>();
+
+    // New: cache CharacterController on the player (if any). Using CharacterController.Move preserves collision during scripted moves.
+    private CharacterController playerCharacterController;
+
     /// <summary>
-    /// Unity callback kørt i editor/inspektør når værdier ændres. Sørger for at oprette child-forwarders
-    /// og opdatere cache af nøgleord.
+    /// Unity callback kørt i editor/inspektør når værdier ændres. Samler child-colliders (hvis valgt) og opdaterer cache af nøgleord.
+    /// Forwarder-komponenten er fjernet; vi bruger overlap-test direkte.
     /// </summary>
     private void OnValidate()
     {
-        if (!useChildColliders) return;
-
+        if (useChildColliders)
+        {
 #if UNITY_EDITOR
-        if (!EditorApplication.isPlaying)
-            EnsureChildForwarders(useUndo: true);
-        else
-            EnsureChildForwarders(useUndo: false);
+            // No Undo here anymore for forwarders; only set trigger flags if possible
+            if (!EditorApplication.isPlaying)
+                CollectChildColliders();
+            else
+                CollectChildColliders();
 #else
-        EnsureChildForwarders(useUndo: false);
+            CollectChildColliders();
 #endif
+        }
 
         UpdateKeywordCache();
     }
 
     /// <summary>
-    /// Awake initialisering: sætter egen collider til trigger hvis mulig, sikrer child-forwarders og opdaterer cache.
+    /// Awake initialisering: sætter egen collider til trigger hvis mulig, samler child-colliders og opdaterer cache.
     /// </summary>
     private void Awake()
     {
@@ -165,7 +180,7 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
             TrySetTriggerSafe(ownCollider);
 
         if (useChildColliders)
-            EnsureChildForwarders(useUndo: false);
+            CollectChildColliders();
 
         UpdateKeywordCache();
     }
@@ -187,37 +202,20 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     }
 
     /// <summary>
-    /// Søger efter colliders i børnenoder og tilføjer/enabler et ObstacleTriggerForwarder-komponent der videresender trigger-events.
+    /// Samler child-colliders (uden at oprette forwarding-komponenter). Sætter colliders som trigger når muligt.
     /// </summary>
-    /// <param name="useUndo">Hvis sandt bruges Undo når komponenter oprettes (kun i editor).</param>
-    private void EnsureChildForwarders(bool useUndo)
+    private void CollectChildColliders()
     {
+        trackedChildColliders.Clear();
         var colliders = GetComponentsInChildren<Collider>(true);
-        foreach (var childCollider in colliders)
+        foreach (var c in colliders)
         {
-            if (childCollider == null || childCollider.gameObject == gameObject) continue;
+            if (c == null) continue;
+            if (c.gameObject == gameObject) continue;
 
-            if (!TrySetTriggerSafe(childCollider))
-                continue;
-
-            var forwarder = childCollider.GetComponent<ObstacleTriggerForwarder>();
-            if (forwarder == null)
-            {
-#if UNITY_EDITOR
-                if (useUndo && !EditorApplication.isPlaying)
-                {
-                    forwarder = Undo.AddComponent<ObstacleTriggerForwarder>(childCollider.gameObject);
-                }
-                else
-                {
-                    forwarder = childCollider.gameObject.AddComponent<ObstacleTriggerForwarder>();
-                }
-#else
-                forwarder = childCollider.gameObject.AddComponent<ObstacleTriggerForwarder>();
-#endif
-            }
-
-            forwarder.parentGate = this;
+            // Try to set child collider as trigger (safe)
+            TrySetTriggerSafe(c);
+            trackedChildColliders.Add(c);
         }
     }
 
@@ -274,15 +272,6 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         return true;
     }
 
-    /// <summary>
-    /// Modtager forwardede OnTriggerEnter-events fra child-colliders.
-    /// </summary>
-    internal void ChildTriggerEnter(GameObject childColliderOwner, Collider other) => HandleTriggerEnter(other);
-    /// <summary>
-    /// Modtager forwardede OnTriggerExit-events fra child-colliders.
-    /// </summary>
-    internal void ChildTriggerExit(GameObject childColliderOwner, Collider other) => HandleTriggerExit(other);
-
     private void OnTriggerEnter(Collider other) => HandleTriggerEnter(other);
     private void OnTriggerExit(Collider other) => HandleTriggerExit(other);
 
@@ -295,10 +284,45 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         if (playerInside) return;
         if (!TryGetPlayerFromCollider(other, out var foundPlayerMovement, out var foundRigidbody)) return;
 
+        OnPlayerEnter(foundPlayerMovement, foundRigidbody);
+    }
+
+    /// <summary>
+    /// Håndterer når noget forlader triggeren. Hvis det er spilleren afregistreres voice observer og UI skjules.
+    /// </summary>
+    /// <param name="other">Collideren som forlod triggeren (kan være null hvis exit blev opdaget via overlap-check).</param>
+    private void HandleTriggerExit(Collider other)
+    {
+        // If a specific collider triggered exit, verify it's the player we're tracking
+        if (other != null)
+        {
+            if (!TryGetPlayerFromCollider(other, out var foundPlayerMovement, out var foundRigidbody)) return;
+            if (!playerInside) return;
+            if (foundPlayerMovement != playerMovement) return;
+
+            OnPlayerExit();
+            return;
+        }
+
+        // If other == null, use the generic exit (used by overlap detection)
+        if (!playerInside) return;
+        OnPlayerExit();
+    }
+
+    /// <summary>
+    /// Internal helper that performs the same actions regardless of how entry was detected.
+    /// </summary>
+    private void OnPlayerEnter(PlayerMovement foundPlayerMovement, Rigidbody foundRigidbody)
+    {
+        if (playerInside) return;
+
         playerInside = true;
         playerMovement = foundPlayerMovement;
         playerTransform = foundPlayerMovement.transform;
         playerRigidbody = foundRigidbody;
+
+        // Cache possible CharacterController to use CharacterController.Move (preserves collisions)
+        playerCharacterController = foundPlayerMovement.GetComponent<CharacterController>() ?? foundPlayerMovement.GetComponentInChildren<CharacterController>();
 
         RegisterVoiceObserver();
 
@@ -309,14 +333,10 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
     }
 
     /// <summary>
-    /// Håndterer når noget forlader triggeren. Hvis det er spilleren afregistreres voice observer og UI skjules.
+    /// Internal helper for handling player exit.
     /// </summary>
-    /// <param name="other">Collideren som forlod triggeren.</param>
-    private void HandleTriggerExit(Collider other)
+    private void OnPlayerExit()
     {
-        if (!TryGetPlayerFromCollider(other, out var foundPlayerMovement, out var foundRigidbody)) return;
-        if (!playerInside) return;
-
         playerInside = false;
         UnregisterVoiceObserver();
 
@@ -336,6 +356,7 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         playerTransform = null;
         playerRigidbody = null;
         playerMovement = null;
+        playerCharacterController = null;
     }
 
     /// <summary>
@@ -471,6 +492,8 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
     /// <summary>
     /// Sætter spillerens movement og rigidbody i en 'paused' tilstand før passagen (disables movement, sætter kinematic).
+    /// Adjusted: If a CharacterController exists we prefer using CharacterController.Move and do not force rigidbody kinematic.
+    /// If no CharacterController we ensure Rigidbody is non-kinematic so we can use MovePosition to preserve collisions.
     /// </summary>
     /// <param name="previousKinematicState">Returnerer rigidbody's tidligere kinematic-tilstand så den kan gendannes.</param>
     private void PausePlayerForPass(out bool previousKinematicState)
@@ -482,7 +505,19 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         if (playerRigidbody != null)
         {
             previousKinematicState = playerRigidbody.isKinematic;
-            playerRigidbody.isKinematic = true;
+
+            if (playerCharacterController != null)
+            {
+                // Let CharacterController handle collisions — don't change rigidbody kinematic state.
+                // (Rigidbody may be present for other reasons; leave its state as-is.)
+            }
+            else
+            {
+                // For Rigidbody-driven players we want to use MovePosition (physics-friendly),
+                // so ensure rigidbody is non-kinematic while we move it via MovePosition.
+                playerRigidbody.isKinematic = false;
+                playerRigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+            }
         }
     }
 
@@ -501,10 +536,11 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
     /// <summary>
     /// Coroutine der udfører en "over"-passage: løfter spilleren i en kort bue fremad.
+    /// Uses CharacterController.Move or Rigidbody.MovePosition to preserve collision resolution and avoid falling through ground.
     /// </summary>
     private IEnumerator PerformOver()
     {
-        if (playerTransform == null || playerRigidbody == null || playerMovement == null) yield break;
+        if (playerTransform == null || playerMovement == null) yield break;
         isPassing = true;
 
         PausePlayerForPass(out var previousKinematicState);
@@ -514,27 +550,75 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         Vector3 end = start + forward * passDistance;
         float elapsed = 0f;
 
-        while (elapsed < passDuration)
+        if (playerCharacterController != null)
         {
-            float progress = Mathf.Clamp01(elapsed / passDuration);
-            Vector3 horiz = Vector3.Lerp(start, end, progress);
-            float height = ParabolaNormalization * overHeight * progress * (1 - progress);
-            playerTransform.position = new Vector3(horiz.x, horiz.y + height, horiz.z);
-            elapsed += Time.deltaTime;
-            yield return null;
+            // Use CharacterController.Move per-frame to keep collision callbacks and prevent penetrating ground.
+            Vector3 prev = playerCharacterController.transform.position;
+            while (elapsed < passDuration)
+            {
+                float progress = Mathf.Clamp01(elapsed / passDuration);
+                Vector3 horiz = Vector3.Lerp(start, end, progress);
+                float height = ParabolaNormalization * overHeight * progress * (1 - progress);
+                Vector3 target = new Vector3(horiz.x, horiz.y + height, horiz.z);
+
+                Vector3 delta = target - prev;
+                // CharacterController.Move applies collisions
+                playerCharacterController.Move(delta);
+                prev = playerCharacterController.transform.position;
+
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            // ensure final position exactly at end (move any remaining delta)
+            Vector3 finalDelta = end - playerCharacterController.transform.position;
+            playerCharacterController.Move(finalDelta);
+        }
+        else if (playerRigidbody != null)
+        {
+            // Use Rigidbody.MovePosition to move while allowing physics to resolve collisions
+            while (elapsed < passDuration)
+            {
+                float progress = Mathf.Clamp01(elapsed / passDuration);
+                Vector3 horiz = Vector3.Lerp(start, end, progress);
+                float height = ParabolaNormalization * overHeight * progress * (1 - progress);
+                Vector3 target = new Vector3(horiz.x, horiz.y + height, horiz.z);
+
+                playerRigidbody.MovePosition(target);
+
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            playerRigidbody.MovePosition(end);
+        }
+        else
+        {
+            // Fallback: transform movement (least preferable)
+            while (elapsed < passDuration)
+            {
+                float progress = Mathf.Clamp01(elapsed / passDuration);
+                Vector3 horiz = Vector3.Lerp(start, end, progress);
+                float height = ParabolaNormalization * overHeight * progress * (1 - progress);
+                playerTransform.position = new Vector3(horiz.x, horiz.y + height, horiz.z);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            playerTransform.position = end;
         }
 
-        playerTransform.position = end;
         ResumePlayerAfterPass(previousKinematicState);
         isPassing = false;
     }
 
     /// <summary>
     /// Coroutine der udfører en "under"-passage: dipper spilleren nedad og valgfrit smalner collideren ind under passagen.
+    /// Uses CharacterController.Move or Rigidbody.MovePosition to preserve collision resolution and avoid getting stuck in ground.
     /// </summary>
     private IEnumerator PerformUnder()
     {
-        if (playerTransform == null || playerRigidbody == null || playerMovement == null) yield break;
+        if (playerTransform == null || playerMovement == null) yield break;
         isPassing = true;
 
         PausePlayerForPass(out var previousKinematicState);
@@ -544,23 +628,69 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
 
         Vector3 start = playerTransform.position;
         Vector3 forward = playerTransform.forward.normalized;
-        Vector3 end = start + forward * passDistance;
+        Vector3 endHorizontal = start + forward * passDistance;
+        Vector3 finalEnd = endHorizontal + Vector3.up * underEndRise;
         float elapsed = 0f;
 
-        while (elapsed < passDuration)
+        if (playerCharacterController != null)
         {
-            float progress = Mathf.Clamp01(elapsed / passDuration);
-            Vector3 horiz = Vector3.Lerp(start, end, progress);
-            float dip = -ParabolaNormalization * underDepth * progress * (1 - progress);
-            playerTransform.position = new Vector3(horiz.x, horiz.y + dip, horiz.z);
+            Vector3 prev = playerCharacterController.transform.position;
+            while (elapsed < passDuration)
+            {
+                float progress = Mathf.Clamp01(elapsed / passDuration);
+                Vector3 horiz = Vector3.Lerp(start, endHorizontal, progress);
+                float dip = -ParabolaNormalization * underDepth * progress * (1 - progress);
+                Vector3 target = new Vector3(horiz.x, horiz.y + dip, horiz.z);
 
-            UpdateDuckColliderDuringMove(elapsed);
+                Vector3 delta = target - prev;
+                playerCharacterController.Move(delta);
+                prev = playerCharacterController.transform.position;
 
-            elapsed += Time.deltaTime;
-            yield return null;
+                UpdateDuckColliderDuringMove(elapsed);
+
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            Vector3 finalDelta = finalEnd - playerCharacterController.transform.position;
+            playerCharacterController.Move(finalDelta);
         }
+        else if (playerRigidbody != null)
+        {
+            while (elapsed < passDuration)
+            {
+                float progress = Mathf.Clamp01(elapsed / passDuration);
+                Vector3 horiz = Vector3.Lerp(start, endHorizontal, progress);
+                float dip = -ParabolaNormalization * underDepth * progress * (1 - progress);
+                Vector3 target = new Vector3(horiz.x, horiz.y + dip, horiz.z);
 
-        playerTransform.position = end;
+                playerRigidbody.MovePosition(target);
+
+                UpdateDuckColliderDuringMove(elapsed);
+
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            playerRigidbody.MovePosition(finalEnd);
+        }
+        else
+        {
+            while (elapsed < passDuration)
+            {
+                float progress = Mathf.Clamp01(elapsed / passDuration);
+                Vector3 horiz = Vector3.Lerp(start, endHorizontal, progress);
+                float dip = -ParabolaNormalization * underDepth * progress * (1 - progress);
+                playerTransform.position = new Vector3(horiz.x, horiz.y + dip, horiz.z);
+
+                UpdateDuckColliderDuringMove(elapsed);
+
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            playerTransform.position = finalEnd;
+        }
 
         if (changePlayerColliderWhenDucking && (duckCapsuleCollider != null || duckCharacterController != null))
         {
@@ -675,25 +805,127 @@ public class ObstacleVoiceGate : MonoBehaviour, IVoiceObserver
         yield break;
     }
 
-    [DisallowMultipleComponent]
     /// <summary>
-    /// Liten helper-komponent der placeres på child-collider gameobjects for at videresende OnTrigger events til parent-gaten.
+    /// Update loop used to detect entry/exit when colliders live on child objects.
+    /// We removed child forwarders; instead we test collider overlap with player's collider/position.
+    /// This runs light-weight checks: when player is not inside we search for any PlayerMovement overlapping the tracked colliders.
+    /// When player is inside we regularly verify they still overlap the gate colliders.
     /// </summary>
-    private sealed class ObstacleTriggerForwarder : MonoBehaviour
+    private void Update()
     {
-        /// <summary>
-        /// Reference til den parent ObstacleVoiceGate som skal modtage forwarded events.
-        /// </summary>
-        internal ObstacleVoiceGate parentGate;
-
-        private void OnTriggerEnter(Collider other)
+        // If we are already tracking a player, verify they are still inside our tracked colliders
+        if (playerInside)
         {
-            parentGate?.ChildTriggerEnter(gameObject, other);
+            if (playerMovement == null || playerTransform == null)
+            {
+                // Defensive: clear if we lost player reference
+                OnPlayerExit();
+                return;
+            }
+
+            Collider playerCollider = playerMovement.GetComponent<Collider>() ?? playerMovement.GetComponentInChildren<Collider>();
+            bool stillInside = false;
+            if (playerCollider != null)
+            {
+                stillInside = IsColliderOverlappingAnyTracked(playerCollider);
+            }
+            else
+            {
+                stillInside = IsPointInsideAnyTracked(playerTransform.position);
+            }
+
+            if (!stillInside)
+            {
+                HandleTriggerExit(null); // null indicates exit detected by overlap check
+            }
+        }
+        else
+        {
+            // Not tracking player: look for any PlayerMovement that overlaps our tracked colliders
+            var players = FindObjectsOfType<PlayerMovement>();
+            foreach (var p in players)
+            {
+                Collider pcol = p.GetComponent<Collider>() ?? p.GetComponentInChildren<Collider>();
+                bool overlaps = false;
+                if (pcol != null)
+                {
+                    overlaps = IsColliderOverlappingAnyTracked(pcol);
+                }
+                else
+                {
+                    overlaps = IsPointInsideAnyTracked(p.transform.position);
+                }
+
+                if (overlaps)
+                {
+                    OnPlayerEnter(p, p.GetComponent<Rigidbody>());
+                    break;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Checks if a world-space point lies within any tracked collider (or this object's own collider).
+    /// Uses ClosestPoint which returns the same point when the point is inside a collider.
+    /// </summary>
+    private bool IsPointInsideAnyTracked(Vector3 worldPoint)
+    {
+        var ownCollider = GetComponent<Collider>();
+        if (ownCollider != null)
+        {
+            if (ownCollider.ClosestPoint(worldPoint) == worldPoint)
+                return true;
         }
 
-        private void OnTriggerExit(Collider other)
+        if (trackedChildColliders != null)
         {
-            parentGate?.ChildTriggerExit(gameObject, other);
+            foreach (var c in trackedChildColliders)
+            {
+                if (c == null) continue;
+                if (c.ClosestPoint(worldPoint) == worldPoint)
+                    return true;
+            }
         }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Tests whether player's collider is overlapping any of the tracked colliders (or own collider).
+    /// Uses Physics.ComputePenetration for a robust overlap test.
+    /// </summary>
+    private bool IsColliderOverlappingAnyTracked(Collider playerCollider)
+    {
+        if (playerCollider == null) return false;
+
+        var ownCollider = GetComponent<Collider>();
+        if (ownCollider != null)
+        {
+            if (ComputeOverlap(playerCollider, ownCollider))
+                return true;
+        }
+
+        if (trackedChildColliders != null)
+        {
+            foreach (var c in trackedChildColliders)
+            {
+                if (c == null) continue;
+                if (ComputeOverlap(playerCollider, c))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Helper wrapper around Physics.ComputePenetration.
+    /// </summary>
+    private static bool ComputeOverlap(Collider a, Collider b)
+    {
+        Vector3 direction;
+        float distance;
+        return Physics.ComputePenetration(a, a.transform.position, a.transform.rotation, b, b.transform.position, b.transform.rotation, out direction, out distance);
     }
 }
